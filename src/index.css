@@ -822,10 +822,9 @@ button:disabled { cursor: not-allowed; }
 .gallery-section { padding-block: var(--space-3xl); }
 .scroll-frame-hero { height: 600svh; background: var(--color-surface-dark); }
 .scroll-frame-hero__stage { position: sticky; top: 0; height: 100svh; overflow: hidden; background: var(--color-surface-dark); color: var(--color-text-on-dark); }
-.scroll-frame-hero__backdrop { display: none; }
-.scroll-frame-hero__frame { position: absolute; z-index: 1; inset: 0; width: 100%; height: 100%; object-fit: cover; animation: gallery-frame-drift 16s ease-in-out infinite alternate; }
-.scroll-frame-hero__overlay { position: absolute; z-index: 2; inset: 0; background: linear-gradient(90deg, rgb(27 18 16 / 58%) 0%, rgb(27 18 16 / 32%) 39%, rgb(27 18 16 / 8%) 70%, rgb(27 18 16 / 25%) 100%), linear-gradient(0deg, rgb(20 14 13 / 48%) 0%, transparent 34%); }
-.scroll-frame-hero__content { position: relative; z-index: 3; display: flex; width: min(100% - (var(--gutter) * 2), var(--content-width)); min-height: 100%; flex-direction: column; justify-content: center; margin-inline: auto; padding-block: clamp(7rem, 13vh, 10rem) var(--space-xl); }
+.scroll-frame-hero__frame { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; animation: gallery-frame-drift 16s ease-in-out infinite alternate; }
+.scroll-frame-hero__overlay { position: absolute; z-index: 1; inset: 0; background: linear-gradient(90deg, rgb(27 18 16 / 58%) 0%, rgb(27 18 16 / 32%) 39%, rgb(27 18 16 / 8%) 70%, rgb(27 18 16 / 25%) 100%), linear-gradient(0deg, rgb(20 14 13 / 48%) 0%, transparent 34%); }
+.scroll-frame-hero__content { position: relative; z-index: 2; display: flex; width: min(100% - (var(--gutter) * 2), var(--content-width)); min-height: 100%; flex-direction: column; justify-content: center; margin-inline: auto; padding-block: clamp(7rem, 13vh, 10rem) var(--space-xl); }
 .scroll-frame-hero__copy { max-width: 21rem; }
 .scroll-frame-hero__eyebrow { color: #e9bd78; }
 .scroll-frame-hero__heading { margin: 0; font-family: var(--font-body); font-size: clamp(2.25rem, 3.5vw, 3.85rem); font-weight: 700; letter-spacing: -0.06em; line-height: 0.98; }
@@ -1294,9 +1293,7 @@ button:disabled { cursor: not-allowed; }
 
 @media (max-width: 48rem) {
   .scroll-frame-hero { height: 700svh; }
-  .scroll-frame-hero__stage { background: #2b1d1b; }
-  .scroll-frame-hero__backdrop { position: absolute; z-index: 0; inset: -2rem; display: block; width: calc(100% + 4rem); height: calc(100% + 4rem); object-fit: cover; filter: blur(1.35rem) brightness(0.46) saturate(0.85); opacity: 0.9; transform: scale(1.08); }
-  .scroll-frame-hero__frame { z-index: 1; object-fit: contain; animation: none; transform: none; }
+  .scroll-frame-hero__frame { animation: none; transform: scale(1.015); }
 }
 
 @media (prefers-reduced-motion: reduce) {

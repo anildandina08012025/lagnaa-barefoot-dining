@@ -17,7 +17,6 @@ function clamp(value: number, minimum = 0, maximum = 1) {
 export function ScrollFrameHero({ eyebrow, heading, description, headingId, frames, children }: ScrollFrameHeroProps) {
   const sectionRef = useRef<HTMLElement>(null)
   const imageRef = useRef<HTMLImageElement>(null)
-  const backdropRef = useRef<HTMLImageElement>(null)
   const [usesCompactSequence, setUsesCompactSequence] = useState(() => (
     typeof window !== 'undefined' && window.matchMedia('(max-width: 48rem)').matches
   ))
@@ -57,7 +56,6 @@ export function ScrollFrameHero({ eyebrow, heading, description, headingId, fram
       if (isDisposed || requestedFrame !== frameIndexToReveal || !imageRef.current) return
 
       imageRef.current.src = frame.src
-      if (backdropRef.current) backdropRef.current.src = frame.src
       displayedFrame = frameIndexToReveal
       setFrameIndex(frameIndexToReveal)
     }
@@ -107,7 +105,6 @@ export function ScrollFrameHero({ eyebrow, heading, description, headingId, fram
     }
 
     if (imageRef.current) imageRef.current.src = initialFrame
-    if (backdropRef.current) backdropRef.current.src = initialFrame
     setFrameIndex(0)
     renderFrame()
     window.addEventListener('scroll', scheduleFrame, { passive: true })
@@ -131,16 +128,6 @@ export function ScrollFrameHero({ eyebrow, heading, description, headingId, fram
   return (
     <section className="scroll-frame-hero" ref={sectionRef} aria-labelledby={headingId}>
       <div className="scroll-frame-hero__stage">
-        <img
-          aria-hidden="true"
-          className="scroll-frame-hero__backdrop"
-          ref={backdropRef}
-          src={initialFrame}
-          alt=""
-          width="1280"
-          height="720"
-          decoding="async"
-        />
         <img
           className="scroll-frame-hero__frame"
           ref={imageRef}
