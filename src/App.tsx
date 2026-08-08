@@ -11,6 +11,7 @@ import { OurStoryPage } from './components/pages/OurStoryPage'
 import { ReservationsPage } from './components/pages/ReservationsPage'
 import { AnnouncementBar } from './components/ui/AnnouncementBar'
 import { SpotlightCursor } from './components/ui/SpotlightCursor'
+import { LagnaaConcierge } from './components/ui/LagnaaConcierge'
 
 function App() {
   const path = window.location.pathname
@@ -40,6 +41,7 @@ function App() {
       {page}
       <SiteFooter />
       {path !== '/menu' ? <SpotlightCursor /> : null}
+      <LagnaaConcierge />
     </div>
   )
 }
