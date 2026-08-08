@@ -1,4 +1,4 @@
-import { type ReactNode, useEffect, useRef, useState } from 'react'
+import { type ReactNode, useEffect, useMemo, useRef, useState } from 'react'
 import { restaurantConfig } from '../../config/restaurant'
 
 type ScrollFrameHeroProps = {
@@ -17,99 +17,113 @@ function clamp(value: number, minimum = 0, maximum = 1) {
 export function ScrollFrameHero({ eyebrow, heading, description, headingId, frames, children }: ScrollFrameHeroProps) {
   const sectionRef = useRef<HTMLElement>(null)
   const imageRef = useRef<HTMLImageElement>(null)
+  const [usesCompactSequence, setUsesCompactSequence] = useState(() => (
+    typeof window !== 'undefined' && window.matchMedia('(max-width: 48rem)').matches
+  ))
   const [frameIndex, setFrameIndex] = useState(0)
-  const totalFrames = frames.length
-  const initialFrame = frames[0]
+  const animationFrames = useMemo(() => (
+    usesCompactSequence
+      ? frames.filter((_, index) => index % 2 === 0 || index === frames.length - 1)
+      : frames
+  ), [frames, usesCompactSequence])
+  const totalFrames = animationFrames.length
+  const initialFrame = animationFrames[0]
 
   useEffect(() => {
-    if (!initialFrame || frames.length < 2) {
-      return undefined
-    }
+    const compactQuery = window.matchMedia('(max-width: 48rem)')
+    const updateSequence = () => setUsesCompactSequence(compactQuery.matches)
+    updateSequence()
+    compactQuery.addEventListener('change', updateSequence)
+    return () => compactQuery.removeEventListener('change', updateSequence)
+  }, [])
 
-    const motionQuery = window.matchMedia('(prefers-reduced-motion: reduce)')
-    if (motionQuery.matches) {
-      return undefined
-    }
+  useEffect(() => {
+    if (!initialFrame || animationFrames.length < 2) return undefined
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return undefined
 
-    const frameCache = frames.map((source) => {
-      const frame = new Image()
-      frame.decoding = 'async'
-      frame.src = source
-      return frame
-    })
     let animationFrame = 0
     let requestedFrame = 0
+    let displayedFrame = 0
     let isDisposed = false
+    const frameCache = new Map<number, HTMLImageElement>()
+    const readyFrames = new Set<number>()
+    const preloadAhead = usesCompactSequence ? 7 : 10
+    const preloadBehind = usesCompactSequence ? 2 : 3
 
     const revealFrame = (frameIndexToReveal: number) => {
-      const frame = frameCache[frameIndexToReveal]
+      const frame = frameCache.get(frameIndexToReveal)
+      if (!frame || !readyFrames.has(frameIndexToReveal) || displayedFrame === frameIndexToReveal) return
+      if (isDisposed || requestedFrame !== frameIndexToReveal || !imageRef.current) return
 
-      const commitFrame = () => {
-        if (isDisposed || requestedFrame !== frameIndexToReveal || !imageRef.current) {
-          return
-        }
+      imageRef.current.src = frame.src
+      displayedFrame = frameIndexToReveal
+      setFrameIndex(frameIndexToReveal)
+    }
 
-        imageRef.current.src = frame.src
-        setFrameIndex(frameIndexToReveal)
+    const preloadFrame = (frameIndexToPreload: number) => {
+      if (frameIndexToPreload < 0 || frameIndexToPreload >= animationFrames.length || frameCache.has(frameIndexToPreload)) return
+
+      const frame = new Image()
+      frame.decoding = 'async'
+      frameCache.set(frameIndexToPreload, frame)
+
+      const markReady = () => {
+        void frame.decode().catch(() => undefined).then(() => {
+          if (isDisposed || frame.naturalWidth === 0) return
+          readyFrames.add(frameIndexToPreload)
+          if (requestedFrame === frameIndexToPreload) revealFrame(frameIndexToPreload)
+        })
       }
 
-      const decodeAndCommit = () => {
-        void frame.decode().catch(() => undefined).then(commitFrame)
-      }
+      frame.addEventListener('load', markReady, { once: true })
+      frame.src = animationFrames[frameIndexToPreload]
+      if (frame.complete && frame.naturalWidth > 0) markReady()
+    }
 
-      if (frame.complete && frame.naturalWidth > 0) {
-        decodeAndCommit()
-      } else {
-        frame.addEventListener('load', decodeAndCommit, { once: true })
-      }
+    const preloadNearbyFrames = (centreFrame: number) => {
+      for (let index = centreFrame; index <= centreFrame + preloadAhead; index += 1) preloadFrame(index)
+      for (let index = centreFrame - 1; index >= centreFrame - preloadBehind; index -= 1) preloadFrame(index)
     }
 
     const renderFrame = () => {
       const section = sectionRef.current
       const image = imageRef.current
       animationFrame = 0
-
-      if (!section || !image) {
-        return
-      }
+      if (!section || !image) return
 
       const scrollDistance = Math.max(section.offsetHeight - window.innerHeight, 1)
       const progress = clamp(-section.getBoundingClientRect().top / scrollDistance)
-      const nextFrame = Math.min(frames.length - 1, Math.round(progress * (frames.length - 1)))
+      const nextFrame = Math.min(animationFrames.length - 1, Math.floor(progress * (animationFrames.length - 1)))
 
-      if (nextFrame !== requestedFrame) {
-        requestedFrame = nextFrame
-        revealFrame(nextFrame)
-      }
+      requestedFrame = nextFrame
+      preloadNearbyFrames(nextFrame)
+      revealFrame(nextFrame)
     }
 
     const scheduleFrame = () => {
-      if (!animationFrame) {
-        animationFrame = window.requestAnimationFrame(renderFrame)
-      }
+      if (!animationFrame) animationFrame = window.requestAnimationFrame(renderFrame)
     }
 
+    if (imageRef.current) imageRef.current.src = initialFrame
+    setFrameIndex(0)
     renderFrame()
     window.addEventListener('scroll', scheduleFrame, { passive: true })
     window.addEventListener('resize', scheduleFrame)
 
     return () => {
-      if (animationFrame) {
-        window.cancelAnimationFrame(animationFrame)
-      }
+      if (animationFrame) window.cancelAnimationFrame(animationFrame)
       window.removeEventListener('scroll', scheduleFrame)
       window.removeEventListener('resize', scheduleFrame)
       isDisposed = true
     }
-  }, [frames, initialFrame])
+  }, [animationFrames, initialFrame, usesCompactSequence])
 
-  if (!initialFrame) {
-    return null
-  }
+  if (!initialFrame) return null
 
-  const formattedFrame = String(frameIndex + 1).padStart(2, '0')
+  const visibleFrameIndex = Math.min(frameIndex, totalFrames - 1)
+  const formattedFrame = String(visibleFrameIndex + 1).padStart(2, '0')
   const formattedTotal = String(totalFrames).padStart(2, '0')
-  const progress = totalFrames > 1 ? frameIndex / (totalFrames - 1) : 0
+  const progress = totalFrames > 1 ? visibleFrameIndex / (totalFrames - 1) : 0
 
   return (
     <section className="scroll-frame-hero" ref={sectionRef} aria-labelledby={headingId}>
