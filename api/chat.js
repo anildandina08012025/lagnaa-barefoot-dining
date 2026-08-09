@@ -81,12 +81,15 @@ function sanitiseMessages(value) {
 }
 
 function extractReply(response) {
-  return response.output
-    ?.flatMap((item) => item.content ?? [])
-    .filter((content) => content.type === 'output_text' && typeof content.text === 'string')
-    .map((content) => content.text)
-    .join('\n')
-    .trim()
+  const content = response.choices?.[0]?.message?.content
+  return typeof content === 'string' ? content.trim() : ''
+}
+
+function upstreamError(status, body) {
+  if (status === 401) return 'The AI concierge key needs to be checked in Vercel settings.'
+  if (status === 429) return 'The AI concierge has reached an OpenAI limit. Please check the OpenAI account billing or try again shortly.'
+  if (body?.error?.code === 'model_not_found') return 'The configured AI model is unavailable. Please check the OpenAI project access.'
+  return 'The AI concierge is temporarily unavailable. Please try again shortly.'
 }
 
 async function requestBody(request) {
@@ -117,7 +120,7 @@ export default async function handler(request, response) {
   if (!messages.length) return json(response, { error: 'Please enter a message.' }, 400)
 
   try {
-    const openaiResponse = await fetch('https://api.openai.com/v1/responses', {
+    const openaiResponse = await fetch('https://api.openai.com/v1/chat/completions', {
       method: 'POST',
       headers: {
         Authorization: `Bearer ${process.env.OPENAI_API_KEY}`,
@@ -125,19 +128,18 @@ export default async function handler(request, response) {
       },
       body: JSON.stringify({
         model: 'gpt-4o-mini',
-        instructions,
-        input: messages.map((message) => ({
-          role: message.role,
-          content: [{ type: 'input_text', text: message.content }],
-        })),
-        max_output_tokens: 420,
+        messages: [
+          { role: 'system', content: instructions },
+          ...messages,
+        ],
+        max_tokens: 420,
       }),
     })
 
     const responseBody = await openaiResponse.json().catch(() => null)
     if (!openaiResponse.ok) {
       console.error('OpenAI response error', openaiResponse.status, responseBody?.error?.code)
-      return json(response, { error: 'The AI concierge is temporarily unavailable. Please try again shortly.' }, 502)
+      return json(response, { error: upstreamError(openaiResponse.status, responseBody) }, 502)
     }
 
     const reply = extractReply(responseBody)
