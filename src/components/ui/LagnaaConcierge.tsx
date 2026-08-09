@@ -20,7 +20,7 @@ const initialMessages: Message[] = [
   {
     id: 1,
     speaker: 'assistant',
-    text: 'Namaste. I can help you explore dishes and published prices, suggest menu ideas, share experience information, or prepare a reservation request.',
+    text: 'Namaste. I can help you explore dishes and published prices, suggest menu ideas, or share experience information.',
   },
 ]
 
@@ -28,8 +28,9 @@ const quickPrompts = [
   'Recommend a vegetarian dish',
   'What are the prices?',
   'Tell me about events',
-  'Reserve a table',
 ] as const
+
+const reservationIntent = /\b(reserv(?:e|ation)|book(?:ing)?(?:\s+(?:a\s+)?)?table|make(?:\s+(?:a\s+)?)?booking)\b/i
 
 export function LagnaaConcierge() {
   const [isOpen, setIsOpen] = useState(false)
@@ -82,7 +83,7 @@ export function LagnaaConcierge() {
       }
       if (!response.ok || !payload.reply) throw new Error(payload.error || 'Unable to reach the concierge.')
       appendAssistant(payload.reply)
-      if (/reserve|reserv|book|table|availability|available|slot/.test(text.toLowerCase())) setShowLeadForm(true)
+      if (reservationIntent.test(text)) setShowLeadForm(true)
     } catch (error) {
       appendAssistant(error instanceof Error ? error.message : 'The AI concierge is temporarily unavailable. Please try again shortly.')
     } finally {
