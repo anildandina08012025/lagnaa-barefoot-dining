@@ -7,6 +7,7 @@ type ScrollFrameHeroProps = {
   description: string
   headingId: string
   frames: readonly string[]
+  mobileFrames?: readonly string[]
   children?: ReactNode
 }
 
@@ -14,7 +15,7 @@ function clamp(value: number, minimum = 0, maximum = 1) {
   return Math.min(maximum, Math.max(minimum, value))
 }
 
-export function ScrollFrameHero({ eyebrow, heading, description, headingId, frames, children }: ScrollFrameHeroProps) {
+export function ScrollFrameHero({ eyebrow, heading, description, headingId, frames, mobileFrames, children }: ScrollFrameHeroProps) {
   const sectionRef = useRef<HTMLElement>(null)
   const imageRef = useRef<HTMLImageElement>(null)
   const [usesCompactSequence, setUsesCompactSequence] = useState(() => (
@@ -22,10 +23,12 @@ export function ScrollFrameHero({ eyebrow, heading, description, headingId, fram
   ))
   const [frameIndex, setFrameIndex] = useState(0)
   const animationFrames = useMemo(() => (
-    usesCompactSequence
-      ? frames.filter((_, index) => index % 2 === 0 || index === frames.length - 1)
-      : frames
-  ), [frames, usesCompactSequence])
+    usesCompactSequence && mobileFrames && mobileFrames.length > 0
+      ? mobileFrames
+      : usesCompactSequence
+        ? frames.filter((_, index) => index % 2 === 0 || index === frames.length - 1)
+        : frames
+  ), [frames, mobileFrames, usesCompactSequence])
   const totalFrames = animationFrames.length
   const initialFrame = animationFrames[0]
 

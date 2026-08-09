@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
 import { homeContent } from '../../content/home'
 import { galleryHeroFrames } from '../../content/galleryHeroFrames'
+import { mobileHeroFrames } from '../../content/mobileHeroFrames'
 import entranceTeamImage from '../../assets/gallery/lagnaa-entrance-team.jpg'
 import { featuredRecognitionItems } from '../../content/recognition'
 import { restaurantConfig } from '../../config/restaurant'
@@ -75,7 +76,7 @@ export function HomePage() {
 
   return (
     <main id="main-content">
-      <ScrollFrameHero {...hero} headingId="home-heading" frames={galleryHeroFrames}>
+      <ScrollFrameHero {...hero} headingId="home-heading" frames={galleryHeroFrames} mobileFrames={mobileHeroFrames}>
         <div className="home-hero__actions">
           <Button href={restaurantConfig.links.reservation} disabled={!canReserve} variant="primary">Reserve a Table</Button>
           <Button href="/menu" variant="outline">View Menu</Button>
