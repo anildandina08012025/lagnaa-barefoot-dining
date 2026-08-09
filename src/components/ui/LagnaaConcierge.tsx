@@ -20,7 +20,7 @@ const initialMessages: Message[] = [
   {
     id: 1,
     speaker: 'assistant',
-    text: 'Welcome to Lagnaa. I can help you explore dishes and published prices, suggest menu ideas, share experience information, or prepare a reservation request.',
+    text: 'Namaste. I can help you explore dishes and published prices, suggest menu ideas, share experience information, or prepare a reservation request.',
   },
 ]
 
@@ -73,7 +73,13 @@ export function LagnaaConcierge() {
           })),
         }),
       })
-      const payload = await response.json() as { reply?: string, error?: string }
+      const responseText = await response.text()
+      let payload: { reply?: string, error?: string } = {}
+      try {
+        payload = JSON.parse(responseText) as { reply?: string, error?: string }
+      } catch {
+        throw new Error('The AI concierge is temporarily unavailable. Please try again shortly.')
+      }
       if (!response.ok || !payload.reply) throw new Error(payload.error || 'Unable to reach the concierge.')
       appendAssistant(payload.reply)
       if (/reserve|reserv|book|table|availability|available|slot/.test(text.toLowerCase())) setShowLeadForm(true)
