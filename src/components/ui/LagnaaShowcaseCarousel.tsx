@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState, type CSSProperties, type KeyboardEvent } from 'react'
-import chilliLevels from '../../assets/lagnaa-showcase/lagnaa-chilli-levels.webp'
+import chilliLevels from '../../assets/chilli/lagnaa-chilli-challenge-levels.png'
 import cookingMoment from '../../assets/lagnaa-showcase/lagnaa-cooking-moment.webp'
 import diningMoment from '../../assets/lagnaa-showcase/lagnaa-dining-moment.webp'
 

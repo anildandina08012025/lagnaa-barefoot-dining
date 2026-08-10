@@ -61,7 +61,9 @@ export function ExperiencesPage() {
                     <h3>{event.title}</h3>
                     <p>{event.description}</p>
                     <p className="event-card__availability">{event.availabilityNote}</p>
-                    {event.action === 'contact' ? (
+                    {event.detailPath ? (
+                      <a className="text-link" href={event.detailPath}>{event.detailActionLabel ?? 'Explore experience'} <TextArrow /></a>
+                    ) : event.action === 'contact' ? (
                       <Button href="/contact" variant="primary">Register Interest</Button>
                     ) : (
                       <a className="text-link" href={event.officialDetailsUrl} target="_blank" rel="noopener noreferrer">View official details <TextArrow /></a>

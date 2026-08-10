@@ -27,6 +27,8 @@ export type EventExperience = {
   image: string
   imageAlt: string
   officialDetailsUrl: string
+  detailPath?: string
+  detailActionLabel?: string
   action: 'official-details' | 'contact'
   isPastOrCultural?: boolean
 }
@@ -142,6 +144,8 @@ export const eventExperiences: readonly EventExperience[] = [
     image: arusuvaiPlatter,
     imageAlt: 'A divided platter of Indian dishes at Lagnaa.',
     officialDetailsUrl: 'https://www.lagnaa.com/food-tasting',
+    detailPath: '/events/monthly-degustation',
+    detailActionLabel: 'Register your interest',
     action: 'official-details',
   },
   {
@@ -153,6 +157,8 @@ export const eventExperiences: readonly EventExperience[] = [
     image: elaiKoli,
     imageAlt: 'Elai Koli served on a banana leaf.',
     officialDetailsUrl: 'https://www.lagnaa.com/chilli-challenge',
+    detailPath: '/experiences/chilli-challenge',
+    detailActionLabel: 'Explore the challenge',
     action: 'official-details',
   },
   {
@@ -164,6 +170,8 @@ export const eventExperiences: readonly EventExperience[] = [
     image: malaiTikka,
     imageAlt: 'Malai Tikka on a plate.',
     officialDetailsUrl: 'https://www.lagnaa.com/cooking-class',
+    detailPath: '/events/cooking-with-chef-kaesavan',
+    detailActionLabel: 'Register your interest',
     action: 'contact',
   },
   {
@@ -175,6 +183,8 @@ export const eventExperiences: readonly EventExperience[] = [
     image: entranceTeam,
     imageAlt: 'Lagnaa restaurant entrance with members of the restaurant team.',
     officialDetailsUrl: 'https://www.lagnaa.com/rediscoverlittleindia',
+    detailPath: '/events/rediscover-little-india',
+    detailActionLabel: 'View the archive',
     action: 'official-details',
     isPastOrCultural: true,
   },

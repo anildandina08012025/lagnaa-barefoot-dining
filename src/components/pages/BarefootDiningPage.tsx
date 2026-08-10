@@ -23,6 +23,28 @@ export function BarefootDiningPage() {
       <PageMetadata title={content.seo.title} description={content.seo.description} canonicalUrl={canonicalUrl} />
       <article>
         <section className="barefoot-hero" aria-labelledby="barefoot-heading">
+          <div className="barefoot-hero__poem-animation" aria-hidden="true">
+            <div className="barefoot-hero__poem-hue" />
+            <div className="barefoot-hero__poem-cube">
+              <div className="barefoot-hero__poem-face barefoot-hero__poem-face--front">
+                <p>Barefoot Dining · Indian Flavours · Warm Hospitality · Little India ·</p>
+              </div>
+              <div className="barefoot-hero__poem-face barefoot-hero__poem-face--back">
+                <p>Food Around The Table · Slow Down · Share The Moment · Lagnaa ·</p>
+              </div>
+              <div className="barefoot-hero__poem-face barefoot-hero__poem-face--left">
+                <p>Arusuvai · Six Flavours · Spice · Balance · Discovery ·</p>
+              </div>
+              <div className="barefoot-hero__poem-face barefoot-hero__poem-face--right">
+                <p>Reserve A Table · Discover The Experience · Little India ·</p>
+              </div>
+              <div className="barefoot-hero__poem-face barefoot-hero__poem-face--top" />
+              <div className="barefoot-hero__poem-face barefoot-hero__poem-face--bottom" />
+            </div>
+            <div className="barefoot-hero__poem-reflection">
+              <p>Barefoot Dining · Lagnaa · Little India ·</p>
+            </div>
+          </div>
           <Container className="barefoot-hero__grid">
             <div className="barefoot-hero__content">
               <p className="eyebrow barefoot-hero__eyebrow">{content.hero.eyebrow}</p>
@@ -33,7 +55,6 @@ export function BarefootDiningPage() {
                 <a className="text-link text-link--light" href="#barefoot-introduction">Discover the experience <TextArrow /></a>
               </div>
             </div>
-            <DevelopmentMedia media={content.hero.media} className="barefoot-hero__media" priority />
           </Container>
         </section>
 
