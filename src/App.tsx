@@ -16,6 +16,7 @@ import { ReservationsPage } from './components/pages/ReservationsPage'
 import { AnnouncementBar } from './components/ui/AnnouncementBar'
 import { SpotlightCursor } from './components/ui/SpotlightCursor'
 import { LagnaaConcierge } from './components/ui/LagnaaConcierge'
+import { MobileMotionEffects } from './components/ui/MobileMotionEffects'
 
 function App() {
   const path = window.location.pathname
@@ -53,6 +54,7 @@ function App() {
       {page}
       <SiteFooter />
       {path !== '/menu' ? <SpotlightCursor /> : null}
+      <MobileMotionEffects />
       <LagnaaConcierge />
     </div>
   )

@@ -185,6 +185,66 @@ button:disabled { cursor: not-allowed; }
 .button--light:hover:not(:disabled) { background: linear-gradient(145deg, #fff 0%, #fff9ef 52%, #e9d9c5 100%); }
 .button__icon { display: inline-flex; }
 
+@media (max-width: 47.99rem) and (prefers-reduced-motion: no-preference) {
+  .mobile-motion {
+    opacity: 0;
+    filter: saturate(0.95);
+    transform: translate3d(0, 0.85rem, 0) scale(0.985);
+    transition:
+      opacity 520ms cubic-bezier(0.22, 1, 0.36, 1),
+      filter 520ms cubic-bezier(0.22, 1, 0.36, 1),
+      transform 520ms cubic-bezier(0.22, 1, 0.36, 1),
+      box-shadow 180ms ease,
+      border-color 180ms ease,
+      background-color 180ms ease;
+    transition-delay: var(--mobile-motion-delay, 0ms);
+    will-change: opacity, transform;
+  }
+
+  .mobile-motion--visible {
+    opacity: 1;
+    filter: none;
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+
+  .button.mobile-motion {
+    filter: none;
+    will-change: transform;
+  }
+
+  .mobile-motion--visible:is(.event-card, .ready-mix-card, .barefoot-explore__card, .menu-source-card, .lagnaa-moments__card, .development-media, .vertical-thumbnail-gallery__stage, .reservation-form-card) {
+    animation: mobile-soft-glow 900ms ease both;
+  }
+
+  :is(.button, .icon-button, .interactive-menu__filter, .published-menu__tab, .vertical-thumbnail-gallery__control, .vertical-thumbnail-gallery__thumbnail):active:not(:disabled) {
+    transform: scale(0.975);
+  }
+
+  :is(.event-card, .ready-mix-card, .barefoot-explore__card, .menu-source-card, .lagnaa-moments__card, .development-media, .vertical-thumbnail-gallery__stage, .interactive-menu__item, .published-menu__item, .published-menu__section, .reservation-form-card):active {
+    border-color: rgb(233 189 120 / 55%);
+    box-shadow: 0 0 0 1px rgb(233 189 120 / 18%), 0 0.8rem 1.8rem rgb(43 33 30 / 14%), 0 0 1.6rem rgb(233 189 120 / 16%);
+    transform: translate3d(0, -0.08rem, 0) scale(0.992);
+  }
+
+  :is(.event-card, .ready-mix-card):active::before {
+    opacity: 1;
+    transform: translateX(20%);
+  }
+
+  .interactive-menu__item:active .interactive-menu__item-button,
+  .published-menu__item:active h4,
+  .barefoot-explore__card:active h3,
+  .menu-source-card:active h3 {
+    color: var(--color-brand-primary);
+  }
+}
+
+@keyframes mobile-soft-glow {
+  0% { box-shadow: 0 0 0 rgb(233 189 120 / 0%); }
+  38% { box-shadow: 0 0 0 1px rgb(233 189 120 / 20%), 0 0 1.6rem rgb(233 189 120 / 18%); }
+  100% { box-shadow: inherit; }
+}
+
 .icon-button {
   display: inline-grid;
   width: 2.9rem;
