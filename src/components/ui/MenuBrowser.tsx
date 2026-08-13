@@ -3,13 +3,14 @@ import type { PublishedMenu } from '../../content/menu'
 
 type MenuBrowserProps = {
   menus: readonly PublishedMenu[]
+  showSourceLinks?: boolean
 }
 
 function officialMenuUrl(slug: string) {
   return `https://www.lagnaa.com/menu-1?location=Upper+Dickson+Road&menu=${slug}`
 }
 
-export function MenuBrowser({ menus }: MenuBrowserProps) {
+export function MenuBrowser({ menus, showSourceLinks = false }: MenuBrowserProps) {
   const [activeSlug, setActiveSlug] = useState(menus[0]?.slug ?? '')
   const activeMenu = menus.find((menu) => menu.slug === activeSlug) ?? menus[0]
 
@@ -45,7 +46,11 @@ export function MenuBrowser({ menus }: MenuBrowserProps) {
             <p className="eyebrow">{activeMenu.name}</p>
             {activeMenu.description ? <p>{activeMenu.description}</p> : null}
           </div>
-          <a href={officialMenuUrl(activeMenu.slug)} rel="noreferrer" target="_blank">View official source <span aria-hidden="true">↗</span></a>
+          {showSourceLinks ? (
+            <a href={officialMenuUrl(activeMenu.slug)} rel="noreferrer" target="_blank" aria-label={`Confirm ${activeMenu.name} menu details with Lagnaa`}>
+              Confirm menu details <span aria-hidden="true">↗</span>
+            </a>
+          ) : null}
         </div>
 
         <div className="published-menu__sections">
@@ -80,7 +85,7 @@ export function MenuBrowser({ menus }: MenuBrowserProps) {
           ))}
         </div>
 
-        <p className="published-menu__notice">Items and prices are reproduced from Lagnaa’s official menu. Availability may change; check the official source before visiting.</p>
+        <p className="published-menu__notice">Menu details can be confirmed directly with Lagnaa before your visit.</p>
       </div>
     </div>
   )

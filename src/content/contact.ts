@@ -42,8 +42,8 @@ export type ContactPageContent = {
 /** Page copy only. Shared contact facts are read from restaurantConfig. */
 export const contactPageContent: ContactPageContent = {
   seo: {
-    title: 'Contact & Visit Lagnaa | Little India, Singapore',
-    description: 'Find Lagnaa in Little India, Singapore, reserve a table and contact the restaurant before your visit.',
+    title: 'Contact Lagnaa Barefoot Dining | Indian Restaurant Singapore',
+    description: 'Contact Lagnaa Barefoot Dining in Little India, Singapore, for the address, phone, email and table reservation enquiry details.',
   },
   hero: {
     eyebrow: 'Plan your visit',

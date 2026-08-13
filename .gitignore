@@ -6,3 +6,4 @@ dist/
 !\.env.example
 *-full-375.png
 *-full-1440.png
+*.log

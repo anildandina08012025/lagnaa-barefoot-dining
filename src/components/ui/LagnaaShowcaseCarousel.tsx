@@ -4,9 +4,9 @@ import cookingMoment from '../../assets/lagnaa-showcase/lagnaa-cooking-moment.we
 import diningMoment from '../../assets/lagnaa-showcase/lagnaa-dining-moment.webp'
 
 const slides = [
-  { id: 'chilli-challenge', image: chilliLevels, title: 'The Ultimate Chilli Challenge', description: 'Be the first Chilli Challenger to complete a Level challenge and win S$10,000.', background: '#78222d' },
-  { id: 'monthly-interaction', image: diningMoment, title: 'Monthly Interaction', description: 'Exclusive dinner for our beloved diners to select our monthly specials.', background: '#a34b2d' },
-  { id: 'cooking-class', image: cookingMoment, title: 'Cook with Chef Kaesavan', description: 'Learn about Indian cuisine and cook with Lagnaa’s special secret sauce.', background: '#4c3b2b' },
+  { id: 'chilli-challenge', image: chilliLevels, title: 'The Ultimate Chilli Challenge', description: 'Lagnaa’s signature food challenge for guests who enjoy exploring spice.', background: '#78222d' },
+  { id: 'monthly-degustation', image: diningMoment, title: 'Monthly Dégustation', description: 'A food-tasting experience for discovering dishes and sharing impressions with the Lagnaa team.', background: '#a34b2d' },
+  { id: 'cooking-class', image: cookingMoment, title: 'Cook with Chef Kaesavan', description: 'An Indian cooking-class experience with Chef Kaesavan.', background: '#4c3b2b' },
 ] as const
 
 export function LagnaaShowcaseCarousel() {

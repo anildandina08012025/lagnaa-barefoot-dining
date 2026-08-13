@@ -5,6 +5,8 @@ import { PageMetadata } from '../seo/PageMetadata'
 import { Button } from '../ui/Button'
 import { CtaSection } from '../ui/CtaSection'
 import { SectionHeading } from '../ui/SectionHeading'
+import { TestimonialRequestSection } from '../ui/TestimonialRequestSection'
+import { TrustSignals } from '../ui/TrustSignals'
 
 function TextArrow() {
   return <span aria-hidden="true">↗</span>
@@ -38,17 +40,6 @@ export function ContactPage() {
           </Container>
         </section>
 
-        <section className="contact-section contact-actions" aria-labelledby="contact-actions-heading">
-          <Container>
-            <h2 className="visually-hidden" id="contact-actions-heading">Contact actions</h2>
-            <div className="contact-actions__list">
-              {restaurantConfig.links.reservation ? <Button href={restaurantConfig.links.reservation} variant="primary">Reserve a Table</Button> : null}
-              {phoneHref ? <Button href={phoneHref} variant="outline">Call Lagnaa</Button> : null}
-              {restaurantConfig.email ? <Button href={`mailto:${restaurantConfig.email}`} variant="outline">Email Lagnaa</Button> : null}
-            </div>
-          </Container>
-        </section>
-
         <section className="contact-section contact-visit" aria-labelledby="contact-visit-heading">
           <Container className="contact-visit__grid">
             <SectionHeading eyebrow={content.visit.eyebrow} heading={content.visit.heading} level={2} id="contact-visit-heading" />
@@ -57,6 +48,9 @@ export function ContactPage() {
                 <strong>{restaurantConfig.name}</strong>
                 {restaurantConfig.address ? <span>{restaurantConfig.address}</span> : null}
               </address>
+              <p className="contact-visit__seo-link">
+                Plan your visit to Lagnaa as an <a href="/indian-restaurant-singapore">Indian restaurant in Singapore</a>.
+              </p>
               <dl className="contact-detail-list">
                 {restaurantConfig.phone ? (
                   <div>
@@ -110,6 +104,10 @@ export function ContactPage() {
             </div>
           </Container>
         </section>
+
+        <TrustSignals compact />
+
+        <TestimonialRequestSection compact />
 
         <section className="contact-section contact-explore" aria-labelledby="contact-explore-heading">
           <Container>

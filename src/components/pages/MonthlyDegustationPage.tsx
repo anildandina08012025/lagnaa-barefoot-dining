@@ -81,8 +81,8 @@ export function MonthlyDegustationPage() {
   return (
     <main id="main-content">
       <PageMetadata
-        title="Monthly Dégustation | Lagnaa Barefoot Dining"
-        description="Register your interest in Lagnaa’s food-tasting experience and learn about future menu specials."
+        title="Monthly Dégustation Singapore | Lagnaa Food Tasting Experience"
+        description="Register interest in Lagnaa’s food-tasting experience in Singapore and learn how guests can share feedback toward future menu specials."
         canonicalUrl={canonicalUrl}
       />
       <article className="degustation-page">

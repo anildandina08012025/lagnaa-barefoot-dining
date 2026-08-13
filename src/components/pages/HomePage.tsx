@@ -3,6 +3,10 @@ import { homeContent } from '../../content/home'
 import { galleryHeroFrames } from '../../content/galleryHeroFrames'
 import { mobileHeroFrames } from '../../content/mobileHeroFrames'
 import entranceTeamImage from '../../assets/gallery/lagnaa-entrance-team.jpg'
+import arusuvaiPlatterImage from '../../assets/gallery/lagnaa-arusuvai-platter.jpg'
+import arusuvaiDetailImage from '../../assets/gallery/lagnaa-arusuvai-detail.jpg'
+import miniPuriImage from '../../assets/gallery/lagnaa-mini-puri.jpg'
+import elaiKoliImage from '../../assets/gallery/lagnaa-elai-koli.jpg'
 import { featuredRecognitionItems } from '../../content/recognition'
 import { restaurantConfig } from '../../config/restaurant'
 import { DevelopmentMedia } from '../media/DevelopmentMedia'
@@ -14,7 +18,9 @@ import { HomeScrollEffects } from '../ui/HomeScrollEffects'
 import { RecognitionCoverflow } from '../ui/RecognitionCoverflow'
 import { LagnaaShowcaseCarousel } from '../ui/LagnaaShowcaseCarousel'
 import { SectionHeading } from '../ui/SectionHeading'
+import { VisitChooserSection } from '../ui/VisitChooserSection'
 import VaporizeTextCycle, { Tag } from '../ui/vapour-text-effect'
+import { PageMetadata } from '../seo/PageMetadata'
 
 function TextArrow() {
   return <span aria-hidden="true">↗</span>
@@ -60,6 +66,9 @@ function AnimatedWelcomeIntroduction({ eyebrow, heading, paragraphs }: WelcomeIn
       ) : <h2 className="heading heading--section" id="introduction-heading">{heading}</h2>}
       <div className="editorial-copy home-introduction__paragraphs">
         {paragraphs.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}
+        <p>
+          Explore Lagnaa as an <a href="/indian-restaurant-little-india">Indian restaurant in Little India</a>, or learn more about its <a href="/experiences/barefoot-dining">Barefoot Dining experience</a>.
+        </p>
       </div>
       <a className="text-link" href="/our-story">Discover our story <TextArrow /></a>
     </div>
@@ -69,17 +78,18 @@ function AnimatedWelcomeIntroduction({ eyebrow, heading, paragraphs }: WelcomeIn
 export function HomePage() {
   const { hero, introduction, arusuvai, food, privateDining, gallery } = homeContent
   const canReserve = Boolean(restaurantConfig.links.reservation)
-  const canOrder = Boolean(restaurantConfig.links.orderOnline)
-  const hasVisitDetails = Boolean(
-    restaurantConfig.address || restaurantConfig.mapsUrl || restaurantConfig.phone || restaurantConfig.whatsapp || restaurantConfig.email || restaurantConfig.openingHours.length,
-  )
 
   return (
     <main id="main-content">
+      <PageMetadata
+        title="Lagnaa Barefoot Dining | Indian Restaurant in Little India Singapore"
+        description="Visit Lagnaa Barefoot Dining, an Indian restaurant in Little India, Singapore, known for Indian flavours, Barefoot Dining and signature experiences."
+        canonicalUrl={restaurantConfig.siteUrl ?? undefined}
+      />
       <ScrollFrameHero {...hero} headingId="home-heading" frames={galleryHeroFrames} mobileFrames={mobileHeroFrames}>
         <div className="home-hero__actions">
           <Button href={restaurantConfig.links.reservation} disabled={!canReserve} variant="primary">Reserve a Table</Button>
-          <Button href="/menu" variant="outline">View Menu</Button>
+          <Button href="/menu" variant="outline">Explore the Menu</Button>
         </div>
         <a className="text-link text-link--light" href="/experiences/barefoot-dining">Discover Barefoot Dining <TextArrow /></a>
       </ScrollFrameHero>
@@ -127,6 +137,8 @@ export function HomePage() {
         </Container>
       </section>
 
+      <VisitChooserSection tone="dark" scrollScene />
+
       <section className="home-section home-food" aria-labelledby="food-heading" data-home-scroll-scene>
         <Container>
           <div className="home-food__heading-row">
@@ -134,9 +146,10 @@ export function HomePage() {
             <Button href="/menu" variant="outline">View Full Menu</Button>
           </div>
           <div className="food-editorial-grid">
-            {food.media.map((media, index) => <DevelopmentMedia key={media.subject} media={media} className={`food-editorial-grid__item food-editorial-grid__item--${index + 1}`} />)}
+            <DevelopmentMedia image={arusuvaiPlatterImage} imageAlt="A selection of Lagnaa dishes." media={food.media[0]} className="food-editorial-grid__item food-editorial-grid__item--1" />
+            <DevelopmentMedia image={arusuvaiDetailImage} imageAlt="A detailed view of a Lagnaa shared platter." media={food.media[1]} className="food-editorial-grid__item food-editorial-grid__item--2" />
+            <DevelopmentMedia image={elaiKoliImage} imageAlt="A Lagnaa dish served on a banana leaf." media={food.media[2]} className="food-editorial-grid__item food-editorial-grid__item--3" />
           </div>
-          {canOrder ? <div className="home-food__order"><Button href={restaurantConfig.links.orderOnline} variant="text">Order Online <TextArrow /></Button></div> : null}
         </Container>
       </section>
 
@@ -145,7 +158,7 @@ export function HomePage() {
           <DevelopmentMedia media={privateDining.media} className="editorial-split__media" />
           <div className="editorial-split__copy">
             <SectionHeading eyebrow={privateDining.eyebrow} heading={privateDining.heading} description={privateDining.description} level={2} id="private-heading" />
-            <Button href="/private-events" variant="primary">Enquire About Private Events</Button>
+            <Button href="/contact" variant="primary">Enquire About Private Events</Button>
           </div>
         </Container>
       </section>
@@ -157,7 +170,9 @@ export function HomePage() {
             <a className="text-link" href="/gallery">View gallery <TextArrow /></a>
           </div>
           <div className="gallery-grid">
-            {gallery.media.map((media, index) => <DevelopmentMedia key={media.subject} media={media} className={`gallery-grid__item gallery-grid__item--${index + 1}`} />)}
+            <DevelopmentMedia image={miniPuriImage} imageAlt="A Lagnaa dish photographed for the gallery." media={gallery.media[0]} className="gallery-grid__item gallery-grid__item--1" />
+            <DevelopmentMedia image={entranceTeamImage} imageAlt="Lagnaa restaurant entrance with members of the restaurant team." media={gallery.media[1]} className="gallery-grid__item gallery-grid__item--2" />
+            <DevelopmentMedia image={arusuvaiDetailImage} imageAlt="A detailed Lagnaa table setting." media={gallery.media[2]} className="gallery-grid__item gallery-grid__item--3" />
           </div>
         </Container>
       </section>
@@ -167,18 +182,11 @@ export function HomePage() {
           <SectionHeading eyebrow="Find us" heading="Visit Lagnaa in Little India." description={restaurantConfig.shortDescription} level={2} id="visit-heading" />
           <div className="home-visit__details">
             <p className="home-visit__location">{restaurantConfig.location}</p>
-            {hasVisitDetails ? (
-              <div className="home-visit__confirmed-details">
-                {restaurantConfig.address ? (
-                  restaurantConfig.mapsUrl ? <a href={restaurantConfig.mapsUrl}>Get directions <TextArrow /></a> : <p>{restaurantConfig.address}</p>
-                ) : null}
-                {restaurantConfig.phone ? <a href={`tel:${restaurantConfig.phone}`}>Call the restaurant <TextArrow /></a> : null}
-                {restaurantConfig.whatsapp ? <a href={`https://wa.me/${restaurantConfig.whatsapp}`}>Message on WhatsApp <TextArrow /></a> : null}
-                {restaurantConfig.email ? <a href={`mailto:${restaurantConfig.email}`}>Email the restaurant <TextArrow /></a> : null}
-                {restaurantConfig.openingHours.length > 0 ? <p>{restaurantConfig.openingHours.join(' · ')}</p> : null}
-              </div>
-            ) : null}
-            <a className="text-link" href="/contact">Contact and visit details <TextArrow /></a>
+            {restaurantConfig.address ? <p className="home-visit__address">{restaurantConfig.address}</p> : null}
+            <div className="home-visit__actions">
+              <a className="text-link" href="/our-story">Discover Our Story <TextArrow /></a>
+              <a className="text-link" href="/contact">Plan Your Visit <TextArrow /></a>
+            </div>
           </div>
         </Container>
       </section>
@@ -187,9 +195,9 @@ export function HomePage() {
         scrollScene
         eyebrow="A table at Lagnaa"
         heading="Ready to experience Lagnaa?"
-        description="Reserve a table or explore the menu before you visit."
+        description="Reserve a table or contact Lagnaa to plan your visit."
         primaryAction={{ label: 'Reserve a Table', href: restaurantConfig.links.reservation }}
-        secondaryAction={{ label: 'View Menu', href: '/menu', variant: 'outline' }}
+        secondaryAction={{ label: 'Plan Your Visit', href: '/contact', variant: 'outline' }}
       />
     </main>
   )

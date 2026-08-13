@@ -89,8 +89,8 @@ export function CookingWithChefPage() {
   return (
     <main id="main-content">
       <PageMetadata
-        title="Cooking with Chef Kaesavan | Lagnaa Barefoot Dining"
-        description="Register your interest in a cooking experience with Master Chef Kaesavan, and enquire about Lagnaa Ready Mixes."
+        title="Cooking with Chef Kaesavan | Indian Cooking Class Singapore"
+        description="Register interest in Cooking with Chef Kaesavan at Lagnaa, an Indian cooking-class experience in Singapore."
         canonicalUrl={canonicalUrl}
       />
       <article className="cooking-page">
@@ -113,6 +113,7 @@ export function CookingWithChefPage() {
             <div className="cooking-interest__introduction">
               <SectionHeading eyebrow="Register your interest" heading="Tell Lagnaa what you would love to learn." level={2} id="cooking-interest-heading" />
               <p>The team will receive your enquiry through WhatsApp after you choose to submit the form.</p>
+              <p>For more context, view the <a href="/indian-cooking-class-singapore">Indian cooking class in Singapore</a> guide.</p>
             </div>
             <form className="cooking-form" noValidate onSubmit={submitInterest}>
               <div className="cooking-form__field">

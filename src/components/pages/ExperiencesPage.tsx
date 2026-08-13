@@ -11,11 +11,15 @@ function TextArrow() {
   return <span aria-hidden="true">↗</span>
 }
 
+const internalDiningExperienceRoutes: Readonly<Record<string, string>> = {
+  'barefoot-dining': '/experiences/barefoot-dining',
+}
+
 export function ExperiencesPage() {
   const { hero, introduction, barefootMedia, arusuvai, seo } = experiencesContent
   const barefootDining = experiences.find((experience) => experience.id === 'barefoot-dining')
   const canReserve = Boolean(restaurantConfig.links.reservation)
-  const canonicalUrl = restaurantConfig.siteUrl ? `${restaurantConfig.siteUrl.replace(/\/$/, '')}/experiences` : undefined
+  const canonicalUrl = restaurantConfig.siteUrl ? `${restaurantConfig.siteUrl.replace(/\/$/, '')}/events` : undefined
 
   return (
     <main id="main-content">
@@ -63,10 +67,8 @@ export function ExperiencesPage() {
                     <p className="event-card__availability">{event.availabilityNote}</p>
                     {event.detailPath ? (
                       <a className="text-link" href={event.detailPath}>{event.detailActionLabel ?? 'Explore experience'} <TextArrow /></a>
-                    ) : event.action === 'contact' ? (
-                      <Button href="/contact" variant="primary">Register Interest</Button>
                     ) : (
-                      <a className="text-link" href={event.officialDetailsUrl} target="_blank" rel="noopener noreferrer">View official details <TextArrow /></a>
+                      <Button href="/contact" variant="primary">Register Interest</Button>
                     )}
                   </div>
                 </article>
@@ -79,21 +81,30 @@ export function ExperiencesPage() {
           <Container>
             <div className="experiences-overview__heading-row">
               <SectionHeading eyebrow="Choose your setting" heading="Two ways to dine at Lagnaa." level={2} id="experience-overview-heading" />
-              <p>View the current official details before making your reservation.</p>
+              <p>Explore Lagnaa’s dining settings before making your reservation enquiry.</p>
             </div>
             <div className="experience-overview-list">
-              {experiences.map((experience) => (
-                <section className="experience-overview-list__item" key={experience.id} aria-labelledby={`${experience.id}-heading`}>
-                  <span className="experience-overview-list__number" aria-hidden="true">0{experience.displayOrder}</span>
-                  <div>
-                    <h3 id={`${experience.id}-heading`}>{experience.publicName}</h3>
-                    <p>{experience.shortDescription}</p>
-                  </div>
-                  <a className="text-link" href={experience.officialDetailsUrl} target="_blank" rel="noreferrer">
-                    View current details <TextArrow />
-                  </a>
-                </section>
-              ))}
+              {experiences.map((experience) => {
+                const internalRoute = internalDiningExperienceRoutes[experience.id]
+                return (
+                  <section className="experience-overview-list__item" key={experience.id} aria-labelledby={`${experience.id}-heading`}>
+                    <span className="experience-overview-list__number" aria-hidden="true">0{experience.displayOrder}</span>
+                    <div>
+                      <h3 id={`${experience.id}-heading`}>{experience.publicName}</h3>
+                      <p>{experience.shortDescription}</p>
+                    </div>
+                    {internalRoute ? (
+                      <a className="text-link" href={internalRoute}>
+                        Discover experience <TextArrow />
+                      </a>
+                    ) : (
+                      <a className="text-link" href={experience.officialDetailsUrl} target="_blank" rel="noreferrer">
+                        View Lagnaa details <TextArrow />
+                      </a>
+                    )}
+                  </section>
+                )
+              })}
             </div>
           </Container>
         </section>
@@ -108,7 +119,7 @@ export function ExperiencesPage() {
                   {barefootDining.longIntroduction?.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}
                 </div>
                 <div className="experiences-barefoot__actions">
-                  <a className="button button--light" href={barefootDining.officialDetailsUrl} target="_blank" rel="noreferrer">View Barefoot Dining details <TextArrow /></a>
+                  <a className="button button--light" href="/experiences/barefoot-dining">Discover Barefoot Dining <TextArrow /></a>
                   <Button href={restaurantConfig.links.reservation} disabled={!canReserve} variant="outline">Reserve a Table</Button>
                 </div>
               </div>

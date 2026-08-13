@@ -87,7 +87,7 @@ export const menuContent = {
   introduction: {
     eyebrow: 'Food at Lagnaa',
     heading: 'A menu shaped around Indian food and flavour.',
-    description: 'Lagnaa’s food offering is rooted in Indian cuisine and its Arusuvai philosophy of six flavours. Browse the published dishes and prices below, then check the official source for availability.',
+    description: 'Lagnaa’s food offering is rooted in Indian cuisine and its Arusuvai philosophy of six flavours. Browse the published dishes and prices below; availability is subject to final confirmation by Lagnaa.',
   },
   officialMenuViews: [
     {

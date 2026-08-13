@@ -63,6 +63,9 @@ export function BarefootDiningPage() {
             <SectionHeading eyebrow={content.introduction.eyebrow} heading={content.introduction.heading} align="center" level={2} id="barefoot-introduction-heading" />
             <div className="barefoot-introduction__copy">
               {content.introduction.paragraphs.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}
+              <p>
+                Learn more about <a href="/barefoot-dining-singapore">Barefoot Dining in Singapore</a> and how it connects to Lagnaa’s Indian dining story.
+              </p>
             </div>
           </Container>
         </section>

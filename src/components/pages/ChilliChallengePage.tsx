@@ -22,8 +22,8 @@ export function ChilliChallengePage() {
   return (
     <main id="main-content">
       <PageMetadata
-        title="The Ultimate Chilli Challenge | Lagnaa Barefoot Dining"
-        description="Discover Lagnaa's signature Chilli Challenge in Little India, Singapore."
+        title="Ultimate Chilli Challenge Singapore | Lagnaa Barefoot Dining"
+        description="Explore Lagnaa’s Ultimate Chilli Challenge in Little India, Singapore, a signature spice-led Indian dining experience."
         canonicalUrl={canonicalUrl}
       />
       <article className="chilli-page">
@@ -52,6 +52,7 @@ export function ChilliChallengePage() {
               <div className="editorial-copy">
                 <p>Lagnaa’s official Chilli Challenge page invites spice lovers to choose their level and discover how far they would like to go.</p>
                 <p>For the current format, participation requirements and availability, speak with the Lagnaa team before your visit.</p>
+                <p>Read the dedicated guide to the <a href="/chilli-challenge-singapore">Chilli Challenge in Singapore</a> before planning your visit.</p>
               </div>
             </div>
             <figure className="chilli-introduction__image">

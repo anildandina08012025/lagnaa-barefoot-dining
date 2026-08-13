@@ -20,9 +20,16 @@ export type RestaurantConfiguration = {
   email: string | null
   openingHours: readonly string[]
   links: {
+    /** Internal reservation journey used by all Reserve a Table CTAs. */
     reservation: string | null
+    /** Add only a verified live booking provider URL. Null keeps the contact-based handoff. */
+    reservationProvider: string | null
     orderOnline: string | null
     officialMenu: string
+    /** Add the approved Google Form URL when the client enables testimonial collection. */
+    testimonialForm: string | null
+    /** Internal reference only; do not expose unless the client approves public access. */
+    testimonialSheet: string | null
   }
   socialLinks: readonly SocialLink[]
   announcement: {
@@ -30,6 +37,7 @@ export type RestaurantConfiguration = {
     href: string | null
   } | null
   siteUrl: string | null
+  socialImageUrl: string | null
   navigation: readonly NavigationItem[]
   experienceLinks: readonly NavigationItem[]
   legalLinks: readonly NavigationItem[]
@@ -52,8 +60,11 @@ export const restaurantConfig: RestaurantConfiguration = {
   openingHours: [],
   links: {
     reservation: '/reservations',
+    reservationProvider: null,
     orderOnline: null,
     officialMenu: 'https://www.lagnaa.com/menu-1?menu=menu',
+    testimonialForm: 'https://docs.google.com/forms/d/e/1FAIpQLSevWsHnETCVOnIbiGNES4WD6nHrP6h8x69ZUiFmuQxjWS5c5g/viewform?usp=header',
+    testimonialSheet: 'https://docs.google.com/spreadsheets/d/1nJOvXT82cN7-d7wrVI44pEjmNw8T9W8FQATa9lDWM5I/edit?usp=sharing',
   },
   socialLinks: [
     { label: 'Instagram', href: null },
@@ -61,14 +72,17 @@ export const restaurantConfig: RestaurantConfiguration = {
     { label: 'TikTok', href: null },
   ],
   announcement: null,
-  siteUrl: null,
+  // Update this single value if Lagnaa uses a different canonical production domain.
+  siteUrl: 'https://www.lagnaa.com',
+  // Add an approved, production-ready absolute image URL here before enabling social imagery.
+  socialImageUrl: null,
   navigation: [
     { label: 'Home', href: '/' },
     { label: 'Menu', href: '/menu' },
     { label: 'Gallery', href: '/gallery' },
     {
       label: 'Events',
-      href: '/experiences',
+      href: '/events',
       children: [
         { label: 'Barefoot Dining', href: '/experiences/barefoot-dining' },
         { label: 'Monthly Dégustation', href: '/events/monthly-degustation' },
