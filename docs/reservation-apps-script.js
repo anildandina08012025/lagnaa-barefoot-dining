@@ -17,6 +17,7 @@
 
 const RESERVATION_SECRET = 'CHANGE_THIS_TO_A_LONG_RANDOM_SECRET'
 const OWNER_EMAIL = 'owner@example.com'
+const SPREADSHEET_ID = 'PASTE_RESERVATION_SHEET_ID_HERE'
 const SHEET_NAME = 'Reservation_Requests'
 
 const HEADERS = [
@@ -38,7 +39,9 @@ const HEADERS = [
 ]
 
 function getSheet_() {
-  const spreadsheet = SpreadsheetApp.getActiveSpreadsheet()
+  const spreadsheet = SPREADSHEET_ID === 'PASTE_RESERVATION_SHEET_ID_HERE'
+    ? SpreadsheetApp.getActiveSpreadsheet()
+    : SpreadsheetApp.openById(SPREADSHEET_ID)
   let sheet = spreadsheet.getSheetByName(SHEET_NAME)
   if (!sheet) sheet = spreadsheet.insertSheet(SHEET_NAME)
 

@@ -25,6 +25,30 @@ RESERVATION_APPS_SCRIPT_SECRET=use-a-long-random-secret
 
 The secret must match `RESERVATION_SECRET` inside `docs/reservation-apps-script.js`.
 
+## Spreadsheet ID
+
+Set `SPREADSHEET_ID` inside `docs/reservation-apps-script.js` to the reservation Google Sheet ID.
+
+For this sheet URL:
+
+```text
+https://docs.google.com/spreadsheets/d/1yBsYj072fQ0_m3UGy1SBoDdG3U6nkVTXENAbti3bedo/edit
+```
+
+Use:
+
+```js
+const SPREADSHEET_ID = '1yBsYj072fQ0_m3UGy1SBoDdG3U6nkVTXENAbti3bedo'
+```
+
+Rows are written to the tab named:
+
+```text
+Reservation_Requests
+```
+
+If that tab does not exist, the script creates it.
+
 ## Google Sheet columns
 
 The Apps Script creates these columns automatically:
