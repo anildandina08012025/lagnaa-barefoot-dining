@@ -17,24 +17,172 @@ type Lead = {
   date: string
   time: string
   guests: string
+  experience: string
   message: string
+}
+
+type LeadField = keyof Lead
+
+const defaultLead: Lead = {
+  name: '',
+  phone: '',
+  email: '',
+  date: '',
+  time: '',
+  guests: '',
+  experience: 'Table reservation',
+  message: '',
 }
 
 const initialMessages: Message[] = [
   {
     id: 1,
     speaker: 'assistant',
-    text: 'Namaste. I can help you explore dishes and published prices, suggest menu ideas, or share experience information.',
+    text: 'Namaste. I can help you explore Lagnaa’s dishes and published prices, suggest menu ideas, share experience information, or prepare a pending reservation request.',
   },
 ]
 
 const quickPrompts = [
   'Recommend a vegetarian dish',
   'What are the prices?',
-  'Tell me about events',
+  'Reserve a table',
+  'Tell me about the Chilli Challenge',
 ] as const
 
-const reservationIntent = /\b(reserv(?:e|ation)|book(?:ing)?(?:\s+(?:a\s+)?)?table|make(?:\s+(?:a\s+)?)?booking)\b/i
+const reservationIntent = /\b(reserv(?:e|ation)?|book(?:ing)?(?:\s+(?:a\s+)?)?table|make(?:\s+(?:a\s+)?)?booking|table\s+for|dinner\s+for|lunch\s+for)\b/i
+
+const visitTypes = [
+  'Table reservation',
+  'Barefoot Dining',
+  'Ultimate Chilli Challenge',
+  'Monthly Dégustation',
+  'Cooking with Chef Kaesavan',
+] as const
+
+const requiredLeadFields: readonly LeadField[] = ['name', 'phone', 'email', 'date', 'time', 'guests']
+
+const leadFieldLabels: Record<LeadField, string> = {
+  name: 'full name',
+  phone: 'phone number with country code',
+  email: 'email address',
+  date: 'preferred date',
+  time: 'preferred time',
+  guests: 'number of guests',
+  experience: 'visit type',
+  message: 'message',
+}
+
+function formatInputDate(date: Date) {
+  const year = date.getFullYear()
+  const month = String(date.getMonth() + 1).padStart(2, '0')
+  const day = String(date.getDate()).padStart(2, '0')
+  return `${year}-${month}-${day}`
+}
+
+function extractDate(text: string) {
+  const lower = text.toLowerCase()
+  const today = new Date()
+  if (/\btoday\b/.test(lower)) return formatInputDate(today)
+  if (/\btomorrow\b/.test(lower)) {
+    const tomorrow = new Date(today)
+    tomorrow.setDate(today.getDate() + 1)
+    return formatInputDate(tomorrow)
+  }
+
+  const isoDate = text.match(/\b(20\d{2})[-/](\d{1,2})[-/](\d{1,2})\b/)
+  if (isoDate) return `${isoDate[1]}-${isoDate[2].padStart(2, '0')}-${isoDate[3].padStart(2, '0')}`
+
+  const slashDate = text.match(/\b(\d{1,2})[/-](\d{1,2})[/-](20\d{2})\b/)
+  if (slashDate) return `${slashDate[3]}-${slashDate[1].padStart(2, '0')}-${slashDate[2].padStart(2, '0')}`
+
+  return ''
+}
+
+function extractTime(text: string) {
+  const clock = text.match(/\b(\d{1,2})(?::|\.)([0-5]\d)\s*(am|pm)?\b/i)
+  if (clock) {
+    let hours = Number(clock[1])
+    const minutes = clock[2]
+    const meridiem = clock[3]?.toLowerCase()
+    if (meridiem === 'pm' && hours < 12) hours += 12
+    if (meridiem === 'am' && hours === 12) hours = 0
+    if (hours >= 0 && hours <= 23) return `${String(hours).padStart(2, '0')}:${minutes}`
+  }
+
+  const hourOnly = text.match(/\b(\d{1,2})\s*(am|pm)\b/i)
+  if (hourOnly) {
+    let hours = Number(hourOnly[1])
+    const meridiem = hourOnly[2].toLowerCase()
+    if (meridiem === 'pm' && hours < 12) hours += 12
+    if (meridiem === 'am' && hours === 12) hours = 0
+    if (hours >= 0 && hours <= 23) return `${String(hours).padStart(2, '0')}:00`
+  }
+
+  return ''
+}
+
+function extractGuests(text: string) {
+  const explicit = text.match(/\b(\d{1,2})\s*(?:guests?|pax|people|persons?)\b/i)
+  if (explicit) return explicit[1]
+
+  const tableFor = text.match(/\b(?:table|booking|reservation|dinner|lunch)\s+for\s+(\d{1,2})\b/i)
+  return tableFor?.[1] || ''
+}
+
+function extractExperience(text: string) {
+  if (/\bchilli|chili|challenge|spice\b/i.test(text)) return 'Ultimate Chilli Challenge'
+  if (/\bbarefoot\b/i.test(text)) return 'Barefoot Dining'
+  if (/\bdegustation|food[-\s]?tasting|tasting\b/i.test(text)) return 'Monthly Dégustation'
+  if (/\bcooking|chef|class\b/i.test(text)) return 'Cooking with Chef Kaesavan'
+  return ''
+}
+
+function extractName(text: string) {
+  const match = text.match(/\b(?:my name is|name is|i am|i'm)\s+([a-z][a-z .'-]{1,80})\b/i)
+  return match?.[1]?.replace(/\s+(?:and|phone|email|for|on|at)\b.*$/i, '').trim() || ''
+}
+
+function mergeLeadFromText(current: Lead, text: string, activeField?: LeadField) {
+  const next = { ...current }
+  const trimmed = text.trim()
+  const name = extractName(trimmed)
+  const email = trimmed.match(/[^\s@]+@[^\s@]+\.[^\s@]+/)?.[0] || ''
+  const phone = trimmed.match(/\+?\d[\d\s()-]{6,}\d/)?.[0] || ''
+  const date = extractDate(trimmed)
+  const time = extractTime(trimmed)
+  const guests = extractGuests(trimmed)
+  const experience = extractExperience(trimmed)
+
+  if (email) next.email = email
+  if (phone) next.phone = phone
+  if (date) next.date = date
+  if (time) next.time = time
+  if (guests) next.guests = guests
+  if (experience) next.experience = experience
+  if (name) next.name = name
+
+  if (activeField && trimmed) {
+    if (activeField === 'name' && !email && !phone && !date && !time && !guests) next.name = name || trimmed
+    if (activeField === 'phone' && phone) next.phone = phone
+    if (activeField === 'email' && email) next.email = email
+    if (activeField === 'date' && date) next.date = date
+    if (activeField === 'time' && time) next.time = time
+    if (activeField === 'guests' && guests) next.guests = guests
+  }
+
+  return next
+}
+
+function missingLeadFields(lead: Lead) {
+  return requiredLeadFields.filter((field) => !lead[field].trim())
+}
+
+function missingLeadPrompt(fields: readonly LeadField[]) {
+  const labels = fields.map((field) => leadFieldLabels[field])
+  if (labels.length === 1) return `Please share your ${labels[0]}.`
+  if (labels.length === 2) return `Please share your ${labels[0]} and ${labels[1]}.`
+  return `Please share your ${labels.slice(0, -1).join(', ')} and ${labels.at(-1)}.`
+}
 
 export function LagnaaConcierge() {
   const [isOpen, setIsOpen] = useState(false)
@@ -42,7 +190,7 @@ export function LagnaaConcierge() {
   const [messages, setMessages] = useState<Message[]>(initialMessages)
   const [isThinking, setIsThinking] = useState(false)
   const [showLeadForm, setShowLeadForm] = useState(false)
-  const [lead, setLead] = useState<Lead>({ name: '', phone: '', email: '', date: '', time: '', guests: '', message: '' })
+  const [lead, setLead] = useState<Lead>(defaultLead)
   const [leadSaved, setLeadSaved] = useState(false)
   const [isSendingLead, setIsSendingLead] = useState(false)
   const [leadError, setLeadError] = useState('')
@@ -59,6 +207,73 @@ export function LagnaaConcierge() {
     setMessages((current) => [...current, { id: nextMessageId.current++, speaker: 'assistant', text }])
   }
 
+  const sendReservationRequest = async (reservationLead: Lead) => {
+    setLeadError('')
+    setIsSendingLead(true)
+    try {
+      const response = await fetch('/api/reservations', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          source: 'chatbot',
+          name: reservationLead.name,
+          phone: reservationLead.phone,
+          email: reservationLead.email,
+          date: reservationLead.date,
+          time: reservationLead.time,
+          guests: reservationLead.guests,
+          experience: reservationLead.experience,
+          message: reservationLead.message,
+        }),
+      })
+      let parsedResponse = true
+      const payload = await response.json().catch(() => {
+        parsedResponse = false
+        return {}
+      }) as { message?: string; error?: string }
+      if (!response.ok) {
+        if (!parsedResponse && response.status === 404) {
+          throw new Error('Reservation backend is not available in this preview. Test on Vercel after redeploying with the reservation environment variables.')
+        }
+        throw new Error(payload.error || 'Unable to send the reservation request.')
+      }
+      setLeadSaved(true)
+      appendAssistant(payload.message || `Thank you, ${reservationLead.name.trim()}. Your reservation request has been sent to Lagnaa. The restaurant will confirm directly.`)
+    } catch (error) {
+      setLeadError(error instanceof Error ? error.message : 'Unable to send the reservation request.')
+      appendAssistant(error instanceof Error ? error.message : 'Unable to send the reservation request.')
+    } finally {
+      setIsSendingLead(false)
+    }
+  }
+
+  const handleReservationMessage = async (text: string) => {
+    if (/\b(cancel|stop|never mind|nevermind)\b/i.test(text)) {
+      setShowLeadForm(false)
+      setLead(defaultLead)
+      setLeadSaved(false)
+      setLeadError('')
+      appendAssistant('No problem. I have stopped the reservation request. You can still ask me about Lagnaa’s menu, experiences or contact details.')
+      return
+    }
+
+    const activeField = missingLeadFields(lead)[0]
+    const updatedLead = mergeLeadFromText(leadSaved ? defaultLead : lead, text, showLeadForm ? activeField : undefined)
+    const missing = missingLeadFields(updatedLead)
+
+    setLead(updatedLead)
+    setLeadSaved(false)
+    setShowLeadForm(true)
+
+    if (missing.length) {
+      appendAssistant(`I can prepare a pending reservation request for Lagnaa. ${missingLeadPrompt(missing)} You can type the details here or use the form below. Lagnaa will confirm directly.`)
+      return
+    }
+
+    appendAssistant('I have the required details. Sending this as a pending reservation request to Lagnaa now.')
+    await sendReservationRequest(updatedLead)
+  }
+
   const ask = async (prompt: string) => {
     const text = prompt.trim()
     if (!text || isThinking) return
@@ -67,6 +282,12 @@ export function LagnaaConcierge() {
     const conversation = [...messages, visitorMessage]
     setMessages(conversation)
     setInput('')
+
+    if (reservationIntent.test(text) || (showLeadForm && !leadSaved)) {
+      await handleReservationMessage(text)
+      return
+    }
+
     setIsThinking(true)
     try {
       const response = await fetch('/api/chat', {
@@ -88,7 +309,6 @@ export function LagnaaConcierge() {
       }
       if (!response.ok || !payload.reply) throw new Error(payload.error || 'Unable to reach the concierge.')
       appendAssistant(payload.reply)
-      if (reservationIntent.test(text)) setShowLeadForm(true)
     } catch (error) {
       appendAssistant(error instanceof Error ? error.message : 'The AI concierge is temporarily unavailable. Please try again shortly.')
     } finally {
@@ -103,54 +323,12 @@ export function LagnaaConcierge() {
 
   const handleLeadSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault()
-    if (
-      lead.name.trim().length < 2
-      || !/^\+?\d[\d\s()-]{6,}$/.test(lead.phone.trim())
-      || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(lead.email.trim())
-      || !lead.date
-      || !lead.time
-      || !lead.guests
-    ) {
+    if (missingLeadFields(lead).length || lead.name.trim().length < 2 || !/^\+?\d[\d\s()-]{6,}$/.test(lead.phone.trim()) || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(lead.email.trim())) {
       setLeadError('Enter your name, phone, email, preferred date, time and number of guests.')
       return
     }
 
-    setLeadError('')
-    setIsSendingLead(true)
-    try {
-      const response = await fetch('/api/reservations', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          source: 'chatbot',
-          name: lead.name,
-          phone: lead.phone,
-          email: lead.email,
-          date: lead.date,
-          time: lead.time,
-          guests: lead.guests,
-          experience: 'Table reservation',
-          message: lead.message,
-        }),
-      })
-      let parsedResponse = true
-      const payload = await response.json().catch(() => {
-        parsedResponse = false
-        return {}
-      }) as { message?: string; error?: string }
-      if (!response.ok) {
-        if (!parsedResponse && response.status === 404) {
-          throw new Error('Reservation backend is not available in this preview. Test on Vercel after redeploying with the reservation environment variables.')
-        }
-        throw new Error(payload.error || 'Unable to send the reservation request.')
-      }
-      setLeadSaved(true)
-      appendAssistant(payload.message || `Thank you, ${lead.name.trim()}. Your reservation request has been sent to Lagnaa. The restaurant will confirm directly.`)
-    } catch (error) {
-      setLeadError(error instanceof Error ? error.message : 'Unable to send the reservation request.')
-    } finally {
-      setIsSendingLead(false)
-    }
+    await sendReservationRequest(lead)
   }
 
   return (
@@ -182,7 +360,8 @@ export function LagnaaConcierge() {
                 <label htmlFor="concierge-date">Preferred date<input id="concierge-date" onChange={(event) => setLead((current) => ({ ...current, date: event.target.value }))} type="date" value={lead.date} /></label>
                 <label htmlFor="concierge-time">Preferred time<input id="concierge-time" onChange={(event) => setLead((current) => ({ ...current, time: event.target.value }))} type="time" value={lead.time} /></label>
                 <label htmlFor="concierge-guests">Guests<input id="concierge-guests" inputMode="numeric" min="1" onChange={(event) => setLead((current) => ({ ...current, guests: event.target.value }))} type="number" value={lead.guests} /></label>
-                <label htmlFor="concierge-message">Message <em>Optional</em><input id="concierge-message" onChange={(event) => setLead((current) => ({ ...current, message: event.target.value }))} value={lead.message} /></label>
+                <label htmlFor="concierge-visit-type">Visit type<select id="concierge-visit-type" onChange={(event) => setLead((current) => ({ ...current, experience: event.target.value }))} value={lead.experience}>{visitTypes.map((type) => <option key={type} value={type}>{type}</option>)}</select></label>
+                <label htmlFor="concierge-lead-message">Message <em>Optional</em><input id="concierge-lead-message" onChange={(event) => setLead((current) => ({ ...current, message: event.target.value }))} value={lead.message} /></label>
                 {leadError ? <p className="lagnaa-concierge__error" role="alert">{leadError}</p> : null}
                 <button disabled={isSendingLead} type="submit">{isSendingLead ? 'Sending request…' : 'Send reservation request'} <ChevronDown size={14} aria-hidden="true" /></button>
               </form>
@@ -202,8 +381,8 @@ export function LagnaaConcierge() {
             {quickPrompts.map((prompt) => <button key={prompt} onClick={() => ask(prompt)} type="button">{prompt}</button>)}
           </div>
           <form className="lagnaa-concierge__composer" onSubmit={handleMessageSubmit}>
-            <label className="sr-only" htmlFor="concierge-message">Ask the Lagnaa concierge</label>
-            <input id="concierge-message" onChange={(event) => setInput(event.target.value)} placeholder="Ask about dishes, prices or booking…" value={input} />
+            <label className="sr-only" htmlFor="concierge-composer-message">Ask the Lagnaa concierge</label>
+            <input id="concierge-composer-message" onChange={(event) => setInput(event.target.value)} placeholder="Ask about dishes, prices or booking…" value={input} />
             <button aria-label="Send message" disabled={!input.trim() || isThinking} type="submit"><Send size={16} /></button>
           </form>
           <footer className="lagnaa-concierge__contact">{contactSummary}</footer>

@@ -908,6 +908,40 @@ button:disabled { cursor: not-allowed; }
 .chilli-details__copy { max-width: 39rem; margin: var(--space-xl) 0 0; color: var(--color-text-secondary); font-size: 1.04rem; line-height: 1.7; }
 .chilli-details__actions { display: flex; flex-wrap: wrap; gap: var(--space-lg); margin-top: var(--space-xl); }
 .chilli-details__actions .text-link { margin-top: 0; }
+.chilli-social { overflow: hidden; background: linear-gradient(135deg, #241918 0%, #321d1b 48%, #4c1f25 100%); color: var(--color-text-on-dark); }
+.chilli-social__header { display: grid; grid-template-columns: minmax(0, 0.8fr) minmax(18rem, 0.55fr); align-items: end; gap: clamp(1.5rem, 7vw, 7rem); }
+.chilli-social__header .section-heading .eyebrow { color: #e9bd78; }
+.chilli-social__header p { max-width: 31rem; margin: 0; color: var(--color-text-on-dark-muted); font-size: 1.02rem; line-height: 1.7; }
+.chilli-social__scroller { display: grid; grid-auto-columns: minmax(17.5rem, 1fr); grid-auto-flow: column; gap: var(--space-lg); margin-top: var(--space-2xl); overflow-x: auto; padding: 0.25rem 0 var(--space-sm); scroll-snap-type: x mandatory; scrollbar-color: #e9bd78 rgb(255 255 255 / 8%); }
+.chilli-social-card { display: grid; min-width: 0; overflow: hidden; border: 1px solid rgb(233 189 120 / 28%); border-radius: 1.35rem; background: rgb(255 255 255 / 5%); color: inherit; text-decoration: none; scroll-snap-align: start; transition: border-color 180ms ease, box-shadow 180ms ease, transform 180ms ease; }
+.chilli-social-card:hover { border-color: rgb(233 189 120 / 70%); box-shadow: 0 1.2rem 2.4rem rgb(0 0 0 / 24%); transform: translateY(-0.22rem); }
+.chilli-social-card:focus-visible { outline: 3px solid #e9bd78; outline-offset: 4px; }
+.chilli-social-card__media { position: relative; display: block; overflow: hidden; background: rgb(0 0 0 / 28%); }
+.chilli-social-card__media img { display: block; width: 100%; aspect-ratio: 16 / 10; object-fit: cover; transition: transform 260ms ease, filter 260ms ease; }
+.chilli-social-card:hover .chilli-social-card__media img { filter: saturate(1.08); transform: scale(1.035); }
+.chilli-social-card__play { position: absolute; right: 1rem; bottom: 1rem; display: grid; width: 3rem; height: 3rem; place-items: center; border: 1px solid rgb(249 241 229 / 45%); border-radius: 50%; background: rgb(36 25 24 / 70%); color: #f9f1e5; font-size: 0.8rem; box-shadow: 0 0.8rem 1.8rem rgb(0 0 0 / 28%); }
+.chilli-social-card__body { display: grid; gap: var(--space-sm); padding: clamp(1.15rem, 2vw, 1.5rem); }
+.chilli-social-card__body .eyebrow { color: #e9bd78; }
+.chilli-social-card__title { display: block; font-family: var(--font-display); font-size: clamp(1.65rem, 3vw, 2.35rem); letter-spacing: -0.055em; line-height: 0.98; }
+.chilli-social-card__description { display: block; color: var(--color-text-on-dark-muted); line-height: 1.58; }
+.chilli-social-card__action { display: block; margin-top: var(--space-sm); color: #f6c578; font-size: 0.75rem; font-weight: 800; letter-spacing: 0.11em; text-transform: uppercase; }
+.experience-social { overflow: hidden; background: linear-gradient(135deg, #241918 0%, #321d1b 48%, #4c1f25 100%); color: var(--color-text-on-dark); }
+.experience-social__header { display: grid; grid-template-columns: minmax(0, 0.8fr) minmax(18rem, 0.55fr); align-items: end; gap: clamp(1.5rem, 7vw, 7rem); }
+.experience-social__header .section-heading .eyebrow { color: #e9bd78; }
+.experience-social__header p { max-width: 31rem; margin: 0; color: var(--color-text-on-dark-muted); font-size: 1.02rem; line-height: 1.7; }
+.experience-social__scroller { display: grid; grid-auto-columns: minmax(17.5rem, 1fr); grid-auto-flow: column; gap: var(--space-lg); margin-top: var(--space-2xl); overflow-x: auto; padding: 0.25rem 0 var(--space-sm); scroll-snap-type: x mandatory; scrollbar-color: #e9bd78 rgb(255 255 255 / 8%); }
+.experience-social-card { display: grid; min-width: 0; overflow: hidden; border: 1px solid rgb(233 189 120 / 28%); border-radius: 1.35rem; background: rgb(255 255 255 / 5%); color: inherit; text-decoration: none; scroll-snap-align: start; transition: border-color 180ms ease, box-shadow 180ms ease, transform 180ms ease; }
+.experience-social-card:hover { border-color: rgb(233 189 120 / 70%); box-shadow: 0 1.2rem 2.4rem rgb(0 0 0 / 24%); transform: translateY(-0.22rem); }
+.experience-social-card:focus-visible { outline: 3px solid #e9bd78; outline-offset: 4px; }
+.experience-social-card__media { position: relative; display: block; overflow: hidden; background: rgb(0 0 0 / 28%); }
+.experience-social-card__media img { display: block; width: 100%; aspect-ratio: 16 / 10; object-fit: cover; transition: transform 260ms ease, filter 260ms ease; }
+.experience-social-card:hover .experience-social-card__media img { filter: saturate(1.08); transform: scale(1.035); }
+.experience-social-card__play { position: absolute; right: 1rem; bottom: 1rem; display: grid; width: 3rem; height: 3rem; place-items: center; border: 1px solid rgb(249 241 229 / 45%); border-radius: 50%; background: rgb(36 25 24 / 70%); color: #f9f1e5; font-size: 0.8rem; box-shadow: 0 0.8rem 1.8rem rgb(0 0 0 / 28%); }
+.experience-social-card__body { display: grid; gap: var(--space-sm); padding: clamp(1.15rem, 2vw, 1.5rem); }
+.experience-social-card__body .eyebrow { color: #e9bd78; }
+.experience-social-card__title { display: block; font-family: var(--font-display); font-size: clamp(1.65rem, 3vw, 2.35rem); letter-spacing: -0.055em; line-height: 0.98; }
+.experience-social-card__description { display: block; color: var(--color-text-on-dark-muted); line-height: 1.58; }
+.experience-social-card__action { display: block; margin-top: var(--space-sm); color: #f6c578; font-size: 0.75rem; font-weight: 800; letter-spacing: 0.11em; text-transform: uppercase; }
 
 .cooking-page { background: var(--color-surface); }
 .cooking-hero { position: relative; overflow: hidden; padding-block: clamp(3rem, 7vw, 6rem); background: linear-gradient(116deg, #271b18 0%, #41251d 58%, #6c3824 100%); color: var(--color-text-on-dark); }
@@ -1416,7 +1450,7 @@ button:disabled { cursor: not-allowed; }
 .lagnaa-concierge__contact { padding: 0 1rem 0.8rem; color: #705c50; font-size: 0.6rem; line-height: 1.4; text-align: center; }
 .lagnaa-concierge__lead { display: grid; gap: 0.6rem; padding: 0.85rem; border: 1px solid #d9bfa8; border-radius: 0.8rem 0.25rem 0.8rem 0.25rem; background: #fffaf1; }
 .lagnaa-concierge__lead h3, .lagnaa-concierge__lead p { margin: 0; }.lagnaa-concierge__lead h3 { font-family: var(--font-display); font-size: 1.25rem; font-weight: 500; letter-spacing: -0.035em; }.lagnaa-concierge__lead p { color: #705c50; font-size: 0.72rem; line-height: 1.4; }
-.lagnaa-concierge__lead label { display: grid; gap: 0.28rem; color: #4a2c2b; font-size: 0.67rem; font-weight: 800; }.lagnaa-concierge__lead label em { font-style: normal; font-weight: 500; }.lagnaa-concierge__lead input { min-height: 2.35rem; border: 1px solid #cdb49d; border-radius: 0.45rem; background: white; color: #2c201e; font: inherit; font-size: 0.82rem; }
+.lagnaa-concierge__lead label { display: grid; gap: 0.28rem; color: #4a2c2b; font-size: 0.67rem; font-weight: 800; }.lagnaa-concierge__lead label em { font-style: normal; font-weight: 500; }.lagnaa-concierge__lead input, .lagnaa-concierge__lead select { min-height: 2.35rem; border: 1px solid #cdb49d; border-radius: 0.45rem; background: white; color: #2c201e; font: inherit; font-size: 0.82rem; }
 .lagnaa-concierge__lead button { display: inline-flex; align-items: center; justify-content: center; gap: 0.35rem; min-height: 2.45rem; border: 0; border-radius: 0.45rem; background: #782837; color: white; cursor: pointer; font: inherit; font-size: 0.68rem; font-weight: 800; letter-spacing: 0.06em; text-transform: uppercase; }.lagnaa-concierge__lead button:hover { background: #8d3345; }
 .lagnaa-concierge__error { color: #9b2436 !important; font-weight: 700; }.lagnaa-concierge__handoff { display: grid; gap: 0.38rem; padding: 0.85rem; border: 1px solid #d9bfa8; border-radius: 0.8rem; background: #fffaf1; color: #563936; line-height: 1.4; }.lagnaa-concierge__handoff strong { font-family: var(--font-display); font-size: 1.15rem; font-weight: 500; }.lagnaa-concierge__handoff span { font-size: 0.73rem; }.lagnaa-concierge__handoff a { margin-top: 0.2rem; color: #782837; font-size: 0.7rem; font-weight: 800; letter-spacing: 0.06em; text-transform: uppercase; }
 .lagnaa-concierge button:focus-visible, .lagnaa-concierge input:focus-visible, .lagnaa-concierge a:focus-visible { outline: 3px solid var(--color-focus); outline-offset: 2px; }
@@ -1538,6 +1572,8 @@ button:disabled { cursor: not-allowed; }
   .chilli-advice__main-image, .chilli-advice__content { min-height: 24rem; }.chilli-advice__main-image { max-width: 42rem; }
   .chilli-steps__grid { grid-template-columns: 1fr; }
   .chilli-steps__grid li { min-height: 0; }
+  .chilli-social__header { grid-template-columns: 1fr; align-items: start; gap: var(--space-lg); }
+  .experience-social__header { grid-template-columns: 1fr; align-items: start; gap: var(--space-lg); }
   .cooking-hero__image { max-width: 32rem; }
   .cooking-products__grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
   .degustation-availability__grid { grid-template-columns: 1fr; }.degustation-availability__marker { justify-self: center; }
@@ -1672,6 +1708,12 @@ button:disabled { cursor: not-allowed; }
   .chilli-hero__heading { font-size: clamp(3.5rem, 16vw, 5.5rem); }
   .chilli-hero__levels { justify-self: center; }
   .chilli-advice__content { min-height: 0; }.chilli-advice__main-image { min-height: 20rem; }
+  .chilli-social__scroller { display: flex; gap: var(--space-md); margin-inline: calc(var(--space-md) * -1); padding-inline: var(--space-md); }
+  .chilli-social-card { flex: 0 0 min(82vw, 22rem); }
+  .chilli-social-card__media img { aspect-ratio: 4 / 3; }
+  .experience-social__scroller { display: flex; gap: var(--space-md); margin-inline: calc(var(--space-md) * -1); padding-inline: var(--space-md); }
+  .experience-social-card { flex: 0 0 min(82vw, 22rem); }
+  .experience-social-card__media img { aspect-ratio: 4 / 3; }
   .cooking-section { padding-block: clamp(3.5rem, 13vw, 5.5rem); }
   .cooking-hero { padding-block: clamp(2.5rem, 10vw, 4.5rem); }
   .cooking-hero__heading { font-size: clamp(3.3rem, 14vw, 5.25rem); }

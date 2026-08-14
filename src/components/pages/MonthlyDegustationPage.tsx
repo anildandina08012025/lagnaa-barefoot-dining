@@ -29,6 +29,36 @@ const pastTastings = [
   { name: 'Mini Puri', image: miniPuri, alt: 'Mini Puri presented on a plate.' },
 ] as const
 
+const degustationSocialCards = [
+  {
+    id: 'degustation-instagram-tastings',
+    eyebrow: 'Instagram',
+    title: 'Food-tasting moments',
+    description: 'Watch Lagnaa’s official social updates for tasting moments and restaurant stories.',
+    href: 'https://www.instagram.com/lagnaabarefootdining/',
+    image: platter,
+    alt: 'A selection of Indian dishes presented on a divided platter.',
+  },
+  {
+    id: 'degustation-instagram-dishes',
+    eyebrow: 'Instagram',
+    title: 'Dishes and feedback',
+    description: 'Open Lagnaa’s Instagram for approved food-tasting posts and updates.',
+    href: 'https://www.instagram.com/lagnaabarefootdining/',
+    image: muttonKoorma,
+    alt: 'Nilagiri Mutton Koorma in a serving bowl.',
+  },
+  {
+    id: 'degustation-instagram-table',
+    eyebrow: 'Instagram',
+    title: 'At the tasting table',
+    description: 'See official Lagnaa posts connected to dining, food and guest experiences.',
+    href: 'https://www.instagram.com/lagnaabarefootdining/',
+    image: miniPuri,
+    alt: 'Mini Puri presented on a plate.',
+  },
+] as const
+
 function TextArrow() {
   return <span aria-hidden="true">↗</span>
 }
@@ -174,6 +204,45 @@ export function MonthlyDegustationPage() {
                   <img src={dish.image} alt={dish.alt} />
                   <figcaption>{dish.name}</figcaption>
                 </figure>
+              ))}
+            </div>
+          </Container>
+        </section>
+
+        <section className="degustation-section experience-social" aria-labelledby="degustation-social-heading">
+          <Container>
+            <div className="experience-social__header">
+              <SectionHeading
+                eyebrow="Social moments"
+                heading="Monthly Dégustation on Instagram."
+                level={2}
+                id="degustation-social-heading"
+              />
+              <p>
+                Watch official Lagnaa posts and updates on Instagram. Videos open on social media, not inside this website.
+              </p>
+            </div>
+            <div className="experience-social__scroller" aria-label="Official Instagram links for Lagnaa Monthly Dégustation moments">
+              {degustationSocialCards.map((card) => (
+                <a
+                  aria-label={`${card.title}. Opens Lagnaa on Instagram in a new tab.`}
+                  className="experience-social-card"
+                  href={card.href}
+                  key={card.id}
+                  rel="noopener noreferrer"
+                  target="_blank"
+                >
+                  <span className="experience-social-card__media">
+                    <img src={card.image} alt={card.alt} loading="lazy" />
+                    <span className="experience-social-card__play" aria-hidden="true">▶</span>
+                  </span>
+                  <span className="experience-social-card__body">
+                    <span className="eyebrow">{card.eyebrow}</span>
+                    <span className="experience-social-card__title">{card.title}</span>
+                    <span className="experience-social-card__description">{card.description}</span>
+                    <span className="experience-social-card__action">Watch on Instagram <TextArrow /></span>
+                  </span>
+                </a>
               ))}
             </div>
           </Container>

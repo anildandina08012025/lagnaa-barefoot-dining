@@ -13,6 +13,36 @@ function TextArrow() {
   return <span aria-hidden="true">↗</span>
 }
 
+const chilliSocialCards = [
+  {
+    id: 'official-instagram-challenge',
+    eyebrow: 'Instagram',
+    title: 'Chilli Challenge moments',
+    description: 'Watch Lagnaa’s spice-led moments on the restaurant’s official Instagram channel.',
+    href: 'https://www.instagram.com/lagnaabarefootdining/',
+    image: goldenAdviceImage,
+    alt: 'A warm visual for Lagnaa’s Chilli Challenge.',
+  },
+  {
+    id: 'official-instagram-curry-shots',
+    eyebrow: 'Instagram',
+    title: 'Curry Shots previews',
+    description: 'Open Lagnaa’s social channel for approved Chilli Challenge and Curry Shots updates.',
+    href: 'https://www.instagram.com/lagnaabarefootdining/',
+    image: curryShotsImage,
+    alt: 'A visual of Curry Shots.',
+  },
+  {
+    id: 'official-instagram-spice-levels',
+    eyebrow: 'Instagram',
+    title: 'Guest heat reactions',
+    description: 'See official spice-level posts and challenge updates from Lagnaa.',
+    href: 'https://www.instagram.com/lagnaabarefootdining/',
+    image: chilliLevels,
+    alt: 'An illustrated Chilli Challenge levels guide.',
+  },
+] as const
+
 export function ChilliChallengePage() {
   const canReserve = Boolean(restaurantConfig.links.reservation)
   const canonicalUrl = restaurantConfig.siteUrl
@@ -110,6 +140,45 @@ export function ChilliChallengePage() {
               <div className="chilli-details__actions">
                 <a className="text-link" href="/contact">Contact Lagnaa <TextArrow /></a>
               </div>
+            </div>
+          </Container>
+        </section>
+
+        <section className="chilli-section chilli-social" aria-labelledby="chilli-social-heading">
+          <Container>
+            <div className="chilli-social__header">
+              <SectionHeading
+                eyebrow="Social moments"
+                heading="Chilli Challenge on Instagram."
+                level={2}
+                id="chilli-social-heading"
+              />
+              <p>
+                Watch official Lagnaa posts and Reels on Instagram. Videos open on social media, not inside this website.
+              </p>
+            </div>
+            <div className="chilli-social__scroller" aria-label="Official Instagram links for Lagnaa Chilli Challenge moments">
+              {chilliSocialCards.map((card) => (
+                <a
+                  aria-label={`${card.title}. Opens Lagnaa on Instagram in a new tab.`}
+                  className="chilli-social-card"
+                  href={card.href}
+                  key={card.id}
+                  rel="noopener noreferrer"
+                  target="_blank"
+                >
+                  <span className="chilli-social-card__media">
+                    <img src={card.image} alt={card.alt} loading="lazy" />
+                    <span className="chilli-social-card__play" aria-hidden="true">▶</span>
+                  </span>
+                  <span className="chilli-social-card__body">
+                    <span className="eyebrow">{card.eyebrow}</span>
+                    <span className="chilli-social-card__title">{card.title}</span>
+                    <span className="chilli-social-card__description">{card.description}</span>
+                    <span className="chilli-social-card__action">Watch on Instagram <TextArrow /></span>
+                  </span>
+                </a>
+              ))}
             </div>
           </Container>
         </section>
