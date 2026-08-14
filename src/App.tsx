@@ -20,6 +20,7 @@ import { MichelinIndianRestaurantSingaporePage } from './components/pages/Michel
 import { MenuPage } from './components/pages/MenuPage'
 import { OurStoryPage } from './components/pages/OurStoryPage'
 import { ReservationsPage } from './components/pages/ReservationsPage'
+import { BlogPage } from './components/pages/BlogPage'
 import { AnnouncementBar } from './components/ui/AnnouncementBar'
 import { SpotlightCursor } from './components/ui/SpotlightCursor'
 import { LagnaaConcierge } from './components/ui/LagnaaConcierge'
@@ -60,6 +61,8 @@ function App() {
       ? <MichelinIndianRestaurantSingaporePage />
     : path === '/contact'
       ? <ContactPage />
+    : path === '/blog'
+      ? <BlogPage />
       : path === '/awards-media'
         ? <AwardsMediaPage />
         : path === '/gallery'

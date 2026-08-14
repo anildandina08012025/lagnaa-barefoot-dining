@@ -73,13 +73,12 @@ export function SiteFooter() {
 
         <div className="site-footer__bottom">
           <p>© {currentYear} {restaurantConfig.name}</p>
-          {restaurantConfig.legalLinks.length > 0 ? (
-            <nav aria-label="Legal information">
-              <ul>
-                {restaurantConfig.legalLinks.map((item) => <li key={item.href}><a href={item.href}>{item.label}</a></li>)}
-              </ul>
-            </nav>
-          ) : null}
+          <nav aria-label="Footer utility links">
+            <ul>
+              <li><a href="/blog">Blog</a></li>
+              {restaurantConfig.legalLinks.map((item) => <li key={item.href}><a href={item.href}>{item.label}</a></li>)}
+            </ul>
+          </nav>
         </div>
       </Container>
     </footer>

@@ -49,16 +49,34 @@ export function ScrollFrameHero({ eyebrow, heading, description, headingId, fram
     let displayedFrame = 0
     let isDisposed = false
     const frameCache = new Map<number, HTMLImageElement>()
-    const readyFrames = new Set<number>()
+    const readyFrames = new Set<number>([0])
     const preloadAhead = usesCompactSequence ? 7 : 10
     const preloadBehind = usesCompactSequence ? 2 : 3
 
-    const revealFrame = (frameIndexToReveal: number) => {
-      const frame = frameCache.get(frameIndexToReveal)
-      if (!frame || !readyFrames.has(frameIndexToReveal) || displayedFrame === frameIndexToReveal) return
-      if (isDisposed || requestedFrame !== frameIndexToReveal || !imageRef.current) return
+    const findNearestReadyFrame = (targetFrame: number) => {
+      if (readyFrames.has(targetFrame)) return targetFrame
 
-      imageRef.current.src = frame.src
+      let nearestFrame = displayedFrame
+      let shortestDistance = Math.abs(targetFrame - displayedFrame)
+
+      readyFrames.forEach((readyFrame) => {
+        const distance = Math.abs(targetFrame - readyFrame)
+        if (distance < shortestDistance) {
+          nearestFrame = readyFrame
+          shortestDistance = distance
+        }
+      })
+
+      return nearestFrame
+    }
+
+    const revealBestAvailableFrame = (targetFrame: number) => {
+      if (isDisposed || !imageRef.current) return
+
+      const frameIndexToReveal = findNearestReadyFrame(targetFrame)
+      if (displayedFrame === frameIndexToReveal) return
+
+      imageRef.current.src = animationFrames[frameIndexToReveal]
       displayedFrame = frameIndexToReveal
       setFrameIndex(frameIndexToReveal)
     }
@@ -74,7 +92,7 @@ export function ScrollFrameHero({ eyebrow, heading, description, headingId, fram
         void frame.decode().catch(() => undefined).then(() => {
           if (isDisposed || frame.naturalWidth === 0) return
           readyFrames.add(frameIndexToPreload)
-          if (requestedFrame === frameIndexToPreload) revealFrame(frameIndexToPreload)
+          revealBestAvailableFrame(requestedFrame)
         })
       }
 
@@ -86,6 +104,31 @@ export function ScrollFrameHero({ eyebrow, heading, description, headingId, fram
     const preloadNearbyFrames = (centreFrame: number) => {
       for (let index = centreFrame; index <= centreFrame + preloadAhead; index += 1) preloadFrame(index)
       for (let index = centreFrame - 1; index >= centreFrame - preloadBehind; index -= 1) preloadFrame(index)
+    }
+
+    const preloadFullSequence = () => {
+      const priorityFrames = new Set<number>([0, 1, animationFrames.length - 1])
+      const priorityStep = usesCompactSequence ? 3 : 4
+      for (let index = 0; index < animationFrames.length; index += priorityStep) priorityFrames.add(index)
+      for (let index = 0; index < Math.min(animationFrames.length, usesCompactSequence ? 10 : 14); index += 1) priorityFrames.add(index)
+
+      const preloadOrder = [
+        ...priorityFrames,
+        ...animationFrames.map((_, index) => index).filter((index) => !priorityFrames.has(index)),
+      ]
+
+      const loadChunk = (startIndex: number) => {
+        if (isDisposed) return
+
+        const chunkSize = usesCompactSequence ? 5 : 7
+        preloadOrder.slice(startIndex, startIndex + chunkSize).forEach(preloadFrame)
+
+        if (startIndex + chunkSize < preloadOrder.length) {
+          window.setTimeout(() => loadChunk(startIndex + chunkSize), 80)
+        }
+      }
+
+      loadChunk(0)
     }
 
     const renderFrame = () => {
@@ -100,7 +143,7 @@ export function ScrollFrameHero({ eyebrow, heading, description, headingId, fram
 
       requestedFrame = nextFrame
       preloadNearbyFrames(nextFrame)
-      revealFrame(nextFrame)
+      revealBestAvailableFrame(nextFrame)
     }
 
     const scheduleFrame = () => {
@@ -109,6 +152,8 @@ export function ScrollFrameHero({ eyebrow, heading, description, headingId, fram
 
     if (imageRef.current) imageRef.current.src = initialFrame
     setFrameIndex(0)
+    preloadFrame(0)
+    preloadFullSequence()
     renderFrame()
     window.addEventListener('scroll', scheduleFrame, { passive: true })
     window.addEventListener('resize', scheduleFrame)
@@ -139,6 +184,7 @@ export function ScrollFrameHero({ eyebrow, heading, description, headingId, fram
           width="1280"
           height="720"
           decoding="async"
+          loading="eager"
           fetchPriority="high"
         />
         <div className="scroll-frame-hero__overlay" aria-hidden="true" />

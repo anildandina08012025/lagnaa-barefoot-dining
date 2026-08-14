@@ -41,6 +41,34 @@
       "destination": "/index.html"
     },
     {
+      "source": "/indian-restaurant-little-india",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/indian-restaurant-singapore",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/barefoot-dining-singapore",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/chilli-challenge-singapore",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/indian-cooking-class-singapore",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/best-indian-food-singapore",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/michelin-indian-restaurant-singapore",
+      "destination": "/index.html"
+    },
+    {
       "source": "/contact",
       "destination": "/index.html"
     },
@@ -50,6 +78,10 @@
     },
     {
       "source": "/gallery",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/blog",
       "destination": "/index.html"
     },
     {

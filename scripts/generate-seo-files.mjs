@@ -16,6 +16,7 @@ const routes = [
   '/our-story',
   '/menu',
   '/gallery',
+  '/blog',
   '/events',
   '/experiences/barefoot-dining',
   '/experiences/chilli-challenge',
