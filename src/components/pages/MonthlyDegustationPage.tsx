@@ -137,6 +137,45 @@ export function MonthlyDegustationPage() {
           </Container>
         </section>
 
+        <section className="degustation-section experience-social" aria-labelledby="degustation-social-heading">
+          <Container>
+            <div className="experience-social__header">
+              <SectionHeading
+                eyebrow="Social moments"
+                heading="Monthly Dégustation on Instagram."
+                level={2}
+                id="degustation-social-heading"
+              />
+              <p>
+                Watch official Lagnaa posts and updates on Instagram. Videos open on social media, not inside this website.
+              </p>
+            </div>
+            <div className="experience-social__scroller" aria-label="Official Instagram links for Lagnaa Monthly Dégustation moments">
+              {degustationSocialCards.map((card) => (
+                <a
+                  aria-label={`${card.title}. Opens Lagnaa on Instagram in a new tab.`}
+                  className="experience-social-card"
+                  href={card.href}
+                  key={card.id}
+                  rel="noopener noreferrer"
+                  target="_blank"
+                >
+                  <span className="experience-social-card__media">
+                    <img src={card.image} alt={card.alt} loading="lazy" />
+                    <span className="experience-social-card__play" aria-hidden="true">▶</span>
+                  </span>
+                  <span className="experience-social-card__body">
+                    <span className="eyebrow">{card.eyebrow}</span>
+                    <span className="experience-social-card__title">{card.title}</span>
+                    <span className="experience-social-card__description">{card.description}</span>
+                    <span className="experience-social-card__action">Watch on Instagram <TextArrow /></span>
+                  </span>
+                </a>
+              ))}
+            </div>
+          </Container>
+        </section>
+
         <section className="degustation-section degustation-availability" aria-labelledby="degustation-availability-heading">
           <Container className="degustation-availability__grid">
             <span className="degustation-availability__marker" aria-hidden="true">∞</span>
@@ -204,45 +243,6 @@ export function MonthlyDegustationPage() {
                   <img src={dish.image} alt={dish.alt} />
                   <figcaption>{dish.name}</figcaption>
                 </figure>
-              ))}
-            </div>
-          </Container>
-        </section>
-
-        <section className="degustation-section experience-social" aria-labelledby="degustation-social-heading">
-          <Container>
-            <div className="experience-social__header">
-              <SectionHeading
-                eyebrow="Social moments"
-                heading="Monthly Dégustation on Instagram."
-                level={2}
-                id="degustation-social-heading"
-              />
-              <p>
-                Watch official Lagnaa posts and updates on Instagram. Videos open on social media, not inside this website.
-              </p>
-            </div>
-            <div className="experience-social__scroller" aria-label="Official Instagram links for Lagnaa Monthly Dégustation moments">
-              {degustationSocialCards.map((card) => (
-                <a
-                  aria-label={`${card.title}. Opens Lagnaa on Instagram in a new tab.`}
-                  className="experience-social-card"
-                  href={card.href}
-                  key={card.id}
-                  rel="noopener noreferrer"
-                  target="_blank"
-                >
-                  <span className="experience-social-card__media">
-                    <img src={card.image} alt={card.alt} loading="lazy" />
-                    <span className="experience-social-card__play" aria-hidden="true">▶</span>
-                  </span>
-                  <span className="experience-social-card__body">
-                    <span className="eyebrow">{card.eyebrow}</span>
-                    <span className="experience-social-card__title">{card.title}</span>
-                    <span className="experience-social-card__description">{card.description}</span>
-                    <span className="experience-social-card__action">Watch on Instagram <TextArrow /></span>
-                  </span>
-                </a>
               ))}
             </div>
           </Container>

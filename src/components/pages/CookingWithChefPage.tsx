@@ -139,6 +139,45 @@ export function CookingWithChefPage() {
           </Container>
         </section>
 
+        <section className="cooking-section experience-social" aria-labelledby="cooking-social-heading">
+          <Container>
+            <div className="experience-social__header">
+              <SectionHeading
+                eyebrow="Social moments"
+                heading="Cooking with Chef Kaesavan on Instagram."
+                level={2}
+                id="cooking-social-heading"
+              />
+              <p>
+                Watch official Lagnaa posts and Reels on Instagram. Videos open on social media, not inside this website.
+              </p>
+            </div>
+            <div className="experience-social__scroller" aria-label="Official Instagram links for Lagnaa cooking-class moments">
+              {cookingSocialCards.map((card) => (
+                <a
+                  aria-label={`${card.title}. Opens Lagnaa on Instagram in a new tab.`}
+                  className="experience-social-card"
+                  href={card.href}
+                  key={card.id}
+                  rel="noopener noreferrer"
+                  target="_blank"
+                >
+                  <span className="experience-social-card__media">
+                    <img src={card.image} alt={card.alt} loading="lazy" />
+                    <span className="experience-social-card__play" aria-hidden="true">▶</span>
+                  </span>
+                  <span className="experience-social-card__body">
+                    <span className="eyebrow">{card.eyebrow}</span>
+                    <span className="experience-social-card__title">{card.title}</span>
+                    <span className="experience-social-card__description">{card.description}</span>
+                    <span className="experience-social-card__action">Watch on Instagram <TextArrow /></span>
+                  </span>
+                </a>
+              ))}
+            </div>
+          </Container>
+        </section>
+
         <section className="cooking-section cooking-interest" id="cooking-interest" aria-labelledby="cooking-interest-heading">
           <Container className="cooking-interest__grid">
             <div className="cooking-interest__introduction">
@@ -198,45 +237,6 @@ export function CookingWithChefPage() {
                   </article>
                 )
               })}
-            </div>
-          </Container>
-        </section>
-
-        <section className="cooking-section experience-social" aria-labelledby="cooking-social-heading">
-          <Container>
-            <div className="experience-social__header">
-              <SectionHeading
-                eyebrow="Social moments"
-                heading="Cooking with Chef Kaesavan on Instagram."
-                level={2}
-                id="cooking-social-heading"
-              />
-              <p>
-                Watch official Lagnaa posts and Reels on Instagram. Videos open on social media, not inside this website.
-              </p>
-            </div>
-            <div className="experience-social__scroller" aria-label="Official Instagram links for Lagnaa cooking-class moments">
-              {cookingSocialCards.map((card) => (
-                <a
-                  aria-label={`${card.title}. Opens Lagnaa on Instagram in a new tab.`}
-                  className="experience-social-card"
-                  href={card.href}
-                  key={card.id}
-                  rel="noopener noreferrer"
-                  target="_blank"
-                >
-                  <span className="experience-social-card__media">
-                    <img src={card.image} alt={card.alt} loading="lazy" />
-                    <span className="experience-social-card__play" aria-hidden="true">▶</span>
-                  </span>
-                  <span className="experience-social-card__body">
-                    <span className="eyebrow">{card.eyebrow}</span>
-                    <span className="experience-social-card__title">{card.title}</span>
-                    <span className="experience-social-card__description">{card.description}</span>
-                    <span className="experience-social-card__action">Watch on Instagram <TextArrow /></span>
-                  </span>
-                </a>
-              ))}
             </div>
           </Container>
         </section>
