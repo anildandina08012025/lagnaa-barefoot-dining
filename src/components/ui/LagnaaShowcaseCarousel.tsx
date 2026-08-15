@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState, type CSSProperties, type KeyboardEvent } from 'react'
+import { useEffect, useState, type CSSProperties, type KeyboardEvent } from 'react'
 import arusuvai from '../../assets/lagnaa-showcase/arusuvai.webp'
 import barefootDining from '../../assets/lagnaa-showcase/barefoot-dining.webp'
 import chilliLevelCustomisation from '../../assets/lagnaa-showcase/chilli-level-customisation.webp'
@@ -11,8 +11,6 @@ const slides = [
 
 export function LagnaaShowcaseCarousel() {
   const [activeIndex, setActiveIndex] = useState(0)
-  const [isAnimating, setIsAnimating] = useState(false)
-  const timerRef = useRef<number | null>(null)
 
   useEffect(() => {
     slides.forEach((slide) => {
@@ -21,28 +19,23 @@ export function LagnaaShowcaseCarousel() {
     })
   }, [])
 
-  useEffect(() => () => {
-    if (timerRef.current !== null) window.clearTimeout(timerRef.current)
-  }, [])
-
   const selectSlide = (nextIndex: number) => {
-    if (isAnimating || nextIndex === activeIndex) return
-    setIsAnimating(true)
-    setActiveIndex((nextIndex + slides.length) % slides.length)
-    timerRef.current = window.setTimeout(() => {
-      setIsAnimating(false)
-      timerRef.current = null
-    }, 650)
+    setActiveIndex((currentIndex) => (nextIndex + slides.length) % slides.length === currentIndex
+      ? currentIndex
+      : (nextIndex + slides.length) % slides.length)
   }
+
+  const showPrevious = () => setActiveIndex((currentIndex) => (currentIndex - 1 + slides.length) % slides.length)
+  const showNext = () => setActiveIndex((currentIndex) => (currentIndex + 1) % slides.length)
 
   const handleKeyDown = (event: KeyboardEvent<HTMLElement>) => {
     if (event.key === 'ArrowLeft') {
       event.preventDefault()
-      selectSlide(activeIndex - 1)
+      showPrevious()
     }
     if (event.key === 'ArrowRight') {
       event.preventDefault()
-      selectSlide(activeIndex + 1)
+      showNext()
     }
   }
 
@@ -73,9 +66,9 @@ export function LagnaaShowcaseCarousel() {
           <p>{activeSlide.description}</p>
         </div>
         <div className="lagnaa-showcase__controls" aria-label="Experience Lagnaa controls">
-          <button type="button" onClick={() => selectSlide(activeIndex - 1)} disabled={isAnimating} aria-label="Show previous experience">←</button>
-          <div className="lagnaa-showcase__dots">{slides.map((slide, index) => <button key={slide.id} type="button" onClick={() => selectSlide(index)} disabled={isAnimating} aria-label={`Show ${slide.title}`} aria-current={index === activeIndex ? 'true' : undefined} />)}</div>
-          <button type="button" onClick={() => selectSlide(activeIndex + 1)} disabled={isAnimating} aria-label="Show next experience">→</button>
+          <button type="button" onClick={showPrevious} aria-label="Show previous experience">←</button>
+          <div className="lagnaa-showcase__dots">{slides.map((slide, index) => <button key={slide.id} type="button" onClick={() => selectSlide(index)} aria-label={`Show ${slide.title}`} aria-current={index === activeIndex ? 'true' : undefined} />)}</div>
+          <button type="button" onClick={showNext} aria-label="Show next experience">→</button>
         </div>
       </div>
     </section>
