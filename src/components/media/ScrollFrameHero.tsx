@@ -15,12 +15,14 @@ function clamp(value: number, minimum = 0, maximum = 1) {
   return Math.min(maximum, Math.max(minimum, value))
 }
 
+function usesMobileFrameSequence() {
+  return typeof window !== 'undefined' && window.innerWidth <= 768
+}
+
 export function ScrollFrameHero({ eyebrow, heading, description, headingId, frames, mobileFrames, children }: ScrollFrameHeroProps) {
   const sectionRef = useRef<HTMLElement>(null)
   const imageRef = useRef<HTMLImageElement>(null)
-  const [usesCompactSequence, setUsesCompactSequence] = useState(() => (
-    typeof window !== 'undefined' && window.matchMedia('(max-width: 48rem)').matches
-  ))
+  const [usesCompactSequence, setUsesCompactSequence] = useState(usesMobileFrameSequence)
   const [frameIndex, setFrameIndex] = useState(0)
   const animationFrames = useMemo(() => (
     usesCompactSequence && mobileFrames && mobileFrames.length > 0
@@ -33,11 +35,10 @@ export function ScrollFrameHero({ eyebrow, heading, description, headingId, fram
   const initialFrame = animationFrames[0]
 
   useEffect(() => {
-    const compactQuery = window.matchMedia('(max-width: 48rem)')
-    const updateSequence = () => setUsesCompactSequence(compactQuery.matches)
+    const updateSequence = () => setUsesCompactSequence(usesMobileFrameSequence())
     updateSequence()
-    compactQuery.addEventListener('change', updateSequence)
-    return () => compactQuery.removeEventListener('change', updateSequence)
+    window.addEventListener('resize', updateSequence)
+    return () => window.removeEventListener('resize', updateSequence)
   }, [])
 
   useEffect(() => {
@@ -174,7 +175,7 @@ export function ScrollFrameHero({ eyebrow, heading, description, headingId, fram
   const progress = totalFrames > 1 ? visibleFrameIndex / (totalFrames - 1) : 0
 
   return (
-    <section className="scroll-frame-hero" ref={sectionRef} aria-labelledby={headingId}>
+    <section className="scroll-frame-hero" ref={sectionRef} aria-labelledby={headingId} data-frame-sequence={usesCompactSequence ? 'mobile' : 'desktop'}>
       <div className="scroll-frame-hero__stage">
         <img
           className="scroll-frame-hero__frame"
