@@ -1,12 +1,12 @@
 import { useEffect, useRef, useState, type CSSProperties, type KeyboardEvent } from 'react'
-import chilliLevels from '../../assets/chilli/lagnaa-chilli-challenge-levels.png'
-import cookingMoment from '../../assets/lagnaa-showcase/lagnaa-cooking-moment.webp'
-import diningMoment from '../../assets/lagnaa-showcase/lagnaa-dining-moment.webp'
+import arusuvai from '../../assets/lagnaa-showcase/arusuvai.webp'
+import barefootDining from '../../assets/lagnaa-showcase/barefoot-dining.webp'
+import chilliLevelCustomisation from '../../assets/lagnaa-showcase/chilli-level-customisation.webp'
 
 const slides = [
-  { id: 'chilli-challenge', image: chilliLevels, title: 'The Ultimate Chilli Challenge', description: 'Lagnaa’s signature food challenge for guests who enjoy exploring spice.', background: '#78222d' },
-  { id: 'monthly-degustation', image: diningMoment, title: 'Monthly Dégustation', description: 'A food-tasting experience for discovering dishes and sharing impressions with the Lagnaa team.', background: '#a34b2d' },
-  { id: 'cooking-class', image: cookingMoment, title: 'Cook with Chef Kaesavan', description: 'An Indian cooking-class experience with Chef Kaesavan.', background: '#4c3b2b' },
+  { id: 'barefoot-dining', image: barefootDining, title: 'Barefoot Dining', description: 'A signature Lagnaa dining experience shaped by food, hospitality and an intimate atmosphere.', background: '#4c3b2b' },
+  { id: 'chilli-level-customisation', image: chilliLevelCustomisation, title: 'Customisation of Chilli Levels', description: 'Choose the heat that matches your palate, without compromising flavour.', background: '#78222d' },
+  { id: 'arusuvai', image: arusuvai, title: 'Arusuvai', description: 'The harmony of six tastes, brought together in every Lagnaa meal.', background: '#6c4a1d' },
 ] as const
 
 export function LagnaaShowcaseCarousel() {
