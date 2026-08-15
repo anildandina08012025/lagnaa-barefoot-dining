@@ -1,5 +1,5 @@
 import { type FormEvent, useEffect, useMemo, useRef, useState } from 'react'
-import { Bot, ChevronDown, MessageCircle, Send, Sparkles, X } from 'lucide-react'
+import { Bot, ChevronDown, Send, Sparkles, X } from 'lucide-react'
 import { restaurantConfig } from '../../config/restaurant'
 
 type Speaker = 'assistant' | 'visitor'
@@ -408,7 +408,6 @@ export function LagnaaConcierge() {
       <button aria-expanded={isOpen} aria-label="Open Lagnaa AI concierge" className="lagnaa-concierge__launcher" onClick={() => setIsOpen(true)} type="button">
         <Bot size={20} aria-hidden="true" />
         <span>Ask AI Lagnaa</span>
-        <MessageCircle size={16} aria-hidden="true" />
       </button>
     </aside>
   )
