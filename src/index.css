@@ -425,25 +425,11 @@ button:disabled { cursor: not-allowed; }
 
 .home-arusuvai { background: var(--color-surface-alt); }
 .home-arusuvai__intro { max-width: 46rem; margin-inline: auto; }
-.flavour-orbit { position: relative; display: grid; width: min(100%, 41rem); aspect-ratio: 1; margin: clamp(2rem, 5vw, 4rem) auto 0; place-items: center; }
-.flavour-orbit::before, .flavour-orbit::after { position: absolute; border: 1px solid rgb(117 31 43 / 38%); border-radius: 50%; content: ''; }
-.flavour-orbit::before { inset: 9%; }
-.flavour-orbit::after { inset: 27%; border-color: rgb(167 123 61 / 56%); }
-.flavour-orbit > span:not(.flavour-orbit__centre) { position: absolute; width: 7.3rem; color: var(--color-text-secondary); font-size: 0.72rem; font-weight: 800; letter-spacing: 0.08em; line-height: 1.35; text-align: center; text-transform: uppercase; }
-.flavour-orbit > span:nth-child(1) { top: 3%; left: 50%; transform: translateX(-50%); }
-.flavour-orbit > span:nth-child(2) { top: 23%; right: 3%; }
-.flavour-orbit > span:nth-child(3) { right: 3%; bottom: 20%; }
-.flavour-orbit > span:nth-child(5) { bottom: 3%; left: 50%; transform: translateX(-50%); }
-.flavour-orbit > span:nth-child(6) { bottom: 20%; left: 3%; }
-.flavour-orbit > span:nth-child(7) { top: 23%; left: 3%; }
-.flavour-orbit__centre { display: grid; width: 8.5rem; aspect-ratio: 1; place-items: center; border-radius: 50%; background: var(--color-brand-primary); color: var(--color-text-on-dark); font-family: var(--font-display); font-size: 1.65rem; letter-spacing: -0.05em; line-height: 0.88; text-align: center; }
+.home-arusuvai__image { display: block; width: min(100%, 62rem); height: auto; margin: clamp(1.5rem, 4vw, 3rem) auto 0; border-radius: 0.2rem; }
 .home-arusuvai__action { text-align: center; }
 .home-arusuvai--compact { padding-block: clamp(2.5rem, 4vw, 4.25rem); }
 .home-arusuvai--compact .home-arusuvai__intro { max-width: 38rem; }
 .home-arusuvai--compact .heading--section { font-size: clamp(2.25rem, 4vw, 3.85rem); }
-.home-arusuvai--compact .flavour-orbit { width: min(100%, 22rem); margin-top: clamp(1.25rem, 2vw, 1.75rem); }
-.home-arusuvai--compact .flavour-orbit > span:not(.flavour-orbit__centre) { width: 5rem; font-size: 0.57rem; letter-spacing: 0.065em; }
-.home-arusuvai--compact .flavour-orbit__centre { width: 6rem; font-size: 1.25rem; }
 .home-arusuvai--compact .home-arusuvai__action .text-link { margin-top: var(--space-lg); }
 
 .home-food__heading-row, .home-gallery__heading-row { display: flex; align-items: end; justify-content: space-between; gap: var(--space-xl); }
@@ -548,7 +534,7 @@ button:disabled { cursor: not-allowed; }
     will-change: opacity, transform;
   }
 
-  .home-arusuvai[data-home-scroll-scene][data-home-scroll-ready] .flavour-orbit {
+  .home-arusuvai[data-home-scroll-scene][data-home-scroll-ready] .home-arusuvai__image {
     opacity: var(--home-scroll-opacity);
     transform: scale(var(--home-scroll-orbit-scale));
     transform-origin: center;

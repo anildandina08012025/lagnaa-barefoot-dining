@@ -5,6 +5,7 @@ import { mobileHeroFrames } from '../../content/mobileHeroFrames'
 import entranceTeamImage from '../../assets/gallery/lagnaa-entrance-team.jpg'
 import arusuvaiPlatterImage from '../../assets/gallery/lagnaa-arusuvai-platter.jpg'
 import arusuvaiDetailImage from '../../assets/gallery/lagnaa-arusuvai-detail.jpg'
+import arusuvaiImage from '../../assets/gallery/arusuvai.webp'
 import miniPuriImage from '../../assets/gallery/lagnaa-mini-puri.jpg'
 import elaiKoliImage from '../../assets/gallery/lagnaa-elai-koli.jpg'
 import { featuredRecognitionItems } from '../../content/recognition'
@@ -130,9 +131,7 @@ export function HomePage() {
           <div className="home-arusuvai__intro">
             <SectionHeading eyebrow={arusuvai.eyebrow} heading={arusuvai.heading} description={arusuvai.description} align="center" level={2} id="arusuvai-heading" />
           </div>
-          <div className="flavour-orbit" aria-hidden="true">
-            <span>Balance</span><span>Contrast</span><span>Discovery</span><span className="flavour-orbit__centre">Six<br />flavours</span><span>Indian<br />dining</span><span>At the<br />table</span><span>Shared<br />experience</span>
-          </div>
+          <img className="home-arusuvai__image" src={arusuvaiImage} alt="Arusuvai, the harmony of six tastes, illustrated with Lagnaa dishes." />
           <div className="home-arusuvai__action"><a className="text-link" href="/menu">Explore the menu <TextArrow /></a></div>
         </Container>
       </section>
