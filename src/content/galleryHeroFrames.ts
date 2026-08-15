@@ -1,4 +1,4 @@
-const frameModules = import.meta.glob<string>('../assets/heroimages-new/frame_*.webp', {
+const frameModules = import.meta.glob<string>('../assets/heroimages/frame_*.webp', {
   eager: true,
   import: 'default',
   query: '?url',
