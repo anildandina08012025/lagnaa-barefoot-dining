@@ -17,6 +17,12 @@ export type GalleryImage = {
   directSourceUrl: string
 }
 
+export type GalleryGroup = {
+  heading: string
+  description: string
+  imageIds: readonly string[]
+}
+
 export type GalleryPageContent = {
   seo: {
     title: string
@@ -32,6 +38,7 @@ export type GalleryPageContent = {
     heading: string
     description: string
   }
+  groups: readonly GalleryGroup[]
   images: readonly GalleryImage[]
   cta: {
     eyebrow: string
@@ -46,19 +53,38 @@ export type GalleryPageContent = {
  */
 export const galleryContent: GalleryPageContent = {
   seo: {
-    title: 'Gallery | Lagnaa Barefoot Dining',
-    description: 'Explore a gallery of Lagnaa Barefoot Dining, its food and its Little India setting.',
+    title: 'Lagnaa Restaurant Gallery | Indian Dining in Little India',
+    description: 'View Lagnaa Barefoot Dining photographs showing Indian food, restaurant atmosphere and the Little India setting in Singapore.',
   },
   hero: {
     eyebrow: 'Gallery',
-    heading: 'A sense of Lagnaa.',
-    description: 'A selection of official photographs from Lagnaa Barefoot Dining.',
+    heading: 'A visual sense of Lagnaa.',
+    description: 'Official Lagnaa photographs gathered into a quieter look at the food, welcome and setting behind the restaurant experience.',
   },
   collection: {
     eyebrow: 'From Lagnaa',
     heading: 'Food, place and character.',
-    description: 'A glimpse of the dishes and setting found at Lagnaa in Little India.',
+    description: 'Browse the approved images currently available for the redesigned website. More interior, table and exterior photography will strengthen this page before launch.',
   },
+  groups: [
+    {
+      heading: 'Little India',
+      description: 'The restaurant entrance and neighbourhood-facing welcome.',
+      imageIds: ['lagnaa-entrance-team'],
+    },
+    {
+      heading: 'From the Kitchen',
+      description: 'Approved food photographs from Lagnaa source pages.',
+      imageIds: [
+        'lagnaa-arusuvai-platter',
+        'lagnaa-arusuvai-detail',
+        'lagnaa-elai-koli',
+        'lagnaa-nilagiri-mutton-koorma',
+        'lagnaa-mini-puri',
+        'lagnaa-malai-tikka',
+      ],
+    },
+  ],
   images: [
     {
       id: 'lagnaa-entrance-team',
@@ -133,7 +159,7 @@ export const galleryContent: GalleryPageContent = {
   ],
   cta: {
     eyebrow: 'Visit Lagnaa',
-    heading: 'Make time for the table.',
-    description: 'Explore the menu or reserve a table for your visit.',
+    heading: 'See it in person.',
+    description: 'Reserve a table or plan your visit to Lagnaa in Little India.',
   },
 }

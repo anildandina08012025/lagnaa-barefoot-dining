@@ -11,7 +11,7 @@ export const homeContent = {
   hero: {
     eyebrow: 'Lagnaa Barefoot Dining',
     heading: 'Indian dining, enjoyed barefoot.',
-    description: 'Indian flavours and warm hospitality in Little India.',
+    description: 'Indian dining in Little India, Singapore—where flavour, warm hospitality and a distinctive barefoot experience come together.',
     media: {
       subject: 'Hero dining atmosphere',
       detail: 'Wide restaurant interior or expressive food-and-hospitality photograph.',
@@ -49,6 +49,38 @@ export const homeContent = {
     eyebrow: 'Arusuvai',
     heading: 'Six flavours, considered as one experience.',
     description: 'Arusuvai refers to six flavours. At Lagnaa, it is an invitation to consider balance, contrast and discovery across an Indian meal.',
+  },
+  experiences: {
+    eyebrow: 'The Lagnaa Experience',
+    heading: 'More than a meal, made to remember.',
+    description: 'Discover the dining and cultural experiences that give Lagnaa its distinctive character.',
+    items: [
+      {
+        title: 'Barefoot Dining',
+        description: 'A signature Lagnaa dining experience shaped by food, hospitality and an intimate atmosphere.',
+        href: '/experiences/barefoot-dining',
+      },
+      {
+        title: 'The Ultimate Chilli Challenge',
+        description: 'Lagnaa’s signature food challenge for guests who enjoy exploring spice.',
+        href: '/experiences/chilli-challenge',
+      },
+      {
+        title: 'Monthly Dégustation',
+        description: 'A food-tasting experience for discovering dishes and sharing impressions with the Lagnaa team.',
+        href: '/events/monthly-degustation',
+      },
+      {
+        title: 'Cooking with Chef Kaesavan',
+        description: 'An Indian cooking-class experience with Chef Kaesavan.',
+        href: '/events/cooking-with-chef-kaesavan',
+      },
+    ],
+    archive: {
+      label: '#RediscoverLittleIndia',
+      description: 'A past cultural initiative exploring Little India and its local stories.',
+      href: '/events/rediscover-little-india',
+    },
   },
   food: {
     eyebrow: 'At the table',

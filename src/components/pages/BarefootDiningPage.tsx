@@ -63,6 +63,9 @@ export function BarefootDiningPage() {
             <SectionHeading eyebrow={content.introduction.eyebrow} heading={content.introduction.heading} align="center" level={2} id="barefoot-introduction-heading" />
             <div className="barefoot-introduction__copy">
               {content.introduction.paragraphs.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}
+              <p>
+                Learn more about <a href="/barefoot-dining-singapore">Barefoot Dining in Singapore</a> and how it connects to Lagnaa’s Indian dining story.
+              </p>
             </div>
           </Container>
         </section>
@@ -71,6 +74,23 @@ export function BarefootDiningPage() {
           <Container className="barefoot-sensory__grid">
             <span className="barefoot-sensory__marker" aria-hidden="true">01</span>
             <SectionHeading eyebrow={content.sensory.eyebrow} heading={content.sensory.heading} description={content.sensory.description} tone="dark" level={2} id="barefoot-sensory-heading" />
+          </Container>
+        </section>
+
+        <section className="barefoot-section barefoot-how-it-works" aria-labelledby="barefoot-how-it-works-heading">
+          <Container>
+            <SectionHeading eyebrow="How Barefoot Dining works" heading="Explore, request, then confirm with Lagnaa." description="The exact experience format is confirmed directly by the restaurant before your visit." align="center" level={2} id="barefoot-how-it-works-heading" />
+            <ol className="barefoot-how-it-works__steps">
+              <li><span aria-hidden="true">01</span><h3>Explore the menu</h3><p>Browse the current menu and decide whether Barefoot Dining is right for your visit.</p></li>
+              <li><span aria-hidden="true">02</span><h3>Send your preference</h3><p>Use the reservation journey or contact Lagnaa with your preferred visit details.</p></li>
+              <li><span aria-hidden="true">03</span><h3>Confirm with Lagnaa</h3><p>Lagnaa will confirm the current experience details and your reservation directly.</p></li>
+            </ol>
+            {/* Client confirmation needed: add only approved operational Barefoot Dining guidance here. */}
+            <div className="barefoot-how-it-works__actions">
+              <Button href="/menu" variant="outline">View Menu</Button>
+              <Button href={restaurantConfig.links.reservation} disabled={!canReserve} variant="primary">Start a Reservation Request</Button>
+              <Button href="/contact" variant="text">Contact / Plan Your Visit</Button>
+            </div>
           </Container>
         </section>
 

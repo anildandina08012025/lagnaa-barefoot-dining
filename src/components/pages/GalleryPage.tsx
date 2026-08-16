@@ -37,7 +37,7 @@ export function GalleryPage() {
               level={2}
               id="gallery-collection-heading"
             />
-            <VerticalThumbnailGallery images={content.images} />
+            <VerticalThumbnailGallery images={content.images} groups={content.groups} />
           </Container>
         </section>
 
@@ -46,7 +46,7 @@ export function GalleryPage() {
           heading={content.cta.heading}
           description={content.cta.description}
           primaryAction={restaurantConfig.links.reservation ? { label: 'Reserve a Table', href: restaurantConfig.links.reservation } : undefined}
-          secondaryAction={{ label: 'Explore the Menu', href: '/menu', variant: 'outline' }}
+          secondaryAction={{ label: 'Plan Your Visit', href: '/contact', variant: 'outline' }}
         />
       </article>
     </main>

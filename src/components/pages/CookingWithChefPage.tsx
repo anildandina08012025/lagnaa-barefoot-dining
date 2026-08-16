@@ -1,5 +1,6 @@
 import { useState, type FormEvent } from 'react'
 import cookingMoment from '../../assets/lagnaa-showcase/lagnaa-cooking-moment.webp'
+import malaiTikkaImage from '../../assets/gallery/lagnaa-malai-tikka.jpg'
 import { restaurantConfig } from '../../config/restaurant'
 import { Container } from '../layout/Container'
 import { PageMetadata } from '../seo/PageMetadata'
@@ -23,6 +24,36 @@ const products = [
   'Butter Chicken Ready Mix',
   'Seafood & Vegetables Ready Mix',
   'Meat Ready Mix',
+] as const
+
+const cookingSocialCards = [
+  {
+    id: 'cooking-instagram-class',
+    eyebrow: 'Instagram',
+    title: 'Cooking class moments',
+    description: 'Watch official Lagnaa updates for cooking-class moments and kitchen stories.',
+    href: 'https://www.instagram.com/lagnaabarefootdining/',
+    image: cookingMoment,
+    alt: 'Master Chef Kaesavan leading a cooking session at Lagnaa.',
+  },
+  {
+    id: 'cooking-instagram-dishes',
+    eyebrow: 'Instagram',
+    title: 'Indian food learning',
+    description: 'Open Lagnaa’s Instagram for approved posts connected to food, flavour and cooking.',
+    href: 'https://www.instagram.com/lagnaabarefootdining/',
+    image: malaiTikkaImage,
+    alt: 'Malai Tikka on a plate.',
+  },
+  {
+    id: 'cooking-instagram-chef',
+    eyebrow: 'Instagram',
+    title: 'Chef-led experience',
+    description: 'See official social updates from Lagnaa before registering interest.',
+    href: 'https://www.instagram.com/lagnaabarefootdining/',
+    image: cookingMoment,
+    alt: 'A cooking class moment at Lagnaa.',
+  },
 ] as const
 
 const initialForm: InterestForm = { name: '', email: '', phone: '', dietary: '', dish: '' }
@@ -89,8 +120,8 @@ export function CookingWithChefPage() {
   return (
     <main id="main-content">
       <PageMetadata
-        title="Cooking with Chef Kaesavan | Lagnaa Barefoot Dining"
-        description="Register your interest in a cooking experience with Master Chef Kaesavan, and enquire about Lagnaa Ready Mixes."
+        title="Cooking with Chef Kaesavan | Indian Cooking Class Singapore"
+        description="Register interest in Cooking with Chef Kaesavan at Lagnaa, an Indian cooking-class experience in Singapore."
         canonicalUrl={canonicalUrl}
       />
       <article className="cooking-page">
@@ -108,11 +139,51 @@ export function CookingWithChefPage() {
           </Container>
         </section>
 
+        <section className="cooking-section experience-social" aria-labelledby="cooking-social-heading">
+          <Container>
+            <div className="experience-social__header">
+              <SectionHeading
+                eyebrow="Social moments"
+                heading="Cooking with Chef Kaesavan on Instagram."
+                level={2}
+                id="cooking-social-heading"
+              />
+              <p>
+                Watch official Lagnaa posts and Reels on Instagram. Videos open on social media, not inside this website.
+              </p>
+            </div>
+            <div className="experience-social__scroller" aria-label="Official Instagram links for Lagnaa cooking-class moments">
+              {cookingSocialCards.map((card) => (
+                <a
+                  aria-label={`${card.title}. Opens Lagnaa on Instagram in a new tab.`}
+                  className="experience-social-card"
+                  href={card.href}
+                  key={card.id}
+                  rel="noopener noreferrer"
+                  target="_blank"
+                >
+                  <span className="experience-social-card__media">
+                    <img src={card.image} alt={card.alt} loading="lazy" />
+                    <span className="experience-social-card__play" aria-hidden="true">▶</span>
+                  </span>
+                  <span className="experience-social-card__body">
+                    <span className="eyebrow">{card.eyebrow}</span>
+                    <span className="experience-social-card__title">{card.title}</span>
+                    <span className="experience-social-card__description">{card.description}</span>
+                    <span className="experience-social-card__action">Watch on Instagram <TextArrow /></span>
+                  </span>
+                </a>
+              ))}
+            </div>
+          </Container>
+        </section>
+
         <section className="cooking-section cooking-interest" id="cooking-interest" aria-labelledby="cooking-interest-heading">
           <Container className="cooking-interest__grid">
             <div className="cooking-interest__introduction">
               <SectionHeading eyebrow="Register your interest" heading="Tell Lagnaa what you would love to learn." level={2} id="cooking-interest-heading" />
               <p>The team will receive your enquiry through WhatsApp after you choose to submit the form.</p>
+              <p>For more context, view the <a href="/indian-cooking-class-singapore">Indian cooking class in Singapore</a> guide.</p>
             </div>
             <form className="cooking-form" noValidate onSubmit={submitInterest}>
               <div className="cooking-form__field">

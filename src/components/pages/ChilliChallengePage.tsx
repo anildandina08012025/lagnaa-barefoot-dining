@@ -13,6 +13,36 @@ function TextArrow() {
   return <span aria-hidden="true">↗</span>
 }
 
+const chilliSocialCards = [
+  {
+    id: 'official-instagram-challenge',
+    eyebrow: 'Instagram',
+    title: 'Chilli Challenge moments',
+    description: 'Watch Lagnaa’s spice-led moments on the restaurant’s official Instagram channel.',
+    href: 'https://www.instagram.com/lagnaabarefootdining/',
+    image: goldenAdviceImage,
+    alt: 'A warm visual for Lagnaa’s Chilli Challenge.',
+  },
+  {
+    id: 'official-instagram-curry-shots',
+    eyebrow: 'Instagram',
+    title: 'Curry Shots previews',
+    description: 'Open Lagnaa’s social channel for approved Chilli Challenge and Curry Shots updates.',
+    href: 'https://www.instagram.com/lagnaabarefootdining/',
+    image: curryShotsImage,
+    alt: 'A visual of Curry Shots.',
+  },
+  {
+    id: 'official-instagram-spice-levels',
+    eyebrow: 'Instagram',
+    title: 'Guest heat reactions',
+    description: 'See official spice-level posts and challenge updates from Lagnaa.',
+    href: 'https://www.instagram.com/lagnaabarefootdining/',
+    image: chilliLevels,
+    alt: 'An illustrated Chilli Challenge levels guide.',
+  },
+] as const
+
 export function ChilliChallengePage() {
   const canReserve = Boolean(restaurantConfig.links.reservation)
   const canonicalUrl = restaurantConfig.siteUrl
@@ -22,8 +52,8 @@ export function ChilliChallengePage() {
   return (
     <main id="main-content">
       <PageMetadata
-        title="The Ultimate Chilli Challenge | Lagnaa Barefoot Dining"
-        description="Discover Lagnaa's signature Chilli Challenge in Little India, Singapore."
+        title="Ultimate Chilli Challenge Singapore | Lagnaa Barefoot Dining"
+        description="Explore Lagnaa’s Ultimate Chilli Challenge in Little India, Singapore, a signature spice-led Indian dining experience."
         canonicalUrl={canonicalUrl}
       />
       <article className="chilli-page">
@@ -52,6 +82,7 @@ export function ChilliChallengePage() {
               <div className="editorial-copy">
                 <p>Lagnaa’s official Chilli Challenge page invites spice lovers to choose their level and discover how far they would like to go.</p>
                 <p>For the current format, participation requirements and availability, speak with the Lagnaa team before your visit.</p>
+                <p>Read the dedicated guide to the <a href="/chilli-challenge-singapore">Chilli Challenge in Singapore</a> before planning your visit.</p>
               </div>
             </div>
             <figure className="chilli-introduction__image">
@@ -79,22 +110,27 @@ export function ChilliChallengePage() {
 
         <section className="chilli-section chilli-steps" aria-labelledby="chilli-steps-heading">
           <Container>
-            <SectionHeading eyebrow="Find your level" heading="Three ways to approach the heat." tone="dark" align="center" level={2} id="chilli-steps-heading" />
+            <SectionHeading eyebrow="Your challenge journey" heading="Understand the heat before you dare." tone="dark" align="center" level={2} id="chilli-steps-heading" />
             <ol className="chilli-steps__grid">
               <li>
                 <span aria-hidden="true">01</span>
-                <h3>Choose your heat</h3>
-                <p>The official Chilli Challenge page presents a chilli-level journey. Start with the level that feels right for you.</p>
+                <h3>Understand</h3>
+                <p>Read the current challenge guidance and get familiar with the spice-led experience.</p>
               </li>
               <li>
                 <span aria-hidden="true">02</span>
-                <h3>Try Curry Shots</h3>
-                <p>Lagnaa recommends Curry Shots as a way to test your chilli level before making your choice.</p>
+                <h3>Dare</h3>
+                <p>Use Curry Shots to explore your own heat preference before deciding how far you would like to go.</p>
               </li>
               <li>
                 <span aria-hidden="true">03</span>
-                <h3>Ask the team</h3>
-                <p>Contact Lagnaa directly for current challenge details and guidance before you plan your visit.</p>
+                <h3>Participate</h3>
+                <p>Ask Lagnaa about the current format, participation details and availability before planning your visit.</p>
+              </li>
+              <li>
+                <span aria-hidden="true">04</span>
+                <h3>Reserve or enquire</h3>
+                <p>Send a reservation request or contact Lagnaa directly for the latest information.</p>
               </li>
             </ol>
           </Container>
@@ -107,8 +143,48 @@ export function ChilliChallengePage() {
               <SectionHeading eyebrow="Before you take the challenge" heading="Speak with Lagnaa before you choose your level." level={2} id="chilli-details-heading" />
               <p className="chilli-details__copy">Challenge formats and participation details can change, so confirm the current experience directly with Lagnaa before your visit.</p>
               <div className="chilli-details__actions">
+                <a className="text-link" href="/menu">View Menu <TextArrow /></a>
                 <a className="text-link" href="/contact">Contact Lagnaa <TextArrow /></a>
               </div>
+            </div>
+          </Container>
+        </section>
+
+        <section className="chilli-section chilli-social" aria-labelledby="chilli-social-heading">
+          <Container>
+            <div className="chilli-social__header">
+              <SectionHeading
+                eyebrow="Social moments"
+                heading="Chilli Challenge on Instagram."
+                level={2}
+                id="chilli-social-heading"
+              />
+              <p>
+                Watch official Lagnaa posts and Reels on Instagram. Videos open on social media, not inside this website.
+              </p>
+            </div>
+            <div className="chilli-social__scroller" aria-label="Official Instagram links for Lagnaa Chilli Challenge moments">
+              {chilliSocialCards.map((card) => (
+                <a
+                  aria-label={`${card.title}. Opens Lagnaa on Instagram in a new tab.`}
+                  className="chilli-social-card"
+                  href={card.href}
+                  key={card.id}
+                  rel="noopener noreferrer"
+                  target="_blank"
+                >
+                  <span className="chilli-social-card__media">
+                    <img src={card.image} alt={card.alt} loading="lazy" />
+                    <span className="chilli-social-card__play" aria-hidden="true">▶</span>
+                  </span>
+                  <span className="chilli-social-card__body">
+                    <span className="eyebrow">{card.eyebrow}</span>
+                    <span className="chilli-social-card__title">{card.title}</span>
+                    <span className="chilli-social-card__description">{card.description}</span>
+                    <span className="chilli-social-card__action">Watch on Instagram <TextArrow /></span>
+                  </span>
+                </a>
+              ))}
             </div>
           </Container>
         </section>

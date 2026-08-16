@@ -3,6 +3,7 @@ import { demoMenuCategories, type DemoMenuCategory, type DemoMenuItem } from '..
 
 type InteractiveMenuListProps = {
   items: readonly DemoMenuItem[]
+  categories?: readonly { id: DemoMenuCategory; label: string }[]
 }
 
 function useMenuInteractionMode() {
@@ -28,8 +29,8 @@ function useMenuInteractionMode() {
   return { supportsHover, reducedMotion }
 }
 
-export function InteractiveMenuList({ items }: InteractiveMenuListProps) {
-  const [activeCategory, setActiveCategory] = useState<DemoMenuCategory>('highlights')
+export function InteractiveMenuList({ items, categories = demoMenuCategories }: InteractiveMenuListProps) {
+  const [activeCategory, setActiveCategory] = useState<DemoMenuCategory>(categories[0]?.id ?? 'highlights')
   const [activeItemId, setActiveItemId] = useState<string | null>(null)
   const [expandedItemId, setExpandedItemId] = useState<string | null>(null)
   const containerRef = useRef<HTMLDivElement>(null)
@@ -39,6 +40,7 @@ export function InteractiveMenuList({ items }: InteractiveMenuListProps) {
   const { supportsHover, reducedMotion } = useMenuInteractionMode()
   const visibleItems = items.filter((item) => item.category === activeCategory)
   const activeItem = visibleItems.find((item) => item.id === activeItemId)
+  const activeCategoryLabel = categories.find((category) => category.id === activeCategory)?.label ?? 'Menu'
 
   useEffect(() => () => {
     if (frameRef.current !== null) cancelAnimationFrame(frameRef.current)
@@ -100,9 +102,10 @@ export function InteractiveMenuList({ items }: InteractiveMenuListProps) {
   return (
     <div className="interactive-menu" ref={containerRef} onPointerMove={handlePointerMove} onPointerLeave={() => supportsHover && setActiveItemId(null)}>
       <div className="interactive-menu__filters">
-        {demoMenuCategories.map((category) => (
+        {categories.map((category) => (
           <button
             aria-pressed={category.id === activeCategory}
+            aria-controls="menu-category-list"
             className="interactive-menu__filter"
             key={category.id}
             onClick={() => selectCategory(category.id)}
@@ -113,31 +116,43 @@ export function InteractiveMenuList({ items }: InteractiveMenuListProps) {
         ))}
       </div>
 
-      <div className="interactive-menu__list" role="list">
+      <div className="interactive-menu__list" id="menu-category-list" role="list" aria-label={`${activeCategoryLabel} menu items`}>
         {visibleItems.map((item) => {
-          const isExpanded = expandedItemId === item.id
+          const hasImage = Boolean(item.imageSrc)
+          const isExpanded = hasImage && expandedItemId === item.id
+          const itemContent = (
+            <>
+              <span className="interactive-menu__item-main">
+                <span className="interactive-menu__item-name">{item.name}</span>
+                <span className="interactive-menu__item-description">{item.description}</span>
+                <span className="interactive-menu__meta">
+                  {item.dietary ? <span className={`interactive-menu__dietary interactive-menu__dietary--${item.dietary === 'Vegetarian' ? 'vegetarian' : 'non-vegetarian'}`}>{item.dietary}</span> : null}
+                  {item.spiceLevel ? <span className="interactive-menu__spice">{item.spiceLevel}</span> : null}
+                </span>
+              </span>
+              <span className="interactive-menu__price">{item.price}</span>
+            </>
+          )
           return (
             <article className="interactive-menu__item" key={item.id} role="listitem" onPointerEnter={(event) => handleItemEnter(item, event)}>
-              <button
-                aria-controls={`menu-image-${item.id}`}
-                aria-expanded={isExpanded}
-                className="interactive-menu__item-button"
-                onBlur={() => !supportsHover && setActiveItemId(null)}
-                onClick={() => toggleItem(item)}
-                onFocus={() => handleItemFocus(item)}
-                type="button"
-              >
-                <span className="interactive-menu__item-main">
-                  <span className="interactive-menu__item-name">{item.name}</span>
-                  <span className="interactive-menu__item-description">{item.description}</span>
-                  <span className="interactive-menu__meta">
-                    {item.dietary ? <span className={`interactive-menu__dietary interactive-menu__dietary--${item.dietary === 'Vegetarian' ? 'vegetarian' : 'non-vegetarian'}`}>{item.dietary}</span> : null}
-                    {item.spiceLevel ? <span className="interactive-menu__spice">{item.spiceLevel}</span> : null}
-                  </span>
-                </span>
-                <span className="interactive-menu__price">{item.price}</span>
-              </button>
-              {item.imageSrc ? (
+              {hasImage ? (
+                <button
+                  aria-controls={`menu-image-${item.id}`}
+                  aria-expanded={isExpanded}
+                  className="interactive-menu__item-button"
+                  onBlur={() => !supportsHover && setActiveItemId(null)}
+                  onClick={() => toggleItem(item)}
+                  onFocus={() => handleItemFocus(item)}
+                  type="button"
+                >
+                  {itemContent}
+                </button>
+              ) : (
+                <div className="interactive-menu__item-button interactive-menu__item-button--static">
+                  {itemContent}
+                </div>
+              )}
+              {hasImage ? (
                 <div className={`interactive-menu__inline-preview${isExpanded ? ' interactive-menu__inline-preview--open' : ''}`} id={`menu-image-${item.id}`}>
                   <img src={item.imageSrc} alt={item.imageAlt ?? ''} loading="lazy" width="640" height="460" />
                 </div>

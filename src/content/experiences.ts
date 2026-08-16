@@ -192,8 +192,8 @@ export const eventExperiences: readonly EventExperience[] = [
 
 export const experiencesContent = {
   seo: {
-    title: 'Events & Experiences | Lagnaa Barefoot Dining Singapore',
-    description: 'Discover food, cultural and dining experiences at Lagnaa in Little India, Singapore.',
+    title: 'Dining Experiences | Lagnaa Barefoot Dining Singapore',
+    description: 'Explore Lagnaa dining experiences in Singapore, including Barefoot Dining, the Ultimate Chilli Challenge, food tasting and cooking-class enquiries.',
   },
   hero: {
     eyebrow: 'Events & experiences',
@@ -233,8 +233,8 @@ export const experiencesContent = {
  */
 export const barefootDiningPageContent: BarefootDiningPageContent = {
   seo: {
-    title: 'Barefoot Dining Experience | Lagnaa Singapore',
-    description: 'Discover the Barefoot Dining experience at Lagnaa in Little India, Singapore, and plan your visit.',
+    title: 'Barefoot Dining Experience Singapore | Lagnaa Barefoot Dining',
+    description: 'Discover Barefoot Dining at Lagnaa in Little India, Singapore, a signature Indian dining experience shaped by food, hospitality and atmosphere.',
   },
   hero: {
     eyebrow: 'A Lagnaa dining experience',
