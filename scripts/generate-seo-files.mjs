@@ -2,8 +2,8 @@ import { mkdir, writeFile } from 'node:fs/promises'
 import { resolve } from 'node:path'
 
 const root = resolve(process.cwd())
-const siteUrl = process.env.VITE_SITE_URL?.replace(/\/$/, '')
-const isIndexable = process.env.VITE_ROBOTS_INDEX === 'true' && Boolean(siteUrl)
+const siteUrl = process.env.VITE_SITE_URL?.replace(/\/$/, '') || 'https://www.lagnaa.com'
+const isIndexable = process.env.VITE_ROBOTS_INDEX !== 'false'
 const publicDirectory = resolve(root, 'public')
 const routes = [
   '/',

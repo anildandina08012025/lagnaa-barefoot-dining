@@ -37,9 +37,9 @@ export type RestaurantConfiguration = {
     text: string
     href: string | null
   } | null
-  /** Set VITE_SITE_URL only for the confirmed production domain. */
+  /** VITE_SITE_URL may override the approved production domain. */
   siteUrl: string | null
-  /** Production indexing is explicitly opt-in; preview and staging remain noindex. */
+  /** Set VITE_ROBOTS_INDEX=false to keep a non-production environment out of search. */
   isIndexable: boolean
   socialImageUrl: string | null
   navigation: readonly NavigationItem[]
@@ -77,9 +77,9 @@ export const restaurantConfig: RestaurantConfiguration = {
     { label: 'TikTok', href: null },
   ],
   announcement: null,
-  // Do not provide a fallback domain: production canonical URLs must be explicitly confirmed.
-  siteUrl: import.meta.env.VITE_SITE_URL?.replace(/\/$/, '') || null,
-  isIndexable: import.meta.env.VITE_ROBOTS_INDEX === 'true',
+  // Existing approved production default; Vercel can override this once a different domain is confirmed.
+  siteUrl: import.meta.env.VITE_SITE_URL?.replace(/\/$/, '') || 'https://www.lagnaa.com',
+  isIndexable: import.meta.env.VITE_ROBOTS_INDEX !== 'false',
   // Add an approved, production-ready absolute image URL here before enabling social imagery.
   socialImageUrl: null,
   navigation: [
