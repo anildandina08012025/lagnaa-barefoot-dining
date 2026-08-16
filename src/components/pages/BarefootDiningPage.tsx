@@ -77,6 +77,23 @@ export function BarefootDiningPage() {
           </Container>
         </section>
 
+        <section className="barefoot-section barefoot-how-it-works" aria-labelledby="barefoot-how-it-works-heading">
+          <Container>
+            <SectionHeading eyebrow="How Barefoot Dining works" heading="Explore, request, then confirm with Lagnaa." description="The exact experience format is confirmed directly by the restaurant before your visit." align="center" level={2} id="barefoot-how-it-works-heading" />
+            <ol className="barefoot-how-it-works__steps">
+              <li><span aria-hidden="true">01</span><h3>Explore the menu</h3><p>Browse the current menu and decide whether Barefoot Dining is right for your visit.</p></li>
+              <li><span aria-hidden="true">02</span><h3>Send your preference</h3><p>Use the reservation journey or contact Lagnaa with your preferred visit details.</p></li>
+              <li><span aria-hidden="true">03</span><h3>Confirm with Lagnaa</h3><p>Lagnaa will confirm the current experience details and your reservation directly.</p></li>
+            </ol>
+            {/* Client confirmation needed: add only approved operational Barefoot Dining guidance here. */}
+            <div className="barefoot-how-it-works__actions">
+              <Button href="/menu" variant="outline">View Menu</Button>
+              <Button href={restaurantConfig.links.reservation} disabled={!canReserve} variant="primary">Start a Reservation Request</Button>
+              <Button href="/contact" variant="text">Contact / Plan Your Visit</Button>
+            </div>
+          </Container>
+        </section>
+
         <section className="barefoot-section barefoot-setting" aria-labelledby="barefoot-setting-heading">
           <Container className="barefoot-setting__grid">
             <DevelopmentMedia media={content.setting.media} className="barefoot-setting__media" />

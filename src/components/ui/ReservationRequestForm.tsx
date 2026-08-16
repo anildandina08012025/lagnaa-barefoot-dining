@@ -1,4 +1,5 @@
 import { type FormEvent, useState } from 'react'
+import { trackEvent } from '../../lib/analytics'
 
 type ReservationRequestFormProps = {
   source?: 'website' | 'chatbot'
@@ -90,6 +91,7 @@ export function ReservationRequestForm({ source = 'website', compact = false, on
       }
 
       const message = payload.message || 'Your reservation request has been sent to Lagnaa. The restaurant will confirm directly.'
+      trackEvent('reservation_submit', { source, experience: formData.experience })
       setSuccessMessage(message)
       setFormData(initialFormData)
       onSuccess?.(message)

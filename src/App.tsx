@@ -1,31 +1,35 @@
+import { lazy, Suspense } from 'react'
 import { SiteFooter } from './components/layout/SiteFooter'
 import { SiteHeader } from './components/layout/SiteHeader'
-import { HomePage } from './components/pages/HomePage'
-import { ExperiencesPage } from './components/pages/ExperiencesPage'
-import { BarefootDiningPage } from './components/pages/BarefootDiningPage'
-import { ChilliChallengePage } from './components/pages/ChilliChallengePage'
-import { ChilliChallengeSingaporePage } from './components/pages/ChilliChallengeSingaporePage'
-import { CookingWithChefPage } from './components/pages/CookingWithChefPage'
-import { MonthlyDegustationPage } from './components/pages/MonthlyDegustationPage'
-import { RediscoverLittleIndiaPage } from './components/pages/RediscoverLittleIndiaPage'
-import { ContactPage } from './components/pages/ContactPage'
-import { AwardsMediaPage } from './components/pages/AwardsMediaPage'
-import { BarefootDiningSingaporePage } from './components/pages/BarefootDiningSingaporePage'
-import { GalleryPage } from './components/pages/GalleryPage'
-import { IndianRestaurantLittleIndiaPage } from './components/pages/IndianRestaurantLittleIndiaPage'
-import { IndianRestaurantSingaporePage } from './components/pages/IndianRestaurantSingaporePage'
-import { IndianCookingClassSingaporePage } from './components/pages/IndianCookingClassSingaporePage'
-import { BestIndianFoodSingaporePage } from './components/pages/BestIndianFoodSingaporePage'
-import { MichelinIndianRestaurantSingaporePage } from './components/pages/MichelinIndianRestaurantSingaporePage'
-import { MenuPage } from './components/pages/MenuPage'
-import { OurStoryPage } from './components/pages/OurStoryPage'
-import { ReservationsPage } from './components/pages/ReservationsPage'
-import { BlogPage } from './components/pages/BlogPage'
 import { AnnouncementBar } from './components/ui/AnnouncementBar'
 import { SpotlightCursor } from './components/ui/SpotlightCursor'
 import { LagnaaConcierge } from './components/ui/LagnaaConcierge'
 import { MobileMotionEffects } from './components/ui/MobileMotionEffects'
 import { RestaurantSchema } from './components/seo/RestaurantSchema'
+import { AnalyticsTracker } from './components/analytics/AnalyticsTracker'
+import { MobileReserveCta } from './components/ui/MobileReserveCta'
+
+const HomePage = lazy(() => import('./components/pages/HomePage').then(({ HomePage: component }) => ({ default: component })))
+const ExperiencesPage = lazy(() => import('./components/pages/ExperiencesPage').then(({ ExperiencesPage: component }) => ({ default: component })))
+const BarefootDiningPage = lazy(() => import('./components/pages/BarefootDiningPage').then(({ BarefootDiningPage: component }) => ({ default: component })))
+const ChilliChallengePage = lazy(() => import('./components/pages/ChilliChallengePage').then(({ ChilliChallengePage: component }) => ({ default: component })))
+const ChilliChallengeSingaporePage = lazy(() => import('./components/pages/ChilliChallengeSingaporePage').then(({ ChilliChallengeSingaporePage: component }) => ({ default: component })))
+const CookingWithChefPage = lazy(() => import('./components/pages/CookingWithChefPage').then(({ CookingWithChefPage: component }) => ({ default: component })))
+const MonthlyDegustationPage = lazy(() => import('./components/pages/MonthlyDegustationPage').then(({ MonthlyDegustationPage: component }) => ({ default: component })))
+const RediscoverLittleIndiaPage = lazy(() => import('./components/pages/RediscoverLittleIndiaPage').then(({ RediscoverLittleIndiaPage: component }) => ({ default: component })))
+const ContactPage = lazy(() => import('./components/pages/ContactPage').then(({ ContactPage: component }) => ({ default: component })))
+const AwardsMediaPage = lazy(() => import('./components/pages/AwardsMediaPage').then(({ AwardsMediaPage: component }) => ({ default: component })))
+const BarefootDiningSingaporePage = lazy(() => import('./components/pages/BarefootDiningSingaporePage').then(({ BarefootDiningSingaporePage: component }) => ({ default: component })))
+const GalleryPage = lazy(() => import('./components/pages/GalleryPage').then(({ GalleryPage: component }) => ({ default: component })))
+const IndianRestaurantLittleIndiaPage = lazy(() => import('./components/pages/IndianRestaurantLittleIndiaPage').then(({ IndianRestaurantLittleIndiaPage: component }) => ({ default: component })))
+const IndianRestaurantSingaporePage = lazy(() => import('./components/pages/IndianRestaurantSingaporePage').then(({ IndianRestaurantSingaporePage: component }) => ({ default: component })))
+const IndianCookingClassSingaporePage = lazy(() => import('./components/pages/IndianCookingClassSingaporePage').then(({ IndianCookingClassSingaporePage: component }) => ({ default: component })))
+const BestIndianFoodSingaporePage = lazy(() => import('./components/pages/BestIndianFoodSingaporePage').then(({ BestIndianFoodSingaporePage: component }) => ({ default: component })))
+const MichelinIndianRestaurantSingaporePage = lazy(() => import('./components/pages/MichelinIndianRestaurantSingaporePage').then(({ MichelinIndianRestaurantSingaporePage: component }) => ({ default: component })))
+const MenuPage = lazy(() => import('./components/pages/MenuPage').then(({ MenuPage: component }) => ({ default: component })))
+const OurStoryPage = lazy(() => import('./components/pages/OurStoryPage').then(({ OurStoryPage: component }) => ({ default: component })))
+const ReservationsPage = lazy(() => import('./components/pages/ReservationsPage').then(({ ReservationsPage: component }) => ({ default: component })))
+const BlogPage = lazy(() => import('./components/pages/BlogPage').then(({ BlogPage: component }) => ({ default: component })))
 
 function App() {
   const path = window.location.pathname
@@ -76,9 +80,13 @@ function App() {
       <a className="skip-link" href="#main-content">Skip to main content</a>
       <AnnouncementBar />
       <SiteHeader />
-      {page}
+      <Suspense fallback={<main id="main-content" aria-busy="true" />}>
+        {page}
+      </Suspense>
       <RestaurantSchema pathname={path} />
+      <AnalyticsTracker pathname={path} />
       <SiteFooter />
+      <MobileReserveCta pathname={path} />
       {path !== '/menu' ? <SpotlightCursor /> : null}
       <MobileMotionEffects />
       <LagnaaConcierge />

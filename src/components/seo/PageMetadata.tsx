@@ -32,8 +32,10 @@ export function PageMetadata({ title, description, canonicalUrl, imageUrl = rest
     upsertMeta('meta[property="og:title"]', 'property', 'og:title', title)
     upsertMeta('meta[property="og:description"]', 'property', 'og:description', description)
     upsertMeta('meta[property="og:type"]', 'property', 'og:type', type)
+    upsertMeta('meta[property="og:site_name"]', 'property', 'og:site_name', restaurantConfig.name)
     upsertMeta('meta[name="twitter:title"]', 'name', 'twitter:title', title)
     upsertMeta('meta[name="twitter:description"]', 'name', 'twitter:description', description)
+    upsertMeta('meta[name="robots"]', 'name', 'robots', canonicalUrl && restaurantConfig.isIndexable ? 'index,follow' : 'noindex,nofollow')
 
     if (canonicalUrl) {
       let canonical = document.head.querySelector<HTMLLinkElement>('link[rel="canonical"]')
@@ -53,9 +55,11 @@ export function PageMetadata({ title, description, canonicalUrl, imageUrl = rest
 
     if (imageUrl) {
       upsertMeta('meta[property="og:image"]', 'property', 'og:image', imageUrl)
+      upsertMeta('meta[name="twitter:image"]', 'name', 'twitter:image', imageUrl)
       upsertMeta('meta[name="twitter:card"]', 'name', 'twitter:card', 'summary_large_image')
     } else {
       removeMeta('meta[property="og:image"]')
+      removeMeta('meta[name="twitter:image"]')
       upsertMeta('meta[name="twitter:card"]', 'name', 'twitter:card', 'summary')
     }
   }, [canonicalUrl, description, imageUrl, title, type])

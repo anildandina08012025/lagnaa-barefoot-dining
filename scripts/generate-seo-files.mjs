@@ -1,15 +1,9 @@
-import { readFile, mkdir, writeFile } from 'node:fs/promises'
+import { mkdir, writeFile } from 'node:fs/promises'
 import { resolve } from 'node:path'
 
 const root = resolve(process.cwd())
-const config = await readFile(resolve(root, 'src/config/restaurant.ts'), 'utf8')
-const match = config.match(/siteUrl:\s*'([^']+)'/)
-
-if (!match) {
-  throw new Error('Unable to read restaurantConfig.siteUrl for SEO files.')
-}
-
-const siteUrl = match[1].replace(/\/$/, '')
+const siteUrl = process.env.VITE_SITE_URL?.replace(/\/$/, '')
+const isIndexable = process.env.VITE_ROBOTS_INDEX === 'true' && Boolean(siteUrl)
 const publicDirectory = resolve(root, 'public')
 const routes = [
   '/',
@@ -35,8 +29,11 @@ const routes = [
   '/reservations',
 ]
 
-const sitemap = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${routes.map((route) => `  <url><loc>${siteUrl}${route}</loc></url>`).join('\n')}\n</urlset>\n`
-const robots = `User-agent: *\nAllow: /\n\nSitemap: ${siteUrl}/sitemap.xml\n`
+const sitemapUrls = isIndexable ? routes.map((route) => `  <url><loc>${siteUrl}${route}</loc></url>`).join('\n') : ''
+const sitemap = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">${sitemapUrls ? `\n${sitemapUrls}\n` : ''}</urlset>\n`
+const robots = isIndexable
+  ? `User-agent: *\nAllow: /\n\nSitemap: ${siteUrl}/sitemap.xml\n`
+  : 'User-agent: *\nDisallow: /\n'
 
 await mkdir(publicDirectory, { recursive: true })
 await Promise.all([

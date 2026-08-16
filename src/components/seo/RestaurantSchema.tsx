@@ -67,13 +67,10 @@ function JsonLd({ id, data }: { id: string, data: StructuredData }) {
 
 export function RestaurantSchema({ pathname }: { pathname: string }) {
   const siteUrl = restaurantConfig.siteUrl
-  if (!siteUrl) return null
+  if (!siteUrl || !restaurantConfig.isIndexable) return null
 
   const rootUrl = `${siteUrl.replace(/\/$/, '')}/`
-  const reservationUrl = restaurantConfig.links.reservation
-    ? absoluteUrl(restaurantConfig.links.reservation, siteUrl)
-    : undefined
-  const menuUrl = absoluteUrl('/menu', siteUrl)
+  const menuUrl = restaurantConfig.links.officialMenu
   const sameAs = restaurantConfig.socialLinks.flatMap((social) => social.href ? [social.href] : [])
   const graph: StructuredData[] = [
     {
@@ -83,23 +80,15 @@ export function RestaurantSchema({ pathname }: { pathname: string }) {
       description: restaurantConfig.shortDescription,
       url: rootUrl,
       hasMenu: menuUrl,
-      priceRange: '$$',
       ...(restaurantConfig.address ? { address: structuredAddress(restaurantConfig.address) } : {}),
       ...(restaurantConfig.phone ? { telephone: restaurantConfig.phone } : {}),
       ...(restaurantConfig.email ? { email: restaurantConfig.email } : {}),
-      servesCuisine: ['Indian'],
+      ...(restaurantConfig.servesCuisine.length > 0 ? { servesCuisine: restaurantConfig.servesCuisine } : {}),
       areaServed: {
         '@type': 'Place',
         name: restaurantConfig.location,
       },
-      ...(reservationUrl ? {
-        acceptsReservations: true,
-        potentialAction: {
-          '@type': 'ReserveAction',
-          target: reservationUrl,
-          name: 'Reserve a Table',
-        },
-      } : {}),
+      ...(restaurantConfig.openingHours.length > 0 ? { openingHours: restaurantConfig.openingHours } : {}),
       ...(restaurantConfig.socialImageUrl ? { image: restaurantConfig.socialImageUrl } : {}),
       ...(sameAs.length > 0 ? { sameAs } : {}),
     },

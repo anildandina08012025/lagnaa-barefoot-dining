@@ -110,22 +110,27 @@ export function ChilliChallengePage() {
 
         <section className="chilli-section chilli-steps" aria-labelledby="chilli-steps-heading">
           <Container>
-            <SectionHeading eyebrow="Find your level" heading="Three ways to approach the heat." tone="dark" align="center" level={2} id="chilli-steps-heading" />
+            <SectionHeading eyebrow="Your challenge journey" heading="Understand the heat before you dare." tone="dark" align="center" level={2} id="chilli-steps-heading" />
             <ol className="chilli-steps__grid">
               <li>
                 <span aria-hidden="true">01</span>
-                <h3>Choose your heat</h3>
-                <p>The official Chilli Challenge page presents a chilli-level journey. Start with the level that feels right for you.</p>
+                <h3>Understand</h3>
+                <p>Read the current challenge guidance and get familiar with the spice-led experience.</p>
               </li>
               <li>
                 <span aria-hidden="true">02</span>
-                <h3>Try Curry Shots</h3>
-                <p>Lagnaa recommends Curry Shots as a way to test your chilli level before making your choice.</p>
+                <h3>Dare</h3>
+                <p>Use Curry Shots to explore your own heat preference before deciding how far you would like to go.</p>
               </li>
               <li>
                 <span aria-hidden="true">03</span>
-                <h3>Ask the team</h3>
-                <p>Contact Lagnaa directly for current challenge details and guidance before you plan your visit.</p>
+                <h3>Participate</h3>
+                <p>Ask Lagnaa about the current format, participation details and availability before planning your visit.</p>
+              </li>
+              <li>
+                <span aria-hidden="true">04</span>
+                <h3>Reserve or enquire</h3>
+                <p>Send a reservation request or contact Lagnaa directly for the latest information.</p>
               </li>
             </ol>
           </Container>
@@ -138,6 +143,7 @@ export function ChilliChallengePage() {
               <SectionHeading eyebrow="Before you take the challenge" heading="Speak with Lagnaa before you choose your level." level={2} id="chilli-details-heading" />
               <p className="chilli-details__copy">Challenge formats and participation details can change, so confirm the current experience directly with Lagnaa before your visit.</p>
               <div className="chilli-details__actions">
+                <a className="text-link" href="/menu">View Menu <TextArrow /></a>
                 <a className="text-link" href="/contact">Contact Lagnaa <TextArrow /></a>
               </div>
             </div>

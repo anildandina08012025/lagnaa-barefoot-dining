@@ -19,6 +19,7 @@ export type RestaurantConfiguration = {
   whatsapp: string | null
   email: string | null
   openingHours: readonly string[]
+  servesCuisine: readonly string[]
   links: {
     /** Internal reservation journey used by all Reserve a Table CTAs. */
     reservation: string | null
@@ -36,7 +37,10 @@ export type RestaurantConfiguration = {
     text: string
     href: string | null
   } | null
+  /** Set VITE_SITE_URL only for the confirmed production domain. */
   siteUrl: string | null
+  /** Production indexing is explicitly opt-in; preview and staging remain noindex. */
+  isIndexable: boolean
   socialImageUrl: string | null
   navigation: readonly NavigationItem[]
   experienceLinks: readonly NavigationItem[]
@@ -58,6 +62,7 @@ export const restaurantConfig: RestaurantConfiguration = {
   whatsapp: null,
   email: 'barefootdining@lagnaa.com',
   openingHours: [],
+  servesCuisine: ['Indian'],
   links: {
     reservation: '/reservations',
     reservationProvider: null,
@@ -72,8 +77,9 @@ export const restaurantConfig: RestaurantConfiguration = {
     { label: 'TikTok', href: null },
   ],
   announcement: null,
-  // Update this single value if Lagnaa uses a different canonical production domain.
-  siteUrl: 'https://www.lagnaa.com',
+  // Do not provide a fallback domain: production canonical URLs must be explicitly confirmed.
+  siteUrl: import.meta.env.VITE_SITE_URL?.replace(/\/$/, '') || null,
+  isIndexable: import.meta.env.VITE_ROBOTS_INDEX === 'true',
   // Add an approved, production-ready absolute image URL here before enabling social imagery.
   socialImageUrl: null,
   navigation: [
