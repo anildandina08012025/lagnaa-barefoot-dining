@@ -56,14 +56,6 @@ function slugify(value: string) {
   return value.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '')
 }
 
-function formatVariantPrice(variants: readonly { name: string; price: string }[] | undefined) {
-  if (!variants?.length) return undefined
-  return variants.map((variant) => {
-    const label = variant.name === '-' ? '' : `${variant.name} `
-    return `${label}${variant.price}`.trim()
-  }).join(' / ')
-}
-
 function getMenuPreviewImage(menuSlug: string, sectionName: string, itemName: string) {
   const searchable = `${menuSlug} ${sectionName} ${itemName}`.toLowerCase()
 
@@ -92,12 +84,18 @@ function getMenuPreviewImage(menuSlug: string, sectionName: string, itemName: st
 
 function buildUnifiedMenuItems(): readonly DemoMenuItem[] {
   const featuredItems = demoMenuItems
-    .filter((item) => item.category === 'highlights' || item.category === 'chilli-challenge')
+    .filter((item) => item.category === 'michelin-sets' || item.category === 'chilli-challenge' || item.category === 'full-moon-challenge')
     .map((item) => {
       if (item.imageSrc) return item
       const previewImage = getMenuPreviewImage(item.category, item.category, item.name)
       return {
         ...item,
+        section: item.section ?? item.category,
+        sectionLabel: item.sectionLabel ?? (item.category === 'chilli-challenge'
+          ? 'Chilli Challenge'
+          : item.category === 'full-moon-challenge'
+            ? 'Full Moon Challenge'
+            : 'Highlights'),
         imageSrc: previewImage.src,
         imageAlt: previewImage.alt,
         demoImage: true,
@@ -105,17 +103,36 @@ function buildUnifiedMenuItems(): readonly DemoMenuItem[] {
     })
 
   const publishedItems = publishedMenus.flatMap((menu) => (
-    menu.sections.flatMap((section) => (
-      section.items.map((item, index) => {
-        const variantPrice = formatVariantPrice(item.variants)
-        const sectionContext = section.description ? `${section.name} — ${section.description}` : section.name
+    menu.sections.flatMap((section, sectionIndex) => {
+      const matchingSectionNames = menu.sections.filter((candidate) => candidate.name === section.name).length
+      const defaultSectionLabel = matchingSectionNames > 1 && section.description
+        ? `${section.name} · ${section.description}`
+        : section.name
+
+      return section.items.map((item, index) => {
+        const michelinSetGroup = menu.slug === 'copy-of--michelin-set-meal--draft'
+          ? item.name.startsWith('Vegetarian')
+            ? 'Vegetarian MICHELIN Set for 4 pax'
+            : 'Flexatarian MICHELIN Set for 4 pax'
+          : undefined
+        const sectionLabel = michelinSetGroup ?? defaultSectionLabel
+        const sectionId = michelinSetGroup
+          ? `${menu.slug}-${slugify(michelinSetGroup)}`
+          : `${menu.slug}-${slugify(section.name)}-${sectionIndex}`
+        const priceOptions = item.variants?.map((variant) => ({
+          label: variant.name === '-' ? '' : variant.name,
+          price: variant.price,
+        }))
         const previewImage = getMenuPreviewImage(menu.slug, section.name, item.name)
         return {
           id: `${menu.slug}-${slugify(section.name)}-${slugify(item.name)}-${index}`,
           category: menu.slug,
+          section: sectionId,
+          sectionLabel,
           name: item.name,
-          description: item.description ? `${item.description} · ${sectionContext}` : sectionContext,
-          price: item.price ?? variantPrice,
+          description: item.description ?? section.description ?? section.name,
+          price: item.price,
+          priceOptions,
           imageSrc: previewImage.src,
           imageAlt: previewImage.alt,
           sourceUrl: `https://www.lagnaa.com/menu-1?location=Upper+Dickson+Road&menu=${menu.slug}`,
@@ -123,16 +140,22 @@ function buildUnifiedMenuItems(): readonly DemoMenuItem[] {
           demoImage: true,
         } satisfies DemoMenuItem
       })
-    ))
+    })
   ))
 
   return [...featuredItems, ...publishedItems]
 }
 
 const unifiedMenuCategories = [
-  { id: 'highlights', label: 'Highlights' },
-  ...publishedMenus.map((menu) => ({ id: menu.slug, label: menu.name })),
+  { id: 'copy-of--michelin-set-meal--draft', label: 'Michelin Set – 4 Pax' },
+  { id: 'michelin-sets', label: 'Michelin Set – 2 Pax' },
+  { id: 'single-meals--draft', label: 'Single Meal' },
+  { id: 'new-menu-draft', label: 'À La Carte' },
+  { id: 'biryani--draft', label: 'Biryani' },
+  { id: 'kids-meals--draft', label: 'Kids’ Meal' },
+  { id: 'drinks-menu-1', label: 'Drinks Menu' },
   { id: 'chilli-challenge', label: 'Chilli Challenge' },
+  { id: 'full-moon-challenge', label: 'Full Moon Challenge' },
 ] as const
 
 const unifiedMenuItems = buildUnifiedMenuItems()

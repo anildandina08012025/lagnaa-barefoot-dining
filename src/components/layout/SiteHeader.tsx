@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import { motion, useReducedMotion } from 'framer-motion'
 import { ChevronDown } from 'lucide-react'
 import { restaurantConfig } from '../../config/restaurant'
+import lagnaaLogoDark from '../../assets/brand/lagnaa-logo-dark.jpg'
 import { Button, IconButton } from '../ui/Button'
 import { Container } from './Container'
 
@@ -94,10 +95,8 @@ export function SiteHeader() {
   return (
     <header className="site-header">
       <Container className="site-header__inner">
-        {/* Temporary wordmark: replace with approved Lagnaa logo asset when supplied. */}
         <a className="wordmark" href="/" aria-label={`${restaurantConfig.name} home`}>
-          <span className="wordmark__name">Lagnaa</span>
-          <span className="wordmark__descriptor">Barefoot Dining</span>
+          <img className="wordmark__logo" src={lagnaaLogoDark} alt="Lagnaa Barefoot Dining" />
         </a>
 
         <nav className="desktop-navigation" aria-label="Primary navigation">

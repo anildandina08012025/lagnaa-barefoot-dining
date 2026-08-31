@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState, type PointerEvent } from 'react'
+import { useEffect, useMemo, useRef, useState, type PointerEvent } from 'react'
 import { demoMenuCategories, type DemoMenuCategory, type DemoMenuItem } from '../../content/demoMenu'
 
 type InteractiveMenuListProps = {
@@ -31,6 +31,7 @@ function useMenuInteractionMode() {
 
 export function InteractiveMenuList({ items, categories = demoMenuCategories }: InteractiveMenuListProps) {
   const [activeCategory, setActiveCategory] = useState<DemoMenuCategory>(categories[0]?.id ?? 'highlights')
+  const [activeSection, setActiveSection] = useState<string | null>(null)
   const [activeItemId, setActiveItemId] = useState<string | null>(null)
   const [expandedItemId, setExpandedItemId] = useState<string | null>(null)
   const containerRef = useRef<HTMLDivElement>(null)
@@ -38,9 +39,21 @@ export function InteractiveMenuList({ items, categories = demoMenuCategories }: 
   const frameRef = useRef<number | null>(null)
   const pointerRef = useRef({ x: 0, y: 0 })
   const { supportsHover, reducedMotion } = useMenuInteractionMode()
-  const visibleItems = items.filter((item) => item.category === activeCategory)
-  const activeItem = visibleItems.find((item) => item.id === activeItemId)
   const activeCategoryLabel = categories.find((category) => category.id === activeCategory)?.label ?? 'Menu'
+  const categorySections = useMemo(() => {
+    const sections = new Map<string, string>()
+    items.filter((item) => item.category === activeCategory).forEach((item) => {
+      const sectionId = item.section ?? activeCategory
+      sections.set(sectionId, item.sectionLabel ?? activeCategoryLabel)
+    })
+    return Array.from(sections, ([id, label]) => ({ id, label }))
+  }, [activeCategory, activeCategoryLabel, items])
+  const selectedSection = categorySections.some((section) => section.id === activeSection)
+    ? activeSection
+    : categorySections[0]?.id
+  const activeSectionLabel = categorySections.find((section) => section.id === selectedSection)?.label ?? activeCategoryLabel
+  const visibleItems = items.filter((item) => item.category === activeCategory && (item.section ?? activeCategory) === selectedSection)
+  const activeItem = visibleItems.find((item) => item.id === activeItemId)
 
   useEffect(() => () => {
     if (frameRef.current !== null) cancelAnimationFrame(frameRef.current)
@@ -75,6 +88,7 @@ export function InteractiveMenuList({ items, categories = demoMenuCategories }: 
 
   const selectCategory = (category: DemoMenuCategory) => {
     setActiveCategory(category)
+    setActiveSection(items.find((item) => item.category === category)?.section ?? category)
     setActiveItemId(null)
     setExpandedItemId(null)
   }
@@ -116,7 +130,34 @@ export function InteractiveMenuList({ items, categories = demoMenuCategories }: 
         ))}
       </div>
 
-      <div className="interactive-menu__list" id="menu-category-list" role="list" aria-label={`${activeCategoryLabel} menu items`}>
+      {categorySections.length > 1 ? (
+        <div className="interactive-menu__section-filters" aria-label={`${activeCategoryLabel} sections`} role="tablist">
+          {categorySections.map((section) => (
+            <button
+              aria-controls="menu-category-list"
+              aria-selected={section.id === selectedSection}
+              className="interactive-menu__section-filter"
+              key={section.id}
+              onClick={() => {
+                setActiveSection(section.id)
+                setActiveItemId(null)
+                setExpandedItemId(null)
+              }}
+              role="tab"
+              type="button"
+            >
+              {section.label}
+            </button>
+          ))}
+        </div>
+      ) : null}
+
+      <div className="interactive-menu__selection" aria-live="polite">
+        <p>{activeCategoryLabel}</p>
+        <h2>{activeSectionLabel}</h2>
+      </div>
+
+      <div className="interactive-menu__list" id="menu-category-list" role="list" aria-label={`${activeSectionLabel} menu items`}>
         {visibleItems.map((item) => {
           const hasImage = Boolean(item.imageSrc)
           const isExpanded = hasImage && expandedItemId === item.id
@@ -130,7 +171,16 @@ export function InteractiveMenuList({ items, categories = demoMenuCategories }: 
                   {item.spiceLevel ? <span className="interactive-menu__spice">{item.spiceLevel}</span> : null}
                 </span>
               </span>
-              <span className="interactive-menu__price">{item.price}</span>
+              {item.priceOptions?.length ? (
+                <span className="interactive-menu__price-options" aria-label="Price options">
+                  {item.priceOptions.map((option) => (
+                    <span className="interactive-menu__price-option" key={`${option.label}-${option.price}`}>
+                      {option.label ? <span>{option.label}</span> : null}
+                      <strong>{option.price}</strong>
+                    </span>
+                  ))}
+                </span>
+              ) : item.price ? <span className="interactive-menu__price">{item.price}</span> : null}
             </>
           )
           return (
