@@ -57,7 +57,7 @@ export function ExperiencesPage() {
               <p>Explore the official event pages for the latest details. Some experiences are presented as cultural or past initiatives where current availability has not been confirmed.</p>
             </div>
             <div className="events-collection__grid">
-              {eventExperiences.map((event) => (
+              {eventExperiences.filter((event) => event.id !== 'rediscover-little-india').map((event) => (
                 <article className="event-card" id={event.id} key={event.id}>
                   <img className="event-card__image" src={event.image} alt={event.imageAlt} width="1600" height="1066" />
                   <div className="event-card__content">

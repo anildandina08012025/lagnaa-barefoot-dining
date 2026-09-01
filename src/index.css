@@ -1,24 +1,24 @@
 @import "tailwindcss";
 
 :root {
-  --color-background: #f5efe4;
-  --color-surface: #fffaf2;
-  --color-surface-alt: #eae0d1;
-  --color-surface-dark: #29201e;
-  --color-text-primary: #2b211e;
-  --color-text-secondary: #665953;
-  --color-text-on-dark: #f9f1e5;
-  --color-text-on-dark-muted: #d7c8ba;
-  --color-brand-primary: #751f2b;
-  --color-brand-primary-hover: #5d1f27;
-  --color-brand-secondary: #b9512c;
-  --color-accent: #a77b3d;
-  --color-border: #d8cbbc;
-  --color-border-dark: #5f4b45;
-  --color-focus: #0e6d7b;
-  --color-success: #2f6a4f;
-  --color-warning: #9a5d16;
-  --color-error: #a73232;
+  --color-background: #fff3c2;
+  --color-surface: #fff8dd;
+  --color-surface-alt: #f6e7a8;
+  --color-surface-dark: #420707;
+  --color-text-primary: #34100b;
+  --color-text-secondary: #6f4534;
+  --color-text-on-dark: #fff3c2;
+  --color-text-on-dark-muted: #f1d995;
+  --color-brand-primary: #7a0000;
+  --color-brand-primary-hover: #590000;
+  --color-brand-secondary: #9b1d1d;
+  --color-accent: #a5791b;
+  --color-border: #dfc878;
+  --color-border-dark: #5b1610;
+  --color-focus: #7a0000;
+  --color-success: #356a3c;
+  --color-warning: #8d5600;
+  --color-error: #9a1c1c;
   --font-display: Georgia, 'Times New Roman', serif;
   --font-body: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   --content-width: 76rem;
@@ -968,6 +968,19 @@ button:disabled { cursor: not-allowed; }
 .cooking-hero__image::after { position: absolute; right: 0; bottom: 0; left: 0; height: 33%; background: linear-gradient(0deg, rgb(24 15 12 / 44%), transparent); content: ''; pointer-events: none; }
 .cooking-hero__image img { position: relative; z-index: 1; display: block; width: min(100%, 34rem); max-height: 34rem; object-fit: contain; filter: drop-shadow(1rem 1.4rem 1.7rem rgb(0 0 0 / 38%)); }
 .cooking-section { padding-block: var(--space-3xl); }
+.cooking-class-formats { background: var(--color-surface-alt); }
+.cooking-class-formats__heading { display: grid; grid-template-columns: minmax(0, 1fr) minmax(16rem, 0.42fr); align-items: end; gap: var(--space-xl); }
+.cooking-class-formats__heading > p { max-width: 26rem; margin: 0; color: var(--color-text-secondary); line-height: 1.65; }
+.cooking-class-formats__grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--space-md); margin-top: var(--space-2xl); }
+.cooking-class-card { --cooking-card-padding: clamp(1.25rem, 2.5vw, 2rem); position: relative; min-height: 100%; padding: var(--cooking-card-padding); border: 1px solid var(--color-border); background: var(--color-surface); box-shadow: 0 1rem 2.5rem rgb(52 17 11 / 8%); }
+.cooking-class-card__image { display: block; width: calc(100% + var(--cooking-card-padding) + var(--cooking-card-padding)); height: clamp(12rem, 20vw, 16rem); margin: calc(0px - var(--cooking-card-padding)) calc(0px - var(--cooking-card-padding)) var(--space-lg); object-fit: cover; }
+.cooking-class-card__number { margin: 0 0 var(--space-lg); color: var(--color-brand-primary); font-size: 0.7rem; font-weight: 800; letter-spacing: 0.12em; }
+.cooking-class-card .eyebrow { color: var(--color-brand-primary); }
+.cooking-class-card h3 { max-width: 13ch; margin: var(--space-sm) 0 0; font-family: var(--font-display); font-size: clamp(1.9rem, 3vw, 2.8rem); font-weight: 500; letter-spacing: -0.055em; line-height: 0.95; }
+.cooking-class-card__price { margin: var(--space-lg) 0 0; color: var(--color-brand-primary); font-size: 0.84rem; font-weight: 800; line-height: 1.45; }
+.cooking-class-card ul { display: grid; gap: 0.65rem; margin: var(--space-lg) 0 0; padding: 0; color: var(--color-text-secondary); font-size: 0.92rem; line-height: 1.55; list-style: none; }
+.cooking-class-card li { position: relative; padding-left: 1rem; }
+.cooking-class-card li::before { position: absolute; top: 0.55rem; left: 0; width: 0.32rem; height: 0.32rem; border-radius: 50%; background: var(--color-accent); content: ''; }
 .cooking-interest { background: var(--color-surface-alt); }
 .cooking-interest__grid { display: grid; grid-template-columns: minmax(0, 0.72fr) minmax(20rem, 0.9fr); align-items: start; gap: clamp(2rem, 10vw, 10rem); }
 .cooking-interest__introduction { max-width: 32rem; }
@@ -1136,6 +1149,13 @@ button:disabled { cursor: not-allowed; }
 .awards-recognition__heading-row { display: grid; grid-template-columns: minmax(0, 1fr) minmax(14rem, 0.4fr); align-items: end; gap: var(--space-xl); }
 .awards-recognition__heading-row > p { max-width: 20rem; margin: 0; color: var(--color-text-secondary); line-height: 1.65; }
 .awards-recognition__list { margin-top: var(--space-2xl); border-top: 1px solid var(--color-border); }
+.awards-media-list { background: var(--color-surface-alt); }
+.awards-media-list__grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--space-md); margin-top: var(--space-2xl); }
+.awards-media-card { display: flex; min-height: 15rem; flex-direction: column; align-items: flex-start; padding: clamp(1.25rem, 2.5vw, 2rem); border: 1px solid var(--color-border); background: var(--color-surface); }
+.awards-media-card .eyebrow { color: var(--color-brand-primary); }
+.awards-media-card h3 { margin: var(--space-sm) 0 0; font-family: var(--font-display); font-size: clamp(1.7rem, 2.4vw, 2.35rem); font-weight: 500; letter-spacing: -0.05em; line-height: 0.95; }
+.awards-media-card > p:not(.eyebrow) { margin: var(--space-md) 0 0; color: var(--color-text-secondary); line-height: 1.55; }
+.awards-media-card .text-link { margin-top: auto; padding-top: var(--space-lg); }
 .award-record { display: grid; grid-template-columns: minmax(10rem, 0.35fr) minmax(0, 0.8fr) auto; align-items: start; gap: var(--space-xl); padding-block: var(--space-2xl); border-bottom: 1px solid var(--color-border); }
 .award-record__meta { display: grid; align-content: start; gap: var(--space-sm); color: var(--color-text-secondary); }
 .award-record__meta span { font-size: 0.68rem; font-weight: 800; letter-spacing: 0.1em; text-transform: uppercase; }
@@ -1360,27 +1380,41 @@ button:disabled { cursor: not-allowed; }
 .home-recognition .heading--section { color: var(--color-text-on-dark); font-size: clamp(2.15rem, 4.1vw, 3.9rem); }
 .recognition-coverflow { margin-top: clamp(1.5rem, 3vw, 2.5rem); outline: none; }
 .recognition-coverflow:focus-visible { border-radius: 0.25rem; box-shadow: 0 0 0 3px var(--color-focus); }
+.recognition-circular-gallery { --recognition-gallery-radius: clamp(11rem, 25vw, 25rem); overflow: hidden; }
+.recognition-circular-gallery__stage { position: relative; z-index: 1; height: clamp(25rem, 45vw, 34rem); perspective: 62rem; perspective-origin: center center; touch-action: pan-y; user-select: none; cursor: grab; }
+.recognition-circular-gallery__stage:active { cursor: grabbing; }
+.recognition-circular-gallery__ring { position: absolute; inset: 0; transform-style: preserve-3d; will-change: transform; }
+.recognition-circular-gallery__ring--manual { transition: transform 520ms cubic-bezier(0.22, 1, 0.36, 1); }
+.recognition-circular-gallery__item { position: absolute; top: 50%; left: 50%; width: clamp(12.5rem, 27vw, 17rem); height: clamp(14rem, 30vw, 18rem); transform-style: preserve-3d; transition: opacity 300ms linear; }
+.recognition-circular-gallery__item .recognition-coverflow__card { min-height: 100%; backface-visibility: hidden; }
+.recognition-circular-gallery .recognition-coverflow__card { overflow: visible; padding: 0; border: 0; border-radius: 0; background: transparent !important; box-shadow: none !important; }
+.recognition-circular-gallery .recognition-coverflow__card::before, .recognition-circular-gallery .recognition-coverflow__mark { display: none; }
+.recognition-circular-gallery .recognition-coverflow__logo-wrap { width: min(90%, 16rem); height: min(72%, 10rem); }
+.recognition-circular-gallery .recognition-coverflow__logo { max-width: min(90vw, 16rem); max-height: min(72svh, 10rem); }
+.recognition-circular-gallery__controls { position: relative; z-index: 10; display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; gap: var(--space-md); max-width: 40rem; margin: 0 auto; color: var(--color-text-on-dark-muted); font-size: 0.72rem; font-weight: 700; letter-spacing: 0.08em; text-align: center; text-transform: uppercase; }
+.recognition-circular-gallery__controls button { min-height: 2.5rem; border: 1px solid rgb(255 249 239 / 32%); border-radius: 999px; background: transparent; color: var(--color-text-on-dark); cursor: pointer; font: inherit; font-size: 0.68rem; font-weight: 800; letter-spacing: 0.1em; text-transform: uppercase; transition: border-color 160ms ease, color 160ms ease, background-color 160ms ease; }
+.recognition-circular-gallery__controls button:hover { border-color: var(--color-accent); background: var(--color-accent); color: var(--color-surface-dark); }
+.recognition-circular-gallery__controls button:focus-visible { outline: 3px solid var(--color-focus); outline-offset: 3px; }
 .recognition-coverflow__stage { position: relative; min-height: clamp(15rem, 24vw, 20rem); perspective: 62rem; transform-style: preserve-3d; touch-action: pan-y; user-select: none; cursor: grab; }
 .recognition-coverflow__stage--dragging { cursor: grabbing; }
 .recognition-coverflow__slide { position: absolute; top: 0; left: 50%; width: min(55vw, 29rem); height: 100%; transform-origin: center center; transition: transform 420ms cubic-bezier(0.22, 1, 0.36, 1), opacity 300ms ease; }
 .recognition-coverflow__stage--dragging .recognition-coverflow__slide { transition: none; }
 .recognition-coverflow__slide:not([aria-hidden="false"]) { pointer-events: none; }
-.recognition-coverflow__card { position: relative; display: flex; height: 100%; min-height: 15rem; flex-direction: column; align-items: flex-start; justify-content: center; overflow: hidden; padding: clamp(1.5rem, 4vw, 2.5rem); border: 1px solid rgb(232 194 132 / 25%); border-radius: 1.75rem 0.6rem 1.75rem 0.6rem; background: linear-gradient(135deg, #4c1e2d 0%, #2a1b1c 100%); box-shadow: 0 1.25rem 3rem rgb(0 0 0 / 30%); color: #fff9ef; text-decoration: none; }
-.recognition-coverflow__card::before { position: absolute; top: 0.85rem; right: 0.85rem; bottom: 0.85rem; left: 0.85rem; border: 1px solid rgb(244 214 166 / 22%); border-radius: 1.25rem 0.35rem 1.25rem 0.35rem; content: ''; pointer-events: none; }
-.recognition-coverflow__card:hover { color: #fff9ef; }
+.recognition-coverflow__card { position: relative; display: flex; height: 100%; min-height: 15rem; flex-direction: column; align-items: center; justify-content: center; overflow: hidden; padding: clamp(1.5rem, 4vw, 2.5rem); border: 1px solid var(--color-border); border-radius: 1.75rem 0.6rem 1.75rem 0.6rem; background: var(--color-surface); box-shadow: 0 1.25rem 3rem rgb(52 17 11 / 16%); color: var(--color-text-primary); text-decoration: none; }
+.recognition-coverflow__card::before { position: absolute; top: 0.85rem; right: 0.85rem; bottom: 0.85rem; left: 0.85rem; border: 1px solid color-mix(in srgb, var(--color-brand-primary) 22%, transparent); border-radius: 1.25rem 0.35rem 1.25rem 0.35rem; content: ''; pointer-events: none; }
+.recognition-coverflow__card:hover { color: var(--color-text-primary); }
 .recognition-coverflow__card:focus-visible { outline: 3px solid var(--color-focus); outline-offset: -0.45rem; }
 .recognition-coverflow__wordmark { position: relative; max-width: 13ch; font-family: var(--font-display); font-size: clamp(2.35rem, 5vw, 4.1rem); font-weight: 500; letter-spacing: -0.065em; line-height: 0.86; }
+.recognition-coverflow__logo-wrap { position: absolute; top: 50%; left: 50%; display: grid; width: min(78%, 16rem); height: min(48%, 8rem); place-items: center; transform: translate(-50%, -50%); }
+.recognition-coverflow__logo { position: absolute; top: 50%; left: 50%; display: block; width: auto !important; max-width: min(78vw, 16rem); height: auto !important; max-height: min(48svh, 8rem); object-fit: contain; mix-blend-mode: multiply; transform: translate(-50%, -50%); }
 .recognition-coverflow__mark { position: absolute; right: 1.7rem; bottom: 1.4rem; color: #ecc17f; font-size: 1.2rem; }
-.recognition-coverflow__card[data-publication="michelin-guide"] { background: linear-gradient(135deg, #7a2534, #3b1620); }
+.recognition-coverflow__card[data-publication="michelin-guide"] { background: var(--color-surface); }
 .recognition-coverflow__card[data-publication="michelin-guide"] .recognition-coverflow__wordmark { font-family: Georgia, serif; font-style: italic; font-weight: 700; letter-spacing: -0.09em; }
-.recognition-coverflow__card[data-publication="lonely-planet"] { background: linear-gradient(135deg, #174f70, #132a3a); }
+.recognition-coverflow__card[data-publication="lonely-planet"] { background: var(--color-surface); }
 .recognition-coverflow__card[data-publication="lonely-planet"] .recognition-coverflow__wordmark { letter-spacing: -0.075em; }
-.recognition-coverflow__card[data-publication="visit-singapore"] { background: linear-gradient(135deg, #803824, #351814); }
+.recognition-coverflow__card[data-publication="visit-singapore"] { background: var(--color-surface); }
 .recognition-coverflow__card[data-publication="visit-singapore"] .recognition-coverflow__wordmark { font-style: italic; }
-.recognition-coverflow__card[data-publication="her-world"] { background: linear-gradient(135deg, #55415d, #241c2b); }
-.recognition-coverflow__card[data-publication="ladyironchef"] { background: linear-gradient(135deg, #5b4732, #282018); }
-.recognition-coverflow__card[data-publication="the-smart-local"] { background: linear-gradient(135deg, #31514b, #172925); }
-.recognition-coverflow__card[data-publication="sethlui"] { background: linear-gradient(135deg, #56453d, #251d1b); }
+.recognition-coverflow__card[data-publication="her-world"], .recognition-coverflow__card[data-publication="ladyironchef"], .recognition-coverflow__card[data-publication="the-smart-local"], .recognition-coverflow__card[data-publication="sethlui"] { background: var(--color-surface); }
 .recognition-coverflow__controls { display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; gap: var(--space-md); max-width: 39rem; margin: var(--space-lg) auto 0; }
 .recognition-coverflow__control { display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem; min-height: 2.5rem; border: 1px solid rgb(255 249 239 / 28%); border-radius: 999px; background: transparent; color: #fff9ef; cursor: pointer; font: inherit; font-size: 0.68rem; font-weight: 800; letter-spacing: 0.12em; text-transform: uppercase; transition: border-color 160ms ease, color 160ms ease, background-color 160ms ease; }
 .recognition-coverflow__control:hover { border-color: #ecc17f; background: #ecc17f; color: #211918; }
@@ -1578,6 +1612,7 @@ button:disabled { cursor: not-allowed; }
   .chilli-advice__grid,
   .cooking-hero__grid,
   .cooking-interest__grid,
+  .cooking-class-formats__heading,
   .cooking-products__heading,
   .degustation-hero__grid,
   .degustation-interest__grid,
@@ -1603,6 +1638,7 @@ button:disabled { cursor: not-allowed; }
   .experience-social__header { grid-template-columns: 1fr; align-items: start; gap: var(--space-lg); }
   .cooking-hero__image { max-width: 32rem; }
   .cooking-products__grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .cooking-class-formats__grid { grid-template-columns: 1fr; }
   .degustation-availability__grid { grid-template-columns: 1fr; }.degustation-availability__marker { justify-self: center; }
   .degustation-archive__grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
   .rediscover-hero__seal, .rediscover-coconut__visual { justify-self: start; }.rediscover-journey__motif { justify-self: center; }.rediscover-senses { grid-template-columns: repeat(3, minmax(0, 1fr)); }
@@ -1616,6 +1652,7 @@ button:disabled { cursor: not-allowed; }
   .contact-barefoot__ornament { justify-self: start; }
   .awards-hero__grid,
   .awards-recognition__heading-row,
+  .awards-media-list__grid,
   .award-record,
   .awards-enquiries__grid { grid-template-columns: 1fr; }
   .awards-hero__ornament { justify-self: start; }
@@ -1646,6 +1683,11 @@ button:disabled { cursor: not-allowed; }
   .site-footer__bottom ul { justify-content: flex-start; }
   .home-section { padding-block: clamp(3.5rem, 13vw, 5.5rem); }
   .home-recognition { padding-block: clamp(2.75rem, 10vw, 3.75rem); }
+  .recognition-circular-gallery { --recognition-gallery-radius: 10rem; }
+  .recognition-circular-gallery__stage { height: 23rem; }
+  .recognition-circular-gallery__item { width: 12.5rem; height: 14rem; }
+  .recognition-circular-gallery__controls { grid-template-columns: 1fr 1fr; gap: 0.65rem; }
+  .recognition-circular-gallery__controls span { display: none; }
   .recognition-coverflow__stage { min-height: 14rem; }
   .recognition-coverflow__slide { width: min(78vw, 22rem); }
   .recognition-coverflow__card { min-height: 14rem; border-radius: 1.4rem 0.5rem 1.4rem 0.5rem; }

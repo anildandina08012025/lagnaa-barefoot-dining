@@ -4,6 +4,7 @@ import { restaurantConfig } from '../../config/restaurant'
 type ScrollFrameHeroProps = {
   eyebrow: string
   heading: string
+  headingLineBreakAfter?: string
   description: string
   headingId: string
   frames: readonly string[]
@@ -19,7 +20,7 @@ function usesMobileFrameSequence() {
   return typeof window !== 'undefined' && window.innerWidth <= 768
 }
 
-export function ScrollFrameHero({ eyebrow, heading, description, headingId, frames, mobileFrames, children }: ScrollFrameHeroProps) {
+export function ScrollFrameHero({ eyebrow, heading, headingLineBreakAfter, description, headingId, frames, mobileFrames, children }: ScrollFrameHeroProps) {
   const sectionRef = useRef<HTMLElement>(null)
   const imageRef = useRef<HTMLImageElement>(null)
   const [usesCompactSequence, setUsesCompactSequence] = useState(usesMobileFrameSequence)
@@ -170,9 +171,10 @@ export function ScrollFrameHero({ eyebrow, heading, description, headingId, fram
   if (!initialFrame) return null
 
   const visibleFrameIndex = Math.min(frameIndex, totalFrames - 1)
-  const formattedFrame = String(visibleFrameIndex + 1).padStart(2, '0')
-  const formattedTotal = String(totalFrames).padStart(2, '0')
   const progress = totalFrames > 1 ? visibleFrameIndex / (totalFrames - 1) : 0
+  const headingBreakIndex = headingLineBreakAfter && heading.startsWith(headingLineBreakAfter)
+    ? headingLineBreakAfter.length
+    : -1
 
   return (
     <section className="scroll-frame-hero" ref={sectionRef} aria-labelledby={headingId} data-frame-sequence={usesCompactSequence ? 'mobile' : 'desktop'}>
@@ -191,15 +193,16 @@ export function ScrollFrameHero({ eyebrow, heading, description, headingId, fram
         <div className="scroll-frame-hero__overlay" aria-hidden="true" />
         <div className="scroll-frame-hero__content">
           <div className="scroll-frame-hero__copy">
-            <p className="eyebrow scroll-frame-hero__eyebrow">{eyebrow}</p>
-            <h1 className="scroll-frame-hero__heading" id={headingId}>{heading}</h1>
-            <p className="scroll-frame-hero__description">{description}</p>
+            {eyebrow ? <p className="eyebrow scroll-frame-hero__eyebrow">{eyebrow}</p> : null}
+            <h1 className="scroll-frame-hero__heading" id={headingId}>
+              {headingBreakIndex >= 0 ? <>{heading.slice(0, headingBreakIndex)}<br />{heading.slice(headingBreakIndex).trimStart()}</> : heading}
+            </h1>
+            {description ? <p className="scroll-frame-hero__description">{description}</p> : null}
             {children}
           </div>
           <div className="scroll-frame-hero__footer" aria-hidden="true">
             <span className="scroll-frame-hero__location">{restaurantConfig.location}</span>
             <span className="scroll-frame-hero__progress">
-              <span>{formattedFrame} — {formattedTotal}</span>
               <i style={{ transform: `scaleX(${progress})` }} />
             </span>
             <span>Scroll to explore</span>

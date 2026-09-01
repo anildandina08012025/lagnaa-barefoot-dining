@@ -13,8 +13,8 @@ export const ourStoryContent = {
   },
   hero: {
     eyebrow: 'Our Story',
-    heading: 'A restaurant shaped by flavour, hospitality and connection.',
-    description: 'In Little India, Lagnaa brings Indian food, warm hospitality and its signature barefoot dining experience together in one intimate setting.',
+    heading: 'The people, flavours and rituals behind Lagnaa.',
+    description: 'In Little India, Lagnaa brings chef-led Indian food, warm hospitality and its signature barefoot dining experience together in one intimate setting.',
     media: {
       subject: 'Lagnaa story hero',
       detail: 'Editorial restaurant interior, hospitality or food-preparation photograph.',
@@ -23,12 +23,12 @@ export const ourStoryContent = {
     } satisfies MediaDirection,
   },
   story: {
-    eyebrow: 'The Lagnaa story',
-    heading: 'A setting for Indian food and hospitality.',
+    eyebrow: 'Master Chef Kaesavan',
+    heading: 'A chef-led story with a taste for doing things differently.',
     paragraphs: [
-      'Lagnaa Barefoot Dining is an Indian restaurant in Little India, Singapore.',
-      'Its experience brings Indian cuisine, warm hospitality and a distinctive barefoot dining concept into the same meal.',
-      'Each visit begins with a simple invitation: take time to explore flavour, share the table and discover the character of Lagnaa.',
+      'Lagnaa was founded by Master Chef Kaesavan, whose approach to Indian cuisine brings curiosity, generosity and a love of flavour to every table.',
+      'A long-time curry and chilli advocate, Chef Kaesavan encourages guests to explore Indian food at their own pace—whether they come for a familiar favourite or a more adventurous challenge.',
+      'The result is a restaurant shaped as much by conversation and hospitality as it is by the food itself.',
     ],
     media: {
       subject: 'Lagnaa atmosphere',
@@ -38,11 +38,12 @@ export const ourStoryContent = {
     } satisfies MediaDirection,
   },
   foodPhilosophy: {
-    eyebrow: 'Food and hospitality',
-    heading: 'Indian flavours, served with care.',
+    eyebrow: 'What makes Lagnaa different',
+    heading: 'Indian food with room for your own palate.',
     paragraphs: [
-      'Indian food is at the centre of the Lagnaa experience.',
-      'The menu is an opportunity to explore flavour alongside the hospitality and sense of occasion that shape a meal at the restaurant.',
+      'Lagnaa’s menu brings South and North Indian flavours together through Arusuvai—the six flavours that guide balance, contrast and discovery at the table.',
+      'Guests can choose a spice level that suits them, share dishes across the table and discover the restaurant’s Curry Shots and Chilli Challenge at their own comfort level.',
+      'Alongside the food, Lagnaa’s barefoot dining setting creates an unhurried, intimate way to enjoy a meal in Little India.',
     ],
     media: {
       subject: 'Food and service',

@@ -9,9 +9,10 @@ export type MediaDirection = {
 
 export const homeContent = {
   hero: {
-    eyebrow: 'Lagnaa Barefoot Dining',
-    heading: 'Indian dining, enjoyed barefoot.',
-    description: 'Indian dining in Little India, Singapore—where flavour, warm hospitality and a distinctive barefoot experience come together.',
+    eyebrow: '',
+    heading: 'Experience Lagnaa... barefoot dining. Where shoes wait politely at the steps and flavours dance on your palate.',
+    headingLineBreakAfter: 'Experience Lagnaa... barefoot dining.',
+    description: '',
     media: {
       subject: 'Hero dining atmosphere',
       detail: 'Wide restaurant interior or expressive food-and-hospitality photograph.',

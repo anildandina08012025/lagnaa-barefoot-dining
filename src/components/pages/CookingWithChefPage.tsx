@@ -1,6 +1,9 @@
 import { useState, type FormEvent } from 'react'
 import cookingMoment from '../../assets/lagnaa-showcase/lagnaa-cooking-moment.webp'
 import malaiTikkaImage from '../../assets/gallery/lagnaa-malai-tikka.jpg'
+import shortStackImage from '../../assets/cooking/cooking-class-short-stack.webp'
+import ezIndianFoodImage from '../../assets/cooking/cooking-class-ez-indian-food.webp'
+import masterclassImage from '../../assets/cooking/cooking-class-masterclass.webp'
 import { restaurantConfig } from '../../config/restaurant'
 import { Container } from '../layout/Container'
 import { PageMetadata } from '../seo/PageMetadata'
@@ -24,6 +27,47 @@ const products = [
   'Butter Chicken Ready Mix',
   'Seafood & Vegetables Ready Mix',
   'Meat Ready Mix',
+] as const
+
+const classFormats = [
+  {
+    number: '01',
+    eyebrow: 'For little humans',
+    title: '“Short Stack” Naan Workshop',
+    price: 'Free',
+    image: shortStackImage,
+    imageAlt: 'A child taking part in a cooking activity with Chef Kaesavan.',
+    details: [
+      'Eligibility: Your child must be shorter than Master Chef K7’s shoulder, but taller than his waist.',
+      'Perk: Enjoy their culinary flair.',
+      'Timing: Held during quiet hours.',
+    ],
+  },
+  {
+    number: '02',
+    eyebrow: 'EZ Indian Food',
+    title: 'Hands-on Indian cooking',
+    price: 'S$91 per head · 1 hour · minimum 4 pax',
+    image: ezIndianFoodImage,
+    imageAlt: 'Chef Kaesavan leading a hands-on Indian cooking lesson.',
+    details: [
+      'Level: “I can barely boil water.”',
+      'The deal: Simple, hands-on and impossible to mess up.',
+      'The goal: Stop ordering takeout every Tuesday.',
+    ],
+  },
+  {
+    number: '03',
+    eyebrow: '“I Want to Be a Pro”',
+    title: 'Masterclass',
+    price: 'S$750 per head · minimum 2 people · 4 hours',
+    image: masterclassImage,
+    imageAlt: 'A chef-led Indian cooking masterclass at Lagnaa.',
+    details: [
+      'The deep dive: One meat, one vegetable, rice and naan from scratch.',
+      'The result: You’ll leave cooking like a pro—or at least looking like one.',
+    ],
+  },
 ] as const
 
 const cookingSocialCards = [
@@ -136,6 +180,29 @@ export function CookingWithChefPage() {
             <figure className="cooking-hero__image">
               <img src={cookingMoment} alt="Master Chef Kaesavan leading a cooking session at Lagnaa." />
             </figure>
+          </Container>
+        </section>
+
+        <section className="cooking-section cooking-class-formats" aria-labelledby="cooking-class-formats-heading">
+          <Container>
+            <div className="cooking-class-formats__heading">
+              <SectionHeading eyebrow="Cooking class" heading="Join Master Chef K7." level={2} id="cooking-class-formats-heading" />
+              <p>Choose the cooking experience that best suits your group, confidence and appetite to learn.</p>
+            </div>
+            <div className="cooking-class-formats__grid">
+              {classFormats.map((format) => (
+                <article className="cooking-class-card" key={format.number}>
+                  <img className="cooking-class-card__image" src={format.image} alt={format.imageAlt} loading="lazy" />
+                  <p className="cooking-class-card__number">{format.number}</p>
+                  <p className="eyebrow">{format.eyebrow}</p>
+                  <h3>{format.title}</h3>
+                  <p className="cooking-class-card__price">{format.price}</p>
+                  <ul>
+                    {format.details.map((detail) => <li key={detail}>{detail}</li>)}
+                  </ul>
+                </article>
+              ))}
+            </div>
           </Container>
         </section>
 

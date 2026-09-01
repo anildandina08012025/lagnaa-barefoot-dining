@@ -1,7 +1,7 @@
 import { restaurantConfig } from '../../config/restaurant'
 import chilliLevels from '../../assets/chilli/lagnaa-chilli-challenge-levels.png'
 import goldenAdviceImage from '../../assets/chilli/lagnaa-chilli-golden-advice.png'
-import curryShotsImage from '../../assets/chilli/lagnaa-chilli-curry-shots.png'
+import curryShotsImage from '../../assets/chilli/curry-shots.webp'
 import elaiKoli from '../../assets/gallery/lagnaa-elai-koli.jpg'
 import { Container } from '../layout/Container'
 import { PageMetadata } from '../seo/PageMetadata'

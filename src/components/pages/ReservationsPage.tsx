@@ -56,6 +56,7 @@ export function ReservationsPage() {
                 {restaurantConfig.phone ? <p>Phone: <a href={`tel:${restaurantConfig.phone.replace(/\s/g, '')}`}>{restaurantConfig.phone}</a></p> : null}
                 {restaurantConfig.email ? <p>Email: <a href={`mailto:${restaurantConfig.email}`}>{restaurantConfig.email}</a></p> : null}
                 {restaurantConfig.address ? <p>Address: {restaurantConfig.address}</p> : null}
+                {restaurantConfig.mapsUrl ? <a className="text-link" href={restaurantConfig.mapsUrl} target="_blank" rel="noopener noreferrer">Get Directions on Google Maps <TextArrow /></a> : null}
               </div>
             </section>
           </div>

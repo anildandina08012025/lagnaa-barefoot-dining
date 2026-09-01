@@ -1,5 +1,6 @@
 import { restaurantConfig } from '../../config/restaurant'
 import { awardsMediaContent } from '../../content/awardsMedia'
+import { recognitionItems } from '../../content/recognition'
 import { Container } from '../layout/Container'
 import { PageMetadata } from '../seo/PageMetadata'
 import { Button } from '../ui/Button'
@@ -12,6 +13,17 @@ function TextArrow() {
 
 export function AwardsMediaPage() {
   const content = awardsMediaContent
+  const verifiedMedia = [
+    ...recognitionItems.filter((item) => item.verificationStatus === 'verified' && item.type !== 'Recognition').map((item) => ({
+      id: item.id,
+      publication: item.name,
+      title: item.name,
+      summary: item.type,
+      sourceUrl: item.destinationUrl,
+      sourceLabel: item.actionLabel,
+    })),
+    ...content.media,
+  ]
   const canonicalUrl = restaurantConfig.siteUrl ? `${restaurantConfig.siteUrl.replace(/\/$/, '')}/awards-media` : undefined
 
   return (
@@ -26,23 +38,13 @@ export function AwardsMediaPage() {
               <p className="awards-hero__description">{content.hero.description}</p>
               {content.awards.length > 0 ? <a className="text-link text-link--light" href="#recognition">View recognition <TextArrow /></a> : null}
             </div>
-            <div className="awards-hero__ornament" aria-hidden="true"><span>01</span><small>Source-led</small></div>
-          </Container>
-        </section>
-
-        <section className="awards-section awards-introduction" aria-labelledby="awards-introduction-heading">
-          <Container narrow>
-            <SectionHeading eyebrow={content.introduction.eyebrow} heading={content.introduction.heading} description={content.introduction.description} align="center" level={2} id="awards-introduction-heading" />
           </Container>
         </section>
 
         {content.awards.length > 0 ? (
           <section className="awards-section awards-recognition" id="recognition" aria-labelledby="awards-recognition-heading">
             <Container>
-              <div className="awards-recognition__heading-row">
-                <SectionHeading eyebrow="Awards and recognition" heading="Verified recognition." level={2} id="awards-recognition-heading" />
-                <p>Each record links to its original source.</p>
-              </div>
+              <h2 className="sr-only" id="awards-recognition-heading">Awards and recognition</h2>
               <div className="awards-recognition__list">
                 {content.awards.map((award) => (
                   <article className="award-record" key={award.id}>
@@ -71,6 +73,25 @@ export function AwardsMediaPage() {
             </Container>
           </section>
         ) : null}
+
+        <section className="awards-section awards-media-list" aria-labelledby="awards-media-list-heading">
+          <Container>
+            <div className="awards-recognition__heading-row">
+              <SectionHeading eyebrow="Press, guides and editorial coverage" heading="Published mentions." level={2} id="awards-media-list-heading" />
+              <p>Selected records published by Lagnaa and linked to their available original sources.</p>
+            </div>
+            <div className="awards-media-list__grid">
+              {verifiedMedia.map((item) => (
+                <article className="awards-media-card" key={item.id}>
+                  <p className="eyebrow">{item.publication}</p>
+                  <h3>{item.title}</h3>
+                  <p>{item.summary}</p>
+                  <a className="text-link" href={item.sourceUrl} target="_blank" rel="noopener noreferrer">{item.sourceLabel} <TextArrow /></a>
+                </article>
+              ))}
+            </div>
+          </Container>
+        </section>
 
         <section className="awards-section awards-enquiries" aria-labelledby="awards-enquiries-heading">
           <Container className="awards-enquiries__grid">

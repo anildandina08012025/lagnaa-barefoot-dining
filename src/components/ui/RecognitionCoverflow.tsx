@@ -19,29 +19,90 @@ function usePrefersReducedMotion() {
   return prefersReducedMotion
 }
 
-function shortestOffset(index: number, activeIndex: number, length: number) {
-  let offset = index - activeIndex
-  if (offset > length / 2) offset -= length
-  if (offset < -length / 2) offset += length
-  return offset
-}
-
 export function RecognitionCoverflow({ items }: RecognitionCoverflowProps) {
-  const [activeIndex, setActiveIndex] = useState(0)
-  const [isDragging, setIsDragging] = useState(false)
-  const dragStartX = useRef<number | null>(null)
-  const hasPointerCapture = useRef(false)
-  const didDrag = useRef(false)
+  const [rotation, setRotation] = useState(0)
+  const [isScrolling, setIsScrolling] = useState(false)
+  const [isInView, setIsInView] = useState(false)
+  const [isPaused, setIsPaused] = useState(false)
+  const [isManualMove, setIsManualMove] = useState(false)
+  const galleryRef = useRef<HTMLElement | null>(null)
+  const scrollTimeoutRef = useRef<number | undefined>(undefined)
+  const animationFrameRef = useRef<number | undefined>(undefined)
+  const manualMoveTimeoutRef = useRef<number | undefined>(undefined)
+  const dragStartRef = useRef<{ x: number; rotation: number } | null>(null)
+  const didDragRef = useRef(false)
   const prefersReducedMotion = usePrefersReducedMotion()
+
+  useEffect(() => () => {
+    if (manualMoveTimeoutRef.current !== undefined) window.clearTimeout(manualMoveTimeoutRef.current)
+  }, [])
+
+  useEffect(() => {
+    const element = galleryRef.current
+    if (!element || prefersReducedMotion) return
+
+    const observer = new IntersectionObserver(([entry]) => setIsInView(entry.isIntersecting), { threshold: 0.3 })
+    observer.observe(element)
+    return () => observer.disconnect()
+  }, [prefersReducedMotion])
+
+  useEffect(() => {
+    if (prefersReducedMotion) return
+
+    const handleScroll = () => {
+      setIsScrolling(true)
+      if (scrollTimeoutRef.current !== undefined) window.clearTimeout(scrollTimeoutRef.current)
+
+      const scrollableHeight = document.documentElement.scrollHeight - window.innerHeight
+      setRotation((scrollableHeight > 0 ? window.scrollY / scrollableHeight : 0) * 360)
+      scrollTimeoutRef.current = window.setTimeout(() => setIsScrolling(false), 160)
+    }
+
+    window.addEventListener('scroll', handleScroll, { passive: true })
+    handleScroll()
+    return () => {
+      window.removeEventListener('scroll', handleScroll)
+      if (scrollTimeoutRef.current !== undefined) window.clearTimeout(scrollTimeoutRef.current)
+    }
+  }, [prefersReducedMotion])
+
+  useEffect(() => {
+    if (prefersReducedMotion) return
+
+    const rotate = () => {
+      if (isInView && !isScrolling && !isPaused && !isManualMove) setRotation((currentRotation) => currentRotation + 0.018)
+      animationFrameRef.current = window.requestAnimationFrame(rotate)
+    }
+
+    animationFrameRef.current = window.requestAnimationFrame(rotate)
+    return () => {
+      if (animationFrameRef.current !== undefined) window.cancelAnimationFrame(animationFrameRef.current)
+    }
+  }, [isInView, isManualMove, isPaused, isScrolling, prefersReducedMotion])
 
   if (items.length === 0) return null
 
-  const activeItem = items[activeIndex]
-  const moveTo = (nextIndex: number) => {
-    setActiveIndex((nextIndex + items.length) % items.length)
+  if (prefersReducedMotion) {
+    return (
+      <div className="recognition-coverflow recognition-coverflow--reduced" role="list" aria-label="Featured recognition and press">
+        {items.map((item) => <RecognitionCard item={item} key={item.id} />)}
+      </div>
+    )
   }
-  const moveBy = (offset: number) => moveTo(activeIndex + offset)
 
+  const anglePerItem = 360 / items.length
+  const moveBy = (direction: number) => {
+    setIsPaused(true)
+    setIsManualMove(true)
+    if (manualMoveTimeoutRef.current !== undefined) window.clearTimeout(manualMoveTimeoutRef.current)
+    setRotation((currentRotation) => {
+      const currentFrontIndex = ((Math.round(-currentRotation / anglePerItem) % items.length) + items.length) % items.length
+      const nextIndex = (currentFrontIndex + direction + items.length) % items.length
+      const targetBaseRotation = -nextIndex * anglePerItem
+      return targetBaseRotation + 360 * Math.round((currentRotation - targetBaseRotation) / 360)
+    })
+    manualMoveTimeoutRef.current = window.setTimeout(() => setIsManualMove(false), 520)
+  }
   const handleKeyDown = (event: KeyboardEvent<HTMLElement>) => {
     if (event.key === 'ArrowLeft') {
       event.preventDefault()
@@ -52,114 +113,85 @@ export function RecognitionCoverflow({ items }: RecognitionCoverflowProps) {
       moveBy(1)
     }
   }
-
   const handlePointerDown = (event: PointerEvent<HTMLDivElement>) => {
-    dragStartX.current = event.clientX
-    hasPointerCapture.current = false
-    didDrag.current = false
-    setIsDragging(true)
+    dragStartRef.current = { x: event.clientX, rotation }
+    didDragRef.current = false
+    setIsPaused(true)
+    event.currentTarget.setPointerCapture(event.pointerId)
   }
-
   const handlePointerMove = (event: PointerEvent<HTMLDivElement>) => {
-    if (dragStartX.current === null) return
-    if (Math.abs(event.clientX - dragStartX.current) > 12) {
-      didDrag.current = true
-      if (!hasPointerCapture.current) {
-        event.currentTarget.setPointerCapture(event.pointerId)
-        hasPointerCapture.current = true
-      }
-    }
+    if (!dragStartRef.current) return
+    const distance = event.clientX - dragStartRef.current.x
+    if (Math.abs(distance) > 5) didDragRef.current = true
+    setRotation(dragStartRef.current.rotation + distance * 0.3)
   }
-
   const finishDrag = (event: PointerEvent<HTMLDivElement>) => {
-    if (dragStartX.current === null) return
-    const distance = event.clientX - dragStartX.current
-    if (Math.abs(distance) > 44) moveBy(distance < 0 ? 1 : -1)
-    dragStartX.current = null
-    setIsDragging(false)
-    if (hasPointerCapture.current && event.currentTarget.hasPointerCapture(event.pointerId)) event.currentTarget.releasePointerCapture(event.pointerId)
-    hasPointerCapture.current = false
-  }
-
-  if (prefersReducedMotion) {
-    return (
-      <div className="recognition-coverflow recognition-coverflow--reduced" role="list" aria-label="Featured recognition and press">
-        {items.map((item) => <RecognitionCard item={item} key={item.id} />)}
-      </div>
-    )
+    if (!dragStartRef.current) return
+    dragStartRef.current = null
+    if (event.currentTarget.hasPointerCapture(event.pointerId)) event.currentTarget.releasePointerCapture(event.pointerId)
+    setIsPaused(false)
   }
 
   return (
     <section
-      className="recognition-coverflow"
+      ref={galleryRef}
+      className="recognition-coverflow recognition-circular-gallery"
       role="region"
-      aria-roledescription="carousel"
       aria-label="Featured recognition and press"
       tabIndex={0}
       onKeyDown={handleKeyDown}
+      onPointerEnter={() => setIsPaused(true)}
+      onPointerLeave={() => setIsPaused(false)}
+      onFocusCapture={() => setIsPaused(true)}
+      onBlurCapture={(event) => {
+        if (!event.currentTarget.contains(event.relatedTarget)) setIsPaused(false)
+      }}
     >
-      <p className="sr-only" aria-live="polite">Slide {activeIndex + 1} of {items.length}: {activeItem.name}</p>
+      <p className="sr-only">A rotating circular gallery of featured recognition and press. Scroll the page to rotate it, or focus a card to pause the movement.</p>
       <div
-        className={`recognition-coverflow__stage${isDragging ? ' recognition-coverflow__stage--dragging' : ''}`}
+        className="recognition-circular-gallery__stage"
         onPointerDown={handlePointerDown}
         onPointerMove={handlePointerMove}
         onPointerUp={finishDrag}
         onPointerCancel={finishDrag}
+        onClickCapture={(event) => {
+          if (!didDragRef.current) return
+          event.preventDefault()
+          didDragRef.current = false
+        }}
       >
-        {items.map((item, index) => {
-          const offset = shortestOffset(index, activeIndex, items.length)
-          const distance = Math.abs(offset)
-          const isActive = index === activeIndex
-          const transform = `translateX(calc(-50% + ${offset * 42}%)) translateZ(-${distance * 175}px) rotateY(${-offset * 30}deg) scale(${Math.max(0.72, 1 - distance * 0.12)})`
+        <div className={`recognition-circular-gallery__ring${isManualMove ? ' recognition-circular-gallery__ring--manual' : ''}`} style={{ transform: `rotateY(${rotation}deg)` }}>
+          {items.map((item, index) => {
+            const itemAngle = index * anglePerItem
+            const relativeAngle = (itemAngle + (rotation % 360) + 360) % 360
+            const normalizedAngle = Math.abs(relativeAngle > 180 ? 360 - relativeAngle : relativeAngle)
+            const opacity = Math.max(0.28, 1 - normalizedAngle / 210)
 
-          return (
-            <div
-              className="recognition-coverflow__slide"
-              key={item.id}
-              aria-hidden={!isActive}
-              style={{ transform, opacity: Math.max(0.22, 1 - distance * 0.28), zIndex: items.length - distance }}
-            >
-              <RecognitionCard item={item} tabIndex={isActive ? 0 : -1} onClick={(event) => {
-                if (!didDrag.current) return
-                event.preventDefault()
-                didDrag.current = false
-              }} />
-            </div>
-          )
-        })}
-      </div>
-
-      <div className="recognition-coverflow__controls" aria-label="Carousel controls">
-        <button className="recognition-coverflow__control" type="button" onClick={() => moveBy(-1)} aria-label="Previous recognition">
-          <span aria-hidden="true">←</span><span>Previous</span>
-        </button>
-        <div className="recognition-coverflow__dots" aria-label="Choose a recognition">
-          {items.map((item, index) => (
-            <button
-              className={`recognition-coverflow__dot${index === activeIndex ? ' recognition-coverflow__dot--active' : ''}`}
-              key={item.id}
-              type="button"
-              onClick={() => moveTo(index)}
-              aria-label={`Show ${item.name}`}
-              aria-current={index === activeIndex ? 'true' : undefined}
-            />
-          ))}
+            return (
+              <div
+                className="recognition-circular-gallery__item"
+                key={item.id}
+                style={{
+                  transform: `translate(-50%, -50%) rotateY(${itemAngle}deg) translateZ(var(--recognition-gallery-radius))`,
+                  opacity,
+                }}
+              >
+                <RecognitionCard item={item} />
+              </div>
+            )
+          })}
         </div>
-        <button className="recognition-coverflow__control" type="button" onClick={() => moveBy(1)} aria-label="Next recognition">
-          <span>Next</span><span aria-hidden="true">→</span>
-        </button>
+      </div>
+      <div className="recognition-circular-gallery__controls" aria-label="Gallery controls">
+        <button type="button" onClick={() => moveBy(-1)} aria-label="Show previous recognition">← Previous</button>
+        <span>Drag or swipe to explore</span>
+        <button type="button" onClick={() => moveBy(1)} aria-label="Show next recognition">Next →</button>
       </div>
     </section>
   )
 }
 
-interface RecognitionCardProps {
-  item: RecognitionItem
-  tabIndex?: number
-  onClick?: (event: React.MouseEvent<HTMLAnchorElement>) => void
-}
-
-function RecognitionCard({ item, tabIndex, onClick }: RecognitionCardProps) {
+function RecognitionCard({ item }: { item: RecognitionItem }) {
   return (
     <a
       className="recognition-coverflow__card"
@@ -168,10 +200,12 @@ function RecognitionCard({ item, tabIndex, onClick }: RecognitionCardProps) {
       target="_blank"
       rel="noopener noreferrer"
       aria-label={item.accessibleLabel}
-      tabIndex={tabIndex}
-      onClick={onClick}
     >
-      <span className="recognition-coverflow__wordmark">{item.name}</span>
+      {item.logoSrc ? (
+        <span className="recognition-coverflow__logo-wrap">
+          <img className="recognition-coverflow__logo" src={item.logoSrc} alt={item.logoAlt ?? item.name} />
+        </span>
+      ) : <span className="recognition-coverflow__wordmark">{item.name}</span>}
       <span className="recognition-coverflow__mark" aria-hidden="true">↗</span>
     </a>
   )
