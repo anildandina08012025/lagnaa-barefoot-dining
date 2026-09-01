@@ -39,7 +39,6 @@ export function RecognitionCoverflow({ items }: RecognitionCoverflowProps) {
   const [isInView, setIsInView] = useState(false)
   const [isPaused, setIsPaused] = useState(false)
   const [isManualMove, setIsManualMove] = useState(false)
-  const [mobileIndex, setMobileIndex] = useState(0)
   const galleryRef = useRef<HTMLElement | null>(null)
   const scrollTimeoutRef = useRef<number | undefined>(undefined)
   const animationFrameRef = useRef<number | undefined>(undefined)
@@ -103,26 +102,6 @@ export function RecognitionCoverflow({ items }: RecognitionCoverflowProps) {
       <div className="recognition-coverflow recognition-coverflow--reduced" role="list" aria-label="Featured recognition and press">
         {items.map((item) => <RecognitionCard item={item} key={item.id} />)}
       </div>
-    )
-  }
-
-  if (isMobile) {
-    const activeItem = items[mobileIndex]
-    const moveMobileBy = (direction: number) => {
-      setMobileIndex((currentIndex) => (currentIndex + direction + items.length) % items.length)
-    }
-
-    return (
-      <section className="recognition-coverflow recognition-coverflow--mobile" role="region" aria-label="Featured recognition and press">
-        <p className="sr-only" aria-live="polite">Recognition {mobileIndex + 1} of {items.length}: {activeItem.name}</p>
-        <div className="recognition-coverflow--mobile__stage">
-          <RecognitionCard item={activeItem} />
-        </div>
-        <div className="recognition-circular-gallery__controls" aria-label="Gallery controls">
-          <button type="button" onClick={() => moveMobileBy(-1)} aria-label="Show previous recognition">← Previous</button>
-          <button type="button" onClick={() => moveMobileBy(1)} aria-label="Show next recognition">Next →</button>
-        </div>
-      </section>
     )
   }
 
@@ -201,7 +180,9 @@ export function RecognitionCoverflow({ items }: RecognitionCoverflowProps) {
             const itemAngle = index * anglePerItem
             const relativeAngle = (itemAngle + (rotation % 360) + 360) % 360
             const normalizedAngle = Math.abs(relativeAngle > 180 ? 360 - relativeAngle : relativeAngle)
-            const opacity = Math.max(0.28, 1 - normalizedAngle / 210)
+            const opacity = isMobile
+              ? (normalizedAngle < anglePerItem / 2 ? 1 : 0)
+              : Math.max(0.28, 1 - normalizedAngle / 210)
 
             return (
               <div
