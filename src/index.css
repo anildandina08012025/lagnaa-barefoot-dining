@@ -1683,6 +1683,11 @@ button:disabled { cursor: not-allowed; }
   .site-footer__bottom ul { justify-content: flex-start; }
   .home-section { padding-block: clamp(3.5rem, 13vw, 5.5rem); }
   .home-recognition { padding-block: clamp(2.75rem, 10vw, 3.75rem); }
+  .recognition-coverflow--mobile { margin-top: clamp(1.75rem, 7vw, 2.5rem); }
+  .recognition-coverflow--mobile__stage { display: grid; min-height: 15rem; place-items: center; }
+  .recognition-coverflow--mobile .recognition-coverflow__card { width: min(76vw, 20rem); min-height: 13rem; }
+  .recognition-coverflow--mobile .recognition-coverflow__logo-wrap { width: min(76%, 15rem); height: min(52%, 8rem); }
+  .recognition-coverflow--mobile .recognition-coverflow__logo { max-width: min(64vw, 15rem); max-height: 7rem; }
   .recognition-circular-gallery { --recognition-gallery-radius: 10rem; }
   .recognition-circular-gallery__stage { height: 23rem; }
   .recognition-circular-gallery__item { width: 12.5rem; height: 14rem; }

@@ -19,12 +19,27 @@ function usePrefersReducedMotion() {
   return prefersReducedMotion
 }
 
+function useIsMobile() {
+  const [isMobile, setIsMobile] = useState(false)
+
+  useEffect(() => {
+    const mediaQuery = window.matchMedia('(max-width: 720px)')
+    const updateViewport = () => setIsMobile(mediaQuery.matches)
+    updateViewport()
+    mediaQuery.addEventListener('change', updateViewport)
+    return () => mediaQuery.removeEventListener('change', updateViewport)
+  }, [])
+
+  return isMobile
+}
+
 export function RecognitionCoverflow({ items }: RecognitionCoverflowProps) {
   const [rotation, setRotation] = useState(0)
   const [isScrolling, setIsScrolling] = useState(false)
   const [isInView, setIsInView] = useState(false)
   const [isPaused, setIsPaused] = useState(false)
   const [isManualMove, setIsManualMove] = useState(false)
+  const [mobileIndex, setMobileIndex] = useState(0)
   const galleryRef = useRef<HTMLElement | null>(null)
   const scrollTimeoutRef = useRef<number | undefined>(undefined)
   const animationFrameRef = useRef<number | undefined>(undefined)
@@ -32,6 +47,7 @@ export function RecognitionCoverflow({ items }: RecognitionCoverflowProps) {
   const dragStartRef = useRef<{ x: number; rotation: number } | null>(null)
   const didDragRef = useRef(false)
   const prefersReducedMotion = usePrefersReducedMotion()
+  const isMobile = useIsMobile()
 
   useEffect(() => () => {
     if (manualMoveTimeoutRef.current !== undefined) window.clearTimeout(manualMoveTimeoutRef.current)
@@ -87,6 +103,26 @@ export function RecognitionCoverflow({ items }: RecognitionCoverflowProps) {
       <div className="recognition-coverflow recognition-coverflow--reduced" role="list" aria-label="Featured recognition and press">
         {items.map((item) => <RecognitionCard item={item} key={item.id} />)}
       </div>
+    )
+  }
+
+  if (isMobile) {
+    const activeItem = items[mobileIndex]
+    const moveMobileBy = (direction: number) => {
+      setMobileIndex((currentIndex) => (currentIndex + direction + items.length) % items.length)
+    }
+
+    return (
+      <section className="recognition-coverflow recognition-coverflow--mobile" role="region" aria-label="Featured recognition and press">
+        <p className="sr-only" aria-live="polite">Recognition {mobileIndex + 1} of {items.length}: {activeItem.name}</p>
+        <div className="recognition-coverflow--mobile__stage">
+          <RecognitionCard item={activeItem} />
+        </div>
+        <div className="recognition-circular-gallery__controls" aria-label="Gallery controls">
+          <button type="button" onClick={() => moveMobileBy(-1)} aria-label="Show previous recognition">← Previous</button>
+          <button type="button" onClick={() => moveMobileBy(1)} aria-label="Show next recognition">Next →</button>
+        </div>
+      </section>
     )
   }
 
