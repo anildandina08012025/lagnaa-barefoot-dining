@@ -32,6 +32,7 @@ function useMenuInteractionMode() {
 export function InteractiveMenuList({ items, categories = demoMenuCategories }: InteractiveMenuListProps) {
   const [activeCategory, setActiveCategory] = useState<DemoMenuCategory>(categories[0]?.id ?? 'highlights')
   const [activeSection, setActiveSection] = useState<string | null>(null)
+  const [searchQuery, setSearchQuery] = useState('')
   const [activeItemId, setActiveItemId] = useState<string | null>(null)
   const [expandedItemId, setExpandedItemId] = useState<string | null>(null)
   const containerRef = useRef<HTMLDivElement>(null)
@@ -52,7 +53,11 @@ export function InteractiveMenuList({ items, categories = demoMenuCategories }: 
     ? activeSection
     : categorySections[0]?.id
   const activeSectionLabel = categorySections.find((section) => section.id === selectedSection)?.label ?? activeCategoryLabel
-  const visibleItems = items.filter((item) => item.category === activeCategory && (item.section ?? activeCategory) === selectedSection)
+  const normalizedSearchQuery = searchQuery.trim().toLowerCase()
+  const isSearching = normalizedSearchQuery.length > 0
+  const visibleItems = isSearching
+    ? items.filter((item) => [item.name, item.description, item.sectionLabel, categories.find((category) => category.id === item.category)?.label].filter(Boolean).join(' ').toLowerCase().includes(normalizedSearchQuery))
+    : items.filter((item) => item.category === activeCategory && (item.section ?? activeCategory) === selectedSection)
   const activeItem = visibleItems.find((item) => item.id === activeItemId)
 
   useEffect(() => () => {
@@ -89,6 +94,7 @@ export function InteractiveMenuList({ items, categories = demoMenuCategories }: 
   const selectCategory = (category: DemoMenuCategory) => {
     setActiveCategory(category)
     setActiveSection(items.find((item) => item.category === category)?.section ?? category)
+    setSearchQuery('')
     setActiveItemId(null)
     setExpandedItemId(null)
   }
@@ -130,7 +136,24 @@ export function InteractiveMenuList({ items, categories = demoMenuCategories }: 
         ))}
       </div>
 
-      {categorySections.length > 1 ? (
+      <div className="interactive-menu__search">
+        <label className="sr-only" htmlFor="menu-search">Search the menu</label>
+        <input
+          id="menu-search"
+          name="menu-search"
+          onChange={(event) => {
+            setSearchQuery(event.target.value)
+            setActiveItemId(null)
+            setExpandedItemId(null)
+          }}
+          placeholder="Search dishes, drinks or ingredients"
+          type="search"
+          value={searchQuery}
+        />
+        {isSearching ? <button type="button" onClick={() => setSearchQuery('')}>Clear</button> : null}
+      </div>
+
+      {!isSearching && categorySections.length > 1 ? (
         <div className="interactive-menu__section-filters" aria-label={`${activeCategoryLabel} sections`} role="tablist">
           {categorySections.map((section) => (
             <button
@@ -153,11 +176,11 @@ export function InteractiveMenuList({ items, categories = demoMenuCategories }: 
       ) : null}
 
       <div className="interactive-menu__selection" aria-live="polite">
-        <p>{activeCategoryLabel}</p>
-        <h2>{activeSectionLabel}</h2>
+        <p>{isSearching ? `${visibleItems.length} dish${visibleItems.length === 1 ? '' : 'es'} found` : activeCategoryLabel}</p>
+        <h2>{isSearching ? `Search results for “${searchQuery.trim()}”` : activeSectionLabel}</h2>
       </div>
 
-      <div className="interactive-menu__list" id="menu-category-list" role="list" aria-label={`${activeSectionLabel} menu items`}>
+      <div className="interactive-menu__list" id="menu-category-list" role="list" aria-label={`${isSearching ? 'Search results' : activeSectionLabel} menu items`}>
         {visibleItems.map((item) => {
           const hasImage = Boolean(item.imageSrc)
           const isExpanded = hasImage && expandedItemId === item.id
@@ -166,6 +189,7 @@ export function InteractiveMenuList({ items, categories = demoMenuCategories }: 
               <span className="interactive-menu__item-main">
                 <span className="interactive-menu__item-name">{item.name}</span>
                 <span className="interactive-menu__item-description">{item.description}</span>
+                {isSearching ? <span className="interactive-menu__search-context">{categories.find((category) => category.id === item.category)?.label} · {item.sectionLabel}</span> : null}
                 <span className="interactive-menu__meta">
                   {item.dietary ? <span className={`interactive-menu__dietary interactive-menu__dietary--${item.dietary === 'Vegetarian' ? 'vegetarian' : 'non-vegetarian'}`}>{item.dietary}</span> : null}
                   {item.spiceLevel ? <span className="interactive-menu__spice">{item.spiceLevel}</span> : null}
@@ -210,6 +234,7 @@ export function InteractiveMenuList({ items, categories = demoMenuCategories }: 
             </article>
           )
         })}
+        {visibleItems.length === 0 ? <p className="interactive-menu__empty">No menu items match “{searchQuery.trim()}”. Try another dish, drink or ingredient.</p> : null}
       </div>
 
       <div className={`interactive-menu__floating-preview${activeItem?.imageSrc && supportsHover && !reducedMotion ? ' interactive-menu__floating-preview--visible' : ''}`} ref={previewRef} aria-hidden="true">
