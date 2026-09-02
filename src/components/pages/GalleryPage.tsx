@@ -8,6 +8,11 @@ import { VerticalThumbnailGallery } from '../ui/VerticalThumbnailGallery'
 
 export function GalleryPage() {
   const content = galleryContent
+  const images = [...content.images].sort((first, second) => {
+    const firstPriority = first.id === 'lagnaa-entrance' ? 0 : first.id === 'lagnaa-interior' ? 1 : first.id === 'lagnaa-interior-dining' ? 2 : 3
+    const secondPriority = second.id === 'lagnaa-entrance' ? 0 : second.id === 'lagnaa-interior' ? 1 : second.id === 'lagnaa-interior-dining' ? 2 : 3
+    return firstPriority - secondPriority
+  })
   const canonicalUrl = restaurantConfig.siteUrl ? `${restaurantConfig.siteUrl.replace(/\/$/, '')}/gallery` : undefined
 
   return (
@@ -21,10 +26,6 @@ export function GalleryPage() {
               <h1 className="gallery-hero__heading" id="gallery-heading">{content.hero.heading}</h1>
               <p className="gallery-hero__description">{content.hero.description}</p>
             </div>
-            <div className="gallery-hero__ornament" aria-hidden="true">
-              <span>{content.images.length}</span>
-              <small>Official<br />photographs</small>
-            </div>
           </Container>
         </section>
 
@@ -37,7 +38,7 @@ export function GalleryPage() {
               level={2}
               id="gallery-collection-heading"
             />
-            <VerticalThumbnailGallery images={content.images} groups={content.groups} />
+            <VerticalThumbnailGallery images={images} groups={content.groups} />
           </Container>
         </section>
 

@@ -1,7 +1,10 @@
 import { restaurantConfig } from '../../config/restaurant'
 import { ourStoryContent } from '../../content/ourStory'
+import entranceImage from '../../assets/restaurant/lagnaa-entrance.webp'
+import interiorImage from '../../assets/restaurant/lagnaa-interior.webp'
+import interiorDiningImage from '../../assets/restaurant/lagnaa-interior-dining.webp'
+import barefootDiningImage from '../../assets/barefoot/lagnaa-barefoot-dining.webp'
 import { Container } from '../layout/Container'
-import { DevelopmentMedia } from '../media/DevelopmentMedia'
 import { PageMetadata } from '../seo/PageMetadata'
 import { Button } from '../ui/Button'
 import { CtaSection } from '../ui/CtaSection'
@@ -28,7 +31,7 @@ export function OurStoryPage() {
               <p className="story-hero__description">{hero.description}</p>
               <a className="text-link" href="#lagnaa-story">Read the story <TextArrow /></a>
             </div>
-            <DevelopmentMedia media={hero.media} className="story-hero__media" priority />
+            <figure className="story-hero__media"><img className="page-content-image" src={entranceImage} alt="Entrance to Lagnaa Barefoot Dining in Little India." /></figure>
           </Container>
         </section>
 
@@ -41,13 +44,13 @@ export function OurStoryPage() {
                 {story.paragraphs.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}
               </div>
             </div>
-            <DevelopmentMedia media={story.media} className="story-main__media" />
+            <figure className="story-main__media"><img className="page-content-image" src={interiorImage} alt="Interior of Lagnaa Barefoot Dining." loading="lazy" /></figure>
           </Container>
         </section>
 
         <section className="story-section story-food-philosophy" aria-labelledby="food-philosophy-heading">
           <Container className="story-food-philosophy__grid">
-            <DevelopmentMedia media={foodPhilosophy.media} className="story-food-philosophy__media" />
+            <figure className="story-food-philosophy__media"><img className="page-content-image" src={interiorDiningImage} alt="Dining interior at Lagnaa Barefoot Dining." loading="lazy" /></figure>
             <div className="story-food-philosophy__copy">
               <SectionHeading eyebrow={foodPhilosophy.eyebrow} heading={foodPhilosophy.heading} level={2} id="food-philosophy-heading" />
               <div className="editorial-copy">
@@ -80,7 +83,7 @@ export function OurStoryPage() {
                 <Button href={restaurantConfig.links.reservation} disabled={!canReserve} variant="outline">Reserve a Table</Button>
               </div>
             </div>
-            <DevelopmentMedia media={barefoot.media} className="story-barefoot__media" />
+            <figure className="story-barefoot__media"><img className="page-content-image" src={barefootDiningImage} alt="Barefoot Dining experience at Lagnaa." loading="lazy" /></figure>
           </Container>
         </section>
 

@@ -4,9 +4,9 @@ import barefootDining from '../../assets/lagnaa-showcase/barefoot-dining.webp'
 import chilliLevelCustomisation from '../../assets/lagnaa-showcase/chilli-level-customisation.webp'
 
 const slides = [
-  { id: 'barefoot-dining', image: barefootDining, title: 'Barefoot Dining', description: 'A signature Lagnaa dining experience shaped by food, hospitality and an intimate atmosphere.', background: '#650000' },
-  { id: 'chilli-level-customisation', image: chilliLevelCustomisation, title: 'Customisation of Chilli Levels', description: 'Choose the heat that matches your palate, without compromising flavour.', background: '#7a0000' },
-  { id: 'arusuvai', image: arusuvai, title: 'Arusuvai', description: 'The harmony of six tastes, brought together in every Lagnaa meal.', background: '#8b1515' },
+  { id: 'barefoot-dining', image: barefootDining, title: 'Barefoot Dining', description: 'A signature Lagnaa dining experience shaped by food, hospitality and an intimate atmosphere.', href: '/experiences/barefoot-dining', background: '#650000' },
+  { id: 'chilli-level-customisation', image: chilliLevelCustomisation, title: 'Customisation of Chilli Levels', description: 'Choose the heat that matches your palate, without compromising flavour.', href: '/experiences/chilli-challenge', background: '#7a0000' },
+  { id: 'arusuvai', image: arusuvai, title: 'Arusuvai', description: 'The harmony of six tastes, brought together in every Lagnaa meal.', href: '/menu', background: '#8b1515' },
 ] as const
 
 export function LagnaaShowcaseCarousel() {
@@ -53,10 +53,10 @@ export function LagnaaShowcaseCarousel() {
       <p className="sr-only" aria-live="polite">Slide {activeIndex + 1} of {slides.length}: {activeSlide.title}</p>
       <div className="lagnaa-showcase__grain" aria-hidden="true" />
       <p className="lagnaa-showcase__display" aria-hidden="true">Experience Lagnaa</p>
-      <div className="lagnaa-showcase__stage" aria-hidden="true">
+      <div className="lagnaa-showcase__stage">
         {slides.map((slide, index) => {
           const role = index === activeIndex ? 'center' : index === (activeIndex + 2) % slides.length ? 'left' : 'right'
-          return <div className={`lagnaa-showcase__art lagnaa-showcase__art--${role}`} key={slide.id}><img src={slide.image} alt="" width="1600" height="1600" /></div>
+          return <a className={`lagnaa-showcase__art lagnaa-showcase__art--${role}`} href={slide.href} key={slide.id} aria-label={`Explore ${slide.title}`}><img src={slide.image} alt="" width="1600" height="1600" /></a>
         })}
       </div>
       <div className="lagnaa-showcase__footer">

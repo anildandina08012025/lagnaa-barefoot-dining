@@ -1,8 +1,14 @@
 import { useState, type FormEvent } from 'react'
-import elaiKoli from '../../assets/gallery/lagnaa-elai-koli.jpg'
 import miniPuri from '../../assets/gallery/lagnaa-mini-puri.jpg'
 import muttonKoorma from '../../assets/gallery/lagnaa-nilagiri-mutton-koorma.jpg'
 import platter from '../../assets/gallery/lagnaa-arusuvai-platter.jpg'
+import octoberSpecial from '../../assets/monthly-specials/lagnaa-october-special.webp'
+import juneMonthlySpecialOne from '../../assets/monthly-specials/lagnaa-june-monthly-special-1.webp'
+import juneMonthlySpecialTwo from '../../assets/monthly-specials/lagnaa-june-monthly-special-2.webp'
+import juneMonthlySpecialThree from '../../assets/monthly-specials/lagnaa-june-monthly-special-3.webp'
+import juneMonthlySpecialFour from '../../assets/monthly-specials/lagnaa-june-monthly-special-4.webp'
+import augustMonthlySpecial from '../../assets/monthly-specials/lagnaa-august-monthly-special.webp'
+import octoberMonthlySpecialTwo from '../../assets/monthly-specials/lagnaa-october-monthly-special-2.webp'
 import { restaurantConfig } from '../../config/restaurant'
 import { Container } from '../layout/Container'
 import { PageMetadata } from '../seo/PageMetadata'
@@ -24,9 +30,13 @@ type InterestErrors = Partial<Record<keyof InterestForm, string>>
 const initialForm: InterestForm = { name: '', guestName: '', email: '', phone: '', dietary: '', message: '' }
 
 const pastTastings = [
-  { name: 'Elai Koli', image: elaiKoli, alt: 'Elai Koli served on a banana leaf.' },
-  { name: 'Nilagiri Mutton Koorma', image: muttonKoorma, alt: 'Nilagiri Mutton Koorma in a serving bowl.' },
-  { name: 'Mini Puri', image: miniPuri, alt: 'Mini Puri presented on a plate.' },
+  { name: 'June Monthly Special I', image: juneMonthlySpecialOne, alt: 'June monthly special at Lagnaa.' },
+  { name: 'June Monthly Special II', image: juneMonthlySpecialTwo, alt: 'June monthly special at Lagnaa.' },
+  { name: 'June Monthly Special III', image: juneMonthlySpecialThree, alt: 'June monthly special at Lagnaa.' },
+  { name: 'June Monthly Special IV', image: juneMonthlySpecialFour, alt: 'June monthly special at Lagnaa.' },
+  { name: 'August Monthly Special', image: augustMonthlySpecial, alt: 'August monthly special at Lagnaa.' },
+  { name: 'October Monthly Special I', image: octoberSpecial, alt: 'October monthly special at Lagnaa.' },
+  { name: 'October Monthly Special II', image: octoberMonthlySpecialTwo, alt: 'October monthly special at Lagnaa.' },
 ] as const
 
 const degustationSocialCards = [
@@ -130,6 +140,23 @@ export function MonthlyDegustationPage() {
           </Container>
         </section>
 
+        <section className="degustation-section degustation-archive" aria-labelledby="degustation-archive-heading">
+          <Container>
+            <div className="degustation-archive__heading">
+              <SectionHeading eyebrow="Monthly specials" heading="A taste of past monthly specials." level={2} id="degustation-archive-heading" />
+              <p>Selected monthly specials from Lagnaa’s past dégustation offerings. This is an archive, not a current menu or event listing.</p>
+            </div>
+            <div className="degustation-archive__grid">
+              {pastTastings.map((dish) => (
+                <figure key={dish.name}>
+                  <img src={dish.image} alt={dish.alt} />
+                  <figcaption>{dish.name}</figcaption>
+                </figure>
+              ))}
+            </div>
+          </Container>
+        </section>
+
         <section className="degustation-section degustation-introduction" aria-labelledby="degustation-introduction-heading">
           <Container narrow>
             <SectionHeading eyebrow="Taste. Share. Shape the Menu." heading="An experience built around food and conversation." align="center" level={2} id="degustation-introduction-heading" />
@@ -228,23 +255,6 @@ export function MonthlyDegustationPage() {
               </div>
               {preparedUrl ? <p className="degustation-form__prepared" role="status">Your WhatsApp enquiry is ready. If it did not open, <a href={preparedUrl} target="_blank" rel="noopener noreferrer">open it here</a>.</p> : null}
             </form>
-          </Container>
-        </section>
-
-        <section className="degustation-section degustation-archive" aria-labelledby="degustation-archive-heading">
-          <Container>
-            <div className="degustation-archive__heading">
-              <SectionHeading eyebrow="Archive" heading="From Past Tastings" level={2} id="degustation-archive-heading" />
-              <p>Selected dishes from past dégustation galleries. This is an archive, not a current menu or event listing.</p>
-            </div>
-            <div className="degustation-archive__grid">
-              {pastTastings.map((dish) => (
-                <figure key={dish.name}>
-                  <img src={dish.image} alt={dish.alt} />
-                  <figcaption>{dish.name}</figcaption>
-                </figure>
-              ))}
-            </div>
           </Container>
         </section>
 

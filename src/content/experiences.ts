@@ -1,8 +1,8 @@
 import type { MediaDirection } from './home'
-import arusuvaiPlatter from '../assets/gallery/lagnaa-arusuvai-platter.jpg'
-import elaiKoli from '../assets/gallery/lagnaa-elai-koli.jpg'
 import entranceTeam from '../assets/gallery/lagnaa-entrance-team.jpg'
-import malaiTikka from '../assets/gallery/lagnaa-malai-tikka.jpg'
+import octoberMonthlySpecial from '../assets/monthly-specials/lagnaa-october-special.webp'
+import curryShots from '../assets/chilli/curry-shots.webp'
+import chefCooking from '../assets/cooking/chef-kaesavan-cooking.webp'
 
 export type Experience = {
   id: string
@@ -141,8 +141,8 @@ export const eventExperiences: readonly EventExperience[] = [
     eyebrow: 'Social dining & food tasting',
     description: 'A social dining and food-tasting experience centred on discovering dishes and flavours together.',
     availabilityNote: 'Current dates and participation details are available directly from Lagnaa.',
-    image: arusuvaiPlatter,
-    imageAlt: 'A divided platter of Indian dishes at Lagnaa.',
+    image: octoberMonthlySpecial,
+    imageAlt: 'A Lagnaa monthly special dish.',
     officialDetailsUrl: 'https://www.lagnaa.com/food-tasting',
     detailPath: '/events/monthly-degustation',
     detailActionLabel: 'Register your interest',
@@ -154,8 +154,8 @@ export const eventExperiences: readonly EventExperience[] = [
     eyebrow: 'Signature food challenge',
     description: 'Lagnaa’s signature food challenge for guests who enjoy exploring spice.',
     availabilityNote: 'Contact Lagnaa or view the official page for current participation details.',
-    image: elaiKoli,
-    imageAlt: 'Elai Koli served on a banana leaf.',
+    image: curryShots,
+    imageAlt: 'Curry Shots at Lagnaa.',
     officialDetailsUrl: 'https://www.lagnaa.com/chilli-challenge',
     detailPath: '/experiences/chilli-challenge',
     detailActionLabel: 'Explore the challenge',
@@ -167,8 +167,8 @@ export const eventExperiences: readonly EventExperience[] = [
     eyebrow: 'Indian cooking class',
     description: 'An Indian cooking-class experience with Chef Kaesavan.',
     availabilityNote: 'Contact Lagnaa to register interest and ask for current class details.',
-    image: malaiTikka,
-    imageAlt: 'Malai Tikka on a plate.',
+    image: chefCooking,
+    imageAlt: 'Chef Kaesavan leading a cooking session at Lagnaa.',
     officialDetailsUrl: 'https://www.lagnaa.com/cooking-class',
     detailPath: '/events/cooking-with-chef-kaesavan',
     detailActionLabel: 'Register your interest',

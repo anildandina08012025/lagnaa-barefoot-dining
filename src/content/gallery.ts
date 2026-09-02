@@ -5,6 +5,18 @@ import entranceTeamImage from '../assets/gallery/lagnaa-entrance-team.jpg'
 import malaiTikkaImage from '../assets/gallery/lagnaa-malai-tikka.jpg'
 import miniPuriImage from '../assets/gallery/lagnaa-mini-puri.jpg'
 import nilagiriMuttonKoormaImage from '../assets/gallery/lagnaa-nilagiri-mutton-koorma.jpg'
+import entranceImage from '../assets/restaurant/lagnaa-entrance.webp'
+import interiorImage from '../assets/restaurant/lagnaa-interior.webp'
+import interiorDiningImage from '../assets/restaurant/lagnaa-interior-dining.webp'
+import barefootDiningImage from '../assets/barefoot/lagnaa-barefoot-dining.webp'
+import chilliChallengeImage from '../assets/chilli/curry-shots.webp'
+import juneMonthlySpecialOne from '../assets/monthly-specials/lagnaa-june-monthly-special-1.webp'
+import juneMonthlySpecialTwo from '../assets/monthly-specials/lagnaa-june-monthly-special-2.webp'
+import juneMonthlySpecialThree from '../assets/monthly-specials/lagnaa-june-monthly-special-3.webp'
+import juneMonthlySpecialFour from '../assets/monthly-specials/lagnaa-june-monthly-special-4.webp'
+import augustMonthlySpecial from '../assets/monthly-specials/lagnaa-august-monthly-special.webp'
+import octoberMonthlySpecialOne from '../assets/monthly-specials/lagnaa-october-special.webp'
+import octoberMonthlySpecialTwo from '../assets/monthly-specials/lagnaa-october-monthly-special-2.webp'
 
 export type GalleryImage = {
   id: string
@@ -64,13 +76,23 @@ export const galleryContent: GalleryPageContent = {
   collection: {
     eyebrow: 'From Lagnaa',
     heading: 'Food, place and character.',
-    description: 'Browse the approved images currently available for the redesigned website. More interior, table and exterior photography will strengthen this page before launch.',
+    description: 'Browse approved photographs of Lagnaa’s food, welcome and dining spaces.',
   },
   groups: [
     {
       heading: 'Little India',
       description: 'The restaurant entrance and neighbourhood-facing welcome.',
-      imageIds: ['lagnaa-entrance-team'],
+      imageIds: ['lagnaa-entrance', 'lagnaa-entrance-team'],
+    },
+    {
+      heading: 'Inside Lagnaa',
+      description: 'A look at the restaurant’s interiors and dining atmosphere.',
+      imageIds: ['lagnaa-interior', 'lagnaa-interior-dining'],
+    },
+    {
+      heading: 'Signature experiences',
+      description: 'Barefoot Dining and the Chilli Challenge at Lagnaa.',
+      imageIds: ['lagnaa-barefoot-dining', 'lagnaa-chilli-challenge'],
     },
     {
       heading: 'From the Kitchen',
@@ -84,8 +106,92 @@ export const galleryContent: GalleryPageContent = {
         'lagnaa-malai-tikka',
       ],
     },
+    {
+      heading: 'Monthly specials',
+      description: 'A selection of special dishes previously served at Lagnaa.',
+      imageIds: [
+        'lagnaa-june-monthly-special-1',
+        'lagnaa-june-monthly-special-2',
+        'lagnaa-june-monthly-special-3',
+        'lagnaa-june-monthly-special-4',
+        'lagnaa-august-monthly-special',
+        'lagnaa-october-monthly-special-1',
+        'lagnaa-october-monthly-special-2',
+      ],
+    },
   ],
   images: [
+    {
+      id: 'lagnaa-barefoot-dining',
+      filename: 'lagnaa-barefoot-dining.webp',
+      image: barefootDiningImage,
+      alt: 'Barefoot Dining experience at Lagnaa.',
+      width: 0,
+      height: 0,
+      sourcePageUrl: 'Client-supplied photograph',
+      directSourceUrl: '',
+    },
+    {
+      id: 'lagnaa-chilli-challenge',
+      filename: 'curry-shots.webp',
+      image: chilliChallengeImage,
+      alt: 'Curry Shots for Lagnaa’s Chilli Challenge.',
+      width: 0,
+      height: 0,
+      sourcePageUrl: 'Client-supplied photograph',
+      directSourceUrl: '',
+    },
+    {
+      id: 'lagnaa-june-monthly-special-1', filename: 'lagnaa-june-monthly-special-1.webp', image: juneMonthlySpecialOne, alt: 'June monthly special at Lagnaa.', width: 0, height: 0, sourcePageUrl: 'Client-supplied photograph', directSourceUrl: '',
+    },
+    {
+      id: 'lagnaa-june-monthly-special-2', filename: 'lagnaa-june-monthly-special-2.webp', image: juneMonthlySpecialTwo, alt: 'June monthly special at Lagnaa.', width: 0, height: 0, sourcePageUrl: 'Client-supplied photograph', directSourceUrl: '',
+    },
+    {
+      id: 'lagnaa-june-monthly-special-3', filename: 'lagnaa-june-monthly-special-3.webp', image: juneMonthlySpecialThree, alt: 'June monthly special at Lagnaa.', width: 0, height: 0, sourcePageUrl: 'Client-supplied photograph', directSourceUrl: '',
+    },
+    {
+      id: 'lagnaa-june-monthly-special-4', filename: 'lagnaa-june-monthly-special-4.webp', image: juneMonthlySpecialFour, alt: 'June monthly special at Lagnaa.', width: 0, height: 0, sourcePageUrl: 'Client-supplied photograph', directSourceUrl: '',
+    },
+    {
+      id: 'lagnaa-august-monthly-special', filename: 'lagnaa-august-monthly-special.webp', image: augustMonthlySpecial, alt: 'August monthly special at Lagnaa.', width: 0, height: 0, sourcePageUrl: 'Client-supplied photograph', directSourceUrl: '',
+    },
+    {
+      id: 'lagnaa-october-monthly-special-1', filename: 'lagnaa-october-special.webp', image: octoberMonthlySpecialOne, alt: 'October monthly special at Lagnaa.', width: 0, height: 0, sourcePageUrl: 'Client-supplied photograph', directSourceUrl: '',
+    },
+    {
+      id: 'lagnaa-october-monthly-special-2', filename: 'lagnaa-october-monthly-special-2.webp', image: octoberMonthlySpecialTwo, alt: 'October monthly special at Lagnaa.', width: 0, height: 0, sourcePageUrl: 'Client-supplied photograph', directSourceUrl: '',
+    },
+    {
+      id: 'lagnaa-entrance',
+      filename: 'lagnaa-entrance.webp',
+      image: entranceImage,
+      alt: 'Entrance to Lagnaa Barefoot Dining in Little India.',
+      width: 0,
+      height: 0,
+      sourcePageUrl: 'Client-supplied photograph',
+      directSourceUrl: '',
+    },
+    {
+      id: 'lagnaa-interior',
+      filename: 'lagnaa-interior.webp',
+      image: interiorImage,
+      alt: 'Interior of Lagnaa Barefoot Dining.',
+      width: 0,
+      height: 0,
+      sourcePageUrl: 'Client-supplied photograph',
+      directSourceUrl: '',
+    },
+    {
+      id: 'lagnaa-interior-dining',
+      filename: 'lagnaa-interior-dining.webp',
+      image: interiorDiningImage,
+      alt: 'Dining interior at Lagnaa Barefoot Dining.',
+      width: 0,
+      height: 0,
+      sourcePageUrl: 'Client-supplied photograph',
+      directSourceUrl: '',
+    },
     {
       id: 'lagnaa-entrance-team',
       filename: 'lagnaa-entrance-team.jpg',

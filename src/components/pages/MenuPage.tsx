@@ -1,12 +1,17 @@
 import { demoMenuItems, type DemoMenuItem } from '../../content/demoMenu'
 import { publishedMenus } from '../../content/menu'
 import { restaurantConfig } from '../../config/restaurant'
-import arusuvaiPlatterImage from '../../assets/gallery/lagnaa-arusuvai-platter.jpg'
-import arusuvaiDetailImage from '../../assets/gallery/lagnaa-arusuvai-detail.jpg'
-import elaiKoliImage from '../../assets/gallery/lagnaa-elai-koli.jpg'
-import malaiTikkaImage from '../../assets/gallery/lagnaa-malai-tikka.jpg'
-import miniPuriImage from '../../assets/gallery/lagnaa-mini-puri.jpg'
-import nilagiriMuttonKoormaImage from '../../assets/gallery/lagnaa-nilagiri-mutton-koorma.jpg'
+import brinjalCurryImage from '../../assets/menu/brinjal-curry.webp'
+import butterChickenMethiNaanImage from '../../assets/menu/butter-chicken-methi-naan.webp'
+import chickenBiryaniImage from '../../assets/menu/chicken-biryani.webp'
+import chickenTikkaImage from '../../assets/menu/chicken-tikka.webp'
+import freshLemonMintCoolerImage from '../../assets/menu/fresh-lemon-mint-cooler.webp'
+import gobi65Image from '../../assets/menu/gobi-65.webp'
+import kathriPachadiImage from '../../assets/menu/kathri-pachadi.webp'
+import koliCurryLeafImage from '../../assets/menu/koli-curry-leaf.webp'
+import mushroomMasalaMethiNaanImage from '../../assets/menu/mushroom-masala-methi-naan.webp'
+import muttonVaruvalYoghurtRiceImage from '../../assets/menu/mutton-varuval-yoghurt-rice.webp'
+import palakPaneerGarlicNaanImage from '../../assets/menu/palak-paneer-garlic-naan.webp'
 import { Container } from '../layout/Container'
 import { PageMetadata } from '../seo/PageMetadata'
 import { InteractiveMenuList } from '../ui/InteractiveMenuList'
@@ -56,38 +61,61 @@ function slugify(value: string) {
   return value.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '')
 }
 
-function getMenuPreviewImage(menuSlug: string, sectionName: string, itemName: string) {
-  const searchable = `${menuSlug} ${sectionName} ${itemName}`.toLowerCase()
+function getMenuPreviewImage(itemName: string) {
+  const name = itemName.trim().toLowerCase()
 
-  if (searchable.includes('drink') || searchable.includes('lassi') || searchable.includes('tea') || searchable.includes('coffee') || searchable.includes('juice')) {
-    return { src: miniPuriImage, alt: 'A close-up Lagnaa food and table detail used as a menu preview.' }
+  if (name === 'butter chicken' || name === 'butter chicken with methi naan') {
+    return { src: butterChickenMethiNaanImage, alt: 'Butter chicken with methi naan at Lagnaa.' }
   }
 
-  if (searchable.includes('tandoor') || searchable.includes('tikka') || searchable.includes('kebab')) {
-    return { src: malaiTikkaImage, alt: 'A Lagnaa grilled dish used as a menu preview.' }
+  if (name.includes('mutton varuval')) {
+    return { src: muttonVaruvalYoghurtRiceImage, alt: 'Mutton varuval with yoghurt rice at Lagnaa.' }
   }
 
-  if (searchable.includes('mutton') || searchable.includes('koorma') || searchable.includes('masala')) {
-    return { src: nilagiriMuttonKoormaImage, alt: 'A Lagnaa curry dish used as a menu preview.' }
+  if (name === 'chicken biryani') {
+    return { src: chickenBiryaniImage, alt: 'Chicken biryani served at Lagnaa.' }
   }
 
-  if (searchable.includes('biryani') || searchable.includes('rice') || searchable.includes('koli') || searchable.includes('chicken')) {
-    return { src: elaiKoliImage, alt: 'A Lagnaa dish served on a banana leaf used as a menu preview.' }
+  if (name === 'chicken tikka') {
+    return { src: chickenTikkaImage, alt: 'Chicken tikka served at Lagnaa.' }
   }
 
-  if (searchable.includes('vegetable') || searchable.includes('paneer') || searchable.includes('dhal') || searchable.includes('channa') || searchable.includes('gobi')) {
-    return { src: arusuvaiDetailImage, alt: 'A detailed Lagnaa shared platter used as a menu preview.' }
+  if (name === 'gobi 65') {
+    return { src: gobi65Image, alt: 'Gobi 65 served at Lagnaa.' }
   }
 
-  return { src: arusuvaiPlatterImage, alt: 'A selection of Lagnaa dishes used as a menu preview.' }
+  if (name === 'kathri pachadi') {
+    return { src: kathriPachadiImage, alt: 'Kathri pachadi with basmati rice at Lagnaa.' }
+  }
+
+  if (name === 'koli curry leaf') {
+    return { src: koliCurryLeafImage, alt: 'Koli curry leaf with basmati rice at Lagnaa.' }
+  }
+
+  if (name === 'palak paneer') {
+    return { src: palakPaneerGarlicNaanImage, alt: 'Palak paneer with garlic naan at Lagnaa.' }
+  }
+
+  if (name.includes('mushroom masala')) {
+    return { src: mushroomMasalaMethiNaanImage, alt: 'Mushroom masala with methi naan at Lagnaa.' }
+  }
+
+  if (name === 'brinjal curry') {
+    return { src: brinjalCurryImage, alt: 'Brinjal curry served at Lagnaa.' }
+  }
+
+  if (name === 'fresh lemon mint cooler') {
+    return { src: freshLemonMintCoolerImage, alt: 'Fresh lemon mint cooler at Lagnaa.' }
+  }
+
+  return undefined
 }
 
 function buildUnifiedMenuItems(): readonly DemoMenuItem[] {
   const featuredItems = demoMenuItems
     .filter((item) => item.category === 'michelin-sets' || item.category === 'chilli-challenge' || item.category === 'full-moon-challenge')
-    .map((item) => {
-      if (item.imageSrc) return item
-      const previewImage = getMenuPreviewImage(item.category, item.category, item.name)
+    .map(({ imageSrc: _existingImageSrc, imageAlt: _existingImageAlt, ...item }) => {
+      const previewImage = getMenuPreviewImage(item.name)
       return {
         ...item,
         section: item.section ?? item.category,
@@ -96,9 +124,8 @@ function buildUnifiedMenuItems(): readonly DemoMenuItem[] {
           : item.category === 'full-moon-challenge'
             ? 'Full Moon Challenge'
             : 'Highlights'),
-        imageSrc: previewImage.src,
-        imageAlt: previewImage.alt,
-        demoImage: true,
+        ...(previewImage ? { imageSrc: previewImage.src, imageAlt: previewImage.alt } : {}),
+        demoImage: Boolean(previewImage),
       } satisfies DemoMenuItem
     })
 
@@ -123,7 +150,7 @@ function buildUnifiedMenuItems(): readonly DemoMenuItem[] {
           label: variant.name === '-' ? '' : variant.name,
           price: variant.price,
         }))
-        const previewImage = getMenuPreviewImage(menu.slug, section.name, item.name)
+        const previewImage = getMenuPreviewImage(item.name)
         return {
           id: `${menu.slug}-${slugify(section.name)}-${slugify(item.name)}-${index}`,
           category: menu.slug,
@@ -133,11 +160,10 @@ function buildUnifiedMenuItems(): readonly DemoMenuItem[] {
           description: item.description ?? section.description ?? section.name,
           price: item.price,
           priceOptions,
-          imageSrc: previewImage.src,
-          imageAlt: previewImage.alt,
+          ...(previewImage ? { imageSrc: previewImage.src, imageAlt: previewImage.alt } : {}),
           sourceUrl: `https://www.lagnaa.com/menu-1?location=Upper+Dickson+Road&menu=${menu.slug}`,
           demo: true,
-          demoImage: true,
+          demoImage: Boolean(previewImage),
         } satisfies DemoMenuItem
       })
     })

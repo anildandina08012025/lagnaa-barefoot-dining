@@ -1,6 +1,8 @@
 import { useState, type FormEvent } from 'react'
-import cookingMoment from '../../assets/lagnaa-showcase/lagnaa-cooking-moment.webp'
 import malaiTikkaImage from '../../assets/gallery/lagnaa-malai-tikka.jpg'
+import chefHeroImage from '../../assets/cooking/chef-kaesavan.webp'
+import chefPortraitImage from '../../assets/cooking/chef-kaesavan-portrait.webp'
+import chefCookingImage from '../../assets/cooking/chef-kaesavan-cooking.webp'
 import shortStackImage from '../../assets/cooking/cooking-class-short-stack.webp'
 import ezIndianFoodImage from '../../assets/cooking/cooking-class-ez-indian-food.webp'
 import masterclassImage from '../../assets/cooking/cooking-class-masterclass.webp'
@@ -74,18 +76,18 @@ const cookingSocialCards = [
   {
     id: 'cooking-instagram-class',
     eyebrow: 'Instagram',
-    title: 'Cooking class moments',
-    description: 'Watch official Lagnaa updates for cooking-class moments and kitchen stories.',
-    href: 'https://www.instagram.com/lagnaabarefootdining/',
-    image: cookingMoment,
+    title: 'Cooking with Chef moment I',
+    description: 'Watch this Cooking with Chef video from Lagnaa on Instagram.',
+    href: 'https://www.instagram.com/p/CsJGaYPMZcg/?hl=en',
+    image: chefCookingImage,
     alt: 'Master Chef Kaesavan leading a cooking session at Lagnaa.',
   },
   {
     id: 'cooking-instagram-dishes',
     eyebrow: 'Instagram',
-    title: 'Indian food learning',
-    description: 'Open Lagnaa’s Instagram for approved posts connected to food, flavour and cooking.',
-    href: 'https://www.instagram.com/lagnaabarefootdining/',
+    title: 'Cooking with Chef moment II',
+    description: 'Watch this Cooking with Chef video from Lagnaa on Instagram.',
+    href: 'https://www.instagram.com/p/CONLzrCnyPo/?hl=en',
     image: malaiTikkaImage,
     alt: 'Malai Tikka on a plate.',
   },
@@ -95,7 +97,7 @@ const cookingSocialCards = [
     title: 'Chef-led experience',
     description: 'See official social updates from Lagnaa before registering interest.',
     href: 'https://www.instagram.com/lagnaabarefootdining/',
-    image: cookingMoment,
+    image: chefPortraitImage,
     alt: 'A cooking class moment at Lagnaa.',
   },
 ] as const
@@ -178,7 +180,7 @@ export function CookingWithChefPage() {
               <a className="text-link text-link--light" href="#cooking-interest">Register your interest <TextArrow /></a>
             </div>
             <figure className="cooking-hero__image">
-              <img src={cookingMoment} alt="Master Chef Kaesavan leading a cooking session at Lagnaa." />
+              <img src={chefHeroImage} alt="Master Chef Kaesavan leading a cooking session at Lagnaa." />
             </figure>
           </Container>
         </section>

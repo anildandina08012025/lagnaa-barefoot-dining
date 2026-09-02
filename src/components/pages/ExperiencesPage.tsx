@@ -1,7 +1,8 @@
 import { restaurantConfig } from '../../config/restaurant'
 import { eventExperiences, experiences, experiencesContent } from '../../content/experiences'
+import entranceImage from '../../assets/restaurant/lagnaa-entrance.webp'
+import barefootDiningImage from '../../assets/barefoot/lagnaa-barefoot-dining.webp'
 import { Container } from '../layout/Container'
-import { DevelopmentMedia } from '../media/DevelopmentMedia'
 import { PageMetadata } from '../seo/PageMetadata'
 import { Button } from '../ui/Button'
 import { CtaSection } from '../ui/CtaSection'
@@ -16,7 +17,7 @@ const internalDiningExperienceRoutes: Readonly<Record<string, string>> = {
 }
 
 export function ExperiencesPage() {
-  const { hero, introduction, barefootMedia, arusuvai, seo } = experiencesContent
+  const { hero, introduction, arusuvai, seo } = experiencesContent
   const barefootDining = experiences.find((experience) => experience.id === 'barefoot-dining')
   const canReserve = Boolean(restaurantConfig.links.reservation)
   const canonicalUrl = restaurantConfig.siteUrl ? `${restaurantConfig.siteUrl.replace(/\/$/, '')}/events` : undefined
@@ -36,7 +37,7 @@ export function ExperiencesPage() {
                 <a className="text-link text-link--light" href="#experience-overview">Explore experiences <TextArrow /></a>
               </div>
             </div>
-            <DevelopmentMedia media={hero.media} className="experiences-hero__media" priority />
+            <figure className="experiences-hero__media"><img className="page-content-image" src={entranceImage} alt="Entrance to Lagnaa Barefoot Dining in Little India." /></figure>
           </Container>
         </section>
 
@@ -112,7 +113,7 @@ export function ExperiencesPage() {
         {barefootDining ? (
           <section className="experiences-section experiences-barefoot" aria-labelledby="barefoot-feature-heading">
             <Container className="experiences-barefoot__grid">
-              <DevelopmentMedia media={barefootMedia} className="experiences-barefoot__media" />
+              <figure className="experiences-barefoot__media"><img className="page-content-image" src={barefootDiningImage} alt="Barefoot Dining experience at Lagnaa." loading="lazy" /></figure>
               <div className="experiences-barefoot__copy">
                 <SectionHeading eyebrow="Barefoot Dining" heading="A signature Lagnaa experience." level={2} id="barefoot-feature-heading" />
                 <div className="editorial-copy">

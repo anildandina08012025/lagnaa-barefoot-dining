@@ -1,4 +1,4 @@
-import { ChevronDown, ChevronLeft, ChevronRight, ChevronUp, Expand, X } from 'lucide-react'
+import { ChevronLeft, ChevronRight, Expand, X } from 'lucide-react'
 import { useEffect, useRef, useState, type KeyboardEvent, type MouseEvent } from 'react'
 import type { GalleryGroup, GalleryImage } from '../../content/gallery'
 
@@ -98,7 +98,7 @@ export function VerticalThumbnailGallery({ images, groups = [] }: VerticalThumbn
 
       <div className="vertical-thumbnail-gallery__rail">
         <button aria-label="Show previous photograph" className="vertical-thumbnail-gallery__control" disabled={activeIndex === 0} onClick={() => selectImage(activeIndex - 1)} type="button">
-          <ChevronUp aria-hidden="true" size={18} />
+          <ChevronLeft aria-hidden="true" size={18} />
         </button>
         <div aria-label="Choose a photograph" className="vertical-thumbnail-gallery__thumbnails" role="tablist">
           {images.map((image, index) => (
@@ -120,7 +120,7 @@ export function VerticalThumbnailGallery({ images, groups = [] }: VerticalThumbn
           ))}
         </div>
         <button aria-label="Show next photograph" className="vertical-thumbnail-gallery__control" disabled={activeIndex === images.length - 1} onClick={() => selectImage(activeIndex + 1)} type="button">
-          <ChevronDown aria-hidden="true" size={18} />
+          <ChevronRight aria-hidden="true" size={18} />
         </button>
       </div>
 

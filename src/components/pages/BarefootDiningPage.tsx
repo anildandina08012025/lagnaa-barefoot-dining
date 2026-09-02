@@ -1,7 +1,9 @@
 import { restaurantConfig } from '../../config/restaurant'
 import { barefootDiningPageContent } from '../../content/experiences'
+import barefootDiningImage from '../../assets/barefoot/lagnaa-barefoot-dining.webp'
+import barefootDiningImageTwo from '../../assets/barefoot/lagnaa-barefoot-dining-2.webp'
+import barefootDiningImageThree from '../../assets/barefoot/lagnaa-barefoot-dining-3.webp'
 import { Container } from '../layout/Container'
-import { DevelopmentMedia } from '../media/DevelopmentMedia'
 import { PageMetadata } from '../seo/PageMetadata'
 import { Button } from '../ui/Button'
 import { CtaSection } from '../ui/CtaSection'
@@ -10,6 +12,12 @@ import { SectionHeading } from '../ui/SectionHeading'
 function TextArrow() {
   return <span aria-hidden="true">↗</span>
 }
+
+const barefootInstagramPosts = [
+  { image: barefootDiningImage, href: 'https://www.instagram.com/p/Db2pIsrpadt/?hl=en', label: 'Barefoot Dining moment I' },
+  { image: barefootDiningImageTwo, href: 'https://www.instagram.com/p/CQumuwKHnB1/?hl=en', label: 'Barefoot Dining moment II' },
+  { image: barefootDiningImageThree, href: 'https://www.instagram.com/p/Dcp6toYTn_H/?hl=en', label: 'Barefoot Dining moment III' },
+] as const
 
 export function BarefootDiningPage() {
   const content = barefootDiningPageContent
@@ -96,7 +104,7 @@ export function BarefootDiningPage() {
 
         <section className="barefoot-section barefoot-setting" aria-labelledby="barefoot-setting-heading">
           <Container className="barefoot-setting__grid">
-            <DevelopmentMedia media={content.setting.media} className="barefoot-setting__media" />
+            <figure className="barefoot-setting__media"><img className="page-content-image" src={barefootDiningImage} alt="Barefoot Dining experience at Lagnaa." loading="lazy" /></figure>
             <div className="barefoot-setting__copy">
               <SectionHeading eyebrow={content.setting.eyebrow} heading={content.setting.heading} level={2} id="barefoot-setting-heading" />
               <div className="editorial-copy">
@@ -113,7 +121,7 @@ export function BarefootDiningPage() {
               <SectionHeading eyebrow={content.food.eyebrow} heading={content.food.heading} description={content.food.description} level={2} id="barefoot-food-heading" />
               <Button href="/menu" variant="outline">View Menu</Button>
             </div>
-            <DevelopmentMedia media={content.food.media} className="barefoot-food__media" />
+            <figure className="barefoot-food__media"><img className="page-content-image" src={barefootDiningImageTwo} alt="Guests enjoying the Barefoot Dining setting at Lagnaa." loading="lazy" /></figure>
           </Container>
         </section>
 
@@ -130,8 +138,13 @@ export function BarefootDiningPage() {
         <section className="barefoot-section barefoot-moments" aria-labelledby="barefoot-moments-heading">
           <Container>
             <SectionHeading eyebrow={content.moments.eyebrow} heading={content.moments.heading} align="center" level={2} id="barefoot-moments-heading" />
-            <div className="barefoot-moments__grid" aria-label="Development media directions for approved Barefoot Dining imagery">
-              {content.moments.media.map((media) => <DevelopmentMedia media={media} key={media.subject} className="barefoot-moments__media" />)}
+            <div className="barefoot-moments__grid" aria-label="Barefoot Dining moments at Lagnaa">
+              {barefootInstagramPosts.map((post) => (
+                <a className="barefoot-moments__media barefoot-moments__media--link" href={post.href} key={post.href} target="_blank" rel="noopener noreferrer" aria-label={`${post.label}. Opens Instagram in a new tab.`}>
+                  <img className="page-content-image" src={post.image} alt={`${post.label} at Lagnaa.`} loading="lazy" />
+                  <span>View on Instagram <TextArrow /></span>
+                </a>
+              ))}
             </div>
           </Container>
         </section>

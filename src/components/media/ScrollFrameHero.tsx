@@ -57,10 +57,8 @@ export function ScrollFrameHero({ eyebrow, heading, headingLineBreakAfter, descr
 
     const findNearestReadyFrame = (targetFrame: number) => {
       if (readyFrames.has(targetFrame)) return targetFrame
-
       let nearestFrame = displayedFrame
       let shortestDistance = Math.abs(targetFrame - displayedFrame)
-
       readyFrames.forEach((readyFrame) => {
         const distance = Math.abs(targetFrame - readyFrame)
         if (distance < shortestDistance) {
@@ -68,16 +66,13 @@ export function ScrollFrameHero({ eyebrow, heading, headingLineBreakAfter, descr
           shortestDistance = distance
         }
       })
-
       return nearestFrame
     }
 
     const revealBestAvailableFrame = (targetFrame: number) => {
       if (isDisposed || !imageRef.current) return
-
       const frameIndexToReveal = findNearestReadyFrame(targetFrame)
       if (displayedFrame === frameIndexToReveal) return
-
       imageRef.current.src = animationFrames[frameIndexToReveal]
       displayedFrame = frameIndexToReveal
       setFrameIndex(frameIndexToReveal)
@@ -85,11 +80,9 @@ export function ScrollFrameHero({ eyebrow, heading, headingLineBreakAfter, descr
 
     const preloadFrame = (frameIndexToPreload: number) => {
       if (frameIndexToPreload < 0 || frameIndexToPreload >= animationFrames.length || frameCache.has(frameIndexToPreload)) return
-
       const frame = new Image()
       frame.decoding = 'async'
       frameCache.set(frameIndexToPreload, frame)
-
       const markReady = () => {
         void frame.decode().catch(() => undefined).then(() => {
           if (isDisposed || frame.naturalWidth === 0) return
@@ -97,7 +90,6 @@ export function ScrollFrameHero({ eyebrow, heading, headingLineBreakAfter, descr
           revealBestAvailableFrame(requestedFrame)
         })
       }
-
       frame.addEventListener('load', markReady, { once: true })
       frame.src = animationFrames[frameIndexToPreload]
       if (frame.complete && frame.naturalWidth > 0) markReady()
@@ -113,36 +105,24 @@ export function ScrollFrameHero({ eyebrow, heading, headingLineBreakAfter, descr
       const priorityStep = usesCompactSequence ? 3 : 4
       for (let index = 0; index < animationFrames.length; index += priorityStep) priorityFrames.add(index)
       for (let index = 0; index < Math.min(animationFrames.length, usesCompactSequence ? 10 : 14); index += 1) priorityFrames.add(index)
-
-      const preloadOrder = [
-        ...priorityFrames,
-        ...animationFrames.map((_, index) => index).filter((index) => !priorityFrames.has(index)),
-      ]
-
+      const preloadOrder = [...priorityFrames, ...animationFrames.map((_, index) => index).filter((index) => !priorityFrames.has(index))]
       const loadChunk = (startIndex: number) => {
         if (isDisposed) return
-
         const chunkSize = usesCompactSequence ? 5 : 7
         preloadOrder.slice(startIndex, startIndex + chunkSize).forEach(preloadFrame)
-
-        if (startIndex + chunkSize < preloadOrder.length) {
-          window.setTimeout(() => loadChunk(startIndex + chunkSize), 80)
-        }
+        if (startIndex + chunkSize < preloadOrder.length) window.setTimeout(() => loadChunk(startIndex + chunkSize), 80)
       }
-
       loadChunk(0)
     }
 
     const renderFrame = () => {
+      animationFrame = 0
       const section = sectionRef.current
       const image = imageRef.current
-      animationFrame = 0
       if (!section || !image) return
-
       const scrollDistance = Math.max(section.offsetHeight - window.innerHeight, 1)
       const progress = clamp(-section.getBoundingClientRect().top / scrollDistance)
       const nextFrame = Math.min(animationFrames.length - 1, Math.floor(progress * (animationFrames.length - 1)))
-
       requestedFrame = nextFrame
       preloadNearbyFrames(nextFrame)
       revealBestAvailableFrame(nextFrame)
@@ -152,8 +132,8 @@ export function ScrollFrameHero({ eyebrow, heading, headingLineBreakAfter, descr
       if (!animationFrame) animationFrame = window.requestAnimationFrame(renderFrame)
     }
 
-    if (imageRef.current) imageRef.current.src = initialFrame
     setFrameIndex(0)
+    if (imageRef.current) imageRef.current.src = initialFrame
     preloadFrame(0)
     preloadFullSequence()
     renderFrame()

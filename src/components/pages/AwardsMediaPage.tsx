@@ -1,6 +1,10 @@
 import { restaurantConfig } from '../../config/restaurant'
 import { awardsMediaContent } from '../../content/awardsMedia'
 import { recognitionItems } from '../../content/recognition'
+import arukikataLogo from '../../assets/recognition/arukikata.jpg'
+import ctripLogo from '../../assets/recognition/ctrip.png'
+import shopbackLogo from '../../assets/recognition/shopback.png'
+import tripadvisorLogo from '../../assets/recognition/tripadvisor.png'
 import { Container } from '../layout/Container'
 import { PageMetadata } from '../seo/PageMetadata'
 import { Button } from '../ui/Button'
@@ -13,6 +17,17 @@ function TextArrow() {
 
 export function AwardsMediaPage() {
   const content = awardsMediaContent
+  const getRecognitionLogo = (name: string) => {
+    const recognition = recognitionItems.find((item) => item.name === name || item.name === name.replace('The ', ''))
+    if (recognition?.logoSrc) return { logoSrc: recognition.logoSrc, logoAlt: recognition.logoAlt }
+
+    return {
+      Tripadvisor: { logoSrc: tripadvisorLogo, logoAlt: 'Tripadvisor logo' },
+      ShopBack: { logoSrc: shopbackLogo, logoAlt: 'ShopBack logo' },
+      Ctrip: { logoSrc: ctripLogo, logoAlt: 'Ctrip logo' },
+      Arukikata: { logoSrc: arukikataLogo, logoAlt: 'Arukikata logo' },
+    }[name]
+  }
   const verifiedMedia = [
     ...recognitionItems.filter((item) => item.verificationStatus === 'verified' && item.type !== 'Recognition').map((item) => ({
       id: item.id,
@@ -21,8 +36,13 @@ export function AwardsMediaPage() {
       summary: item.type,
       sourceUrl: item.destinationUrl,
       sourceLabel: item.actionLabel,
+      logoSrc: item.logoSrc,
+      logoAlt: item.logoAlt,
     })),
-    ...content.media,
+    ...content.media.map((item) => {
+      const recognition = getRecognitionLogo(item.publication)
+      return { ...item, logoSrc: recognition?.logoSrc, logoAlt: recognition?.logoAlt }
+    }),
   ]
   const canonicalUrl = restaurantConfig.siteUrl ? `${restaurantConfig.siteUrl.replace(/\/$/, '')}/awards-media` : undefined
 
@@ -49,6 +69,7 @@ export function AwardsMediaPage() {
                 {content.awards.map((award) => (
                   <article className="award-record" key={award.id}>
                     <div className="award-record__meta">
+                      {getRecognitionLogo(award.organisation)?.logoSrc ? <img className="award-record__logo" src={getRecognitionLogo(award.organisation)?.logoSrc} alt={getRecognitionLogo(award.organisation)?.logoAlt ?? `${award.organisation} logo`} /> : null}
                       <span>{award.organisation}</span>
                       <strong>{award.recognitionLabel}</strong>
                     </div>
@@ -83,6 +104,7 @@ export function AwardsMediaPage() {
             <div className="awards-media-list__grid">
               {verifiedMedia.map((item) => (
                 <article className="awards-media-card" key={item.id}>
+                  {item.logoSrc ? <div className="awards-media-card__logo"><img src={item.logoSrc} alt={item.logoAlt ?? `${item.publication} logo`} loading="lazy" /></div> : null}
                   <p className="eyebrow">{item.publication}</p>
                   <h3>{item.title}</h3>
                   <p>{item.summary}</p>
