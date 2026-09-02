@@ -64,7 +64,7 @@ function slugify(value: string) {
 function getMenuPreviewImage(itemName: string) {
   const name = itemName.trim().toLowerCase()
 
-  if (name === 'butter chicken' || name === 'butter chicken with methi naan') {
+  if (name.includes('butter chicken')) {
     return { src: butterChickenMethiNaanImage, alt: 'Butter chicken with methi naan at Lagnaa.' }
   }
 
@@ -72,27 +72,27 @@ function getMenuPreviewImage(itemName: string) {
     return { src: muttonVaruvalYoghurtRiceImage, alt: 'Mutton varuval with yoghurt rice at Lagnaa.' }
   }
 
-  if (name === 'chicken biryani') {
+  if (name.includes('chicken biryani')) {
     return { src: chickenBiryaniImage, alt: 'Chicken biryani served at Lagnaa.' }
   }
 
-  if (name === 'chicken tikka') {
+  if (name.includes('chicken tikka')) {
     return { src: chickenTikkaImage, alt: 'Chicken tikka served at Lagnaa.' }
   }
 
-  if (name === 'gobi 65') {
+  if (name.includes('gobi 65')) {
     return { src: gobi65Image, alt: 'Gobi 65 served at Lagnaa.' }
   }
 
-  if (name === 'kathri pachadi') {
+  if (name.includes('kathri pachadi')) {
     return { src: kathriPachadiImage, alt: 'Kathri pachadi with basmati rice at Lagnaa.' }
   }
 
-  if (name === 'koli curry leaf') {
+  if (name.includes('koli curry leaf') || name.includes('chicken curry leaf')) {
     return { src: koliCurryLeafImage, alt: 'Koli curry leaf with basmati rice at Lagnaa.' }
   }
 
-  if (name === 'palak paneer') {
+  if (name.includes('palak paneer')) {
     return { src: palakPaneerGarlicNaanImage, alt: 'Palak paneer with garlic naan at Lagnaa.' }
   }
 
@@ -100,11 +100,11 @@ function getMenuPreviewImage(itemName: string) {
     return { src: mushroomMasalaMethiNaanImage, alt: 'Mushroom masala with methi naan at Lagnaa.' }
   }
 
-  if (name === 'brinjal curry') {
+  if (name.includes('brinjal curry')) {
     return { src: brinjalCurryImage, alt: 'Brinjal curry served at Lagnaa.' }
   }
 
-  if (name === 'fresh lemon mint cooler') {
+  if (name.includes('fresh lemon mint cooler')) {
     return { src: freshLemonMintCoolerImage, alt: 'Fresh lemon mint cooler at Lagnaa.' }
   }
 
