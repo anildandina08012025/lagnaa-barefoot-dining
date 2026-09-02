@@ -1,4 +1,4 @@
-const mobileFrameModules = import.meta.glob<string>('../assets/heroimages-mobile/frame_*.webp', {
+const mobileFrameModules = import.meta.glob<string>('../assets/heroimages-mobile-new/lagnaa-barefoot-dining-mobile-hero-*.webp', {
   eager: true,
   import: 'default',
   query: '?url',

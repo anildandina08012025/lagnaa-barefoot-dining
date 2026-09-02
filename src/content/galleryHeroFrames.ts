@@ -1,4 +1,4 @@
-const frameModules = import.meta.glob<string>('../assets/heroimages/frame_*.webp', {
+const frameModules = import.meta.glob<string>('../assets/heroimages-desktop/lagnaa-barefoot-dining-hero-*.webp', {
   eager: true,
   import: 'default',
   query: '?url',

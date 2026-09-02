@@ -4,9 +4,9 @@ import barefootDining from '../../assets/lagnaa-showcase/barefoot-dining.webp'
 import chilliLevelCustomisation from '../../assets/lagnaa-showcase/chilli-level-customisation.webp'
 
 const slides = [
-  { id: 'barefoot-dining', image: barefootDining, title: 'Barefoot Dining', description: 'A signature Lagnaa dining experience shaped by food, hospitality and an intimate atmosphere.', background: '#4c3b2b' },
-  { id: 'chilli-level-customisation', image: chilliLevelCustomisation, title: 'Customisation of Chilli Levels', description: 'Choose the heat that matches your palate, without compromising flavour.', background: '#78222d' },
-  { id: 'arusuvai', image: arusuvai, title: 'Arusuvai', description: 'The harmony of six tastes, brought together in every Lagnaa meal.', background: '#6c4a1d' },
+  { id: 'barefoot-dining', image: barefootDining, title: 'Barefoot Dining', description: 'A signature Lagnaa dining experience shaped by food, hospitality and an intimate atmosphere.', background: '#650000' },
+  { id: 'chilli-level-customisation', image: chilliLevelCustomisation, title: 'Customisation of Chilli Levels', description: 'Choose the heat that matches your palate, without compromising flavour.', background: '#7a0000' },
+  { id: 'arusuvai', image: arusuvai, title: 'Arusuvai', description: 'The harmony of six tastes, brought together in every Lagnaa meal.', background: '#8b1515' },
 ] as const
 
 export function LagnaaShowcaseCarousel() {

@@ -19,20 +19,6 @@ function usePrefersReducedMotion() {
   return prefersReducedMotion
 }
 
-function useIsMobile() {
-  const [isMobile, setIsMobile] = useState(false)
-
-  useEffect(() => {
-    const mediaQuery = window.matchMedia('(max-width: 720px)')
-    const updateViewport = () => setIsMobile(mediaQuery.matches)
-    updateViewport()
-    mediaQuery.addEventListener('change', updateViewport)
-    return () => mediaQuery.removeEventListener('change', updateViewport)
-  }, [])
-
-  return isMobile
-}
-
 export function RecognitionCoverflow({ items }: RecognitionCoverflowProps) {
   const [rotation, setRotation] = useState(0)
   const [isScrolling, setIsScrolling] = useState(false)
@@ -46,7 +32,6 @@ export function RecognitionCoverflow({ items }: RecognitionCoverflowProps) {
   const dragStartRef = useRef<{ x: number; rotation: number } | null>(null)
   const didDragRef = useRef(false)
   const prefersReducedMotion = usePrefersReducedMotion()
-  const isMobile = useIsMobile()
 
   useEffect(() => () => {
     if (manualMoveTimeoutRef.current !== undefined) window.clearTimeout(manualMoveTimeoutRef.current)
@@ -180,9 +165,7 @@ export function RecognitionCoverflow({ items }: RecognitionCoverflowProps) {
             const itemAngle = index * anglePerItem
             const relativeAngle = (itemAngle + (rotation % 360) + 360) % 360
             const normalizedAngle = Math.abs(relativeAngle > 180 ? 360 - relativeAngle : relativeAngle)
-            const opacity = isMobile
-              ? (normalizedAngle < anglePerItem / 2 ? 1 : 0)
-              : Math.max(0.28, 1 - normalizedAngle / 210)
+            const opacity = Math.max(0.28, 1 - normalizedAngle / 210)
 
             return (
               <div

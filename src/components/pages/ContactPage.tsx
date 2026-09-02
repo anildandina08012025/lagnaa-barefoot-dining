@@ -48,6 +48,7 @@ export function ContactPage() {
                 <strong>{restaurantConfig.name}</strong>
                 {restaurantConfig.address ? <span>{restaurantConfig.address}</span> : null}
               </address>
+              {restaurantConfig.mapsUrl ? <a className="text-link" href={restaurantConfig.mapsUrl} target="_blank" rel="noopener noreferrer">Get Directions on Google Maps <TextArrow /></a> : null}
               <p className="contact-visit__seo-link">
                 Plan your visit to Lagnaa as an <a href="/indian-restaurant-singapore">Indian restaurant in Singapore</a>.
               </p>
@@ -65,6 +66,16 @@ export function ContactPage() {
                   </div>
                 ) : null}
               </dl>
+              {restaurantConfig.mapsUrl ? (
+                <div className="contact-visit__map">
+                  <iframe
+                    title="Map showing Lagnaa Barefoot Dining in Little India"
+                    src="https://www.google.com/maps?q=6%20Upper%20Dickson%20Road%2C%20Singapore%20207466&output=embed"
+                    loading="lazy"
+                    referrerPolicy="no-referrer-when-downgrade"
+                  />
+                </div>
+              ) : null}
             </div>
           </Container>
         </section>
@@ -91,7 +102,6 @@ export function ContactPage() {
                 {restaurantConfig.email ? <a className="text-link" href={`mailto:${restaurantConfig.email}`}>Email Lagnaa <TextArrow /></a> : null}
               </div>
             </div>
-            <div className="contact-barefoot__ornament" aria-hidden="true"><span>Discover</span></div>
           </Container>
         </section>
 
