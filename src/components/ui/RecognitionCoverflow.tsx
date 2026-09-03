@@ -166,17 +166,19 @@ export function RecognitionCoverflow({ items }: RecognitionCoverflowProps) {
             const relativeAngle = (itemAngle + (rotation % 360) + 360) % 360
             const normalizedAngle = Math.abs(relativeAngle > 180 ? 360 - relativeAngle : relativeAngle)
             const opacity = Math.max(0.28, 1 - normalizedAngle / 210)
+            const isFrontCard = normalizedAngle < anglePerItem / 2
 
             return (
               <div
-                className="recognition-circular-gallery__item"
+                className={`recognition-circular-gallery__item${isFrontCard ? '' : ' recognition-circular-gallery__item--inactive'}`}
                 key={item.id}
+                aria-hidden={!isFrontCard}
                 style={{
                   transform: `translate(-50%, -50%) rotateY(${itemAngle}deg) translateZ(var(--recognition-gallery-radius))`,
                   opacity,
                 }}
               >
-                <RecognitionCard item={item} />
+                <RecognitionCard item={item} tabIndex={isFrontCard ? undefined : -1} />
               </div>
             )
           })}
@@ -191,7 +193,7 @@ export function RecognitionCoverflow({ items }: RecognitionCoverflowProps) {
   )
 }
 
-function RecognitionCard({ item }: { item: RecognitionItem }) {
+function RecognitionCard({ item, tabIndex }: { item: RecognitionItem; tabIndex?: number }) {
   return (
     <a
       className="recognition-coverflow__card"
@@ -200,6 +202,7 @@ function RecognitionCard({ item }: { item: RecognitionItem }) {
       target="_blank"
       rel="noopener noreferrer"
       aria-label={item.accessibleLabel}
+      tabIndex={tabIndex}
     >
       {item.logoSrc ? (
         <span className="recognition-coverflow__logo-wrap">

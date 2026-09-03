@@ -1407,13 +1407,14 @@ button:disabled { cursor: not-allowed; }
 .recognition-circular-gallery__ring { position: absolute; inset: 0; transform-style: preserve-3d; will-change: transform; }
 .recognition-circular-gallery__ring--manual { transition: transform 520ms cubic-bezier(0.22, 1, 0.36, 1); }
 .recognition-circular-gallery__item { position: absolute; top: 50%; left: 50%; width: clamp(12.5rem, 27vw, 17rem); height: clamp(14rem, 30vw, 18rem); transform-style: preserve-3d; transition: opacity 300ms linear; }
+.recognition-circular-gallery__item--inactive { pointer-events: none; }
 .recognition-circular-gallery__item .recognition-coverflow__card { min-height: 100%; backface-visibility: hidden; }
 .recognition-circular-gallery .recognition-coverflow__card { overflow: visible; padding: 0; border: 0; border-radius: 0; background: transparent !important; box-shadow: none !important; }
 .recognition-circular-gallery .recognition-coverflow__card::before, .recognition-circular-gallery .recognition-coverflow__mark { display: none; }
 .recognition-circular-gallery .recognition-coverflow__logo-wrap { width: min(90%, 16rem); height: min(72%, 10rem); }
 .recognition-circular-gallery .recognition-coverflow__logo { max-width: min(90vw, 16rem); max-height: min(72svh, 10rem); }
 .recognition-circular-gallery__controls { position: relative; z-index: 10; display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; gap: var(--space-md); max-width: 40rem; margin: 0 auto; color: var(--color-text-on-dark-muted); font-size: 0.72rem; font-weight: 700; letter-spacing: 0.08em; text-align: center; text-transform: uppercase; }
-.recognition-circular-gallery__controls button { min-height: 2.5rem; border: 1px solid rgb(255 249 239 / 32%); border-radius: 999px; background: transparent; color: var(--color-text-on-dark); cursor: pointer; font: inherit; font-size: 0.68rem; font-weight: 800; letter-spacing: 0.1em; text-transform: uppercase; transition: border-color 160ms ease, color 160ms ease, background-color 160ms ease; }
+.recognition-circular-gallery__controls button { min-width: 3rem; min-height: 3rem; border: 1px solid rgb(255 249 239 / 32%); border-radius: 999px; background: transparent; color: var(--color-text-on-dark); cursor: pointer; font: inherit; font-size: 0.68rem; font-weight: 800; letter-spacing: 0.1em; text-transform: uppercase; transition: border-color 160ms ease, color 160ms ease, background-color 160ms ease; }
 .recognition-circular-gallery__controls button:hover { border-color: var(--color-accent); background: var(--color-accent); color: var(--color-surface-dark); }
 .recognition-circular-gallery__controls button:focus-visible { outline: 3px solid var(--color-focus); outline-offset: 3px; }
 .recognition-coverflow__stage { position: relative; min-height: clamp(15rem, 24vw, 20rem); perspective: 62rem; transform-style: preserve-3d; touch-action: pan-y; user-select: none; cursor: grab; }
@@ -1468,12 +1469,13 @@ button:disabled { cursor: not-allowed; }
 .lagnaa-showcase__footer h2 { max-width: 21rem; margin: var(--space-xs) 0 0; font-family: var(--font-display); font-size: clamp(1.6rem, 2.5vw, 2.5rem); font-weight: 500; letter-spacing: -0.045em; line-height: 1; }
 .lagnaa-showcase__footer div > p:not(.lagnaa-showcase__counter) { max-width: 17rem; margin: var(--space-sm) 0 0; color: rgb(249 241 229 / 84%); font-size: 0.88rem; line-height: 1.5; }
 .lagnaa-showcase__controls { display: flex; align-items: center; gap: var(--space-sm); }
-.lagnaa-showcase__controls > button { display: grid; width: 2.75rem; height: 2.75rem; place-items: center; border: 1px solid rgb(255 249 239 / 48%); border-radius: 50%; background: rgb(41 32 30 / 18%); color: white; font-size: 1rem; transition: background-color 160ms ease, color 160ms ease, transform 160ms ease; }
+.lagnaa-showcase__controls > button { display: grid; width: 3rem; height: 3rem; place-items: center; border: 1px solid rgb(255 249 239 / 48%); border-radius: 50%; background: rgb(41 32 30 / 18%); color: white; font-size: 1rem; transition: background-color 160ms ease, color 160ms ease, transform 160ms ease; }
 .lagnaa-showcase__controls > button:hover:not(:disabled) { background: #f2c77e; color: #3b1b22; transform: translateY(-0.1rem); }
 .lagnaa-showcase__controls > button:disabled { opacity: 0.5; }
-.lagnaa-showcase__dots { display: flex; gap: 0.45rem; }
-.lagnaa-showcase__dots button { width: 0.55rem; height: 0.55rem; padding: 0; border: 1px solid #f2c77e; border-radius: 50%; background: transparent; }
-.lagnaa-showcase__dots button[aria-current='true'] { background: #f2c77e; }
+.lagnaa-showcase__dots { display: flex; gap: 0.15rem; }
+.lagnaa-showcase__dots button { position: relative; width: 3rem; height: 3rem; padding: 0; border: 0; background: transparent; }
+.lagnaa-showcase__dots button::after { position: absolute; top: 50%; left: 50%; width: 0.55rem; height: 0.55rem; border: 1px solid #f2c77e; border-radius: 50%; background: transparent; content: ''; transform: translate(-50%, -50%); }
+.lagnaa-showcase__dots button[aria-current='true']::after { background: #f2c77e; }
 
 .lagnaa-moments { padding-block: clamp(3rem, 6vw, 5.5rem); background: var(--color-surface); }
 .lagnaa-moments__header { max-width: 36rem; margin: 0 auto clamp(2.25rem, 4vw, 3.75rem); padding: clamp(1.6rem, 3.5vw, 2.6rem); border-top: 1px solid #f1d6a2; border-bottom: 1px solid #f1d6a2; background: #3b1b0b; color: var(--color-text-on-dark); text-align: center; }
@@ -1788,7 +1790,7 @@ button:disabled { cursor: not-allowed; }
   .lagnaa-showcase__footer h2 { max-width: 14rem; font-size: 1.55rem; }
   .lagnaa-showcase__footer div > p:not(.lagnaa-showcase__counter) { display: none; }
   .lagnaa-showcase__controls { align-self: flex-start; }
-  .lagnaa-showcase__controls > button { width: 2.45rem; height: 2.45rem; }
+  .lagnaa-showcase__controls > button { width: 3rem; height: 3rem; }
   .lagnaa-moments { padding-block: clamp(2.75rem, 11vw, 4rem); }
   .lagnaa-moments__header { margin-bottom: var(--space-xl); }
   .lagnaa-moments__grid { grid-template-columns: 1fr; gap: var(--space-2xl); max-width: 23rem; margin-inline: auto; }
