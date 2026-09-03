@@ -1,6 +1,4 @@
 import { useEffect, useState } from 'react'
-import { motion, useReducedMotion } from 'framer-motion'
-import { ChevronDown } from 'lucide-react'
 import { restaurantConfig } from '../../config/restaurant'
 import lagnaaLogoDark from '../../assets/brand/lagnaa-logo-dark.jpg'
 import { Button, IconButton } from '../ui/Button'
@@ -19,45 +17,19 @@ function isCurrentPath(href: string) {
   return window.location.pathname === href
 }
 
-const navigationTransition = { type: 'spring' as const, stiffness: 120, damping: 18 }
-
 function DesktopNavigationLink({ href, label }: { href: string; label: string }) {
-  const reducedMotion = useReducedMotion()
   const isCurrent = isCurrentPath(href)
 
   return (
-    <motion.a
+    <a
       aria-current={isCurrent ? 'page' : undefined}
       className="desktop-navigation__link"
       href={href}
-      initial="initial"
-      whileHover={reducedMotion ? undefined : 'hover'}
     >
-      <motion.span
-        aria-hidden="true"
-        className="desktop-navigation__link-glow"
-        animate={isCurrent ? { opacity: 1, scale: 1.15 } : { opacity: 0, scale: 0.8 }}
-        variants={{ hover: { opacity: 1, scale: 1.15 } }}
-        transition={{ opacity: { duration: 0.24 }, scale: navigationTransition }}
-      />
-      <motion.span
-        className="desktop-navigation__link-face"
-        variants={{ initial: { rotateX: 0, opacity: 1 }, hover: { rotateX: -90, opacity: 0 } }}
-        transition={navigationTransition}
-        style={{ transformOrigin: 'center bottom', transformStyle: 'preserve-3d' }}
-      >
-        {label}
-      </motion.span>
-      <motion.span
-        aria-hidden="true"
-        className="desktop-navigation__link-face desktop-navigation__link-face--back"
-        variants={{ initial: { rotateX: 90, opacity: 0 }, hover: { rotateX: 0, opacity: 1 } }}
-        transition={navigationTransition}
-        style={{ transformOrigin: 'center top', transformStyle: 'preserve-3d' }}
-      >
-        {label}
-      </motion.span>
-    </motion.a>
+      <span aria-hidden="true" className="desktop-navigation__link-glow" />
+      <span className="desktop-navigation__link-face">{label}</span>
+      <span aria-hidden="true" className="desktop-navigation__link-face desktop-navigation__link-face--back">{label}</span>
+    </a>
   )
 }
 
@@ -114,7 +86,7 @@ export function SiteHeader() {
                       aria-controls="events-submenu"
                       onClick={() => setIsEventsOpen((open) => !open)}
                     >
-                      <ChevronDown aria-hidden="true" size={15} strokeWidth={1.8} />
+                      <span aria-hidden="true">⌄</span>
                     </button>
                     {isEventsOpen ? (
                       <ul className="desktop-navigation__submenu" id="events-submenu" aria-label="Events navigation">

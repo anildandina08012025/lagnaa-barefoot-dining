@@ -1,26 +1,7 @@
+import { lazy, Suspense } from 'react'
 import { SiteFooter } from './components/layout/SiteFooter'
 import { SiteHeader } from './components/layout/SiteHeader'
 import { HomePage } from './components/pages/HomePage'
-import { ExperiencesPage } from './components/pages/ExperiencesPage'
-import { BarefootDiningPage } from './components/pages/BarefootDiningPage'
-import { ChilliChallengePage } from './components/pages/ChilliChallengePage'
-import { ChilliChallengeSingaporePage } from './components/pages/ChilliChallengeSingaporePage'
-import { CookingWithChefPage } from './components/pages/CookingWithChefPage'
-import { MonthlyDegustationPage } from './components/pages/MonthlyDegustationPage'
-import { RediscoverLittleIndiaPage } from './components/pages/RediscoverLittleIndiaPage'
-import { ContactPage } from './components/pages/ContactPage'
-import { AwardsMediaPage } from './components/pages/AwardsMediaPage'
-import { BarefootDiningSingaporePage } from './components/pages/BarefootDiningSingaporePage'
-import { GalleryPage } from './components/pages/GalleryPage'
-import { IndianRestaurantLittleIndiaPage } from './components/pages/IndianRestaurantLittleIndiaPage'
-import { IndianRestaurantSingaporePage } from './components/pages/IndianRestaurantSingaporePage'
-import { IndianCookingClassSingaporePage } from './components/pages/IndianCookingClassSingaporePage'
-import { BestIndianFoodSingaporePage } from './components/pages/BestIndianFoodSingaporePage'
-import { MichelinIndianRestaurantSingaporePage } from './components/pages/MichelinIndianRestaurantSingaporePage'
-import { MenuPage } from './components/pages/MenuPage'
-import { OurStoryPage } from './components/pages/OurStoryPage'
-import { ReservationsPage } from './components/pages/ReservationsPage'
-import { BlogPage } from './components/pages/BlogPage'
 import { AnnouncementBar } from './components/ui/AnnouncementBar'
 import { SpotlightCursor } from './components/ui/SpotlightCursor'
 import { MobileMotionEffects } from './components/ui/MobileMotionEffects'
@@ -28,6 +9,27 @@ import { RestaurantSchema } from './components/seo/RestaurantSchema'
 import { AnalyticsTracker } from './components/analytics/AnalyticsTracker'
 import { MobileReserveCta } from './components/ui/MobileReserveCta'
 import { FloatingWhatsApp } from './components/ui/FloatingWhatsApp'
+
+const ExperiencesPage = lazy(() => import('./components/pages/ExperiencesPage').then((module) => ({ default: module.ExperiencesPage })))
+const BarefootDiningPage = lazy(() => import('./components/pages/BarefootDiningPage').then((module) => ({ default: module.BarefootDiningPage })))
+const ChilliChallengePage = lazy(() => import('./components/pages/ChilliChallengePage').then((module) => ({ default: module.ChilliChallengePage })))
+const ChilliChallengeSingaporePage = lazy(() => import('./components/pages/ChilliChallengeSingaporePage').then((module) => ({ default: module.ChilliChallengeSingaporePage })))
+const CookingWithChefPage = lazy(() => import('./components/pages/CookingWithChefPage').then((module) => ({ default: module.CookingWithChefPage })))
+const MonthlyDegustationPage = lazy(() => import('./components/pages/MonthlyDegustationPage').then((module) => ({ default: module.MonthlyDegustationPage })))
+const RediscoverLittleIndiaPage = lazy(() => import('./components/pages/RediscoverLittleIndiaPage').then((module) => ({ default: module.RediscoverLittleIndiaPage })))
+const ContactPage = lazy(() => import('./components/pages/ContactPage').then((module) => ({ default: module.ContactPage })))
+const AwardsMediaPage = lazy(() => import('./components/pages/AwardsMediaPage').then((module) => ({ default: module.AwardsMediaPage })))
+const BarefootDiningSingaporePage = lazy(() => import('./components/pages/BarefootDiningSingaporePage').then((module) => ({ default: module.BarefootDiningSingaporePage })))
+const GalleryPage = lazy(() => import('./components/pages/GalleryPage').then((module) => ({ default: module.GalleryPage })))
+const IndianRestaurantLittleIndiaPage = lazy(() => import('./components/pages/IndianRestaurantLittleIndiaPage').then((module) => ({ default: module.IndianRestaurantLittleIndiaPage })))
+const IndianRestaurantSingaporePage = lazy(() => import('./components/pages/IndianRestaurantSingaporePage').then((module) => ({ default: module.IndianRestaurantSingaporePage })))
+const IndianCookingClassSingaporePage = lazy(() => import('./components/pages/IndianCookingClassSingaporePage').then((module) => ({ default: module.IndianCookingClassSingaporePage })))
+const BestIndianFoodSingaporePage = lazy(() => import('./components/pages/BestIndianFoodSingaporePage').then((module) => ({ default: module.BestIndianFoodSingaporePage })))
+const MichelinIndianRestaurantSingaporePage = lazy(() => import('./components/pages/MichelinIndianRestaurantSingaporePage').then((module) => ({ default: module.MichelinIndianRestaurantSingaporePage })))
+const MenuPage = lazy(() => import('./components/pages/MenuPage').then((module) => ({ default: module.MenuPage })))
+const OurStoryPage = lazy(() => import('./components/pages/OurStoryPage').then((module) => ({ default: module.OurStoryPage })))
+const ReservationsPage = lazy(() => import('./components/pages/ReservationsPage').then((module) => ({ default: module.ReservationsPage })))
+const BlogPage = lazy(() => import('./components/pages/BlogPage').then((module) => ({ default: module.BlogPage })))
 
 function App() {
   const path = window.location.pathname
@@ -78,7 +80,9 @@ function App() {
       <a className="skip-link" href="#main-content">Skip to main content</a>
       <AnnouncementBar />
       <SiteHeader />
-      {page}
+      <Suspense fallback={<main id="main-content" className="route-loading" aria-busy="true" />}>
+        {page}
+      </Suspense>
       <RestaurantSchema pathname={path} />
       <AnalyticsTracker pathname={path} />
       <SiteFooter />

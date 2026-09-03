@@ -203,7 +203,7 @@ function RecognitionCard({ item }: { item: RecognitionItem }) {
     >
       {item.logoSrc ? (
         <span className="recognition-coverflow__logo-wrap">
-          <img className="recognition-coverflow__logo" src={item.logoSrc} alt={item.logoAlt ?? item.name} />
+          <img className="recognition-coverflow__logo" src={item.logoSrc} alt={item.logoAlt ?? item.name} width="320" height="160" loading="lazy" decoding="async" />
         </span>
       ) : <span className="recognition-coverflow__wordmark">{item.name}</span>}
       <span className="recognition-coverflow__mark" aria-hidden="true">↗</span>

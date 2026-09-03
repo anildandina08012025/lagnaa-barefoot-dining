@@ -56,7 +56,7 @@ export function LagnaaShowcaseCarousel() {
       <div className="lagnaa-showcase__stage">
         {slides.map((slide, index) => {
           const role = index === activeIndex ? 'center' : index === (activeIndex + 2) % slides.length ? 'left' : 'right'
-          return <a className={`lagnaa-showcase__art lagnaa-showcase__art--${role}`} href={slide.href} key={slide.id} aria-label={`Explore ${slide.title}`}><img src={slide.image} alt="" width="1600" height="1600" /></a>
+          return <a className={`lagnaa-showcase__art lagnaa-showcase__art--${role}`} href={slide.href} key={slide.id} aria-label={`Explore ${slide.title}`}><img src={slide.image} alt="" width="1600" height="1600" loading="lazy" decoding="async" /></a>
         })}
       </div>
       <div className="lagnaa-showcase__footer">

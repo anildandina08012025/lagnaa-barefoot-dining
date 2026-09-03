@@ -164,8 +164,8 @@ export function ScrollFrameHero({ eyebrow, heading, headingLineBreakAfter, descr
           ref={imageRef}
           src={initialFrame}
           alt="A plated selection of Indian dishes at Lagnaa."
-          width="1280"
-          height="720"
+          width={usesCompactSequence ? 720 : 1280}
+          height={usesCompactSequence ? 1280 : 720}
           decoding="async"
           loading="eager"
           fetchPriority="high"

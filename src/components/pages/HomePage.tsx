@@ -59,7 +59,7 @@ export function HomePage() {
           <div className="home-arusuvai__intro">
             <SectionHeading eyebrow={arusuvai.eyebrow} heading={arusuvai.heading} description={arusuvai.description} align="center" level={2} id="arusuvai-heading" />
           </div>
-          <img className="home-arusuvai__image" src={arusuvaiImage} alt="Arusuvai, the harmony of six tastes, illustrated with Lagnaa dishes." />
+          <img className="home-arusuvai__image" src={arusuvaiImage} alt="Arusuvai, the harmony of six tastes, illustrated with Lagnaa dishes." width="1600" height="1067" loading="lazy" decoding="async" />
           <div className="home-arusuvai__action"><a className="text-link" href="/menu">Explore the menu <TextArrow /></a></div>
         </Container>
       </section>
