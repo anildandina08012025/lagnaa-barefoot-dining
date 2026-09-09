@@ -36,6 +36,23 @@ Keep these headers in row 1, in this order:
 12. Message
 13. Owner notes
 
+Format the **Phone** column (F) as **Plain text**. The Apps Script also stores
+phone numbers as text so country-code numbers such as `+65 8765 9872` do not
+be interpreted as spreadsheet formulas.
+
+For an existing Apps Script, make sure it contains this helper and uses it for
+the Phone value in the reservation row:
+
+```js
+function sheetText_(value) {
+  const text = clean_(value)
+  return text ? `'${text}` : ''
+}
+
+// In the row array:
+sheetText_(payload.phone),
+```
+
 For the Status column, set the dropdown range to `C2:C` and use:
 
 - `Approved`
@@ -54,7 +71,7 @@ After changing the settings:
 
 Keep access set so the website can submit reservations. The existing `/exec` Web App URL remains the same when updating an existing deployment.
 
-## Update Vercel
+## Update Vercel only when needed
 
 In Vercel → Project → Settings → Environment Variables, replace:
 
@@ -63,7 +80,16 @@ RESERVATION_APPS_SCRIPT_URL=https://script.google.com/macros/s/DEPLOYMENT_ID/exe
 RESERVATION_APPS_SCRIPT_SECRET=the-same-new-private-secret
 ```
 
-Use the deployed Apps Script's `/exec` URL and the exact same secret used in the Apps Script. Redeploy the website after saving the Vercel variables.
+Use the deployed Apps Script's `/exec` URL and the exact same secret used in the Apps Script.
+
+- Deploying a **new version of the existing Web App** keeps its Deployment ID
+  and `/exec` URL. No Vercel update is needed when they remain unchanged.
+- Update `RESERVATION_APPS_SCRIPT_URL` only when the client creates a **new**
+  Apps Script Web App deployment with a different `/exec` URL.
+- Update `RESERVATION_APPS_SCRIPT_SECRET` only when `RESERVATION_SECRET` in
+  Apps Script changes. The two values must match exactly.
+
+Redeploy the website only after changing one of these Vercel variables.
 
 ## Check once after switching
 

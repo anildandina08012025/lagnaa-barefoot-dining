@@ -70,6 +70,13 @@ function clean_(value) {
   return typeof value === 'string' ? value.trim() : ''
 }
 
+function sheetText_(value) {
+  const text = clean_(value)
+  // Google Sheets can interpret a +65 number as a formula. The leading
+  // apostrophe stores it as text and is not displayed to the owner.
+  return text ? `'${text}` : ''
+}
+
 function doPost(event) {
   try {
     const payload = JSON.parse(event.postData.contents || '{}')
@@ -82,7 +89,7 @@ function doPost(event) {
       'Approved',
       clean_(payload.source) || 'website',
       clean_(payload.name),
-      clean_(payload.phone),
+      sheetText_(payload.phone),
       clean_(payload.email),
       clean_(payload.date),
       clean_(payload.time),

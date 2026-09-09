@@ -177,7 +177,7 @@ export function CookingWithChefPage() {
               <p className="eyebrow cooking-hero__eyebrow">Cooking Experience</p>
               <h1 className="cooking-hero__heading" id="cooking-heading">Cooking with Master Chef Kaesavan</h1>
               <p className="cooking-hero__description">Interested in learning how to prepare Indian cuisine with Chef Kaesavan? Tell us what you would like to learn and register your interest.</p>
-              <a className="text-link text-link--light" href="#cooking-interest">Register your interest <TextArrow /></a>
+              <a className="text-link text-link--light" href="#cooking-interest">Send a request on WhatsApp <TextArrow /></a>
             </div>
             <figure className="cooking-hero__image">
               <img src={chefHeroImage} alt="Master Chef Kaesavan leading a cooking session at Lagnaa." />
@@ -250,7 +250,7 @@ export function CookingWithChefPage() {
         <section className="cooking-section cooking-interest" id="cooking-interest" aria-labelledby="cooking-interest-heading">
           <Container className="cooking-interest__grid">
             <div className="cooking-interest__introduction">
-              <SectionHeading eyebrow="Register your interest" heading="Tell Lagnaa what you would love to learn." level={2} id="cooking-interest-heading" />
+              <SectionHeading eyebrow="Cooking class request" heading="Tell Lagnaa what you would love to learn." level={2} id="cooking-interest-heading" />
               <p>The team will receive your enquiry through WhatsApp after you choose to submit the form.</p>
               <p>For more context, view the <a href="/indian-cooking-class-singapore">Indian cooking class in Singapore</a> guide.</p>
             </div>
@@ -281,7 +281,7 @@ export function CookingWithChefPage() {
                 {errors.dish ? <p className="cooking-form__error" id="cooking-dish-error" role="alert">{errors.dish}</p> : null}
               </div>
               <div className="cooking-form__actions">
-                <Button type="submit" variant="primary">Register Your Interest <TextArrow /></Button>
+                <Button type="submit" variant="primary">Send Request on WhatsApp <TextArrow /></Button>
                 <p>Submitting opens a WhatsApp enquiry to Lagnaa; it does not confirm a class place.</p>
               </div>
               {preparedUrl ? <p className="cooking-form__prepared" role="status">Your WhatsApp enquiry is ready. If it did not open, <a href={preparedUrl} target="_blank" rel="noopener noreferrer">open it here</a>.</p> : null}
