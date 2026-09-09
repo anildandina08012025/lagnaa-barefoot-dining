@@ -1,4 +1,12 @@
 {
+  "functions": {
+    "api/reservations.js": {
+      "maxDuration": 10
+    },
+    "api/chat.js": {
+      "maxDuration": 10
+    }
+  },
   "rewrites": [
     {
       "source": "/our-story",

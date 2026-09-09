@@ -158,7 +158,7 @@ export function ReservationRequestForm({ source = 'website', compact = false, on
         <button className="button button--primary" disabled={isSubmitting} type="submit">
           {isSubmitting ? 'Saving Reservation…' : 'Send Reservation'}
         </button>
-        <span>Reservation status: Approved or Cancelled.</span>
+        <span>Your reservation is confirmed instantly.</span>
       </div>
     </form>
   )
