@@ -10,6 +10,9 @@ type ScrollFrameHeroProps = {
   frames: readonly string[]
   mobileFrames?: readonly string[]
   children?: ReactNode
+  visualOnly?: boolean
+  footerLocationOnly?: boolean
+  hideFooter?: boolean
 }
 
 function clamp(value: number, minimum = 0, maximum = 1) {
@@ -20,7 +23,7 @@ function usesMobileFrameSequence() {
   return typeof window !== 'undefined' && window.innerWidth <= 768
 }
 
-export function ScrollFrameHero({ eyebrow, heading, headingLineBreakAfter, description, headingId, frames, mobileFrames, children }: ScrollFrameHeroProps) {
+export function ScrollFrameHero({ eyebrow, heading, headingLineBreakAfter, description, headingId, frames, mobileFrames, children, visualOnly = false, footerLocationOnly = false, hideFooter = false }: ScrollFrameHeroProps) {
   const sectionRef = useRef<HTMLElement>(null)
   const imageRef = useRef<HTMLImageElement>(null)
   const [usesCompactSequence, setUsesCompactSequence] = useState(usesMobileFrameSequence)
@@ -157,12 +160,12 @@ export function ScrollFrameHero({ eyebrow, heading, headingLineBreakAfter, descr
     : -1
 
   return (
-    <section className="scroll-frame-hero" ref={sectionRef} aria-labelledby={headingId} data-frame-sequence={usesCompactSequence ? 'mobile' : 'desktop'}>
+    <section className={`scroll-frame-hero${visualOnly ? ' scroll-frame-hero--visual-only' : ''}`} ref={sectionRef} aria-label={visualOnly ? 'Lagnaa food presentation' : undefined} aria-labelledby={visualOnly ? undefined : headingId} data-frame-sequence={usesCompactSequence ? 'mobile' : 'desktop'}>
       <div className="scroll-frame-hero__stage">
         <img
           className="scroll-frame-hero__frame"
           ref={imageRef}
-          src={initialFrame}
+          src={animationFrames[visibleFrameIndex] ?? initialFrame}
           alt="A plated selection of Indian dishes at Lagnaa."
           width={usesCompactSequence ? 720 : 1280}
           height={usesCompactSequence ? 1280 : 720}
@@ -170,24 +173,30 @@ export function ScrollFrameHero({ eyebrow, heading, headingLineBreakAfter, descr
           loading="eager"
           fetchPriority="high"
         />
-        <div className="scroll-frame-hero__overlay" aria-hidden="true" />
-        <div className="scroll-frame-hero__content">
-          <div className="scroll-frame-hero__copy">
-            {eyebrow ? <p className="eyebrow scroll-frame-hero__eyebrow">{eyebrow}</p> : null}
-            <h1 className="scroll-frame-hero__heading" id={headingId}>
-              {headingBreakIndex >= 0 ? <>{heading.slice(0, headingBreakIndex)}<br />{heading.slice(headingBreakIndex).trimStart()}</> : heading}
-            </h1>
-            {description ? <p className="scroll-frame-hero__description">{description}</p> : null}
-            {children}
-          </div>
-          <div className="scroll-frame-hero__footer" aria-hidden="true">
-            <span className="scroll-frame-hero__location">{restaurantConfig.location}</span>
-            <span className="scroll-frame-hero__progress">
-              <i style={{ transform: `scaleX(${progress})` }} />
-            </span>
-            <span>Scroll to explore</span>
-          </div>
-        </div>
+        {!visualOnly ? (
+          <>
+            <div className="scroll-frame-hero__overlay" aria-hidden="true" />
+            <div className="scroll-frame-hero__content">
+              <div className="scroll-frame-hero__copy">
+                {eyebrow ? <p className="eyebrow scroll-frame-hero__eyebrow">{eyebrow}</p> : null}
+                <h1 className="scroll-frame-hero__heading" id={headingId}>
+                  {headingBreakIndex >= 0 ? <>{heading.slice(0, headingBreakIndex)}<br />{heading.slice(headingBreakIndex).trimStart()}</> : heading}
+                </h1>
+                {description ? <p className="scroll-frame-hero__description">{description}</p> : null}
+                {children}
+              </div>
+              {!hideFooter ? <div className={`scroll-frame-hero__footer${footerLocationOnly ? ' scroll-frame-hero__footer--location-only' : ''}`} aria-hidden="true">
+                <span className="scroll-frame-hero__location">{restaurantConfig.location}</span>
+                {!footerLocationOnly ? <>
+                  <span className="scroll-frame-hero__progress">
+                    <i style={{ transform: `scaleX(${progress})` }} />
+                  </span>
+                  <span>Scroll to explore</span>
+                </> : null}
+              </div> : null}
+            </div>
+          </>
+        ) : null}
       </div>
     </section>
   )

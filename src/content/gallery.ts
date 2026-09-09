@@ -8,8 +8,13 @@ import nilagiriMuttonKoormaImage from '../assets/gallery/lagnaa-nilagiri-mutton-
 import entranceImage from '../assets/restaurant/lagnaa-entrance.webp'
 import interiorImage from '../assets/restaurant/lagnaa-interior.webp'
 import interiorDiningImage from '../assets/restaurant/lagnaa-interior-dining.webp'
-import barefootDiningImage from '../assets/barefoot/lagnaa-barefoot-dining.webp'
+import barefootEntranceImage from '../assets/barefoot/lagnaa-barefoot-dining-entrance.webp'
+import barefootInteriorImage from '../assets/barefoot/lagnaa-barefoot-dining-interior.webp'
+import barefootGuestsImage from '../assets/barefoot/lagnaa-barefoot-dining-guests.png'
+import barefootPeopleImage from '../assets/barefoot/lagnaa-barefoot-dining-people.webp'
 import chilliChallengeImage from '../assets/chilli/curry-shots.webp'
+import chilliGalleryImage from '../assets/chilli/lagnaa-chilli-challenge-gallery.webp'
+import chilliLevelsImage from '../assets/chilli/lagnaa-chilli-challenge-levels.png'
 import juneMonthlySpecialOne from '../assets/monthly-specials/lagnaa-june-monthly-special-1.webp'
 import juneMonthlySpecialTwo from '../assets/monthly-specials/lagnaa-june-monthly-special-2.webp'
 import juneMonthlySpecialThree from '../assets/monthly-specials/lagnaa-june-monthly-special-3.webp'
@@ -74,7 +79,7 @@ export const galleryContent: GalleryPageContent = {
     description: 'Official Lagnaa photographs gathered into a quieter look at the food, welcome and setting behind the restaurant experience.',
   },
   collection: {
-    eyebrow: 'From Lagnaa',
+    eyebrow: 'Gallery selection',
     heading: 'Food, place and character.',
     description: 'Browse approved photographs of Lagnaa’s food, welcome and dining spaces.',
   },
@@ -88,11 +93,6 @@ export const galleryContent: GalleryPageContent = {
       heading: 'Inside Lagnaa',
       description: 'A look at the restaurant’s interiors and dining atmosphere.',
       imageIds: ['lagnaa-interior', 'lagnaa-interior-dining'],
-    },
-    {
-      heading: 'Signature experiences',
-      description: 'Barefoot Dining and the Chilli Challenge at Lagnaa.',
-      imageIds: ['lagnaa-barefoot-dining', 'lagnaa-chilli-challenge'],
     },
     {
       heading: 'From the Kitchen',
@@ -119,13 +119,53 @@ export const galleryContent: GalleryPageContent = {
         'lagnaa-october-monthly-special-2',
       ],
     },
+    {
+      heading: 'Barefoot Dining',
+      description: 'From the shoe-free welcome to low tables, cushions and shared meals upstairs.',
+      imageIds: ['lagnaa-barefoot-entrance', 'lagnaa-barefoot-interior', 'lagnaa-barefoot-guests', 'lagnaa-barefoot-people'],
+    },
+    {
+      heading: 'Chilli Challenge',
+      description: 'Curry Shots, the Chilli Ladder and the heat that guests choose for themselves.',
+      imageIds: ['lagnaa-chilli-challenge', 'lagnaa-chilli-ladder', 'lagnaa-chilli-levels'],
+    },
   ],
   images: [
     {
-      id: 'lagnaa-barefoot-dining',
-      filename: 'lagnaa-barefoot-dining.webp',
-      image: barefootDiningImage,
-      alt: 'Barefoot Dining experience at Lagnaa.',
+      id: 'lagnaa-barefoot-entrance',
+      filename: 'lagnaa-barefoot-dining-entrance.webp',
+      image: barefootEntranceImage,
+      alt: 'The staircase entrance to Lagnaa’s Barefoot Dining room.',
+      width: 0,
+      height: 0,
+      sourcePageUrl: 'Client-supplied photograph',
+      directSourceUrl: '',
+    },
+    {
+      id: 'lagnaa-barefoot-interior',
+      filename: 'lagnaa-barefoot-dining-interior.webp',
+      image: barefootInteriorImage,
+      alt: 'Low tables and floor cushions in Lagnaa’s Barefoot Dining room.',
+      width: 0,
+      height: 0,
+      sourcePageUrl: 'Client-supplied photograph',
+      directSourceUrl: '',
+    },
+    {
+      id: 'lagnaa-barefoot-guests',
+      filename: 'lagnaa-barefoot-dining-guests.png',
+      image: barefootGuestsImage,
+      alt: 'Guests sharing a meal in Lagnaa’s Barefoot Dining room.',
+      width: 0,
+      height: 0,
+      sourcePageUrl: 'Client-supplied photograph',
+      directSourceUrl: '',
+    },
+    {
+      id: 'lagnaa-barefoot-people',
+      filename: 'lagnaa-barefoot-dining-people.webp',
+      image: barefootPeopleImage,
+      alt: 'Guests enjoying Lagnaa’s Barefoot Dining experience.',
       width: 0,
       height: 0,
       sourcePageUrl: 'Client-supplied photograph',
@@ -136,6 +176,26 @@ export const galleryContent: GalleryPageContent = {
       filename: 'curry-shots.webp',
       image: chilliChallengeImage,
       alt: 'Curry Shots for Lagnaa’s Chilli Challenge.',
+      width: 0,
+      height: 0,
+      sourcePageUrl: 'Client-supplied photograph',
+      directSourceUrl: '',
+    },
+    {
+      id: 'lagnaa-chilli-ladder',
+      filename: 'lagnaa-chilli-challenge-gallery.webp',
+      image: chilliGalleryImage,
+      alt: 'Lagnaa Chilli Challenge experience.',
+      width: 0,
+      height: 0,
+      sourcePageUrl: 'Client-supplied photograph',
+      directSourceUrl: '',
+    },
+    {
+      id: 'lagnaa-chilli-levels',
+      filename: 'lagnaa-chilli-challenge-levels.png',
+      image: chilliLevelsImage,
+      alt: 'Lagnaa Chilli Challenge spice-level guide.',
       width: 0,
       height: 0,
       sourcePageUrl: 'Client-supplied photograph',

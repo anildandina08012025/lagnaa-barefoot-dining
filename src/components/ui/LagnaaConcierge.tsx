@@ -30,7 +30,7 @@ const defaultLead: Lead = {
   date: '',
   time: '',
   guests: '',
-  experience: 'Table reservation',
+  experience: 'Regular Dining',
   message: '',
 }
 
@@ -38,7 +38,7 @@ const initialMessages: Message[] = [
   {
     id: 1,
     speaker: 'assistant',
-    text: 'Namaste. I can help you explore Lagnaa’s dishes and published prices, suggest menu ideas, share experience information, or prepare a pending reservation request.',
+    text: 'Namaste. I can help you explore Lagnaa’s dishes and published prices, suggest menu ideas, share experience information, or confirm a reservation.',
   },
 ]
 
@@ -52,11 +52,8 @@ const quickPrompts = [
 const reservationIntent = /\b(reserv(?:e|ation)?|book(?:ing)?(?:\s+(?:a\s+)?)?table|make(?:\s+(?:a\s+)?)?booking|table\s+for|dinner\s+for|lunch\s+for)\b/i
 
 const visitTypes = [
-  'Table reservation',
   'Barefoot Dining',
-  'Ultimate Chilli Challenge',
-  'Monthly Dégustation',
-  'Cooking with Chef Kaesavan',
+  'Regular Dining',
 ] as const
 
 const requiredLeadFields: readonly LeadField[] = ['name', 'phone', 'email', 'date', 'time', 'guests']
@@ -247,7 +244,7 @@ export function LagnaaConcierge() {
         throw new Error(payload.error || 'Unable to send the reservation request.')
       }
       setLeadSaved(true)
-      appendAssistant(payload.message || `Thank you, ${reservationLead.name.trim()}. Your reservation request has been sent to Lagnaa. The restaurant will confirm directly.`)
+      appendAssistant(payload.message || `Thank you, ${reservationLead.name.trim()}. Your reservation is confirmed and has been sent to Lagnaa.`)
     } catch (error) {
       setLeadError(error instanceof Error ? error.message : 'Unable to send the reservation request.')
       appendAssistant(error instanceof Error ? error.message : 'Unable to send the reservation request.')
@@ -275,11 +272,11 @@ export function LagnaaConcierge() {
     setShowLeadForm(true)
 
     if (missing.length) {
-      appendAssistant(`I can prepare a pending reservation request for Lagnaa. ${missingLeadPrompt(missing)} You can type the details here or use the form below. Lagnaa will confirm directly.`)
+      appendAssistant(`I can confirm a reservation for Lagnaa. ${missingLeadPrompt(missing)} You can type the details here or use the form below.`)
       return
     }
 
-    appendAssistant('I have the required details. Sending this as a pending reservation request to Lagnaa now.')
+    appendAssistant('I have the required details. Confirming your reservation with Lagnaa now.')
     await sendReservationRequest(updatedLead)
   }
 
@@ -353,7 +350,7 @@ export function LagnaaConcierge() {
             <button aria-label="Close chat" className="lagnaa-concierge__close" onClick={() => setIsOpen(false)} type="button"><X size={18} /></button>
           </header>
 
-          <p className="lagnaa-concierge__notice" id="concierge-demo-note">AI uses the current website information. Reservation requests require Lagnaa confirmation.</p>
+          <p className="lagnaa-concierge__notice" id="concierge-demo-note">AI uses the current website information. Reservations are recorded with Lagnaa.</p>
 
           <div aria-live="polite" className="lagnaa-concierge__messages">
             {messages.map((message) => <p className={`lagnaa-concierge__message lagnaa-concierge__message--${message.speaker}`} key={message.id}>{message.text}</p>)}
@@ -361,8 +358,8 @@ export function LagnaaConcierge() {
 
             {showLeadForm && !leadSaved ? (
               <form className="lagnaa-concierge__lead" onSubmit={handleLeadSubmit}>
-                <h3>Prepare a reservation enquiry</h3>
-                <p>Send a pending request to Lagnaa. No table is confirmed until the restaurant contacts you directly.</p>
+                <h3>Confirm a reservation</h3>
+                <p>Submit your reservation details to record your confirmed booking with Lagnaa.</p>
                 <label htmlFor="concierge-name">Name<input id="concierge-name" onChange={(event) => setLead((current) => ({ ...current, name: event.target.value }))} value={lead.name} /></label>
                 <label htmlFor="concierge-phone">Phone number<input id="concierge-phone" inputMode="tel" onChange={(event) => setLead((current) => ({ ...current, phone: event.target.value }))} placeholder="+65 9784 4771" value={lead.phone} /></label>
                 <label htmlFor="concierge-email">Email<input id="concierge-email" inputMode="email" onChange={(event) => setLead((current) => ({ ...current, email: event.target.value }))} type="email" value={lead.email} /></label>
@@ -372,14 +369,14 @@ export function LagnaaConcierge() {
                 <label htmlFor="concierge-visit-type">Visit type<select id="concierge-visit-type" onChange={(event) => setLead((current) => ({ ...current, experience: event.target.value }))} value={lead.experience}>{visitTypes.map((type) => <option key={type} value={type}>{type}</option>)}</select></label>
                 <label htmlFor="concierge-lead-message">Message <em>Optional</em><input id="concierge-lead-message" onChange={(event) => setLead((current) => ({ ...current, message: event.target.value }))} value={lead.message} /></label>
                 {leadError ? <p className="lagnaa-concierge__error" role="alert">{leadError}</p> : null}
-                <button disabled={isSendingLead} type="submit">{isSendingLead ? 'Sending request…' : 'Send reservation request'} <ChevronDown size={14} aria-hidden="true" /></button>
+                <button disabled={isSendingLead} type="submit">{isSendingLead ? 'Confirming reservation…' : 'Confirm reservation'} <ChevronDown size={14} aria-hidden="true" /></button>
               </form>
             ) : null}
 
             {leadSaved ? (
               <div className="lagnaa-concierge__handoff">
                 <strong>Continue with your request</strong>
-                <span>Continue with Lagnaa’s reservation guidance. The team will confirm reservation details directly.</span>
+                <span>Your reservation has been recorded with Lagnaa.</span>
                 <a href="/reservations">Open reservation options <span aria-hidden="true">↗</span></a>
               </div>
             ) : null}

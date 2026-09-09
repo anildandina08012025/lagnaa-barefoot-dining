@@ -5,9 +5,11 @@ import type { GalleryGroup, GalleryImage } from '../../content/gallery'
 type VerticalThumbnailGalleryProps = {
   images: readonly GalleryImage[]
   groups?: readonly GalleryGroup[]
+  idPrefix?: string
+  ariaLabel?: string
 }
 
-export function VerticalThumbnailGallery({ images, groups = [] }: VerticalThumbnailGalleryProps) {
+export function VerticalThumbnailGallery({ images, groups = [], idPrefix = 'gallery', ariaLabel = 'Lagnaa photograph gallery' }: VerticalThumbnailGalleryProps) {
   const [activeIndex, setActiveIndex] = useState(0)
   const [expandedIndex, setExpandedIndex] = useState<number | null>(null)
   const closeButtonRef = useRef<HTMLButtonElement>(null)
@@ -66,14 +68,14 @@ export function VerticalThumbnailGallery({ images, groups = [] }: VerticalThumbn
     event.preventDefault()
     const nextIndex = event.key === 'Home' ? 0 : event.key === 'End' ? images.length - 1 : event.key === 'ArrowDown' || event.key === 'ArrowRight' ? (index + 1) % images.length : (index - 1 + images.length) % images.length
     selectImage(nextIndex)
-    document.getElementById(`gallery-thumbnail-${nextIndex}`)?.focus()
+    document.getElementById(`${idPrefix}-thumbnail-${nextIndex}`)?.focus()
   }
 
   if (!activeImage) return null
 
   return (
-    <section className="vertical-thumbnail-gallery" aria-label="Lagnaa photograph gallery">
-      <div aria-labelledby={`gallery-thumbnail-${activeIndex}`} className="vertical-thumbnail-gallery__stage" id="gallery-active-image" role="tabpanel">
+    <section className="vertical-thumbnail-gallery" aria-label={ariaLabel}>
+      <div aria-labelledby={`${idPrefix}-thumbnail-${activeIndex}`} className="vertical-thumbnail-gallery__stage" id={`${idPrefix}-active-image`} role="tabpanel">
         <button
           aria-label={`Open photograph ${activeIndex + 1} of ${images.length}`}
           className="vertical-thumbnail-gallery__stage-button"
@@ -103,11 +105,11 @@ export function VerticalThumbnailGallery({ images, groups = [] }: VerticalThumbn
         <div aria-label="Choose a photograph" className="vertical-thumbnail-gallery__thumbnails" role="tablist">
           {images.map((image, index) => (
             <button
-              aria-controls="gallery-active-image"
+              aria-controls={`${idPrefix}-active-image`}
               aria-label={`Show photograph ${index + 1} of ${images.length}`}
               aria-selected={activeIndex === index}
               className="vertical-thumbnail-gallery__thumbnail"
-              id={`gallery-thumbnail-${index}`}
+              id={`${idPrefix}-thumbnail-${index}`}
               key={image.id}
               onClick={() => selectImage(index)}
               onKeyDown={(event) => handleThumbnailKeyDown(event, index)}
@@ -135,10 +137,10 @@ export function VerticalThumbnailGallery({ images, groups = [] }: VerticalThumbn
             if (groupImages.length === 0) return null
 
             return (
-              <section className="gallery-editorial-group" key={group.heading} aria-labelledby={`gallery-group-${group.heading.toLowerCase().replaceAll(' ', '-')}`}>
+              <section className="gallery-editorial-group" key={group.heading} aria-labelledby={`${idPrefix}-group-${group.heading.toLowerCase().replaceAll(' ', '-')}`}>
                 <div className="gallery-editorial-group__copy">
-                  <p className="eyebrow">Gallery selection</p>
-                  <h3 id={`gallery-group-${group.heading.toLowerCase().replaceAll(' ', '-')}`}>{group.heading}</h3>
+                  <p className="eyebrow">{ariaLabel}</p>
+                  <h3 id={`${idPrefix}-group-${group.heading.toLowerCase().replaceAll(' ', '-')}`}>{group.heading}</h3>
                   <p>{group.description}</p>
                 </div>
                 <div className="gallery-editorial-group__grid">

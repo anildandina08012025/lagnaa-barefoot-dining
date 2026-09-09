@@ -1,26 +1,43 @@
-import { homeContent } from '../../content/home'
+import { useEffect } from 'react'
 import { galleryHeroFrames } from '../../content/galleryHeroFrames'
 import { mobileHeroFrames } from '../../content/mobileHeroFrames'
-import arusuvaiImage from '../../assets/gallery/arusuvai.webp'
-import { featuredRecognitionItems } from '../../content/recognition'
+import { recognitionItems } from '../../content/recognition'
 import { restaurantConfig } from '../../config/restaurant'
-import { ScrollFrameHero } from '../media/ScrollFrameHero'
+import arusuvaiImage from '../../assets/gallery/lagnaa-arusuvai-home.webp'
+import barefootDiningImage from '../../assets/barefoot/lagnaa-barefoot-dining-home.webp'
+import chilliLadderImage from '../../assets/chilli/lagnaa-chilli-challenge-ladder.webp'
+import michelinGuideBadge from '../../assets/recognition/michelin-guide-header.webp'
 import { Container } from '../layout/Container'
-import { Button } from '../ui/Button'
+import { ScrollFrameHero } from '../media/ScrollFrameHero'
 import { CtaSection } from '../ui/CtaSection'
 import { HomeScrollEffects } from '../ui/HomeScrollEffects'
-import { RecognitionCoverflow } from '../ui/RecognitionCoverflow'
-import { LagnaaShowcaseCarousel } from '../ui/LagnaaShowcaseCarousel'
-import { SectionHeading } from '../ui/SectionHeading'
 import { PageMetadata } from '../seo/PageMetadata'
+
+const homeRecognitionIds = ['michelin-guide', 'lonely-planet', 'cnn-travel', 'tripadvisor', 'arukikata', 'the-smart-local', 'straits-times', 'sethlui', 'ladyironchef', 'her-world'] as const
+const homeRecognitionItems = homeRecognitionIds
+  .map((id) => recognitionItems.find((item) => item.id === id))
+  .filter((item): item is NonNullable<typeof item> => Boolean(item))
 
 function TextArrow() {
   return <span aria-hidden="true">↗</span>
 }
 
 export function HomePage() {
-  const { hero, arusuvai } = homeContent
-  const canReserve = Boolean(restaurantConfig.links.reservation)
+  const marqueeItems = [...homeRecognitionItems, ...homeRecognitionItems]
+
+  useEffect(() => {
+    const section = document.querySelector<HTMLElement>('.home-publications')
+    if (!section) return
+
+    const observer = new IntersectionObserver(([entry]) => {
+      if (!entry?.isIntersecting) return
+      section.classList.add('is-active')
+      observer.disconnect()
+    }, { threshold: 0.2 })
+
+    observer.observe(section)
+    return () => observer.disconnect()
+  }, [])
 
   return (
     <main id="main-content">
@@ -29,59 +46,103 @@ export function HomePage() {
         description="Visit Lagnaa Barefoot Dining, an Indian restaurant in Little India, Singapore, known for Indian flavours, Barefoot Dining and signature experiences."
         canonicalUrl={restaurantConfig.siteUrl ?? undefined}
       />
-      <ScrollFrameHero {...hero} headingId="home-heading" frames={galleryHeroFrames} mobileFrames={mobileHeroFrames}>
-        <div className="home-hero__actions">
-          <Button href={restaurantConfig.links.reservation} disabled={!canReserve} variant="primary">Reserve a Table</Button>
-          <Button href="/menu" variant="outline">Explore the Menu</Button>
+
+      <ScrollFrameHero
+        eyebrow=""
+        heading="LAGNAA ...barefoot dining."
+        headingLineBreakAfter="LAGNAA"
+        description="Where shoes wait politely at the steps and flavours dance on your palate."
+        headingId="home-heading"
+        frames={galleryHeroFrames}
+        mobileFrames={mobileHeroFrames}
+        hideFooter
+      >
+        <div className="home-hero__actions" aria-label="Hero actions">
+          {restaurantConfig.links.reservation ? <a className="button button--primary" href={restaurantConfig.links.reservation}><span>Reserve a table</span></a> : null}
+          <a className="button button--outline" href="/menu"><span>Explore the menu</span></a>
         </div>
-        <a className="text-link text-link--light" href="/experiences/barefoot-dining">Discover Barefoot Dining <TextArrow /></a>
+        <p className="home-hero__location">{restaurantConfig.location}</p>
       </ScrollFrameHero>
 
-      <section className="home-section home-recognition" aria-labelledby="recognition-heading">
-        <Container>
-          <div className="home-recognition__heading">
-            <SectionHeading
-              heading="Featured & Recognised By"
-              align="center"
-              level={2}
-              id="recognition-heading"
-            />
+      <section className="home-michelin" aria-labelledby="michelin-heading">
+        <Container className="home-michelin__grid">
+          <a className="home-michelin__badge" href="https://guide.michelin.com/sg/en/singapore-region/singapore/restaurant/lagnaa" target="_blank" rel="noopener noreferrer" aria-label="View Lagnaa's MICHELIN Guide listing">
+            <img src={michelinGuideBadge} alt="MICHELIN Guide multi-year recognition badge, 2016 to 2026" width="480" height="480" loading="lazy" decoding="async" />
+          </a>
+          <div>
+            <p className="eyebrow">MICHELIN recognition</p>
+            <h2 id="michelin-heading">Recognised by the MICHELIN Guide, year after year.</h2>
+            <p>From 2016 through 2026, Lagnaa has earned MICHELIN Guide recognition across the years shown on this badge—a lasting acknowledgement of its food, hospitality and distinctive dining experience.</p>
+            <a className="text-link" href="https://guide.michelin.com/sg/en/singapore-region/singapore/restaurant/lagnaa" target="_blank" rel="noopener noreferrer">View the official MICHELIN listing <TextArrow /></a>
           </div>
-          <RecognitionCoverflow items={featuredRecognitionItems} />
         </Container>
       </section>
 
-      <LagnaaShowcaseCarousel />
-      <HomeScrollEffects />
-
-      <section className="home-section home-arusuvai home-arusuvai--compact" aria-labelledby="arusuvai-heading" data-home-scroll-scene>
+      <section className="home-publications" aria-labelledby="publications-heading">
         <Container>
-          <div className="home-arusuvai__intro">
-            <SectionHeading eyebrow={arusuvai.eyebrow} heading={arusuvai.heading} description={arusuvai.description} align="center" level={2} id="arusuvai-heading" />
-          </div>
-          <img className="home-arusuvai__image" src={arusuvaiImage} alt="Arusuvai, the harmony of six tastes, illustrated with Lagnaa dishes." width="1600" height="1067" loading="lazy" decoding="async" />
-          <div className="home-arusuvai__action"><a className="text-link" href="/menu">Explore the menu <TextArrow /></a></div>
+          <p className="eyebrow">Featured &amp; recognised by</p>
+          <h2 id="publications-heading">Stories worth sharing.</h2>
         </Container>
+        <div className="home-publications__viewport">
+          <div className="home-publications__track">
+            {marqueeItems.map((item, index) => (
+              <a className="home-publications__item" href={item.destinationUrl} key={`${item.id}-${index}`} target="_blank" rel="noopener noreferrer" aria-label={item.accessibleLabel}>
+                {item.logoSrc ? <img src={item.logoSrc} alt={item.logoAlt ?? item.name} width="240" height="96" loading="lazy" decoding="async" /> : <span>{item.name}</span>}
+              </a>
+            ))}
+          </div>
+        </div>
       </section>
 
-      <section className="home-section home-visit" aria-labelledby="visit-heading" data-home-scroll-scene>
-        <Container className="home-visit__grid">
-          <SectionHeading eyebrow="Find us" heading="Visit Lagnaa in Little India." description={restaurantConfig.shortDescription} level={2} id="visit-heading" />
-          <div className="home-visit__details">
-            <p className="home-visit__location">{restaurantConfig.location}</p>
-            {restaurantConfig.address ? <p className="home-visit__address">{restaurantConfig.address}</p> : null}
-            <div className="home-visit__actions">
-              {restaurantConfig.mapsUrl ? <a className="text-link" href={restaurantConfig.mapsUrl} target="_blank" rel="noopener noreferrer">Get Directions <TextArrow /></a> : null}
-              <a className="text-link" href="/events/rediscover-little-india">Explore Little India <TextArrow /></a>
-              <a className="text-link" href="/our-story">Discover Our Story <TextArrow /></a>
-              <a className="text-link" href="/contact">Plan Your Visit <TextArrow /></a>
+      <section className="home-signature" aria-labelledby="signature-heading">
+        <Container>
+          <div className="home-signature__heading">
+            <p className="eyebrow">Lagnaa’s signature experiences</p>
+            <h2 id="signature-heading">A restaurant with its own way of doing things.</h2>
+          </div>
+
+          <article className="home-experience home-experience--barefoot" data-home-scroll-scene>
+            <div className="home-experience__copy">
+              <p className="eyebrow">01 · ..Barefoot Dining</p>
+              <h3>Take off your shoes. Settle in. Stay awhile.</h3>
+              <p>On our air-conditioned second floor, guests settle comfortably on cushions around low tables. It is an unhurried way to share food, connect and experience Indian dining together.</p>
+              <ul>
+                <li>Relaxed and comfortable for families, friends and celebrations.</li>
+                <li>Designed for sharing food, conversation and time together.</li>
+                <li>A distinctive dining memory, unique to Lagnaa.</li>
+              </ul>
+              <div className="home-experience__note"><strong>Casual Dining</strong> with normal tables and chairs is available on the first floor. <strong>Both floors offer the same menu with no price difference.</strong></div>
+              <a className="text-link" href="/experiences/barefoot-dining">Discover Barefoot Dining <TextArrow /></a>
             </div>
-          </div>
+            <img src={barefootDiningImage} alt="Lagnaa's Barefoot Dining experience" width="1200" height="900" loading="lazy" decoding="async" />
+          </article>
+
+          <article className="home-experience home-experience--chilli" data-home-scroll-scene>
+            <img src={chilliLadderImage} alt="Lagnaa Chilli Ladder showing personalised spice levels" width="1200" height="900" loading="lazy" decoding="async" />
+            <div className="home-experience__copy">
+              <p className="eyebrow">02 · Customised Chilli Levels</p>
+              <h3>Your heat. Your way.</h3>
+              <p>Choose the spice level that feels right for you, from 0 to 10. Whether you are easing in or ready to test your limits, Lagnaa helps you explore flavour without losing the balance of the dish.</p>
+              <div className="home-chilli-scale" aria-label="Chilli levels zero to ten">{Array.from({ length: 11 }, (_, level) => <span key={level}>{level}</span>)}</div>
+              <p>Start with Curry Shots to discover your comfort zone, or step into the Ultimate Chilli Challenge when you are ready to dare a little more.</p>
+              <a className="text-link" href="/experiences/chilli-challenge">Explore the Chilli Challenge <TextArrow /></a>
+            </div>
+          </article>
+
+          <article className="home-experience home-experience--arusuvai" data-home-scroll-scene>
+            <div className="home-experience__copy">
+              <p className="eyebrow">03 · Arusuvai</p>
+              <h3>Six flavours, one memorable meal.</h3>
+              <p>Arusuvai is the Indian understanding of six tastes in balance. At Lagnaa, it guides a meal of contrast, comfort and discovery—from familiar favourites to dishes that invite you to try something new.</p>
+              <a className="text-link" href="/menu">Explore the menu <TextArrow /></a>
+            </div>
+            <img src={arusuvaiImage} alt="A Lagnaa Arusuvai food platter" width="1600" height="1067" loading="lazy" decoding="async" />
+          </article>
         </Container>
       </section>
 
+      <HomeScrollEffects />
       <CtaSection
-        scrollScene
         eyebrow="A table at Lagnaa"
         heading="Ready to experience Lagnaa?"
         description="Reserve a table or contact Lagnaa to plan your visit."

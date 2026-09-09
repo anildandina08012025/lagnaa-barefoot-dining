@@ -1,5 +1,6 @@
 import chilliLevelsImage from '../../assets/chilli/lagnaa-chilli-challenge-levels.png'
-import curryShotsImage from '../../assets/chilli/lagnaa-chilli-curry-shots.png'
+import curryShotsImage from '../../assets/chilli/lagnaa-curry-shots-section.webp'
+import chilliIndianFoodImage from '../../assets/chilli/lagnaa-chilli-indian-food.webp'
 import { restaurantConfig } from '../../config/restaurant'
 import { Container } from '../layout/Container'
 import { DevelopmentMedia } from '../media/DevelopmentMedia'
@@ -70,6 +71,8 @@ export function ChilliChallengeSingaporePage() {
         <section className="story-section story-food-philosophy" aria-labelledby="chilli-menu-heading">
           <Container className="story-food-philosophy__grid">
             <DevelopmentMedia
+              image={chilliIndianFoodImage}
+              imageAlt="A Lagnaa chilli and curry selection."
               media={{ subject: 'Spice and Indian food', detail: 'Warm food-detail direction for chilli and curry selections.', format: 'landscape', tone: 'saffron' }}
               className="story-food-philosophy__media"
             />

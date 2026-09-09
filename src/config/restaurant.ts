@@ -72,9 +72,7 @@ export const restaurantConfig: RestaurantConfiguration = {
     testimonialSheet: 'https://docs.google.com/spreadsheets/d/1nJOvXT82cN7-d7wrVI44pEjmNw8T9W8FQATa9lDWM5I/edit?usp=sharing',
   },
   socialLinks: [
-    { label: 'Instagram', href: null },
-    { label: 'Facebook', href: null },
-    { label: 'TikTok', href: null },
+    { label: 'Instagram', href: 'https://www.instagram.com/lagnaabarefootdining/' },
   ],
   announcement: null,
   // Existing approved production default; Vercel can override this once a different domain is confirmed.

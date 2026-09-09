@@ -88,7 +88,7 @@ function App() {
       <SiteFooter />
       <MobileReserveCta pathname={path} />
       <FloatingWhatsApp />
-      {path !== '/menu' ? <SpotlightCursor /> : null}
+      <SpotlightCursor />
       <MobileMotionEffects />
     </div>
   )

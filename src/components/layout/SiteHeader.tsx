@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { restaurantConfig } from '../../config/restaurant'
 import lagnaaLogoDark from '../../assets/brand/lagnaa-logo-dark.jpg'
+import michelinGuideHeaderLogo from '../../assets/recognition/michelin-guide-header.webp'
 import { Button, IconButton } from '../ui/Button'
 import { Container } from './Container'
 
@@ -69,6 +70,17 @@ export function SiteHeader() {
       <Container className="site-header__inner">
         <a className="wordmark" href="/" aria-label={`${restaurantConfig.name} home`}>
           <img className="wordmark__logo" src={lagnaaLogoDark} alt="Lagnaa Barefoot Dining" />
+        </a>
+
+        <a
+          className="site-header__michelin"
+          href="https://guide.michelin.com/sg/en/singapore-region/singapore/restaurant/lagnaa"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="View Lagnaa's MICHELIN Guide listing"
+        >
+          <img src={michelinGuideHeaderLogo} alt="MICHELIN Guide recognition" width="72" height="72" />
+          <span>MICHELIN<br />Recognised</span>
         </a>
 
         <nav className="desktop-navigation" aria-label="Primary navigation">

@@ -2,9 +2,7 @@ import { restaurantConfig } from '../../config/restaurant'
 import { Container } from '../layout/Container'
 import { PageMetadata } from '../seo/PageMetadata'
 import { CtaSection } from '../ui/CtaSection'
-import { GoogleReviewsSection } from '../ui/GoogleReviewsSection'
 import { ReservationRequestForm } from '../ui/ReservationRequestForm'
-import { TestimonialRequestSection } from '../ui/TestimonialRequestSection'
 import { TrustSignals } from '../ui/TrustSignals'
 import { VisitChooserSection } from '../ui/VisitChooserSection'
 
@@ -33,24 +31,15 @@ export function ReservationsPage() {
         <Container>
           <header className="reservations-page__intro">
             <p className="eyebrow">Reservations</p>
-            <h1>Plan your table at Lagnaa.</h1>
-            <p>Send your preferred visit details to Lagnaa. This creates a pending request only; the restaurant will confirm reservation details directly.</p>
+            <h1>Plan your table at Lagnaa ...barefoot dinning</h1>
+            <p>Send your preferred visit details to Lagnaa ...barefoot dinning to confirm your reservation.</p>
           </header>
 
           <div className="reservations-page__grid">
-            <aside className="reservations-page__overview" aria-labelledby="reservation-guidance-heading">
-              <p className="eyebrow">Plan your visit</p>
-              <h2 id="reservation-guidance-heading">Owner approval first.</h2>
-              <p>The website does not show live table availability. Every request is reviewed by Lagnaa before a table is confirmed.</p>
-              {restaurantConfig.phone ? (
-                <a className="text-link" href={`tel:${restaurantConfig.phone.replace(/\s/g, '')}`}>Call Lagnaa <TextArrow /></a>
-              ) : null}
-            </aside>
-
             <section className="reservation-form-card reservation-journey" aria-labelledby="reservation-action-heading">
               <p className="eyebrow">Reserve a Table</p>
-              <h2 id="reservation-action-heading">Send a reservation request.</h2>
-              <p className="reservation-journey__description">Share your preferred date, time and guest count. Lagnaa will review the request and confirm directly.</p>
+              <h2 id="reservation-action-heading">Confirm your reservation.</h2>
+              <p className="reservation-journey__description">Share your preferred date, time and guest count to confirm your reservation.</p>
               <ReservationRequestForm />
               <div className="reservation-journey__support">
                 {restaurantConfig.phone ? <p>Phone: <a href={`tel:${restaurantConfig.phone.replace(/\s/g, '')}`}>{restaurantConfig.phone}</a></p> : null}
@@ -76,9 +65,6 @@ export function ReservationsPage() {
               ))}
             </div>
           </section>
-
-          <GoogleReviewsSection enabled />
-          <TestimonialRequestSection compact />
         </Container>
       </article>
       <TrustSignals compact />

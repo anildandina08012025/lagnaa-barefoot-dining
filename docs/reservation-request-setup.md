@@ -2,7 +2,7 @@
 
 This setup uses the website/chatbot, Vercel API, Google Sheets and Apps Script.
 
-It does not require Google Cloud for the owner-approval version.
+It does not require Google Cloud.
 
 ## Flow
 
@@ -11,8 +11,7 @@ It does not require Google Cloud for the owner-approval version.
 3. `/api/reservations` forwards the request to the Apps Script Web App.
 4. Apps Script adds a row to Google Sheets.
 5. Apps Script emails the owner.
-6. Owner reviews the request and changes `Status` manually.
-7. If `Status` becomes `Confirmed`, Apps Script can email the customer once.
+6. Owner receives the email notification and can update the row status manually.
 
 The website and chatbot must not claim a reservation is confirmed.
 
@@ -66,17 +65,14 @@ The Apps Script creates these columns automatically:
 - Visit type
 - Message
 - Owner notes
-- Customer email sent?
-- Confirmation sent at
 
-## Owner approval
+## Reservation status
 
-Default status is `Pending`.
+Default status is `Approved`.
 
-When the owner changes status to `Confirmed`, the optional `onEdit` trigger sends the customer email only if:
+Google Sheets provides these status values:
 
-- customer email exists;
-- status is `Confirmed`;
-- `Customer email sent?` is not already `Yes`.
+- `Approved`
+- `Cancelled`
 
-This avoids duplicate emails.
+Each new submission appends a row with `Approved` and immediately emails the owner. Status changes are managed in the Google Sheet; this workflow does not send an automatic customer confirmation email.

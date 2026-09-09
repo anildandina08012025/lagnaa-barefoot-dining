@@ -3,7 +3,7 @@ import { ourStoryContent } from '../../content/ourStory'
 import entranceImage from '../../assets/restaurant/lagnaa-entrance.webp'
 import interiorImage from '../../assets/restaurant/lagnaa-interior.webp'
 import interiorDiningImage from '../../assets/restaurant/lagnaa-interior-dining.webp'
-import barefootDiningImage from '../../assets/barefoot/lagnaa-barefoot-dining.webp'
+import barefootStoryImage from '../../assets/barefoot/lagnaa-barefoot-story-our-story.webp'
 import { Container } from '../layout/Container'
 import { PageMetadata } from '../seo/PageMetadata'
 import { Button } from '../ui/Button'
@@ -83,7 +83,7 @@ export function OurStoryPage() {
                 <Button href={restaurantConfig.links.reservation} disabled={!canReserve} variant="outline">Reserve a Table</Button>
               </div>
             </div>
-            <figure className="story-barefoot__media"><img className="page-content-image" src={barefootDiningImage} alt="Barefoot Dining experience at Lagnaa." loading="lazy" /></figure>
+            <figure className="story-barefoot__media"><img className="page-content-image" src={barefootStoryImage} alt="Barefoot Dining experience at Lagnaa." loading="lazy" /></figure>
           </Container>
         </section>
 

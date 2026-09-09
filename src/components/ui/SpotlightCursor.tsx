@@ -1,24 +1,14 @@
 import { useEffect, useRef } from 'react'
+import footprintCursor from '../../assets/brand/footprint-cursor.svg'
 
-type SpotlightCursorProps = {
-  radius?: number
-  brightness?: number
-  color?: string
-  smoothing?: number
+type FootstepStamp = {
+  x: number
+  y: number
+  startedAt: number
 }
 
-function hexToRgb(hex: string) {
-  const value = Number.parseInt(hex.slice(1), 16)
-  return `${(value >> 16) & 255}, ${(value >> 8) & 255}, ${value & 255}`
-}
-
-/** A desktop-only, visual cursor glow. It never receives pointer events. */
-export function SpotlightCursor({
-  radius = 220,
-  brightness = 0.14,
-  color = '#e9bd78',
-  smoothing = 0.14,
-}: SpotlightCursorProps) {
+/** A desktop-only cursor using the supplied footprint icon. */
+export function SpotlightCursor() {
   const canvasRef = useRef<HTMLCanvasElement>(null)
 
   useEffect(() => {
@@ -30,13 +20,17 @@ export function SpotlightCursor({
     const context = canvas.getContext('2d')
     if (!context) return undefined
 
-    const rgbColor = hexToRgb(color)
-    let targetX = -radius
-    let targetY = -radius
+    let targetX = -80
+    let targetY = -80
     let currentX = targetX
     let currentY = targetY
     let isVisible = false
     let animationFrame = 0
+    let iconReady = false
+    let stamps: FootstepStamp[] = []
+
+    const icon = new Image()
+    icon.decoding = 'async'
 
     const resize = () => {
       const pixelRatio = Math.min(window.devicePixelRatio || 1, 2)
@@ -45,24 +39,36 @@ export function SpotlightCursor({
       context.setTransform(pixelRatio, 0, 0, pixelRatio, 0, 0)
     }
 
-    const draw = () => {
+    const drawFootprint = (x: number, y: number, scale = 1, opacity = 1, rotation = -0.08) => {
+      if (!iconReady) return
+      const width = 29 * scale
+      const height = 38 * scale
+      context.save()
+      context.globalAlpha = opacity
+      context.translate(x + 9, y + 10)
+      context.rotate(rotation)
+      context.drawImage(icon, -width / 2, -height / 2, width, height)
+      context.restore()
+    }
+
+    const draw = (time: number) => {
       animationFrame = 0
       context.clearRect(0, 0, window.innerWidth, window.innerHeight)
 
-      currentX += (targetX - currentX) * smoothing
-      currentY += (targetY - currentY) * smoothing
+      currentX += (targetX - currentX) * 0.2
+      currentY += (targetY - currentY) * 0.2
 
-      if (isVisible) {
-        const gradient = context.createRadialGradient(currentX, currentY, 0, currentX, currentY, radius)
-        gradient.addColorStop(0, `rgba(${rgbColor}, ${brightness})`)
-        gradient.addColorStop(0.48, `rgba(${rgbColor}, ${(brightness * 0.35).toFixed(3)})`)
-        gradient.addColorStop(1, 'rgba(0, 0, 0, 0)')
-        context.fillStyle = gradient
-        context.fillRect(0, 0, window.innerWidth, window.innerHeight)
-      }
+      if (isVisible) drawFootprint(currentX, currentY)
+
+      stamps = stamps.filter((stamp) => {
+        const progress = (time - stamp.startedAt) / 360
+        if (progress >= 1) return false
+        drawFootprint(stamp.x, stamp.y, 0.78 + progress * 0.28, 0.62 * (1 - progress), -0.14)
+        return true
+      })
 
       const stillMoving = Math.abs(targetX - currentX) > 0.3 || Math.abs(targetY - currentY) > 0.3
-      if (stillMoving) animationFrame = window.requestAnimationFrame(draw)
+      if (stillMoving || stamps.length > 0) animationFrame = window.requestAnimationFrame(draw)
     }
 
     const requestDraw = () => {
@@ -76,25 +82,40 @@ export function SpotlightCursor({
       requestDraw()
     }
 
+    const handlePointerDown = (event: PointerEvent) => {
+      stamps.push({ x: event.clientX, y: event.clientY, startedAt: performance.now() })
+      requestDraw()
+    }
+
     const handlePointerLeave = () => {
       isVisible = false
       requestDraw()
     }
 
+    icon.onload = () => {
+      iconReady = true
+      document.documentElement.classList.add('has-footprint-cursor')
+      requestDraw()
+    }
+    icon.src = footprintCursor
+
     resize()
     window.addEventListener('resize', resize)
     window.addEventListener('pointermove', handlePointerMove, { passive: true })
+    window.addEventListener('pointerdown', handlePointerDown, { passive: true })
     document.addEventListener('mouseleave', handlePointerLeave)
     window.addEventListener('blur', handlePointerLeave)
 
     return () => {
       window.removeEventListener('resize', resize)
       window.removeEventListener('pointermove', handlePointerMove)
+      window.removeEventListener('pointerdown', handlePointerDown)
       document.removeEventListener('mouseleave', handlePointerLeave)
       window.removeEventListener('blur', handlePointerLeave)
+      document.documentElement.classList.remove('has-footprint-cursor')
       if (animationFrame) window.cancelAnimationFrame(animationFrame)
     }
-  }, [brightness, color, radius, smoothing])
+  }, [])
 
   return <canvas ref={canvasRef} aria-hidden="true" className="spotlight-cursor" />
 }

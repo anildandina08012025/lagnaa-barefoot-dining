@@ -65,6 +65,32 @@ export const recognitionItems: RecognitionItem[] = [
     featured: true,
   },
   {
+    id: 'tripadvisor',
+    name: 'Tripadvisor',
+    type: 'Recognition',
+    destinationUrl: 'https://www.tripadvisor.com.sg/Restaurant_Review-g294265-d858408-Reviews-Lagnaa_barefoot_dining-Singapore.html',
+    accessibleLabel: 'View Lagnaa on Tripadvisor',
+    actionLabel: 'View Tripadvisor listing',
+    logoSrc: tripadvisorLogo,
+    logoAlt: 'Tripadvisor logo',
+    sourcePage: 'https://www.tripadvisor.com.sg/Restaurant_Review-g294265-d858408-Reviews-Lagnaa_barefoot_dining-Singapore.html',
+    verificationStatus: 'verified',
+    featured: true,
+  },
+  {
+    id: 'arukikata',
+    name: 'Arukikata',
+    type: 'Travel-guide mention',
+    destinationUrl: 'https://www.arukikata.com/',
+    accessibleLabel: 'View Lagnaa’s Arukikata listing',
+    actionLabel: 'View Arukikata listing',
+    logoSrc: arukikataLogo,
+    logoAlt: 'Arukikata logo',
+    sourcePage: 'https://www.arukikata.com/',
+    verificationStatus: 'verified',
+    featured: true,
+  },
+  {
     id: 'visit-singapore',
     name: 'Visit Singapore',
     type: 'Tourism-guide mention',
@@ -146,12 +172,12 @@ export const recognitionItems: RecognitionItem[] = [
     id: 'singapore-womens-weekly',
     name: 'The Singapore Women’s Weekly',
     type: 'Media mention',
-    destinationUrl: 'https://www.womensweekly.com.sg/food/10-restaurants-every-spicy-food-lover-must-visit-in-singapore',
+    destinationUrl: 'https://www.womensweekly.com.sg/food/8-spicy-dishes-feel-the-heat',
     accessibleLabel: 'Read The Singapore Women’s Weekly feature mentioning Lagnaa',
     actionLabel: 'Read feature',
     logoSrc: singaporeWomensWeeklyLogo,
     logoAlt: 'The Singapore Women’s Weekly logo',
-    sourcePage: 'https://www.womensweekly.com.sg/food/10-restaurants-every-spicy-food-lover-must-visit-in-singapore',
+    sourcePage: 'https://www.womensweekly.com.sg/food/8-spicy-dishes-feel-the-heat',
     verificationStatus: 'verified',
     featured: true,
   },
@@ -162,17 +188,21 @@ export const recognitionItems: RecognitionItem[] = [
     destinationUrl: 'https://www.shopback.sg/blog/10-spiciest-food-in-singapore-and-where-to-find-them',
     accessibleLabel: 'Read the ShopBack feature mentioning Lagnaa',
     actionLabel: 'Read feature',
+    logoSrc: shopbackLogo,
+    logoAlt: 'ShopBack logo',
     sourcePage: 'https://www.shopback.sg/blog/10-spiciest-food-in-singapore-and-where-to-find-them',
     verificationStatus: 'verified',
     featured: false,
   },
   {
     id: 'ctrip',
-    name: 'Ctrip',
+    name: '攜程美食林 2019',
     type: 'Travel-platform mention',
     destinationUrl: 'https://gs.ctrip.com/html5/you/foods/fooddetail/53/9483135.html',
-    accessibleLabel: 'View the Lagnaa Ctrip listing',
+    accessibleLabel: 'View Lagnaa on 攜程美食林 2019',
     actionLabel: 'View listing',
+    logoSrc: ctripLogo,
+    logoAlt: '攜程美食林 logo',
     sourcePage: 'https://gs.ctrip.com/html5/you/foods/fooddetail/53/9483135.html',
     verificationStatus: 'verified',
     featured: false,
@@ -186,9 +216,13 @@ import cnnTravelLogo from '../assets/recognition/cnn-travel.jpg'
 import herWorldLogo from '../assets/recognition/her-world.jpg'
 import ladyIronChefLogo from '../assets/recognition/ladyironchef.jpeg'
 import lonelyPlanetLogo from '../assets/recognition/lonely-planet.png'
-import michelinGuideLogo from '../assets/recognition/michelin-guide.jpg'
+import michelinGuideLogo from '../assets/recognition/michelin-guide-header.webp'
 import sethluiLogo from '../assets/recognition/sethlui.jpg'
 import singaporeWomensWeeklyLogo from '../assets/recognition/singapore-womens-weekly.jpg'
-import straitsTimesLogo from '../assets/recognition/straits-times.jpeg'
+import straitsTimesLogo from '../assets/recognition/straits-times.jfif'
 import theSmartLocalLogo from '../assets/recognition/the-smart-local.jpg'
 import visitSingaporeLogo from '../assets/recognition/visit-singapore.jpg'
+import tripadvisorLogo from '../assets/recognition/tripadvisor.webp'
+import arukikataLogo from '../assets/recognition/arukikata.jpg'
+import ctripLogo from '../assets/recognition/ctrip.png'
+import shopbackLogo from '../assets/recognition/shopback.png'

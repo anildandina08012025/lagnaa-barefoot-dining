@@ -94,9 +94,9 @@ const cookingSocialCards = [
   {
     id: 'cooking-instagram-chef',
     eyebrow: 'Instagram',
-    title: 'Chef-led experience',
-    description: 'See official social updates from Lagnaa before registering interest.',
-    href: 'https://www.instagram.com/lagnaabarefootdining/',
+    title: 'Cooking with Chef moment III',
+    description: 'Watch this Cooking with Chef video from Lagnaa on Instagram.',
+    href: 'https://www.instagram.com/p/BnCjntjgbtX/',
     image: chefPortraitImage,
     alt: 'A cooking class moment at Lagnaa.',
   },

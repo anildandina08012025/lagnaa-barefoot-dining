@@ -27,16 +27,13 @@ const initialFormData: ReservationFormData = {
   date: '',
   time: '',
   guests: '',
-  experience: 'Table reservation',
+  experience: 'Regular Dining',
   message: '',
 }
 
 const experienceOptions = [
-  'Table reservation',
   'Barefoot Dining',
-  'Ultimate Chilli Challenge',
-  'Monthly Dégustation',
-  'Cooking with Chef Kaesavan',
+  'Regular Dining',
 ] as const
 
 function validateForm(formData: ReservationFormData) {
@@ -85,12 +82,12 @@ export function ReservationRequestForm({ source = 'website', compact = false, on
       if (!response.ok) {
         if (payload.errors) setErrors(payload.errors)
         if (!parsedResponse && response.status === 404) {
-          throw new Error('Reservation backend is not available in this preview. Test on Vercel after redeploying with the reservation environment variables, or run the project with Vercel dev.')
+        throw new Error('Reservation service is not available in this preview. Test on Vercel after redeploying with the reservation environment variables, or run the project with Vercel dev.')
         }
         throw new Error(payload.error || 'Unable to send the reservation request.')
       }
 
-      const message = payload.message || 'Your reservation request has been sent to Lagnaa. The restaurant will confirm directly.'
+      const message = payload.message || 'Your reservation is confirmed and has been sent to Lagnaa.'
       trackEvent('reservation_submit', { source, experience: formData.experience })
       setSuccessMessage(message)
       setFormData(initialFormData)
@@ -104,10 +101,6 @@ export function ReservationRequestForm({ source = 'website', compact = false, on
 
   return (
     <form className={`reservation-request-form${compact ? ' reservation-request-form--compact' : ''}`} onSubmit={handleSubmit}>
-      <p className="reservation-form__preview-notice">
-        Submitting this form sends a pending reservation request to Lagnaa. No table is confirmed until the restaurant contacts you directly.
-      </p>
-
       <div className="reservation-form__grid">
         <div className="reservation-form__field">
           <label htmlFor={`${source}-reservation-name`}>Full name</label>
@@ -154,7 +147,7 @@ export function ReservationRequestForm({ source = 'website', compact = false, on
 
         <div className="reservation-form__field reservation-form__field--full">
           <label htmlFor={`${source}-reservation-message`}>Message <span className="reservation-form__optional">Optional</span></label>
-          <textarea id={`${source}-reservation-message`} value={formData.message} onChange={(event) => updateField('message', event.target.value)} placeholder="Share any request Lagnaa should review before confirming." />
+          <textarea id={`${source}-reservation-message`} value={formData.message} onChange={(event) => updateField('message', event.target.value)} placeholder="Share any request for Lagnaa." />
         </div>
       </div>
 
@@ -163,9 +156,9 @@ export function ReservationRequestForm({ source = 'website', compact = false, on
 
       <div className="reservation-form__actions">
         <button className="button button--primary" disabled={isSubmitting} type="submit">
-          {isSubmitting ? 'Sending Request…' : 'Send Reservation Request'}
+          {isSubmitting ? 'Saving Reservation…' : 'Send Reservation'}
         </button>
-        <span>Owner approval required before confirmation.</span>
+        <span>Reservation status: Approved or Cancelled.</span>
       </div>
     </form>
   )

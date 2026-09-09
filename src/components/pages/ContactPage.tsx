@@ -45,7 +45,7 @@ export function ContactPage() {
             <SectionHeading eyebrow={content.visit.eyebrow} heading={content.visit.heading} level={2} id="contact-visit-heading" />
             <div className="contact-visit__details">
               <address className="contact-visit__address">
-                <strong>{restaurantConfig.name}</strong>
+                <strong>Lagnaa ...Barefoot Dining</strong>
                 {restaurantConfig.address ? <span>{restaurantConfig.address}</span> : null}
               </address>
               {restaurantConfig.mapsUrl ? <a className="text-link" href={restaurantConfig.mapsUrl} target="_blank" rel="noopener noreferrer">Get Directions on Google Maps <TextArrow /></a> : null}

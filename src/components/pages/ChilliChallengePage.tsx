@@ -2,7 +2,7 @@ import { restaurantConfig } from '../../config/restaurant'
 import chilliLevels from '../../assets/chilli/lagnaa-chilli-challenge-levels.png'
 import goldenAdviceImage from '../../assets/chilli/lagnaa-chilli-golden-advice.png'
 import curryShotsImage from '../../assets/chilli/curry-shots.webp'
-import elaiKoli from '../../assets/gallery/lagnaa-elai-koli.jpg'
+import chilliJourneyImage from '../../assets/chilli/lagnaa-chilli-challenge-social.webp'
 import { Container } from '../layout/Container'
 import { PageMetadata } from '../seo/PageMetadata'
 import { Button } from '../ui/Button'
@@ -68,6 +68,24 @@ const chilliSocialCards = [
     image: chilliLevels,
     alt: 'An illustrated Chilli Challenge levels guide.',
   },
+  {
+    id: 'instagram-chilli-challenge-7',
+    eyebrow: 'Instagram',
+    title: 'Chilli Challenge moment VII',
+    description: 'Watch this Chilli Challenge video from Lagnaa on Instagram.',
+    href: 'https://www.instagram.com/p/CvChTwESLLU/',
+    image: chilliJourneyImage,
+    alt: 'Guests enjoying Lagnaa’s Chilli Challenge experience.',
+  },
+  {
+    id: 'instagram-chilli-challenge-8',
+    eyebrow: 'Instagram',
+    title: 'Chilli Challenge moment VIII',
+    description: 'Watch this Chilli Challenge video from Lagnaa on Instagram.',
+    href: 'https://www.instagram.com/p/BqV_wdNnKFm/',
+    image: goldenAdviceImage,
+    alt: 'A warm visual for Lagnaa’s Chilli Challenge.',
+  },
 ] as const
 
 export function ChilliChallengePage() {
@@ -113,7 +131,7 @@ export function ChilliChallengePage() {
               </div>
             </div>
             <figure className="chilli-introduction__image">
-              <img src={elaiKoli} alt="A Lagnaa dish served on a banana leaf." width="1600" height="1066" />
+              <img src={chilliJourneyImage} alt="Lagnaa Chilli Challenge experience." width="1600" height="1066" />
             </figure>
           </Container>
         </section>

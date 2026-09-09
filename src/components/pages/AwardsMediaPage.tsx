@@ -5,6 +5,7 @@ import arukikataLogo from '../../assets/recognition/arukikata.jpg'
 import ctripLogo from '../../assets/recognition/ctrip.png'
 import shopbackLogo from '../../assets/recognition/shopback.png'
 import tripadvisorLogo from '../../assets/recognition/tripadvisor.png'
+import mimiKirkLogo from '../../assets/recognition/mimi-kirk.svg'
 import { Container } from '../layout/Container'
 import { PageMetadata } from '../seo/PageMetadata'
 import { Button } from '../ui/Button'
@@ -25,7 +26,9 @@ export function AwardsMediaPage() {
       Tripadvisor: { logoSrc: tripadvisorLogo, logoAlt: 'Tripadvisor logo' },
       ShopBack: { logoSrc: shopbackLogo, logoAlt: 'ShopBack logo' },
       Ctrip: { logoSrc: ctripLogo, logoAlt: 'Ctrip logo' },
+      '攜程美食林 2019': { logoSrc: ctripLogo, logoAlt: '攜程美食林 logo' },
       Arukikata: { logoSrc: arukikataLogo, logoAlt: 'Arukikata logo' },
+      'Mimi Kirk': { logoSrc: mimiKirkLogo, logoAlt: 'Mimi Kirk wordmark' },
     }[name]
   }
   const verifiedMedia = [

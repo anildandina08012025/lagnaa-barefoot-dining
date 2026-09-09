@@ -66,7 +66,7 @@ export function VisitChooserSection({ id = 'choose-your-visit', tone = 'light', 
       <Container>
         <div className="visit-chooser__heading-row">
           <SectionHeading
-            eyebrow="Choose your Lagnaa visit"
+            eyebrow="Choose your Lagnaa ...barefoot dinning visit"
             heading="Find the right way to experience Lagnaa."
             description="Choose a table reservation, explore a signature experience, or contact Lagnaa if you need help deciding."
             tone={tone === 'dark' ? 'dark' : 'light'}

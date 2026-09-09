@@ -47,7 +47,7 @@ export const contactPageContent: ContactPageContent = {
   },
   hero: {
     eyebrow: 'Plan your visit',
-    heading: 'Contact & Visit Lagnaa',
+    heading: 'Contact & Visit Lagnaa ...barefoot dinning',
     description: 'Reserve a table, find the restaurant or contact Lagnaa before your visit.',
   },
   visit: {
@@ -57,7 +57,7 @@ export const contactPageContent: ContactPageContent = {
   reservations: {
     eyebrow: 'Reservations',
     heading: 'Plan your reservation request.',
-    description: 'Send your preferred dining details to Lagnaa. Availability will be confirmed once the reservation system is connected.',
+    description: 'Send your preferred dining details to Lagnaa ...barefoot dinning. Availability will be confirmed once the reservation system is connected.',
   },
   barefootDining: {
     eyebrow: 'Barefoot Dining',
@@ -77,7 +77,7 @@ export const contactPageContent: ContactPageContent = {
   ],
   cta: {
     eyebrow: 'Your table at Lagnaa',
-    heading: 'Plan your visit to Lagnaa.',
+    heading: 'Plan your visit to Lagnaa ...barefoot dinning',
     description: 'Reserve a table or call Lagnaa before you visit.',
   },
 }

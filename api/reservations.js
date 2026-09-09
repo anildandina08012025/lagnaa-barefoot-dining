@@ -51,7 +51,7 @@ function validateReservation(payload) {
     date: cleanText(payload.date, 40),
     time: cleanText(payload.time, 40),
     guests: cleanText(payload.guests, 20),
-    experience: cleanText(payload.experience, 120) || 'Table reservation',
+    experience: cleanText(payload.experience, 120) || 'Regular Dining',
     message: cleanText(payload.message, 900),
   }
 
@@ -62,6 +62,7 @@ function validateReservation(payload) {
   if (!reservation.date) errors.date = 'Enter your preferred date.'
   if (!reservation.time) errors.time = 'Enter your preferred time.'
   if (!reservation.guests || Number.isNaN(Number(reservation.guests)) || Number(reservation.guests) < 1) errors.guests = 'Enter the number of guests.'
+  if (!['Barefoot Dining', 'Regular Dining'].includes(reservation.experience)) errors.experience = 'Choose Barefoot Dining or Regular Dining.'
 
   return { reservation, errors }
 }
@@ -93,7 +94,7 @@ export default async function handler(request, response) {
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
         secret: appsScriptSecret,
-        status: 'Pending',
+        status: 'Approved',
         ...reservation,
       }),
     })
@@ -114,7 +115,7 @@ export default async function handler(request, response) {
     return json(response, {
       ok: true,
       reference: typeof result.reference === 'string' ? result.reference : undefined,
-      message: 'Your reservation request has been sent to Lagnaa. The restaurant will confirm directly.',
+      message: 'Your reservation is confirmed and has been sent to Lagnaa.',
     })
   } catch (error) {
     console.error('Reservation request error', error)

@@ -38,7 +38,7 @@ export function GalleryPage() {
               level={2}
               id="gallery-collection-heading"
             />
-            <VerticalThumbnailGallery images={images} groups={content.groups} />
+            <VerticalThumbnailGallery ariaLabel="Gallery selection" idPrefix="gallery-selection" images={images} groups={content.groups} />
           </Container>
         </section>
 

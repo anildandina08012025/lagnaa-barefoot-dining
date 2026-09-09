@@ -13,8 +13,8 @@ export const ourStoryContent = {
   },
   hero: {
     eyebrow: 'Our Story',
-    heading: 'The people, flavours and rituals behind Lagnaa.',
-    description: 'In Little India, Lagnaa brings chef-led Indian food, warm hospitality and its signature barefoot dining experience together in one intimate setting.',
+    heading: 'The people, flavours and rituals behind Lagnaa ...barefoot dinning',
+    description: 'In Little India, Lagnaa ...barefoot dinning brings chef-led Indian food, warm hospitality and its signature barefoot dining experience together in one intimate setting.',
     media: {
       subject: 'Lagnaa story hero',
       detail: 'Editorial restaurant interior, hospitality or food-preparation photograph.',
@@ -26,7 +26,7 @@ export const ourStoryContent = {
     eyebrow: 'Master Chef Kaesavan',
     heading: 'A chef-led story with a taste for doing things differently.',
     paragraphs: [
-      'Lagnaa was founded by Master Chef Kaesavan, whose approach to Indian cuisine brings curiosity, generosity and a love of flavour to every table.',
+      'Lagnaa ...barefoot dinning was founded by Master Chef Kaesavan, whose approach to Indian cuisine brings curiosity, generosity and a love of flavour to every table.',
       'A long-time curry and chilli advocate, Chef Kaesavan encourages guests to explore Indian food at their own pace—whether they come for a familiar favourite or a more adventurous challenge.',
       'The result is a restaurant shaped as much by conversation and hospitality as it is by the food itself.',
     ],
@@ -55,7 +55,7 @@ export const ourStoryContent = {
   arusuvai: {
     eyebrow: 'Arusuvai — six flavours',
     heading: 'A way to consider balance at the table.',
-    description: 'Arusuvai refers to six flavours. It offers a thoughtful way to approach balance, contrast and discovery across an Indian meal at Lagnaa.',
+    description: 'Arusuvai refers to six flavours. It offers a thoughtful way to approach balance, contrast and discovery across an Indian meal at Lagnaa ...barefoot dinning.',
     // Add verified flavour names, meanings and descriptions only when client-approved.
     flavours: [] as readonly FlavourDetail[],
   },
