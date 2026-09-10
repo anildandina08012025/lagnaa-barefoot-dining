@@ -301,6 +301,7 @@ button:disabled { cursor: not-allowed; }
 .mobile-navigation ul { margin: 0; padding: 0; list-style: none; }
 .desktop-navigation ul { display: flex; align-items: center; gap: clamp(0.8rem, 1.6vw, 1.6rem); }
 .desktop-navigation__item--has-submenu { position: relative; }
+.desktop-navigation__item--has-submenu::after { position: absolute; z-index: 44; top: 100%; left: -1rem; width: calc(100% + 2rem); height: 0.8rem; content: ''; }
 .desktop-navigation__submenu-control { display: inline-flex; align-items: center; }
 .desktop-navigation__link { position: relative; display: grid; min-height: 2.2rem; place-items: center; overflow: hidden; padding: 0 var(--space-2xs); color: var(--color-text-secondary); font-size: 0.78rem; font-weight: 700; letter-spacing: 0.025em; line-height: 1; text-decoration: none; perspective: 37.5rem; isolation: isolate; }
 .desktop-navigation__link::after { position: absolute; z-index: 2; right: var(--space-2xs); bottom: 0; left: var(--space-2xs); height: 1px; content: ''; background: var(--color-brand-primary); transform: scaleX(0); transform-origin: left; transition: transform 160ms ease; }
@@ -1070,8 +1071,8 @@ button:disabled { cursor: not-allowed; }
 .cooking-class-formats__heading { display: grid; grid-template-columns: minmax(0, 1fr) minmax(16rem, 0.42fr); align-items: end; gap: var(--space-xl); }
 .cooking-class-formats__heading > p { max-width: 26rem; margin: 0; color: var(--color-text-secondary); line-height: 1.65; }
 .cooking-class-formats__grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--space-md); margin-top: var(--space-2xl); }
-.cooking-class-card { --cooking-card-padding: clamp(1.25rem, 2.5vw, 2rem); position: relative; min-height: 100%; padding: var(--cooking-card-padding); border: 1px solid var(--color-border); background: var(--color-surface); box-shadow: 0 1rem 2.5rem rgb(52 17 11 / 8%); }
-.cooking-class-card__image { display: block; width: calc(100% + var(--cooking-card-padding) + var(--cooking-card-padding)); height: clamp(12rem, 20vw, 16rem); margin: calc(0px - var(--cooking-card-padding)) calc(0px - var(--cooking-card-padding)) var(--space-lg); object-fit: cover; }
+.cooking-class-card { --cooking-card-padding: clamp(1.25rem, 2.5vw, 2rem); position: relative; min-height: 100%; overflow: hidden; padding: var(--cooking-card-padding); border: 1px solid var(--color-border); background: var(--color-surface); box-shadow: 0 1rem 2.5rem rgb(52 17 11 / 8%); }
+.cooking-class-card__image { display: block; width: calc(100% + var(--cooking-card-padding) + var(--cooking-card-padding)); max-width: none; height: clamp(12rem, 20vw, 16rem); margin: calc(0px - var(--cooking-card-padding)) calc(0px - var(--cooking-card-padding)) var(--space-lg); object-fit: cover; }
 .cooking-class-card__number { margin: 0 0 var(--space-lg); color: var(--color-brand-primary); font-size: 0.7rem; font-weight: 800; letter-spacing: 0.12em; }
 .cooking-class-card .eyebrow { color: var(--color-brand-primary); }
 .cooking-class-card h3 { max-width: 13ch; margin: var(--space-sm) 0 0; font-family: var(--font-display); font-size: clamp(1.9rem, 3vw, 2.8rem); font-weight: 500; letter-spacing: -0.055em; line-height: 0.95; }
@@ -1079,6 +1080,11 @@ button:disabled { cursor: not-allowed; }
 .cooking-class-card ul { display: grid; gap: 0.65rem; margin: var(--space-lg) 0 0; padding: 0; color: var(--color-text-secondary); font-size: 0.92rem; line-height: 1.55; list-style: none; }
 .cooking-class-card li { position: relative; padding-left: 1rem; }
 .cooking-class-card li::before { position: absolute; top: 0.55rem; left: 0; width: 0.32rem; height: 0.32rem; border-radius: 50%; background: var(--color-accent); content: ''; }
+@media (max-width: 47.99rem) {
+  .cooking-class-card { --cooking-card-padding: 1.25rem; overflow: hidden; padding: 0 0 var(--cooking-card-padding); }
+  .cooking-class-card__image { width: 100%; max-width: none; height: clamp(15rem, 76vw, 20rem); margin: 0 0 var(--space-lg); object-position: center; }
+  .cooking-class-card > :not(.cooking-class-card__image) { margin-right: var(--cooking-card-padding); margin-left: var(--cooking-card-padding); }
+}
 .cooking-interest { background: var(--color-surface-alt); }
 .cooking-interest__grid { display: grid; grid-template-columns: minmax(0, 0.72fr) minmax(20rem, 0.9fr); align-items: start; gap: clamp(2rem, 10vw, 10rem); }
 .cooking-interest__introduction { max-width: 32rem; }

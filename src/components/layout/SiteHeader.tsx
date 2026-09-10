@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { restaurantConfig } from '../../config/restaurant'
 import lagnaaLogoDark from '../../assets/brand/lagnaa-logo-dark.jpg'
 import michelinGuideHeaderLogo from '../../assets/recognition/michelin-guide-header.webp'
@@ -38,6 +38,21 @@ export function SiteHeader() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [isEventsOpen, setIsEventsOpen] = useState(false)
   const [isMobileEventsOpen, setIsMobileEventsOpen] = useState(false)
+  const eventsCloseTimer = useRef<number | undefined>(undefined)
+
+  const openEvents = () => {
+    if (eventsCloseTimer.current) window.clearTimeout(eventsCloseTimer.current)
+    eventsCloseTimer.current = undefined
+    setIsEventsOpen(true)
+  }
+
+  const closeEventsAfterPointerLeaves = () => {
+    if (eventsCloseTimer.current) window.clearTimeout(eventsCloseTimer.current)
+    eventsCloseTimer.current = window.setTimeout(() => {
+      setIsEventsOpen(false)
+      eventsCloseTimer.current = undefined
+    }, 220)
+  }
 
   useEffect(() => {
     if (!isMenuOpen) {
@@ -59,6 +74,10 @@ export function SiteHeader() {
       window.removeEventListener('keydown', handleKeyDown)
     }
   }, [isMenuOpen])
+
+  useEffect(() => () => {
+    if (eventsCloseTimer.current) window.clearTimeout(eventsCloseTimer.current)
+  }, [])
 
   const closeMenu = () => {
     setIsMenuOpen(false)
@@ -89,8 +108,12 @@ export function SiteHeader() {
               <li
                 className={item.children ? 'desktop-navigation__item--has-submenu' : undefined}
                 key={item.href}
-                onMouseEnter={item.children ? () => setIsEventsOpen(true) : undefined}
-                onMouseLeave={item.children ? () => setIsEventsOpen(false) : undefined}
+                onBlur={item.children ? (event) => {
+                  if (!event.currentTarget.contains(event.relatedTarget as Node | null)) closeEventsAfterPointerLeaves()
+                } : undefined}
+                onFocus={item.children ? openEvents : undefined}
+                onMouseEnter={item.children ? openEvents : undefined}
+                onMouseLeave={item.children ? closeEventsAfterPointerLeaves : undefined}
               >
                 <div className={item.children ? 'desktop-navigation__submenu-control' : undefined}>
                   <DesktopNavigationLink href={item.href} label={item.label} />
