@@ -86,10 +86,15 @@ export function SiteHeader() {
         <nav className="desktop-navigation" aria-label="Primary navigation">
           <ul>
             {restaurantConfig.navigation.map((item) => (
-              <li className={item.children ? 'desktop-navigation__item--has-submenu' : undefined} key={item.href}>
-                <DesktopNavigationLink href={item.href} label={item.label} />
+              <li
+                className={item.children ? 'desktop-navigation__item--has-submenu' : undefined}
+                key={item.href}
+                onMouseEnter={item.children ? () => setIsEventsOpen(true) : undefined}
+                onMouseLeave={item.children ? () => setIsEventsOpen(false) : undefined}
+              >
+                <div className={item.children ? 'desktop-navigation__submenu-control' : undefined}>
+                  <DesktopNavigationLink href={item.href} label={item.label} />
                 {item.children ? (
-                  <>
                     <button
                       className="desktop-navigation__submenu-toggle"
                       type="button"
@@ -100,6 +105,10 @@ export function SiteHeader() {
                     >
                       <span aria-hidden="true">⌄</span>
                     </button>
+                ) : null}
+                </div>
+                {item.children ? (
+                  <>
                     {isEventsOpen ? (
                       <ul className="desktop-navigation__submenu" id="events-submenu" aria-label="Events navigation">
                         {item.children.map((child) => <li key={child.href}><a href={child.href}>{child.label}</a></li>)}

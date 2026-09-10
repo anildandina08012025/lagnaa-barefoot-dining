@@ -1,5 +1,6 @@
 import cookingMomentImage from '../../assets/lagnaa-showcase/lagnaa-cooking-moment.webp'
 import malaiTikkaImage from '../../assets/gallery/lagnaa-malai-tikka.jpg'
+import cookingFoodExperiencesImage from '../../assets/cooking/lagnaa-cooking-class-food-experiences.webp'
 import { restaurantConfig } from '../../config/restaurant'
 import { Container } from '../layout/Container'
 import { DevelopmentMedia } from '../media/DevelopmentMedia'
@@ -42,7 +43,7 @@ export function IndianCookingClassSingaporePage() {
           <Container className="story-main__grid">
             <div className="story-main__marker" aria-hidden="true">01</div>
             <div className="story-main__copy">
-              <SectionHeading eyebrow="Cooking experience" heading="Learn about Indian cuisine at Lagnaa." level={2} id="cooking-class-overview-heading" />
+              <SectionHeading eyebrow="Cooking experience" heading="Learn about Indian cuisine at Lagnaa ...barefoot dinning." level={2} id="cooking-class-overview-heading" />
               <div className="editorial-copy">
                 <p>
                   The cooking-class experience is presented around Chef Kaesavan and Lagnaa’s Indian food culture.
@@ -65,6 +66,8 @@ export function IndianCookingClassSingaporePage() {
         <section className="story-section story-food-philosophy" aria-labelledby="cooking-class-food-heading">
           <Container className="story-food-philosophy__grid">
             <DevelopmentMedia
+              image={cookingFoodExperiencesImage}
+              imageAlt="Lagnaa food and cooking ingredients."
               media={{ subject: 'Cooking and ingredients', detail: 'Warm ingredient or cooking-process direction for class discovery.', format: 'landscape', tone: 'cocoa' }}
               className="story-food-philosophy__media"
             />

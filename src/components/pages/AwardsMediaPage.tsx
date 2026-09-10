@@ -70,7 +70,7 @@ export function AwardsMediaPage() {
               <h2 className="sr-only" id="awards-recognition-heading">Awards and recognition</h2>
               <div className="awards-recognition__list">
                 {content.awards.map((award) => (
-                  <article className="award-record" key={award.id}>
+                  <article className="award-record" data-site-scroll-scene key={award.id}>
                     <div className="award-record__meta">
                       {getRecognitionLogo(award.organisation)?.logoSrc ? <img className="award-record__logo" src={getRecognitionLogo(award.organisation)?.logoSrc} alt={getRecognitionLogo(award.organisation)?.logoAlt ?? `${award.organisation} logo`} /> : null}
                       <span>{award.organisation}</span>
@@ -106,7 +106,7 @@ export function AwardsMediaPage() {
             </div>
             <div className="awards-media-list__grid">
               {verifiedMedia.map((item) => (
-                <article className="awards-media-card" key={item.id}>
+                <article className="awards-media-card" data-site-scroll-scene key={item.id}>
                   {item.logoSrc ? <div className="awards-media-card__logo"><img src={item.logoSrc} alt={item.logoAlt ?? `${item.publication} logo`} loading="lazy" /></div> : null}
                   <p className="eyebrow">{item.publication}</p>
                   <h3>{item.title}</h3>

@@ -89,7 +89,7 @@ export const awardsMediaContent: AwardsMediaPageContent = {
   hero: {
     eyebrow: 'Recognition & coverage',
     heading: 'Awards & Media',
-    description: 'A record of the recognition currently verified for Lagnaa, with a link to its original source.',
+    description: 'An overview of Lagnaa ...barefoot dinning’s awards and media recognition, with links to the original sources.',
   },
   introduction: {
     eyebrow: 'Recognition',

@@ -7,15 +7,18 @@ type FootstepStamp = {
   startedAt: number
 }
 
-/** A desktop-only cursor using the supplied footprint icon. */
+/** A desktop footprint cursor with a warm spotlight, plus a subtle mobile tap trail. */
 export function SpotlightCursor() {
   const canvasRef = useRef<HTMLCanvasElement>(null)
 
   useEffect(() => {
     const canvas = canvasRef.current
     const supportsHover = window.matchMedia('(hover: hover) and (pointer: fine)')
+    const supportsTouch = window.matchMedia('(hover: none) and (pointer: coarse)')
     const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)')
-    if (!canvas || !supportsHover.matches || reducedMotion.matches) return undefined
+    const isDesktopCursor = supportsHover.matches
+    const isTouchTrail = supportsTouch.matches
+    if (!canvas || (!isDesktopCursor && !isTouchTrail) || reducedMotion.matches) return undefined
 
     const context = canvas.getContext('2d')
     if (!context) return undefined
@@ -24,6 +27,7 @@ export function SpotlightCursor() {
     let targetY = -80
     let currentX = targetX
     let currentY = targetY
+    let spotlightStrength = 0
     let isVisible = false
     let animationFrame = 0
     let iconReady = false
@@ -51,24 +55,50 @@ export function SpotlightCursor() {
       context.restore()
     }
 
+    const drawTapFootsteps = (x: number, y: number, scale: number, opacity: number) => {
+      drawFootprint(x - 9, y + 3, scale, opacity, -0.26)
+      drawFootprint(x + 10, y - 5, scale, opacity * 0.8, 0.2)
+    }
+
+    const drawSpotlight = (x: number, y: number, strength: number) => {
+      if (strength <= 0.01) return
+      const radius = 118
+      const glow = context.createRadialGradient(x, y, 0, x, y, radius)
+      glow.addColorStop(0, `rgb(244 204 130 / ${(0.22 * strength).toFixed(3)})`)
+      glow.addColorStop(0.42, `rgb(193 113 55 / ${(0.11 * strength).toFixed(3)})`)
+      glow.addColorStop(1, 'rgb(193 113 55 / 0)')
+      context.save()
+      context.fillStyle = glow
+      context.fillRect(x - radius, y - radius, radius * 2, radius * 2)
+      context.restore()
+    }
+
     const draw = (time: number) => {
       animationFrame = 0
       context.clearRect(0, 0, window.innerWidth, window.innerHeight)
 
       currentX += (targetX - currentX) * 0.2
       currentY += (targetY - currentY) * 0.2
+      spotlightStrength += ((isDesktopCursor && isVisible ? 1 : 0) - spotlightStrength) * 0.18
 
-      if (isVisible) drawFootprint(currentX, currentY)
+      if (isDesktopCursor && spotlightStrength > 0.01) {
+        drawSpotlight(currentX, currentY, spotlightStrength)
+        drawFootprint(currentX, currentY)
+      }
 
       stamps = stamps.filter((stamp) => {
-        const progress = (time - stamp.startedAt) / 360
+        const progress = (time - stamp.startedAt) / (isTouchTrail ? 620 : 360)
         if (progress >= 1) return false
-        drawFootprint(stamp.x, stamp.y, 0.78 + progress * 0.28, 0.62 * (1 - progress), -0.14)
+        if (isTouchTrail) {
+          drawTapFootsteps(stamp.x, stamp.y, 0.55 + progress * 0.2, 0.52 * (1 - progress))
+        } else {
+          drawFootprint(stamp.x, stamp.y, 0.78 + progress * 0.28, 0.62 * (1 - progress), -0.14)
+        }
         return true
       })
 
       const stillMoving = Math.abs(targetX - currentX) > 0.3 || Math.abs(targetY - currentY) > 0.3
-      if (stillMoving || stamps.length > 0) animationFrame = window.requestAnimationFrame(draw)
+      if (stillMoving || stamps.length > 0 || spotlightStrength > 0.01) animationFrame = window.requestAnimationFrame(draw)
     }
 
     const requestDraw = () => {
@@ -76,6 +106,7 @@ export function SpotlightCursor() {
     }
 
     const handlePointerMove = (event: PointerEvent) => {
+      if (!isDesktopCursor) return
       targetX = event.clientX
       targetY = event.clientY
       isVisible = true
@@ -83,6 +114,7 @@ export function SpotlightCursor() {
     }
 
     const handlePointerDown = (event: PointerEvent) => {
+      if (isTouchTrail && event.pointerType !== 'touch') return
       stamps.push({ x: event.clientX, y: event.clientY, startedAt: performance.now() })
       requestDraw()
     }
@@ -94,7 +126,7 @@ export function SpotlightCursor() {
 
     icon.onload = () => {
       iconReady = true
-      document.documentElement.classList.add('has-footprint-cursor')
+      if (isDesktopCursor) document.documentElement.classList.add('has-footprint-cursor')
       requestDraw()
     }
     icon.src = footprintCursor

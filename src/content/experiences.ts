@@ -197,7 +197,7 @@ export const experiencesContent = {
   },
   hero: {
     eyebrow: 'Events & experiences',
-    heading: 'Food, culture and connection at Lagnaa.',
+    heading: 'Food, culture and connection at Lagnaa ...barefoot dinning.',
     description: 'Discover food-focused, cultural and dining experiences at Lagnaa in Little India.',
     media: {
       subject: 'Dining experience atmosphere',

@@ -199,7 +199,7 @@ export function MenuPage() {
       <article>
         <section className="menu-demo-hero" aria-labelledby="menu-heading">
           <Container className="menu-demo-hero__content">
-            <p className="eyebrow">A Taste of Lagnaa</p>
+            <p className="eyebrow">A Taste of Lagnaa ...barefoot dinning</p>
             <h1 className="menu-demo-hero__heading" id="menu-heading">Explore Our Menu</h1>
             <p>Discover vibrant Indian flavours shaped by the six tastes of Arusuvai—from comforting classics to Lagnaa’s celebrated chilli challenge.</p>
           </Container>
@@ -221,7 +221,7 @@ export function MenuPage() {
             />
             <div className="menu-seo-grid">
               {menuSeoSections.map((section) => (
-                <section className="menu-seo-card" key={section.title}>
+                <section className="menu-seo-card" data-site-scroll-scene key={section.title}>
                   <h2>{section.title}</h2>
                   <p>{section.copy}</p>
                 </section>
@@ -233,7 +233,7 @@ export function MenuPage() {
       </article>
       <CtaSection
         eyebrow="Continue your visit"
-        heading="Plan your table at Lagnaa."
+        heading="Plan your table at Lagnaa ...barefoot dinning."
         description="Explore the menu, then reserve a table or contact Lagnaa with questions before your visit."
         primaryAction={{ label: 'Reserve a Table', href: restaurantConfig.links.reservation }}
         secondaryAction={{ label: 'Plan Your Visit', href: '/contact', variant: 'outline' }}

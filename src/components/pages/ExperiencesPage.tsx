@@ -1,11 +1,12 @@
 import { restaurantConfig } from '../../config/restaurant'
 import { eventExperiences, experiences, experiencesContent } from '../../content/experiences'
 import entranceImage from '../../assets/restaurant/lagnaa-entrance.webp'
-import barefootDiningImage from '../../assets/barefoot/lagnaa-barefoot-dining.webp'
+import barefootDiningImage from '../../assets/barefoot/lagnaa-barefoot-dining-events.webp'
 import { Container } from '../layout/Container'
 import { PageMetadata } from '../seo/PageMetadata'
 import { Button } from '../ui/Button'
 import { CtaSection } from '../ui/CtaSection'
+import { InfoCard } from '../ui/InfoCard'
 import { SectionHeading } from '../ui/SectionHeading'
 
 function TextArrow() {
@@ -54,25 +55,28 @@ export function ExperiencesPage() {
         <section className="experiences-section events-collection" id="experience-overview" aria-labelledby="events-collection-heading">
           <Container>
             <div className="events-collection__heading-row">
-              <SectionHeading eyebrow="Events at Lagnaa" heading="Food, culture and shared experiences." level={2} id="events-collection-heading" />
+              <SectionHeading eyebrow="Events at Lagnaa ...barefoot dinning" heading="Food, culture and shared experiences." level={2} id="events-collection-heading" />
               <p>Explore the official event pages for the latest details. Some experiences are presented as cultural or past initiatives where current availability has not been confirmed.</p>
             </div>
             <div className="events-collection__grid">
               {eventExperiences.filter((event) => event.id !== 'rediscover-little-india').map((event) => (
-                <article className="event-card" id={event.id} key={event.id}>
-                  <img className="event-card__image" src={event.image} alt={event.imageAlt} width="1600" height="1066" />
-                  <div className="event-card__content">
-                    <p className="eyebrow">{event.eyebrow}</p>
-                    <h3>{event.title}</h3>
-                    <p>{event.description}</p>
-                    <p className="event-card__availability">{event.availabilityNote}</p>
-                    {event.detailPath ? (
-                      <a className="text-link" href={event.detailPath}>{event.detailActionLabel ?? 'Explore experience'} <TextArrow /></a>
-                    ) : (
-                      <Button href="/contact" variant="primary">Register Interest</Button>
-                    )}
-                  </div>
-                </article>
+                <InfoCard
+                  action={event.detailPath ? (
+                    <a className="text-link" href={event.detailPath}>{event.detailActionLabel ?? 'Explore experience'} <TextArrow /></a>
+                  ) : (
+                    <Button href="/contact" variant="primary">Register Interest</Button>
+                  )}
+                  className="event-card"
+                  description={event.description}
+                  detail={event.availabilityNote}
+                  eyebrow={event.eyebrow}
+                  id={event.id}
+                  image={event.image}
+                  imageAlt={event.imageAlt}
+                  key={event.id}
+                  scrollScene
+                  title={event.title}
+                />
               ))}
             </div>
           </Container>

@@ -75,7 +75,7 @@ export function VerticalThumbnailGallery({ images, groups = [], idPrefix = 'gall
 
   return (
     <section className="vertical-thumbnail-gallery" aria-label={ariaLabel}>
-      <div aria-labelledby={`${idPrefix}-thumbnail-${activeIndex}`} className="vertical-thumbnail-gallery__stage" id={`${idPrefix}-active-image`} role="tabpanel">
+      <div aria-labelledby={`${idPrefix}-thumbnail-${activeIndex}`} className="vertical-thumbnail-gallery__stage" data-site-scroll-scene id={`${idPrefix}-active-image`} role="tabpanel">
         <button
           aria-label={`Open photograph ${activeIndex + 1} of ${images.length}`}
           className="vertical-thumbnail-gallery__stage-button"

@@ -5,6 +5,7 @@ import { HomePage } from './components/pages/HomePage'
 import { AnnouncementBar } from './components/ui/AnnouncementBar'
 import { SpotlightCursor } from './components/ui/SpotlightCursor'
 import { MobileMotionEffects } from './components/ui/MobileMotionEffects'
+import { HomeScrollEffects } from './components/ui/HomeScrollEffects'
 import { RestaurantSchema } from './components/seo/RestaurantSchema'
 import { AnalyticsTracker } from './components/analytics/AnalyticsTracker'
 import { MobileReserveCta } from './components/ui/MobileReserveCta'
@@ -90,6 +91,7 @@ function App() {
       <FloatingWhatsApp />
       <SpotlightCursor />
       <MobileMotionEffects />
+      <HomeScrollEffects />
     </div>
   )
 }

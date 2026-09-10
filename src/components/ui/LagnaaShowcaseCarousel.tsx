@@ -1,6 +1,6 @@
 import { useEffect, useState, type CSSProperties, type KeyboardEvent } from 'react'
-import arusuvai from '../../assets/lagnaa-showcase/arusuvai.webp'
-import barefootDining from '../../assets/lagnaa-showcase/barefoot-dining.webp'
+import arusuvai from '../../assets/lagnaa-showcase/lagnaa-arusuvai-six-flavours.webp'
+import barefootDining from '../../assets/lagnaa-showcase/lagnaa-barefoot-dining-showcase.webp'
 import chilliLevelCustomisation from '../../assets/lagnaa-showcase/chilli-level-customisation.webp'
 
 const slides = [

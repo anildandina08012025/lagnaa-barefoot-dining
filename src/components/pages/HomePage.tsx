@@ -10,7 +10,6 @@ import michelinGuideBadge from '../../assets/recognition/michelin-guide-header.w
 import { Container } from '../layout/Container'
 import { ScrollFrameHero } from '../media/ScrollFrameHero'
 import { CtaSection } from '../ui/CtaSection'
-import { HomeScrollEffects } from '../ui/HomeScrollEffects'
 import { PageMetadata } from '../seo/PageMetadata'
 
 const homeRecognitionIds = ['michelin-guide', 'lonely-planet', 'cnn-travel', 'tripadvisor', 'arukikata', 'the-smart-local', 'straits-times', 'sethlui', 'ladyironchef', 'her-world'] as const
@@ -72,7 +71,7 @@ export function HomePage() {
           <div>
             <p className="eyebrow">MICHELIN recognition</p>
             <h2 id="michelin-heading">Recognised by the MICHELIN Guide, year after year.</h2>
-            <p>From 2016 through 2026, Lagnaa has earned MICHELIN Guide recognition across the years shown on this badge—a lasting acknowledgement of its food, hospitality and distinctive dining experience.</p>
+            <p>From 2016 through 2026, Lagnaa ...barefoot dinning has earned MICHELIN Guide recognition across the years shown on this badge—a lasting acknowledgement of its food, hospitality and distinctive dining experience.</p>
             <a className="text-link" href="https://guide.michelin.com/sg/en/singapore-region/singapore/restaurant/lagnaa" target="_blank" rel="noopener noreferrer">View the official MICHELIN listing <TextArrow /></a>
           </div>
         </Container>
@@ -141,10 +140,9 @@ export function HomePage() {
         </Container>
       </section>
 
-      <HomeScrollEffects />
       <CtaSection
         eyebrow="A table at Lagnaa"
-        heading="Ready to experience Lagnaa?"
+        heading="Ready to experience Lagnaa ...barefoot dinning?"
         description="Reserve a table or contact Lagnaa to plan your visit."
         primaryAction={{ label: 'Reserve a Table', href: restaurantConfig.links.reservation }}
         secondaryAction={{ label: 'Plan Your Visit', href: '/contact', variant: 'outline' }}

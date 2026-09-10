@@ -35,7 +35,7 @@ export function OurStoryPage() {
           </Container>
         </section>
 
-        <section className="story-section story-main" id="lagnaa-story" aria-labelledby="story-main-heading">
+        <section className="story-section story-main" data-site-scroll-scene id="lagnaa-story" aria-labelledby="story-main-heading">
           <Container className="story-main__grid">
             <div className="story-main__marker" aria-hidden="true">01</div>
             <div className="story-main__copy">
@@ -48,7 +48,7 @@ export function OurStoryPage() {
           </Container>
         </section>
 
-        <section className="story-section story-food-philosophy" aria-labelledby="food-philosophy-heading">
+        <section className="story-section story-food-philosophy" data-site-scroll-scene aria-labelledby="food-philosophy-heading">
           <Container className="story-food-philosophy__grid">
             <figure className="story-food-philosophy__media"><img className="page-content-image" src={interiorDiningImage} alt="Dining interior at Lagnaa Barefoot Dining." loading="lazy" /></figure>
             <div className="story-food-philosophy__copy">
@@ -71,7 +71,7 @@ export function OurStoryPage() {
           </Container>
         </section>
 
-        <section className="story-section story-barefoot" aria-labelledby="story-barefoot-heading">
+        <section className="story-section story-barefoot" data-site-scroll-scene aria-labelledby="story-barefoot-heading">
           <Container className="story-barefoot__grid">
             <div className="story-barefoot__copy">
               <SectionHeading eyebrow={barefoot.eyebrow} heading={barefoot.heading} level={2} id="story-barefoot-heading" />

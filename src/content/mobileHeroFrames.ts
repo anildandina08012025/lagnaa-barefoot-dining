@@ -1,5 +1,5 @@
 // Mobile-only scroll sequence supplied for the Home-page hero.
-const mobileFrameModules = import.meta.glob<string>('../assets/heroimages-mobile-new-sequence/ezgif-frame-*.webp', {
+const mobileFrameModules = import.meta.glob<string>('../assets/heroimages-mobile-new-sequence/lagnaa-barefoot-dining-mobile-hero-*.webp', {
   eager: true,
   import: 'default',
   query: '?url',

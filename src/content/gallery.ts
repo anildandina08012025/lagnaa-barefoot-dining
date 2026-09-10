@@ -75,8 +75,8 @@ export const galleryContent: GalleryPageContent = {
   },
   hero: {
     eyebrow: 'Gallery',
-    heading: 'A visual sense of Lagnaa.',
-    description: 'Official Lagnaa photographs gathered into a quieter look at the food, welcome and setting behind the restaurant experience.',
+    heading: 'A visual sense of Lagnaa ...barefoot dinning.',
+    description: 'Official Lagnaa ...barefoot dinning photographs gathered into a quieter look at the food, welcome and setting behind the restaurant experience.',
   },
   collection: {
     eyebrow: 'Gallery selection',

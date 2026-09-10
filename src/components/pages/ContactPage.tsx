@@ -40,7 +40,7 @@ export function ContactPage() {
           </Container>
         </section>
 
-        <section className="contact-section contact-visit" aria-labelledby="contact-visit-heading">
+        <section className="contact-section contact-visit" data-site-scroll-scene aria-labelledby="contact-visit-heading">
           <Container className="contact-visit__grid">
             <SectionHeading eyebrow={content.visit.eyebrow} heading={content.visit.heading} level={2} id="contact-visit-heading" />
             <div className="contact-visit__details">
@@ -93,7 +93,7 @@ export function ContactPage() {
           </Container>
         </section>
 
-        <section className="contact-section contact-barefoot" aria-labelledby="contact-barefoot-heading">
+        <section className="contact-section contact-barefoot" data-site-scroll-scene aria-labelledby="contact-barefoot-heading">
           <Container className="contact-barefoot__grid">
             <div className="contact-barefoot__copy">
               <SectionHeading eyebrow={content.barefootDining.eyebrow} heading={content.barefootDining.heading} description={content.barefootDining.description} level={2} id="contact-barefoot-heading" />
@@ -119,7 +119,7 @@ export function ContactPage() {
 
         <TestimonialRequestSection compact />
 
-        <section className="contact-section contact-explore" aria-labelledby="contact-explore-heading">
+        <section className="contact-section contact-explore" data-site-scroll-scene aria-labelledby="contact-explore-heading">
           <Container>
             <SectionHeading eyebrow="Explore Lagnaa" heading="Continue your Lagnaa journey." level={2} id="contact-explore-heading" />
             <div className="contact-explore__links">

@@ -10,9 +10,8 @@ function smoothstep(start: number, end: number, value: number) {
 }
 
 /**
- * Adds restrained scroll-linked motion to the Home content after the showcase.
- * It intentionally selects only explicitly marked Home sections, leaving the
- * hero, recognition coverflow and showcase carousel independent.
+ * Adds restrained scroll-linked motion only to explicitly marked editorial
+ * cards. Heroes, galleries controls, forms and reservation UI stay independent.
  */
 export function HomeScrollEffects() {
   useEffect(() => {
@@ -21,7 +20,7 @@ export function HomeScrollEffects() {
 
     const footer = document.querySelector<HTMLElement>('footer.site-footer')
     footer?.setAttribute('data-home-scroll-scene', '')
-    const scenes = Array.from(document.querySelectorAll<HTMLElement>('[data-home-scroll-scene]'))
+    const scenes = Array.from(document.querySelectorAll<HTMLElement>('[data-home-scroll-scene], [data-site-scroll-scene]'))
     if (scenes.length === 0) return undefined
 
     let frameRequest = 0

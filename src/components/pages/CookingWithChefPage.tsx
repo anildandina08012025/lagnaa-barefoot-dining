@@ -119,7 +119,13 @@ function makeWhatsAppUrl(message: string) {
 }
 
 function productMessage(product: string) {
-  return `Hello Lagnaa, I’d like more information about the ${product}.`
+  return [
+    'Hello Lagnaa, I would like to enquire about this product:',
+    '',
+    `Product: ${product}`,
+    '',
+    'Please share the current price, availability, ingredients and ordering details.',
+  ].join('\n')
 }
 
 export function CookingWithChefPage() {
@@ -256,27 +262,27 @@ export function CookingWithChefPage() {
             </div>
             <form className="cooking-form" noValidate onSubmit={submitInterest}>
               <div className="cooking-form__field">
-                <label htmlFor="cooking-name">Full name <span aria-hidden="true">*</span></label>
+                <label htmlFor="cooking-name"><span className="cooking-form__label-text">Full name <span aria-hidden="true">*</span></span></label>
                 <input id="cooking-name" name="name" value={form.name} onChange={(event) => updateField('name', event.target.value)} aria-invalid={Boolean(errors.name)} aria-describedby={errors.name ? 'cooking-name-error' : undefined} autoComplete="name" />
                 {errors.name ? <p className="cooking-form__error" id="cooking-name-error" role="alert">{errors.name}</p> : null}
               </div>
               <div className="cooking-form__field">
-                <label htmlFor="cooking-email">Email address <span aria-hidden="true">*</span></label>
+                <label htmlFor="cooking-email"><span className="cooking-form__label-text">Email address <span aria-hidden="true">*</span></span></label>
                 <input id="cooking-email" name="email" type="email" value={form.email} onChange={(event) => updateField('email', event.target.value)} aria-invalid={Boolean(errors.email)} aria-describedby={errors.email ? 'cooking-email-error' : undefined} autoComplete="email" />
                 {errors.email ? <p className="cooking-form__error" id="cooking-email-error" role="alert">{errors.email}</p> : null}
               </div>
               <div className="cooking-form__field">
-                <label htmlFor="cooking-phone">Contact number with country code <span aria-hidden="true">*</span></label>
+                <label htmlFor="cooking-phone"><span className="cooking-form__label-text">Contact number with country code <span aria-hidden="true">*</span></span></label>
                 <input id="cooking-phone" name="phone" type="tel" inputMode="tel" value={form.phone} onChange={(event) => updateField('phone', event.target.value)} aria-invalid={Boolean(errors.phone)} aria-describedby={errors.phone ? 'cooking-phone-error' : 'cooking-phone-hint'} autoComplete="tel" />
                 <p className="cooking-form__hint" id="cooking-phone-hint">For example: +65 9784 4771</p>
                 {errors.phone ? <p className="cooking-form__error" id="cooking-phone-error" role="alert">{errors.phone}</p> : null}
               </div>
               <div className="cooking-form__field">
-                <label htmlFor="cooking-dietary">Dietary restrictions <span className="cooking-form__optional">Optional</span></label>
+                <label htmlFor="cooking-dietary"><span className="cooking-form__label-text">Dietary restrictions <span className="cooking-form__optional">(Optional)</span></span></label>
                 <input id="cooking-dietary" name="dietary" value={form.dietary} onChange={(event) => updateField('dietary', event.target.value)} />
               </div>
               <div className="cooking-form__field cooking-form__field--wide">
-                <label htmlFor="cooking-dish">Which Indian dish have you always wanted to learn? <span aria-hidden="true">*</span></label>
+                <label htmlFor="cooking-dish"><span className="cooking-form__label-text">Which Indian dish have you always wanted to learn? <span aria-hidden="true">*</span></span></label>
                 <textarea id="cooking-dish" name="dish" rows={4} value={form.dish} onChange={(event) => updateField('dish', event.target.value)} aria-invalid={Boolean(errors.dish)} aria-describedby={errors.dish ? 'cooking-dish-error' : undefined} />
                 {errors.dish ? <p className="cooking-form__error" id="cooking-dish-error" role="alert">{errors.dish}</p> : null}
               </div>
