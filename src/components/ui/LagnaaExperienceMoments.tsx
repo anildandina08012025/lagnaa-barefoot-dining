@@ -10,7 +10,7 @@ const moments = [
     title: 'Monthly Interaction',
     description: 'Exclusive dinner for our beloved diners to select our monthly specials.',
     image: diningMoment,
-    alt: 'Guests sharing a meal at Lagnaa.',
+    alt: 'Guests sharing a meal at Lagnaa...barefoot dining.',
   },
   {
     id: 'food-challenge',
@@ -24,9 +24,9 @@ const moments = [
     id: 'cooking-class',
     label: 'Cooking Class',
     title: 'Cook with Chef Kaesavan',
-    description: 'Learn about Indian cuisine and cook with Lagnaa’s special secret sauce.',
+    description: 'Learn about Indian cuisine and cook with Lagnaa...barefoot dining’s special secret sauce.',
     image: cookingMoment,
-    alt: 'A cooking class in progress at Lagnaa.',
+    alt: 'A cooking class in progress at Lagnaa...barefoot dining.',
   },
 ] as const
 
@@ -36,7 +36,7 @@ export function LagnaaExperienceMoments() {
       <Container>
         <header className="lagnaa-moments__header">
           <p>Come Home to Yourself</p>
-          <h2 id="lagnaa-moments-heading">Experience Lagnaa</h2>
+          <h2 id="lagnaa-moments-heading">Experience Lagnaa...barefoot dining</h2>
           <p>Join our online and offline events.<br />Discover the charm of Indian culture<br />through authentic Indian Cuisine.</p>
         </header>
         <div className="lagnaa-moments__grid">

@@ -160,13 +160,13 @@ export function ScrollFrameHero({ eyebrow, heading, headingLineBreakAfter, descr
     : -1
 
   return (
-    <section className={`scroll-frame-hero${visualOnly ? ' scroll-frame-hero--visual-only' : ''}`} ref={sectionRef} aria-label={visualOnly ? 'Lagnaa food presentation' : undefined} aria-labelledby={visualOnly ? undefined : headingId} data-frame-sequence={usesCompactSequence ? 'mobile' : 'desktop'}>
+    <section className={`scroll-frame-hero${visualOnly ? ' scroll-frame-hero--visual-only' : ''}`} ref={sectionRef} aria-label={visualOnly ? 'Lagnaa...barefoot dining food presentation' : undefined} aria-labelledby={visualOnly ? undefined : headingId} data-frame-sequence={usesCompactSequence ? 'mobile' : 'desktop'}>
       <div className="scroll-frame-hero__stage">
         <img
           className="scroll-frame-hero__frame"
           ref={imageRef}
           src={animationFrames[visibleFrameIndex] ?? initialFrame}
-          alt="A plated selection of Indian dishes at Lagnaa."
+          alt="A plated selection of Indian dishes at Lagnaa...barefoot dining."
           width={usesCompactSequence ? 720 : 1280}
           height={usesCompactSequence ? 1280 : 720}
           decoding="async"

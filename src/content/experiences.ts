@@ -108,16 +108,16 @@ export const experiences: readonly Experience[] = [
     id: 'barefoot-dining',
     publicName: 'Barefoot Dining',
     slug: 'barefoot-dining',
-    shortDescription: 'A dining experience unique to Lagnaa.',
+    shortDescription: 'A dining experience unique to Lagnaa...barefoot dining.',
     longIntroduction: [
-      'Barefoot Dining is a signature part of the Lagnaa experience.',
+      'Barefoot Dining is a signature part of the Lagnaa...barefoot dining experience.',
       'It brings Indian food, warm hospitality and an intimate atmosphere together around the table.',
     ],
     officialDetailsUrl: 'https://www.lagnaa.com/service-page/barefoot-dining',
     displayOrder: 1,
     availability: null,
     practicalDetails: [],
-    sourceReference: 'Official Lagnaa Barefoot Dining service page',
+    sourceReference: 'Official Lagnaa...barefoot dining service page',
     verified: true,
   },
   {
@@ -129,7 +129,7 @@ export const experiences: readonly Experience[] = [
     displayOrder: 2,
     availability: null,
     practicalDetails: [],
-    sourceReference: 'Official Lagnaa Casual Dining service page',
+    sourceReference: 'Official Lagnaa...barefoot dining Casual Dining service page',
     verified: true,
   },
 ]
@@ -140,9 +140,9 @@ export const eventExperiences: readonly EventExperience[] = [
     title: 'Monthly Dégustation',
     eyebrow: 'Social dining & food tasting',
     description: 'A social dining and food-tasting experience centred on discovering dishes and flavours together.',
-    availabilityNote: 'Current dates and participation details are available directly from Lagnaa.',
+    availabilityNote: 'Current dates and participation details are available directly from Lagnaa...barefoot dining.',
     image: octoberMonthlySpecial,
-    imageAlt: 'A Lagnaa monthly special dish.',
+    imageAlt: 'A Lagnaa...barefoot dining monthly special dish.',
     officialDetailsUrl: 'https://www.lagnaa.com/food-tasting',
     detailPath: '/events/monthly-degustation',
     detailActionLabel: 'Register your interest',
@@ -152,10 +152,10 @@ export const eventExperiences: readonly EventExperience[] = [
     id: 'chilli-challenge',
     title: 'The Ultimate Chilli Challenge',
     eyebrow: 'Signature food challenge',
-    description: 'Lagnaa’s signature food challenge for guests who enjoy exploring spice.',
-    availabilityNote: 'Contact Lagnaa or view the official page for current participation details.',
+    description: 'Lagnaa...barefoot dining’s signature food challenge for guests who enjoy exploring spice.',
+    availabilityNote: 'Contact Lagnaa...barefoot dining or view the official page for current participation details.',
     image: curryShots,
-    imageAlt: 'Curry Shots at Lagnaa.',
+    imageAlt: 'Curry Shots at Lagnaa...barefoot dining.',
     officialDetailsUrl: 'https://www.lagnaa.com/chilli-challenge',
     detailPath: '/experiences/chilli-challenge',
     detailActionLabel: 'Explore the challenge',
@@ -166,9 +166,9 @@ export const eventExperiences: readonly EventExperience[] = [
     title: 'Cooking with Chef Kaesavan',
     eyebrow: 'Indian cooking class',
     description: 'An Indian cooking-class experience with Chef Kaesavan.',
-    availabilityNote: 'Contact Lagnaa to register interest and ask for current class details.',
+    availabilityNote: 'Contact Lagnaa...barefoot dining to register interest and ask for current class details.',
     image: chefCooking,
-    imageAlt: 'Chef Kaesavan leading a cooking session at Lagnaa.',
+    imageAlt: 'Chef Kaesavan leading a cooking session at Lagnaa...barefoot dining.',
     officialDetailsUrl: 'https://www.lagnaa.com/cooking-class',
     detailPath: '/events/cooking-with-chef-kaesavan',
     detailActionLabel: 'Register your interest',
@@ -181,7 +181,7 @@ export const eventExperiences: readonly EventExperience[] = [
     description: 'A cultural discovery experience created around Little India and its local stories.',
     availabilityNote: 'This experience is presented as a past cultural initiative; its current availability has not been confirmed.',
     image: entranceTeam,
-    imageAlt: 'Lagnaa restaurant entrance with members of the restaurant team.',
+    imageAlt: 'Lagnaa...barefoot dining restaurant entrance with members of the restaurant team.',
     officialDetailsUrl: 'https://www.lagnaa.com/rediscoverlittleindia',
     detailPath: '/events/rediscover-little-india',
     detailActionLabel: 'View the archive',
@@ -192,13 +192,13 @@ export const eventExperiences: readonly EventExperience[] = [
 
 export const experiencesContent = {
   seo: {
-    title: 'Dining Experiences | Lagnaa Barefoot Dining Singapore',
-    description: 'Explore Lagnaa dining experiences in Singapore, including Barefoot Dining, the Ultimate Chilli Challenge, food tasting and cooking-class enquiries.',
+    title: 'Dining Experiences | Lagnaa...barefoot dining Singapore',
+    description: 'Explore dining experiences at Lagnaa...barefoot dining in Singapore, including Barefoot Dining, the Ultimate Chilli Challenge, food tasting and cooking-class enquiries.',
   },
   hero: {
     eyebrow: 'Events & experiences',
-    heading: 'Food, culture and connection at Lagnaa ...barefoot dinning.',
-    description: 'Discover food-focused, cultural and dining experiences at Lagnaa in Little India.',
+    heading: 'Food, culture and connection at Lagnaa...barefoot dining.',
+    description: 'Discover food-focused, cultural and dining experiences at Lagnaa...barefoot dining in Little India.',
     media: {
       subject: 'Dining experience atmosphere',
       detail: 'Wide restaurant-atmosphere photograph that conveys the experience without implying unverified arrangements.',
@@ -210,36 +210,36 @@ export const experiencesContent = {
     eyebrow: 'The experience',
     heading: 'Experiences shaped by food and place.',
     paragraphs: [
-      'At Lagnaa, Indian food, flavour and hospitality are experienced together.',
-      'Explore the official event details or contact Lagnaa directly for current information.',
+      'At Lagnaa...barefoot dining, Indian food, flavour and hospitality are experienced together.',
+      'Explore the official event details or contact Lagnaa...barefoot dining directly for current information.',
     ],
   },
   barefootMedia: {
     subject: 'Barefoot Dining atmosphere',
-    detail: 'Landscape photograph of the Lagnaa dining atmosphere, without identifiable guests unless usage is approved.',
+    detail: 'Landscape photograph of the dining atmosphere at Lagnaa...barefoot dining, without identifiable guests unless usage is approved.',
     format: 'landscape',
     tone: 'cocoa',
   } satisfies MediaDirection,
   arusuvai: {
     eyebrow: 'Arusuvai',
     heading: 'Food, atmosphere and flavour in conversation.',
-    description: 'Arusuvai refers to six flavours. It offers a way to consider balance, contrast and discovery as part of the Lagnaa dining experience.',
+    description: 'Arusuvai refers to six flavours. It offers a way to consider balance, contrast and discovery as part of the dining experience at Lagnaa...barefoot dining.',
   },
 } as const
 
 /**
  * Page-specific content for Barefoot Dining. Time-sensitive operational details
- * deliberately remain null until Lagnaa confirms them for this rebuild.
+ * deliberately remain null until Lagnaa...barefoot dining confirms them for this rebuild.
  */
 export const barefootDiningPageContent: BarefootDiningPageContent = {
   seo: {
-    title: 'Barefoot Dining Experience Singapore | Lagnaa Barefoot Dining',
-    description: 'Discover Barefoot Dining at Lagnaa in Little India, Singapore, a signature Indian dining experience shaped by food, hospitality and atmosphere.',
+    title: 'Barefoot Dining Experience Singapore | Lagnaa...barefoot dining',
+    description: 'Discover Barefoot Dining at Lagnaa...barefoot dining in Little India, Singapore, a signature Indian dining experience shaped by food, hospitality and atmosphere.',
   },
   hero: {
-    eyebrow: 'A Lagnaa dining experience',
+    eyebrow: 'A dining experience at Lagnaa...barefoot dining',
     heading: 'Barefoot Dining',
-    description: 'Discover a signature Lagnaa dining experience shaped by Indian food, hospitality and an intimate atmosphere.',
+    description: 'Discover a signature dining experience at Lagnaa...barefoot dining, shaped by Indian food, hospitality and an intimate atmosphere.',
     media: {
       subject: 'Barefoot Dining environment',
       detail: 'Approved interior photograph showing the Barefoot Dining atmosphere; avoid generic bare-feet imagery or unapproved guests.',
@@ -251,7 +251,7 @@ export const barefootDiningPageContent: BarefootDiningPageContent = {
     eyebrow: 'The experience',
     heading: 'Food, hospitality and atmosphere around the table.',
     paragraphs: [
-      'Barefoot Dining is a signature part of the Lagnaa experience.',
+      'Barefoot Dining is a signature part of the Lagnaa...barefoot dining experience.',
       'It brings Indian food, warm hospitality and an intimate atmosphere together around the table.',
     ],
   },
@@ -264,12 +264,12 @@ export const barefootDiningPageContent: BarefootDiningPageContent = {
     eyebrow: 'The setting',
     heading: 'A considered dining atmosphere.',
     paragraphs: [
-      'Barefoot Dining is part of the way Lagnaa brings food and hospitality together.',
-      'For the current experience details, contact Lagnaa directly or view the booking options before your visit.',
+      'Barefoot Dining is part of the way Lagnaa...barefoot dining brings food and hospitality together.',
+      'For the current experience details, contact Lagnaa...barefoot dining directly or view the booking options before your visit.',
     ],
     media: {
-      subject: 'Lagnaa dining interior',
-      detail: 'Warm, intimate approved photograph of the Lagnaa interior, with no unverified seating or footwear details implied.',
+      subject: 'Dining interior at Lagnaa...barefoot dining',
+      detail: 'Warm, intimate approved photograph of the Lagnaa...barefoot dining interior, with no unverified seating or footwear details implied.',
       format: 'landscape',
       tone: 'cocoa',
     },
@@ -277,9 +277,9 @@ export const barefootDiningPageContent: BarefootDiningPageContent = {
   food: {
     eyebrow: 'Food and flavour',
     heading: 'Explore the menu before you visit.',
-    description: 'See Lagnaa’s current menu online, then return to reserve a table when you are ready.',
+    description: 'See Lagnaa...barefoot dining’s current menu online, then return to reserve a table when you are ready.',
     media: {
-      subject: 'Indian food at Lagnaa',
+      subject: 'Indian food at Lagnaa...barefoot dining',
       detail: 'Approved close-up food photograph with no dish name, ingredient, portion or price implied until menu content is confirmed.',
       format: 'square',
       tone: 'ember',
@@ -288,10 +288,10 @@ export const barefootDiningPageContent: BarefootDiningPageContent = {
   arusuvai: {
     eyebrow: 'Arusuvai',
     heading: 'Six flavours, considered together.',
-    description: 'Arusuvai refers to six flavours. It offers a way to consider balance, contrast and discovery as part of the Lagnaa dining experience.',
+    description: 'Arusuvai refers to six flavours. It offers a way to consider balance, contrast and discovery as part of the dining experience at Lagnaa...barefoot dining.',
   },
   moments: {
-    eyebrow: 'Moments at Lagnaa',
+    eyebrow: 'Moments at Lagnaa...barefoot dining',
     heading: 'A visual study of the experience.',
     media: [
       {
@@ -307,7 +307,7 @@ export const barefootDiningPageContent: BarefootDiningPageContent = {
         tone: 'saffron',
       },
       {
-        subject: 'Evening at Lagnaa',
+        subject: 'Evening at Lagnaa...barefoot dining',
         detail: 'Approved warm interior image or reel still that represents the restaurant environment.',
         format: 'portrait',
         tone: 'cocoa',
@@ -316,28 +316,28 @@ export const barefootDiningPageContent: BarefootDiningPageContent = {
   },
   practical: {
     eyebrow: 'Plan your visit',
-    heading: 'Reserve a table or speak with Lagnaa.',
+    heading: 'Reserve a table or speak with Lagnaa...barefoot dining.',
     description: 'For current experience details or a question before booking, contact the restaurant directly.',
   },
   exploreMore: [
     {
       label: 'Dining Experiences',
       href: '/experiences',
-      description: 'Explore other ways to dine at Lagnaa.',
+      description: 'Explore other ways to dine at Lagnaa...barefoot dining.',
     },
     {
       label: 'Menu',
       href: '/menu',
-      description: 'View Lagnaa’s current menu online.',
+      description: 'View Lagnaa...barefoot dining’s current menu online.',
     },
     {
       label: 'Our Story',
       href: '/our-story',
-      description: 'Discover the food and philosophy behind Lagnaa.',
+      description: 'Discover the food and philosophy behind Lagnaa...barefoot dining.',
     },
   ],
   cta: {
-    eyebrow: 'Your table at Lagnaa',
+    eyebrow: 'Your table at Lagnaa...barefoot dining',
     heading: 'Plan your Barefoot Dining visit.',
     description: 'Reserve a table or explore the menu before you visit.',
   },

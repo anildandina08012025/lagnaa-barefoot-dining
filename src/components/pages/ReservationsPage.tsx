@@ -23,16 +23,16 @@ export function ReservationsPage() {
   return (
     <main id="main-content">
       <PageMetadata
-        title="Reserve a Table | Lagnaa Barefoot Dining Singapore"
-        description="Plan a table reservation enquiry at Lagnaa Barefoot Dining in Little India, Singapore, or explore Lagnaa’s dining experiences before your visit."
+        title="Reserve a Table | Lagnaa...barefoot dining Singapore"
+        description="Plan a table reservation enquiry at Lagnaa...barefoot dining in Little India, Singapore, or explore Lagnaa...barefoot dining’s dining experiences before your visit."
         canonicalUrl={canonicalUrl}
       />
       <article className="reservations-page">
         <Container>
           <header className="reservations-page__intro">
             <p className="eyebrow">Reservations</p>
-            <h1>Plan your table at Lagnaa ...barefoot dinning</h1>
-            <p>Send your preferred visit details to Lagnaa ...barefoot dinning to confirm your reservation.</p>
+            <h1>Plan your table at Lagnaa...barefoot dining</h1>
+            <p>Send your preferred visit details to Lagnaa...barefoot dining to confirm your reservation.</p>
           </header>
 
           <div className="reservations-page__grid">
@@ -52,9 +52,9 @@ export function ReservationsPage() {
 
           <section className="reservation-experience-bridge" aria-labelledby="reservation-experience-heading">
             <div>
-              <p className="eyebrow">Lagnaa experiences</p>
+              <p className="eyebrow">Lagnaa...barefoot dining experiences</p>
               <h2 id="reservation-experience-heading">Explore the experience before you enquire.</h2>
-              <p>Some Lagnaa visits are shaped around specific experiences. View the current internal pages, then contact Lagnaa for details.</p>
+              <p>Some Lagnaa...barefoot dining visits are shaped around specific experiences. View the current internal pages, then contact Lagnaa...barefoot dining for details.</p>
             </div>
             <div className="reservation-experience-bridge__links">
               {experienceLinks.map((experience) => (
@@ -71,9 +71,9 @@ export function ReservationsPage() {
       <VisitChooserSection id="reservation-visit-options" />
       <CtaSection
         eyebrow="Need help planning?"
-        heading="Speak with Lagnaa before your visit."
-        description="Use the contact page for reservation enquiries or questions about the right Lagnaa experience."
-        primaryAction={{ label: 'Contact Lagnaa', href: '/contact' }}
+        heading="Speak with Lagnaa...barefoot dining before your visit."
+        description="Use the contact page for reservation enquiries or questions about the right Lagnaa...barefoot dining experience."
+        primaryAction={{ label: 'Contact Lagnaa...barefoot dining', href: '/contact' }}
         secondaryAction={{ label: 'View Menu', href: '/menu', variant: 'outline' }}
       />
     </main>

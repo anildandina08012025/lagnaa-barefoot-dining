@@ -38,7 +38,7 @@ export function ExperiencesPage() {
                 <a className="text-link text-link--light" href="#experience-overview">Explore experiences <TextArrow /></a>
               </div>
             </div>
-            <figure className="experiences-hero__media"><img className="page-content-image" src={entranceImage} alt="Entrance to Lagnaa Barefoot Dining in Little India." /></figure>
+            <figure className="experiences-hero__media"><img className="page-content-image" src={entranceImage} alt="Entrance to Lagnaa...barefoot dining in Little India." /></figure>
           </Container>
         </section>
 
@@ -55,7 +55,7 @@ export function ExperiencesPage() {
         <section className="experiences-section events-collection" id="experience-overview" aria-labelledby="events-collection-heading">
           <Container>
             <div className="events-collection__heading-row">
-              <SectionHeading eyebrow="Events at Lagnaa ...barefoot dinning" heading="Food, culture and shared experiences." level={2} id="events-collection-heading" />
+              <SectionHeading eyebrow="Events at Lagnaa...barefoot dining" heading="Food, culture and shared experiences." level={2} id="events-collection-heading" />
               <p>Explore the official event pages for the latest details. Some experiences are presented as cultural or past initiatives where current availability has not been confirmed.</p>
             </div>
             <div className="events-collection__grid">
@@ -85,8 +85,8 @@ export function ExperiencesPage() {
         <section className="experiences-section experiences-overview" id="dining-overview" aria-labelledby="experience-overview-heading">
           <Container>
             <div className="experiences-overview__heading-row">
-              <SectionHeading eyebrow="Choose your setting" heading="Two ways to dine at Lagnaa." level={2} id="experience-overview-heading" />
-              <p>Explore Lagnaa’s dining settings before making your reservation enquiry.</p>
+              <SectionHeading eyebrow="Choose your setting" heading="Two ways to dine at Lagnaa...barefoot dining." level={2} id="experience-overview-heading" />
+              <p>Explore Lagnaa...barefoot dining’s dining settings before making your reservation enquiry.</p>
             </div>
             <div className="experience-overview-list">
               {experiences.map((experience) => {
@@ -104,7 +104,7 @@ export function ExperiencesPage() {
                       </a>
                     ) : (
                       <a className="text-link" href={experience.officialDetailsUrl} target="_blank" rel="noreferrer">
-                        View Lagnaa details <TextArrow />
+                        View Lagnaa...barefoot dining details <TextArrow />
                       </a>
                     )}
                   </section>
@@ -117,9 +117,9 @@ export function ExperiencesPage() {
         {barefootDining ? (
           <section className="experiences-section experiences-barefoot" aria-labelledby="barefoot-feature-heading">
             <Container className="experiences-barefoot__grid">
-              <figure className="experiences-barefoot__media"><img className="page-content-image" src={barefootDiningImage} alt="Barefoot Dining experience at Lagnaa." loading="lazy" /></figure>
+              <figure className="experiences-barefoot__media"><img className="page-content-image" src={barefootDiningImage} alt="Barefoot Dining experience at Lagnaa...barefoot dining." loading="lazy" /></figure>
               <div className="experiences-barefoot__copy">
-                <SectionHeading eyebrow="Barefoot Dining" heading="A signature Lagnaa experience." level={2} id="barefoot-feature-heading" />
+                <SectionHeading eyebrow="Barefoot Dining" heading="A signature Lagnaa...barefoot dining experience." level={2} id="barefoot-feature-heading" />
                 <div className="editorial-copy">
                   {barefootDining.longIntroduction?.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}
                 </div>
@@ -144,21 +144,21 @@ export function ExperiencesPage() {
 
         <section className="experiences-section experiences-plan" aria-labelledby="experiences-plan-heading">
           <Container className="experiences-plan__grid">
-            <SectionHeading eyebrow="Plan your experience" heading="Choose a date, or speak with Lagnaa." description="For the latest experience details or a question before booking, contact the restaurant directly." level={2} id="experiences-plan-heading" />
+            <SectionHeading eyebrow="Plan your experience" heading="Choose a date, or speak with Lagnaa...barefoot dining." description="For the latest experience details or a question before booking, contact the restaurant directly." level={2} id="experiences-plan-heading" />
             <div className="experiences-plan__details">
               {restaurantConfig.address ? <p className="experiences-plan__address">{restaurantConfig.address}</p> : null}
               <div className="experiences-plan__actions">
                 <Button href={restaurantConfig.links.reservation} disabled={!canReserve} variant="primary">Reserve a Table</Button>
-                {restaurantConfig.phone ? <a className="text-link" href={`tel:${restaurantConfig.phone.replace(/\s/g, '')}`}>Call Lagnaa <TextArrow /></a> : null}
-                {restaurantConfig.email ? <a className="text-link" href={`mailto:${restaurantConfig.email}`}>Email Lagnaa <TextArrow /></a> : null}
+                {restaurantConfig.phone ? <a className="text-link" href={`tel:${restaurantConfig.phone.replace(/\s/g, '')}`}>Call Lagnaa...barefoot dining <TextArrow /></a> : null}
+                {restaurantConfig.email ? <a className="text-link" href={`mailto:${restaurantConfig.email}`}>Email Lagnaa...barefoot dining <TextArrow /></a> : null}
               </div>
             </div>
           </Container>
         </section>
 
         <CtaSection
-          eyebrow="Your table at Lagnaa"
-          heading="Choose your Lagnaa experience."
+          eyebrow="Your table at Lagnaa...barefoot dining"
+          heading="Choose your Lagnaa...barefoot dining experience."
           description="Reserve a table or explore the menu before you visit."
           primaryAction={{ label: 'Reserve a Table', href: restaurantConfig.links.reservation }}
           secondaryAction={{ label: 'View Menu', href: '/menu', variant: 'outline' }}

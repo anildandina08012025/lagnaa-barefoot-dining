@@ -65,23 +65,23 @@ export type GalleryPageContent = {
 }
 
 /**
- * Every photo is downloaded from an official Lagnaa web page. The source page
+ * Every photo is downloaded from an official Lagnaa...barefoot dining web page. The source page
  * and direct Wix media URL are retained here for future content maintenance.
  */
 export const galleryContent: GalleryPageContent = {
   seo: {
-    title: 'Lagnaa Restaurant Gallery | Indian Dining in Little India',
-    description: 'View Lagnaa Barefoot Dining photographs showing Indian food, restaurant atmosphere and the Little India setting in Singapore.',
+    title: 'Lagnaa...barefoot dining Restaurant Gallery | Indian Dining in Little India',
+    description: 'View Lagnaa...barefoot dining photographs showing Indian food, restaurant atmosphere and the Little India setting in Singapore.',
   },
   hero: {
     eyebrow: 'Gallery',
-    heading: 'A visual sense of Lagnaa ...barefoot dinning.',
-    description: 'Official Lagnaa ...barefoot dinning photographs gathered into a quieter look at the food, welcome and setting behind the restaurant experience.',
+    heading: 'A visual sense of Lagnaa...barefoot dining.',
+    description: 'Official Lagnaa...barefoot dining photographs gathered into a quieter look at the food, welcome and setting behind the restaurant experience.',
   },
   collection: {
     eyebrow: 'Gallery selection',
     heading: 'Food, place and character.',
-    description: 'Browse approved photographs of Lagnaa’s food, welcome and dining spaces.',
+    description: 'Browse approved photographs of Lagnaa...barefoot dining’s food, welcome and dining spaces.',
   },
   groups: [
     {
@@ -90,13 +90,13 @@ export const galleryContent: GalleryPageContent = {
       imageIds: ['lagnaa-entrance', 'lagnaa-entrance-team'],
     },
     {
-      heading: 'Inside Lagnaa',
+      heading: 'Inside Lagnaa...barefoot dining',
       description: 'A look at the restaurant’s interiors and dining atmosphere.',
       imageIds: ['lagnaa-interior', 'lagnaa-interior-dining'],
     },
     {
       heading: 'From the Kitchen',
-      description: 'Approved food photographs from Lagnaa source pages.',
+      description: 'Approved food photographs from Lagnaa...barefoot dining source pages.',
       imageIds: [
         'lagnaa-arusuvai-platter',
         'lagnaa-arusuvai-detail',
@@ -108,7 +108,7 @@ export const galleryContent: GalleryPageContent = {
     },
     {
       heading: 'Monthly specials',
-      description: 'A selection of special dishes previously served at Lagnaa.',
+      description: 'A selection of special dishes previously served at Lagnaa...barefoot dining.',
       imageIds: [
         'lagnaa-june-monthly-special-1',
         'lagnaa-june-monthly-special-2',
@@ -135,7 +135,7 @@ export const galleryContent: GalleryPageContent = {
       id: 'lagnaa-barefoot-entrance',
       filename: 'lagnaa-barefoot-dining-entrance.webp',
       image: barefootEntranceImage,
-      alt: 'The staircase entrance to Lagnaa’s Barefoot Dining room.',
+      alt: 'The staircase entrance to Lagnaa...barefoot dining’s Barefoot Dining room.',
       width: 0,
       height: 0,
       sourcePageUrl: 'Client-supplied photograph',
@@ -145,7 +145,7 @@ export const galleryContent: GalleryPageContent = {
       id: 'lagnaa-barefoot-interior',
       filename: 'lagnaa-barefoot-dining-interior.webp',
       image: barefootInteriorImage,
-      alt: 'Low tables and floor cushions in Lagnaa’s Barefoot Dining room.',
+      alt: 'Low tables and floor cushions in Lagnaa...barefoot dining’s Barefoot Dining room.',
       width: 0,
       height: 0,
       sourcePageUrl: 'Client-supplied photograph',
@@ -155,7 +155,7 @@ export const galleryContent: GalleryPageContent = {
       id: 'lagnaa-barefoot-guests',
       filename: 'lagnaa-barefoot-dining-guests.png',
       image: barefootGuestsImage,
-      alt: 'Guests sharing a meal in Lagnaa’s Barefoot Dining room.',
+      alt: 'Guests sharing a meal in Lagnaa...barefoot dining’s Barefoot Dining room.',
       width: 0,
       height: 0,
       sourcePageUrl: 'Client-supplied photograph',
@@ -165,7 +165,7 @@ export const galleryContent: GalleryPageContent = {
       id: 'lagnaa-barefoot-people',
       filename: 'lagnaa-barefoot-dining-people.webp',
       image: barefootPeopleImage,
-      alt: 'Guests enjoying Lagnaa’s Barefoot Dining experience.',
+      alt: 'Guests enjoying Lagnaa...barefoot dining’s Barefoot Dining experience.',
       width: 0,
       height: 0,
       sourcePageUrl: 'Client-supplied photograph',
@@ -175,7 +175,7 @@ export const galleryContent: GalleryPageContent = {
       id: 'lagnaa-chilli-challenge',
       filename: 'curry-shots.webp',
       image: chilliChallengeImage,
-      alt: 'Curry Shots for Lagnaa’s Chilli Challenge.',
+      alt: 'Curry Shots for Lagnaa...barefoot dining’s Chilli Challenge.',
       width: 0,
       height: 0,
       sourcePageUrl: 'Client-supplied photograph',
@@ -185,7 +185,7 @@ export const galleryContent: GalleryPageContent = {
       id: 'lagnaa-chilli-ladder',
       filename: 'lagnaa-chilli-challenge-gallery.webp',
       image: chilliGalleryImage,
-      alt: 'Lagnaa Chilli Challenge experience.',
+      alt: 'Lagnaa...barefoot dining Chilli Challenge experience.',
       width: 0,
       height: 0,
       sourcePageUrl: 'Client-supplied photograph',
@@ -195,38 +195,38 @@ export const galleryContent: GalleryPageContent = {
       id: 'lagnaa-chilli-levels',
       filename: 'lagnaa-chilli-challenge-levels.png',
       image: chilliLevelsImage,
-      alt: 'Lagnaa Chilli Challenge spice-level guide.',
+      alt: 'Lagnaa...barefoot dining Chilli Challenge spice-level guide.',
       width: 0,
       height: 0,
       sourcePageUrl: 'Client-supplied photograph',
       directSourceUrl: '',
     },
     {
-      id: 'lagnaa-june-monthly-special-1', filename: 'lagnaa-june-monthly-special-1.webp', image: juneMonthlySpecialOne, alt: 'June monthly special at Lagnaa.', width: 0, height: 0, sourcePageUrl: 'Client-supplied photograph', directSourceUrl: '',
+      id: 'lagnaa-june-monthly-special-1', filename: 'lagnaa-june-monthly-special-1.webp', image: juneMonthlySpecialOne, alt: 'June monthly special at Lagnaa...barefoot dining.', width: 0, height: 0, sourcePageUrl: 'Client-supplied photograph', directSourceUrl: '',
     },
     {
-      id: 'lagnaa-june-monthly-special-2', filename: 'lagnaa-june-monthly-special-2.webp', image: juneMonthlySpecialTwo, alt: 'June monthly special at Lagnaa.', width: 0, height: 0, sourcePageUrl: 'Client-supplied photograph', directSourceUrl: '',
+      id: 'lagnaa-june-monthly-special-2', filename: 'lagnaa-june-monthly-special-2.webp', image: juneMonthlySpecialTwo, alt: 'June monthly special at Lagnaa...barefoot dining.', width: 0, height: 0, sourcePageUrl: 'Client-supplied photograph', directSourceUrl: '',
     },
     {
-      id: 'lagnaa-june-monthly-special-3', filename: 'lagnaa-june-monthly-special-3.webp', image: juneMonthlySpecialThree, alt: 'June monthly special at Lagnaa.', width: 0, height: 0, sourcePageUrl: 'Client-supplied photograph', directSourceUrl: '',
+      id: 'lagnaa-june-monthly-special-3', filename: 'lagnaa-june-monthly-special-3.webp', image: juneMonthlySpecialThree, alt: 'June monthly special at Lagnaa...barefoot dining.', width: 0, height: 0, sourcePageUrl: 'Client-supplied photograph', directSourceUrl: '',
     },
     {
-      id: 'lagnaa-june-monthly-special-4', filename: 'lagnaa-june-monthly-special-4.webp', image: juneMonthlySpecialFour, alt: 'June monthly special at Lagnaa.', width: 0, height: 0, sourcePageUrl: 'Client-supplied photograph', directSourceUrl: '',
+      id: 'lagnaa-june-monthly-special-4', filename: 'lagnaa-june-monthly-special-4.webp', image: juneMonthlySpecialFour, alt: 'June monthly special at Lagnaa...barefoot dining.', width: 0, height: 0, sourcePageUrl: 'Client-supplied photograph', directSourceUrl: '',
     },
     {
-      id: 'lagnaa-august-monthly-special', filename: 'lagnaa-august-monthly-special.webp', image: augustMonthlySpecial, alt: 'August monthly special at Lagnaa.', width: 0, height: 0, sourcePageUrl: 'Client-supplied photograph', directSourceUrl: '',
+      id: 'lagnaa-august-monthly-special', filename: 'lagnaa-august-monthly-special.webp', image: augustMonthlySpecial, alt: 'August monthly special at Lagnaa...barefoot dining.', width: 0, height: 0, sourcePageUrl: 'Client-supplied photograph', directSourceUrl: '',
     },
     {
-      id: 'lagnaa-october-monthly-special-1', filename: 'lagnaa-october-special.webp', image: octoberMonthlySpecialOne, alt: 'October monthly special at Lagnaa.', width: 0, height: 0, sourcePageUrl: 'Client-supplied photograph', directSourceUrl: '',
+      id: 'lagnaa-october-monthly-special-1', filename: 'lagnaa-october-special.webp', image: octoberMonthlySpecialOne, alt: 'October monthly special at Lagnaa...barefoot dining.', width: 0, height: 0, sourcePageUrl: 'Client-supplied photograph', directSourceUrl: '',
     },
     {
-      id: 'lagnaa-october-monthly-special-2', filename: 'lagnaa-october-monthly-special-2.webp', image: octoberMonthlySpecialTwo, alt: 'October monthly special at Lagnaa.', width: 0, height: 0, sourcePageUrl: 'Client-supplied photograph', directSourceUrl: '',
+      id: 'lagnaa-october-monthly-special-2', filename: 'lagnaa-october-monthly-special-2.webp', image: octoberMonthlySpecialTwo, alt: 'October monthly special at Lagnaa...barefoot dining.', width: 0, height: 0, sourcePageUrl: 'Client-supplied photograph', directSourceUrl: '',
     },
     {
       id: 'lagnaa-entrance',
       filename: 'lagnaa-entrance.webp',
       image: entranceImage,
-      alt: 'Entrance to Lagnaa Barefoot Dining in Little India.',
+      alt: 'Entrance to Lagnaa...barefoot dining in Little India.',
       width: 0,
       height: 0,
       sourcePageUrl: 'Client-supplied photograph',
@@ -236,7 +236,7 @@ export const galleryContent: GalleryPageContent = {
       id: 'lagnaa-interior',
       filename: 'lagnaa-interior.webp',
       image: interiorImage,
-      alt: 'Interior of Lagnaa Barefoot Dining.',
+      alt: 'Interior of Lagnaa...barefoot dining.',
       width: 0,
       height: 0,
       sourcePageUrl: 'Client-supplied photograph',
@@ -246,7 +246,7 @@ export const galleryContent: GalleryPageContent = {
       id: 'lagnaa-interior-dining',
       filename: 'lagnaa-interior-dining.webp',
       image: interiorDiningImage,
-      alt: 'Dining interior at Lagnaa Barefoot Dining.',
+      alt: 'Dining interior at Lagnaa...barefoot dining.',
       width: 0,
       height: 0,
       sourcePageUrl: 'Client-supplied photograph',
@@ -256,7 +256,7 @@ export const galleryContent: GalleryPageContent = {
       id: 'lagnaa-entrance-team',
       filename: 'lagnaa-entrance-team.jpg',
       image: entranceTeamImage,
-      alt: 'Lagnaa restaurant entrance with members of the restaurant team.',
+      alt: 'Lagnaa...barefoot dining restaurant entrance with members of the restaurant team.',
       width: 1600,
       height: 1491,
       sourcePageUrl: 'https://www.lagnaa.com/about-lagnaa',
@@ -266,7 +266,7 @@ export const galleryContent: GalleryPageContent = {
       id: 'lagnaa-arusuvai-platter',
       filename: 'lagnaa-arusuvai-platter.jpg',
       image: arusuvaiPlatterImage,
-      alt: 'A divided platter of Indian dishes at Lagnaa.',
+      alt: 'A divided platter of Indian dishes at Lagnaa...barefoot dining.',
       width: 1640,
       height: 1093,
       sourcePageUrl: 'https://www.lagnaa.com/',
@@ -276,7 +276,7 @@ export const galleryContent: GalleryPageContent = {
       id: 'lagnaa-arusuvai-detail',
       filename: 'lagnaa-arusuvai-detail.jpg',
       image: arusuvaiDetailImage,
-      alt: 'A close view of a divided platter of Indian dishes at Lagnaa.',
+      alt: 'A close view of a divided platter of Indian dishes at Lagnaa...barefoot dining.',
       width: 1600,
       height: 1066,
       sourcePageUrl: 'https://www.lagnaa.com/arusuvai',
@@ -324,8 +324,8 @@ export const galleryContent: GalleryPageContent = {
     },
   ],
   cta: {
-    eyebrow: 'Visit Lagnaa',
+    eyebrow: 'Visit Lagnaa...barefoot dining',
     heading: 'See it in person.',
-    description: 'Reserve a table or plan your visit to Lagnaa in Little India.',
+    description: 'Reserve a table or plan your visit to Lagnaa...barefoot dining in Little India.',
   },
 }

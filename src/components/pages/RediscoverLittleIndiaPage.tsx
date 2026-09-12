@@ -29,7 +29,7 @@ const originalJourney = [
   'Explore Little India',
   'Complete cultural discovery challenges',
   'Discover local stories and sensory experiences',
-  'Return to Lagnaa’s connection with the neighbourhood',
+  'Return to Lagnaa...barefoot dining’s connection with the neighbourhood',
 ] as const
 
 export function RediscoverLittleIndiaPage() {
@@ -40,8 +40,8 @@ export function RediscoverLittleIndiaPage() {
   return (
     <main id="main-content">
       <PageMetadata
-        title="#RediscoverLittleIndia | Lagnaa Barefoot Dining"
-        description="An archive of Lagnaa’s 2020 cultural discovery initiative in Little India."
+        title="#RediscoverLittleIndia | Lagnaa...barefoot dining"
+        description="An archive of Lagnaa...barefoot dining’s 2020 cultural discovery initiative in Little India."
         canonicalUrl={canonicalUrl}
       />
       <article className="rediscover-page">
@@ -50,11 +50,11 @@ export function RediscoverLittleIndiaPage() {
           <Container className="rediscover-hero__grid">
             <Reveal>
               <div className="rediscover-hero__content">
-                <p className="eyebrow rediscover-hero__eyebrow">A Lagnaa Cultural Initiative</p>
+                <p className="eyebrow rediscover-hero__eyebrow">A Lagnaa...barefoot dining Cultural Initiative</p>
                 <p className="rediscover-status">Past Cultural Experience</p>
                 <h1 className="rediscover-hero__heading" id="rediscover-heading">#Rediscover<wbr />LittleIndia</h1>
-                <p className="rediscover-hero__description">A self-guided cultural discovery experience created by Lagnaa, inviting participants to explore the sights, flavours and hidden stories of Little India through their senses.</p>
-                <p className="rediscover-hero__notice">This initiative was originally created in 2020. Current participation and rewards have not been confirmed by Lagnaa.</p>
+                <p className="rediscover-hero__description">A self-guided cultural discovery experience created by Lagnaa...barefoot dining, inviting participants to explore the sights, flavours and hidden stories of Little India through their senses.</p>
+                <p className="rediscover-hero__notice">This initiative was originally created in 2020. Current participation and rewards have not been confirmed by Lagnaa...barefoot dining.</p>
               </div>
             </Reveal>
             <div className="rediscover-hero__seal" aria-hidden="true"><span>LI</span><small>Little India<br />archive</small></div>
@@ -109,15 +109,15 @@ export function RediscoverLittleIndiaPage() {
           <Container className="rediscover-rooted__grid">
             <Reveal>
               <div>
-                <SectionHeading eyebrow="Little India and Lagnaa" heading="Rooted in Little India" level={2} id="rediscover-rooted-heading" />
-                <p className="rediscover-rooted__copy">Located on Upper Dickson Road, Lagnaa is part of the cultural fabric of Little India—a neighbourhood shaped by food, heritage, colour and community.</p>
+                <SectionHeading eyebrow="Little India and Lagnaa...barefoot dining" heading="Rooted in Little India" level={2} id="rediscover-rooted-heading" />
+                <p className="rediscover-rooted__copy">Located on Upper Dickson Road, Lagnaa...barefoot dining is part of the cultural fabric of Little India—a neighbourhood shaped by food, heritage, colour and community.</p>
               </div>
             </Reveal>
             <Reveal>
               <div className="rediscover-rooted__details">
                 <address>6 Upper Dickson Road<br />Singapore 207466</address>
                 <div className="rediscover-rooted__actions">
-                  <Button href="/our-story" variant="primary">Discover Lagnaa’s Story <TextArrow /></Button>
+                  <Button href="/our-story" variant="primary">Discover Lagnaa...barefoot dining’s Story <TextArrow /></Button>
                   <Button href="/contact" variant="outline">Plan Your Visit <TextArrow /></Button>
                 </div>
               </div>

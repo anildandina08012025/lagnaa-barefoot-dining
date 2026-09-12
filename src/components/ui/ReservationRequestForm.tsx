@@ -87,7 +87,7 @@ export function ReservationRequestForm({ source = 'website', compact = false, on
         throw new Error(payload.error || 'Unable to send the reservation request.')
       }
 
-      const message = payload.message || 'Your reservation is confirmed and has been sent to Lagnaa.'
+      const message = payload.message || 'Your reservation is confirmed and has been sent to Lagnaa...barefoot dining.'
       trackEvent('reservation_submit', { source, experience: formData.experience })
       setSuccessMessage(message)
       setFormData(initialFormData)
@@ -147,7 +147,7 @@ export function ReservationRequestForm({ source = 'website', compact = false, on
 
         <div className="reservation-form__field reservation-form__field--full">
           <label htmlFor={`${source}-reservation-message`}>Message <span className="reservation-form__optional">Optional</span></label>
-          <textarea id={`${source}-reservation-message`} value={formData.message} onChange={(event) => updateField('message', event.target.value)} placeholder="Share any request for Lagnaa." />
+          <textarea id={`${source}-reservation-message`} value={formData.message} onChange={(event) => updateField('message', event.target.value)} placeholder="Share any request for Lagnaa...barefoot dining." />
         </div>
       </div>
 

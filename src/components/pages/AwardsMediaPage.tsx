@@ -102,7 +102,7 @@ export function AwardsMediaPage() {
           <Container>
             <div className="awards-recognition__heading-row">
               <SectionHeading eyebrow="Press, guides and editorial coverage" heading="Published mentions." level={2} id="awards-media-list-heading" />
-              <p>Selected records published by Lagnaa and linked to their available original sources.</p>
+              <p>Selected records published by Lagnaa...barefoot dining and linked to their available original sources.</p>
             </div>
             <div className="awards-media-list__grid">
               {verifiedMedia.map((item) => (
@@ -121,13 +121,13 @@ export function AwardsMediaPage() {
         <section className="awards-section awards-enquiries" aria-labelledby="awards-enquiries-heading">
           <Container className="awards-enquiries__grid">
             <SectionHeading eyebrow={content.enquiries.eyebrow} heading={content.enquiries.heading} description={content.enquiries.description} tone="dark" level={2} id="awards-enquiries-heading" />
-            {restaurantConfig.email ? <Button href={`mailto:${restaurantConfig.email}`} variant="light">Email Lagnaa</Button> : null}
+            {restaurantConfig.email ? <Button href={`mailto:${restaurantConfig.email}`} variant="light">Email Lagnaa...barefoot dining</Button> : null}
           </Container>
         </section>
 
         <section className="awards-section awards-explore" aria-labelledby="awards-explore-heading">
           <Container>
-            <SectionHeading eyebrow="Explore Lagnaa" heading="Continue your Lagnaa journey." level={2} id="awards-explore-heading" />
+            <SectionHeading eyebrow="Explore Lagnaa...barefoot dining" heading="Continue your Lagnaa...barefoot dining journey." level={2} id="awards-explore-heading" />
             <div className="awards-explore__links">
               {content.explore.map((item) => (
                 <a href={item.href} key={item.href}>

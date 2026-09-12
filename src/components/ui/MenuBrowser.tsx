@@ -47,7 +47,7 @@ export function MenuBrowser({ menus, showSourceLinks = false }: MenuBrowserProps
             {activeMenu.description ? <p>{activeMenu.description}</p> : null}
           </div>
           {showSourceLinks ? (
-            <a href={officialMenuUrl(activeMenu.slug)} rel="noreferrer" target="_blank" aria-label={`Confirm ${activeMenu.name} menu details with Lagnaa`}>
+            <a href={officialMenuUrl(activeMenu.slug)} rel="noreferrer" target="_blank" aria-label={`Confirm ${activeMenu.name} menu details with Lagnaa...barefoot dining`}>
               Confirm menu details <span aria-hidden="true">↗</span>
             </a>
           ) : null}
@@ -85,7 +85,7 @@ export function MenuBrowser({ menus, showSourceLinks = false }: MenuBrowserProps
           ))}
         </div>
 
-        <p className="published-menu__notice">Menu details can be confirmed directly with Lagnaa before your visit.</p>
+        <p className="published-menu__notice">Menu details can be confirmed directly with Lagnaa...barefoot dining before your visit.</p>
       </div>
     </div>
   )

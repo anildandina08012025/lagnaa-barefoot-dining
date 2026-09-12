@@ -12,8 +12,8 @@ function TextArrow() {
   return <span aria-hidden="true">↗</span>
 }
 
-const pageTitle = 'Indian Restaurant in Little India Singapore | Lagnaa Barefoot Dining'
-const pageDescription = 'Visit Lagnaa Barefoot Dining, an Indian restaurant on Upper Dickson Road in Little India, Singapore, with menu, gallery and reservation details.'
+const pageTitle = 'Indian Restaurant in Little India Singapore | Lagnaa...barefoot dining'
+const pageDescription = 'Visit Lagnaa...barefoot dining, an Indian restaurant on Upper Dickson Road in Little India, Singapore, with menu, gallery and reservation details.'
 
 export function IndianRestaurantLittleIndiaPage() {
   const canonicalUrl = restaurantConfig.siteUrl ? `${restaurantConfig.siteUrl.replace(/\/$/, '')}/indian-restaurant-little-india` : undefined
@@ -29,7 +29,7 @@ export function IndianRestaurantLittleIndiaPage() {
               <p className="eyebrow">Indian Restaurant in Little India</p>
               <h1 className="story-hero__heading" id="little-india-seo-heading">Indian dining in the heart of Little India.</h1>
               <p className="story-hero__description">
-                Lagnaa Barefoot Dining is an Indian restaurant on Upper Dickson Road in Little India, Singapore, shaped by Indian food, warm hospitality and distinctive dining experiences.
+                Lagnaa...barefoot dining is an Indian restaurant on Upper Dickson Road in Little India, Singapore, shaped by Indian food, warm hospitality and distinctive dining experiences.
               </p>
               <div className="story-barefoot__actions">
                 <Button href={restaurantConfig.links.reservation} disabled={!canReserve} variant="primary">Reserve a Table</Button>
@@ -38,8 +38,8 @@ export function IndianRestaurantLittleIndiaPage() {
             </div>
             <DevelopmentMedia
               image={entranceTeamImage}
-              imageAlt="Lagnaa restaurant entrance in Little India, Singapore."
-              media={{ subject: 'Lagnaa in Little India', detail: 'Restaurant entrance photograph for local discovery.', format: 'portrait', tone: 'saffron' }}
+              imageAlt="Lagnaa...barefoot dining restaurant entrance in Little India, Singapore."
+              media={{ subject: 'Lagnaa...barefoot dining in Little India', detail: 'Restaurant entrance photograph for local discovery.', format: 'portrait', tone: 'saffron' }}
               className="story-hero__media"
               priority
             />
@@ -53,18 +53,18 @@ export function IndianRestaurantLittleIndiaPage() {
               <SectionHeading eyebrow="Little India, Singapore" heading="A local Indian dining address." level={2} id="little-india-restaurant-heading" />
               <div className="editorial-copy">
                 <p>
-                  Located at {restaurantConfig.address}, Lagnaa gives visitors a clear base for Indian dining in Little India.
+                  Located at {restaurantConfig.address}, Lagnaa...barefoot dining gives visitors a clear base for Indian dining in Little India.
                 </p>
                 <p>
-                  The restaurant brings together Indian cuisine, the Arusuvai idea of six flavours, and Lagnaa’s own Barefoot Dining experience.
+                  The restaurant brings together Indian cuisine, the Arusuvai idea of six flavours, and Lagnaa...barefoot dining’s own Barefoot Dining experience.
                 </p>
               </div>
               <a className="text-link" href="/contact">View contact details <TextArrow /></a>
             </div>
             <DevelopmentMedia
               image={arusuvaiPlatterImage}
-              imageAlt="A selection of Indian dishes at Lagnaa Barefoot Dining."
-              media={{ subject: 'Indian dining at Lagnaa', detail: 'Food photograph showing Indian dishes and shared dining.', format: 'landscape', tone: 'ember' }}
+              imageAlt="A selection of Indian dishes at Lagnaa...barefoot dining."
+              media={{ subject: 'Indian dining at Lagnaa...barefoot dining', detail: 'Food photograph showing Indian dishes and shared dining.', format: 'landscape', tone: 'ember' }}
               className="story-main__media"
             />
           </Container>
@@ -80,10 +80,10 @@ export function IndianRestaurantLittleIndiaPage() {
               <SectionHeading eyebrow="Explore the food" heading="Browse Indian flavours before you visit." level={2} id="little-india-menu-heading" />
               <div className="editorial-copy">
                 <p>
-                  Use the menu page to explore Lagnaa’s Indian food offering, including shared dishes, individual meals, drinks and spice-led selections.
+                  Use the menu page to explore Lagnaa...barefoot dining’s Indian food offering, including shared dishes, individual meals, drinks and spice-led selections.
                 </p>
                 <p>
-                  Menu details can be confirmed directly with Lagnaa before your visit.
+                  Menu details can be confirmed directly with Lagnaa...barefoot dining before your visit.
                 </p>
               </div>
               <Button href="/menu" variant="outline">Explore the Menu</Button>
@@ -94,13 +94,13 @@ export function IndianRestaurantLittleIndiaPage() {
         <section className="story-section story-barefoot" aria-labelledby="little-india-experience-heading">
           <Container className="story-barefoot__grid">
             <div className="story-barefoot__copy">
-              <SectionHeading eyebrow="Lagnaa experiences" heading="More than a standard restaurant visit." level={2} id="little-india-experience-heading" />
+              <SectionHeading eyebrow="Lagnaa...barefoot dining experiences" heading="More than a standard restaurant visit." level={2} id="little-india-experience-heading" />
               <div className="editorial-copy">
                 <p>
-                  Visitors can discover Barefoot Dining, explore the Ultimate Chilli Challenge, or learn about Lagnaa’s food-tasting and cooking-class experiences.
+                  Visitors can discover Barefoot Dining, explore the Ultimate Chilli Challenge, or learn about Lagnaa...barefoot dining’s food-tasting and cooking-class experiences.
                 </p>
                 <p>
-                  Experience details and participation are subject to confirmation directly with Lagnaa.
+                  Experience details and participation are subject to confirmation directly with Lagnaa...barefoot dining.
                 </p>
               </div>
               <div className="story-barefoot__actions">
@@ -109,7 +109,7 @@ export function IndianRestaurantLittleIndiaPage() {
               </div>
             </div>
             <DevelopmentMedia
-              media={{ subject: 'Lagnaa experience', detail: 'Warm atmospheric visual direction for dining experiences.', format: 'portrait', tone: 'plum' }}
+              media={{ subject: 'Lagnaa...barefoot dining experience', detail: 'Warm atmospheric visual direction for dining experiences.', format: 'portrait', tone: 'plum' }}
               className="story-barefoot__media"
             />
           </Container>
@@ -119,22 +119,22 @@ export function IndianRestaurantLittleIndiaPage() {
           <Container className="story-little-india__grid">
             <SectionHeading
               eyebrow="Plan your visit"
-              heading="Find Lagnaa in Little India."
-              description={`Lagnaa Barefoot Dining is located at ${restaurantConfig.address}. Contact the restaurant directly for reservation enquiries or questions before you visit.`}
+              heading="Find Lagnaa...barefoot dining in Little India."
+              description={`Lagnaa...barefoot dining is located at ${restaurantConfig.address}. Contact the restaurant directly for reservation enquiries or questions before you visit.`}
               level={2}
               id="little-india-plan-heading"
             />
             <div className="story-little-india__action">
               <Button href="/reservations" variant="primary">Reserve a Table</Button>
-              <a className="text-link" href="/contact">Contact Lagnaa <TextArrow /></a>
+              <a className="text-link" href="/contact">Contact Lagnaa...barefoot dining <TextArrow /></a>
             </div>
           </Container>
         </section>
 
         <CtaSection
           eyebrow="Indian dining in Little India"
-          heading="Ready to visit Lagnaa?"
-          description="Explore the menu, view the restaurant gallery or contact Lagnaa before your visit."
+          heading="Ready to visit Lagnaa...barefoot dining?"
+          description="Explore the menu, view the restaurant gallery or contact Lagnaa...barefoot dining before your visit."
           primaryAction={{ label: 'Reserve a Table', href: restaurantConfig.links.reservation }}
           secondaryAction={{ label: 'View Gallery', href: '/gallery', variant: 'outline' }}
         />

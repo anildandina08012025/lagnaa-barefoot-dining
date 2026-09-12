@@ -7,6 +7,7 @@ import shortStackImage from '../../assets/cooking/cooking-class-short-stack.webp
 import ezIndianFoodImage from '../../assets/cooking/cooking-class-ez-indian-food.webp'
 import masterclassImage from '../../assets/cooking/cooking-class-masterclass.webp'
 import { restaurantConfig } from '../../config/restaurant'
+import { trackEvent } from '../../lib/analytics'
 import { Container } from '../layout/Container'
 import { PageMetadata } from '../seo/PageMetadata'
 import { Button } from '../ui/Button'
@@ -64,7 +65,7 @@ const classFormats = [
     title: 'Masterclass',
     price: 'S$750 per head · minimum 2 people · 4 hours',
     image: masterclassImage,
-    imageAlt: 'A chef-led Indian cooking masterclass at Lagnaa.',
+    imageAlt: 'A chef-led Indian cooking masterclass at Lagnaa...barefoot dining.',
     details: [
       'The deep dive: One meat, one vegetable, rice and naan from scratch.',
       'The result: You’ll leave cooking like a pro—or at least looking like one.',
@@ -77,16 +78,16 @@ const cookingSocialCards = [
     id: 'cooking-instagram-class',
     eyebrow: 'Instagram',
     title: 'Cooking with Chef moment I',
-    description: 'Watch this Cooking with Chef video from Lagnaa on Instagram.',
+    description: 'Watch this Cooking with Chef video from Lagnaa...barefoot dining on Instagram.',
     href: 'https://www.instagram.com/p/CsJGaYPMZcg/?hl=en',
     image: chefCookingImage,
-    alt: 'Master Chef Kaesavan leading a cooking session at Lagnaa.',
+    alt: 'Master Chef Kaesavan leading a cooking session at Lagnaa...barefoot dining.',
   },
   {
     id: 'cooking-instagram-dishes',
     eyebrow: 'Instagram',
     title: 'Cooking with Chef moment II',
-    description: 'Watch this Cooking with Chef video from Lagnaa on Instagram.',
+    description: 'Watch this Cooking with Chef video from Lagnaa...barefoot dining on Instagram.',
     href: 'https://www.instagram.com/p/CONLzrCnyPo/?hl=en',
     image: malaiTikkaImage,
     alt: 'Malai Tikka on a plate.',
@@ -95,10 +96,10 @@ const cookingSocialCards = [
     id: 'cooking-instagram-chef',
     eyebrow: 'Instagram',
     title: 'Cooking with Chef moment III',
-    description: 'Watch this Cooking with Chef video from Lagnaa on Instagram.',
+    description: 'Watch this Cooking with Chef video from Lagnaa...barefoot dining on Instagram.',
     href: 'https://www.instagram.com/p/BnCjntjgbtX/',
     image: chefPortraitImage,
-    alt: 'A cooking class moment at Lagnaa.',
+    alt: 'A cooking class moment at Lagnaa...barefoot dining.',
   },
 ] as const
 
@@ -120,7 +121,7 @@ function makeWhatsAppUrl(message: string) {
 
 function productMessage(product: string) {
   return [
-    'Hello Lagnaa, I would like to enquire about this product:',
+    'Hello Lagnaa...barefoot dining, I would like to enquire about this product:',
     '',
     `Product: ${product}`,
     '',
@@ -131,7 +132,9 @@ function productMessage(product: string) {
 export function CookingWithChefPage() {
   const [form, setForm] = useState<InterestForm>(initialForm)
   const [errors, setErrors] = useState<InterestErrors>({})
-  const [preparedUrl, setPreparedUrl] = useState<string | null>(null)
+  const [submitError, setSubmitError] = useState('')
+  const [successMessage, setSuccessMessage] = useState('')
+  const [isSubmitting, setIsSubmitting] = useState(false)
   const canonicalUrl = restaurantConfig.siteUrl
     ? `${restaurantConfig.siteUrl.replace(/\/$/, '')}/events/cooking-with-chef-kaesavan`
     : undefined
@@ -139,10 +142,9 @@ export function CookingWithChefPage() {
   const updateField = (field: keyof InterestForm, value: string) => {
     setForm((current) => ({ ...current, [field]: value }))
     setErrors((current) => ({ ...current, [field]: undefined }))
-    setPreparedUrl(null)
   }
 
-  const submitInterest = (event: FormEvent<HTMLFormElement>) => {
+  const submitInterest = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault()
     const nextErrors: InterestErrors = {}
     if (!form.name.trim()) nextErrors.name = 'Enter your full name.'
@@ -150,30 +152,51 @@ export function CookingWithChefPage() {
     else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email)) nextErrors.email = 'Enter a valid email address.'
     if (!form.phone.trim()) nextErrors.phone = 'Enter a contact number including the country code.'
     else if (!form.phone.trim().startsWith('+')) nextErrors.phone = 'Include the country code, for example +65.'
-    if (!form.dish.trim()) nextErrors.dish = 'Tell Lagnaa which dish you would like to learn.'
+    if (!form.dish.trim()) nextErrors.dish = 'Tell Lagnaa...barefoot dining which dish you would like to learn.'
 
     setErrors(nextErrors)
     if (Object.keys(nextErrors).length > 0) return
 
-    const message = [
-      'Hello Lagnaa, I’m interested in Cooking with Chef Kaesavan.',
-      '',
-      `Name: ${form.name.trim()}`,
-      `Email: ${form.email.trim()}`,
-      `Contact number: ${form.phone.trim()}`,
-      `Dietary restrictions: ${form.dietary.trim() || 'None provided'}`,
-      `Dish I would like to learn: ${form.dish.trim()}`,
-    ].join('\n')
-    const url = makeWhatsAppUrl(message)
-    setPreparedUrl(url)
-    if (url) window.open(url, '_blank', 'noopener,noreferrer')
+    setSubmitError('')
+    setSuccessMessage('')
+    setIsSubmitting(true)
+
+    try {
+      const response = await fetch('/api/cooking-class-requests', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ source: 'website', ...form }),
+      })
+      let parsedResponse = true
+      const payload = await response.json().catch(() => {
+        parsedResponse = false
+        return {}
+      }) as { message?: string; error?: string; errors?: InterestErrors }
+
+      if (!response.ok) {
+        if (payload.errors) setErrors(payload.errors)
+        if (!parsedResponse && response.status === 404) {
+          throw new Error('Cooking-class requests are not available in this preview. Test on Vercel after adding the cooking-class environment variables, or run the project with Vercel dev.')
+        }
+        throw new Error(payload.error || 'Unable to send your cooking-class request.')
+      }
+
+      const message = payload.message || 'Your cooking-class request has been sent to Lagnaa...barefoot dining.'
+      trackEvent('cooking_class_request_submit')
+      setSuccessMessage(message)
+      setForm(initialForm)
+    } catch (error) {
+      setSubmitError(error instanceof Error ? error.message : 'Unable to send your cooking-class request.')
+    } finally {
+      setIsSubmitting(false)
+    }
   }
 
   return (
     <main id="main-content">
       <PageMetadata
         title="Cooking with Chef Kaesavan | Indian Cooking Class Singapore"
-        description="Register interest in Cooking with Chef Kaesavan at Lagnaa, an Indian cooking-class experience in Singapore."
+        description="Register interest in Cooking with Chef Kaesavan at Lagnaa...barefoot dining, an Indian cooking-class experience in Singapore."
         canonicalUrl={canonicalUrl}
       />
       <article className="cooking-page">
@@ -183,10 +206,10 @@ export function CookingWithChefPage() {
               <p className="eyebrow cooking-hero__eyebrow">Cooking Experience</p>
               <h1 className="cooking-hero__heading" id="cooking-heading">Cooking with Master Chef Kaesavan</h1>
               <p className="cooking-hero__description">Interested in learning how to prepare Indian cuisine with Chef Kaesavan? Tell us what you would like to learn and register your interest.</p>
-              <a className="text-link text-link--light" href="#cooking-interest">Send a request on WhatsApp <TextArrow /></a>
+              <a className="text-link text-link--light" href="#cooking-interest">Send a cooking-class request <TextArrow /></a>
             </div>
             <figure className="cooking-hero__image">
-              <img src={chefHeroImage} alt="Master Chef Kaesavan leading a cooking session at Lagnaa." />
+              <img src={chefHeroImage} alt="Master Chef Kaesavan leading a cooking session at Lagnaa...barefoot dining." />
             </figure>
           </Container>
         </section>
@@ -224,13 +247,13 @@ export function CookingWithChefPage() {
                 id="cooking-social-heading"
               />
               <p>
-                Watch official Lagnaa posts and Reels on Instagram. Videos open on social media, not inside this website.
+                Watch official Lagnaa...barefoot dining posts and Reels on Instagram. Videos open on social media, not inside this website.
               </p>
             </div>
-            <div className="experience-social__scroller" aria-label="Official Instagram links for Lagnaa cooking-class moments">
+            <div className="experience-social__scroller" aria-label="Official Instagram links for Lagnaa...barefoot dining cooking-class moments">
               {cookingSocialCards.map((card) => (
                 <a
-                  aria-label={`${card.title}. Opens Lagnaa on Instagram in a new tab.`}
+                  aria-label={`${card.title}. Opens Lagnaa...barefoot dining on Instagram in a new tab.`}
                   className="experience-social-card"
                   href={card.href}
                   key={card.id}
@@ -256,8 +279,8 @@ export function CookingWithChefPage() {
         <section className="cooking-section cooking-interest" id="cooking-interest" aria-labelledby="cooking-interest-heading">
           <Container className="cooking-interest__grid">
             <div className="cooking-interest__introduction">
-              <SectionHeading eyebrow="Cooking class request" heading="Tell Lagnaa what you would love to learn." level={2} id="cooking-interest-heading" />
-              <p>The team will receive your enquiry through WhatsApp after you choose to submit the form.</p>
+              <SectionHeading eyebrow="Cooking class request" heading="Tell Lagnaa...barefoot dining what you would love to learn." level={2} id="cooking-interest-heading" />
+              <p>Your request is saved securely and sent to the Lagnaa...barefoot dining team by email.</p>
               <p>For more context, view the <a href="/indian-cooking-class-singapore">Indian cooking class in Singapore</a> guide.</p>
             </div>
             <form className="cooking-form" noValidate onSubmit={submitInterest}>
@@ -287,10 +310,11 @@ export function CookingWithChefPage() {
                 {errors.dish ? <p className="cooking-form__error" id="cooking-dish-error" role="alert">{errors.dish}</p> : null}
               </div>
               <div className="cooking-form__actions">
-                <Button type="submit" variant="primary">Send Request on WhatsApp <TextArrow /></Button>
-                <p>Submitting opens a WhatsApp enquiry to Lagnaa; it does not confirm a class place.</p>
+                <Button type="submit" variant="primary" disabled={isSubmitting}>{isSubmitting ? 'Sending Request…' : <>Send Cooking-Class Request <TextArrow /></>}</Button>
+                <p>Submitting saves your request for the Lagnaa...barefoot dining team; it does not confirm a class place.</p>
               </div>
-              {preparedUrl ? <p className="cooking-form__prepared" role="status">Your WhatsApp enquiry is ready. If it did not open, <a href={preparedUrl} target="_blank" rel="noopener noreferrer">open it here</a>.</p> : null}
+              {submitError ? <p className="cooking-form__error cooking-form__notice" role="alert">{submitError}</p> : null}
+              {successMessage ? <p className="cooking-form__prepared" role="status">{successMessage}</p> : null}
             </form>
           </Container>
         </section>
@@ -298,8 +322,8 @@ export function CookingWithChefPage() {
         <section className="cooking-section cooking-products" aria-labelledby="cooking-products-heading">
           <Container>
             <div className="cooking-products__heading">
-              <SectionHeading eyebrow="Cook Lagnaa Flavours at Home" heading="Instant Curry Paste & Ready Mixes" level={2} id="cooking-products-heading" />
-              <p>Enquire directly with Lagnaa for current product information.</p>
+              <SectionHeading eyebrow="Cook Lagnaa...barefoot dining Flavours at Home" heading="Instant Curry Paste & Ready Mixes" level={2} id="cooking-products-heading" />
+              <p>Enquire directly with Lagnaa...barefoot dining for current product information.</p>
             </div>
             <div className="cooking-products__grid">
               {products.map((product, index) => {
@@ -317,9 +341,9 @@ export function CookingWithChefPage() {
         </section>
 
         <CtaSection
-          eyebrow="Explore Lagnaa"
+          eyebrow="Explore Lagnaa...barefoot dining"
           heading="Discover food, flavour and experiences."
-          description="Explore the current menu or return to Lagnaa’s experiences."
+          description="Explore the current menu or return to Lagnaa...barefoot dining’s experiences."
           primaryAction={{ label: 'View Menu', href: '/menu' }}
           secondaryAction={{ label: 'Explore Experiences', href: '/experiences', variant: 'outline' }}
         />

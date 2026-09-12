@@ -24,7 +24,7 @@ const trustSignals: readonly TrustSignal[] = [
   },
   {
     label: 'Barefoot Dining',
-    detail: 'A signature Lagnaa experience',
+    detail: 'A signature Lagnaa...barefoot dining experience',
     href: '/experiences/barefoot-dining',
   },
   {
@@ -39,7 +39,7 @@ export function TrustSignals({ tone = 'light', compact = false }: TrustSignalsPr
     <section className={`trust-signals trust-signals--${tone}${compact ? ' trust-signals--compact' : ''}`} aria-labelledby="trust-signals-heading">
       <Container>
         <div className="trust-signals__header">
-          <p className="eyebrow">Why Lagnaa</p>
+          <p className="eyebrow">Why Lagnaa...barefoot dining</p>
           <h2 id="trust-signals-heading">Recognised, distinctive and rooted in Little India.</h2>
         </div>
         <div className="trust-signals__grid">

@@ -5,7 +5,7 @@ const WINDOW_MS = 60_000
 const MAX_REQUESTS_PER_WINDOW = 18
 
 const restaurantContext = {
-  restaurant: 'Lagnaa Barefoot Dining',
+  restaurant: 'Lagnaa...barefoot dining',
   description: 'Indian restaurant in Little India, Singapore, with a warm premium dining identity.',
   location: 'Little India, Singapore',
   address: '6 Upper Dickson Road, Singapore 207466',
@@ -88,7 +88,7 @@ const restaurantContext = {
   publishedMenus: officialMenu,
 }
 
-const instructions = `You are the warm, concise online concierge for Lagnaa Barefoot Dining in Singapore.
+const instructions = `You are the warm, concise online concierge for Lagnaa...barefoot dining in Singapore.
 
 Use only the restaurant information supplied below. Do not invent dishes, prices, ingredients, dates, hours, availability, policies, awards, transport information, or booking confirmations. Treat menu prices as published information that can change, and suggest visitors check the menu or contact Lagnaa for the latest availability.
 

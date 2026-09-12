@@ -26,23 +26,23 @@ const barefootJourneySteps = [
   {
     number: '01',
     title: 'Begin upstairs',
-    description: 'Follow the staircase to Lagnaa’s second floor, where the Barefoot Dining experience begins and shoes are left at the entrance.',
+    description: 'Follow the staircase to Lagnaa...barefoot dining’s second floor, where the Barefoot Dining experience begins and shoes are left at the entrance.',
     image: barefootEntranceImage,
-    alt: 'The staircase leading to Lagnaa Barefoot Dining, with signs inviting guests to remove their shoes.',
+    alt: 'The staircase leading to Lagnaa...barefoot dining, with signs inviting guests to remove their shoes.',
   },
   {
     number: '02',
     title: 'Settle into the room',
     description: 'Take your place in an air-conditioned dining room, comfortably seated on cushions around low tables.',
     image: barefootInteriorImage,
-    alt: 'Lagnaa’s Barefoot Dining interior with low tables and floor cushions.',
+    alt: 'Lagnaa...barefoot dining’s Barefoot Dining interior with low tables and floor cushions.',
   },
   {
     number: '03',
     title: 'Share the moment',
     description: 'Slow down over Indian flavours, share food and conversation, and make the table your own.',
     image: barefootGuestsImage,
-    alt: 'Guests sharing a meal together in Lagnaa’s Barefoot Dining room.',
+    alt: 'Guests sharing a meal together in Lagnaa...barefoot dining’s Barefoot Dining room.',
   },
 ] as const
 
@@ -65,7 +65,7 @@ export function BarefootDiningPage() {
                 <p>Barefoot Dining · Indian Flavours · Warm Hospitality · Little India ·</p>
               </div>
               <div className="barefoot-hero__poem-face barefoot-hero__poem-face--back">
-                <p>Food Around The Table · Slow Down · Share The Moment · Lagnaa ·</p>
+                <p>Food Around The Table · Slow Down · Share The Moment · Lagnaa...barefoot dining ·</p>
               </div>
               <div className="barefoot-hero__poem-face barefoot-hero__poem-face--left">
                 <p>Floor Cushions · Low Tables · Share The Table · Warm Welcome ·</p>
@@ -77,7 +77,7 @@ export function BarefootDiningPage() {
               <div className="barefoot-hero__poem-face barefoot-hero__poem-face--bottom" />
             </div>
             <div className="barefoot-hero__poem-reflection">
-              <p>Barefoot Dining · Lagnaa · Little India ·</p>
+              <p>Barefoot Dining · Lagnaa...barefoot dining · Little India ·</p>
             </div>
           </div>
           <Container className="barefoot-hero__grid">
@@ -95,7 +95,7 @@ export function BarefootDiningPage() {
 
         <section className="barefoot-section barefoot-journey" id="barefoot-journey" aria-labelledby="barefoot-journey-heading">
           <Container>
-            <SectionHeading eyebrow="The Barefoot journey" heading="From the first step to the shared table." description="A simple, welcoming way to experience Lagnaa together." align="center" level={2} id="barefoot-journey-heading" />
+            <SectionHeading eyebrow="The Barefoot journey" heading="From the first step to the shared table." description="A simple, welcoming way to experience Lagnaa...barefoot dining together." align="center" level={2} id="barefoot-journey-heading" />
             <ol className="barefoot-journey__steps">
               {barefootJourneySteps.map((step) => (
                 <li className="barefoot-journey__step" key={step.number}>
@@ -116,10 +116,10 @@ export function BarefootDiningPage() {
         <section className="barefoot-section barefoot-moments" aria-labelledby="barefoot-moments-heading">
           <Container>
             <SectionHeading eyebrow={content.moments.eyebrow} heading={content.moments.heading} align="center" level={2} id="barefoot-moments-heading" />
-            <div className="barefoot-moments__grid" aria-label="Barefoot Dining moments at Lagnaa">
+            <div className="barefoot-moments__grid" aria-label="Barefoot Dining moments at Lagnaa...barefoot dining">
               {barefootInstagramPosts.map((post) => (
                 <a className="barefoot-moments__media barefoot-moments__media--link" href={post.href} key={post.href} target="_blank" rel="noopener noreferrer" aria-label={`${post.label}. Opens Instagram in a new tab.`}>
-                  <img className="page-content-image" src={post.image} alt={`${post.label} at Lagnaa.`} loading="lazy" />
+                  <img className="page-content-image" src={post.image} alt={`${post.label} at Lagnaa...barefoot dining.`} loading="lazy" />
                   <span>View on Instagram <TextArrow /></span>
                 </a>
               ))}
@@ -134,8 +134,8 @@ export function BarefootDiningPage() {
               {restaurantConfig.address ? <p className="barefoot-practical__address">{restaurantConfig.address}</p> : null}
               <div className="barefoot-practical__actions">
                 <Button href={restaurantConfig.links.reservation} disabled={!canReserve} variant="primary">Reserve a Table</Button>
-                {restaurantConfig.phone ? <a className="text-link" href={`tel:${restaurantConfig.phone.replace(/\s/g, '')}`}>Call Lagnaa <TextArrow /></a> : null}
-                {restaurantConfig.email ? <a className="text-link" href={`mailto:${restaurantConfig.email}`}>Email Lagnaa <TextArrow /></a> : null}
+                {restaurantConfig.phone ? <a className="text-link" href={`tel:${restaurantConfig.phone.replace(/\s/g, '')}`}>Call Lagnaa...barefoot dining <TextArrow /></a> : null}
+                {restaurantConfig.email ? <a className="text-link" href={`mailto:${restaurantConfig.email}`}>Email Lagnaa...barefoot dining <TextArrow /></a> : null}
               </div>
             </div>
           </Container>
@@ -143,7 +143,7 @@ export function BarefootDiningPage() {
 
         <section className="barefoot-section barefoot-explore" aria-labelledby="barefoot-explore-heading">
           <Container>
-            <SectionHeading eyebrow="Explore more" heading="Continue your Lagnaa journey." level={2} id="barefoot-explore-heading" />
+            <SectionHeading eyebrow="Explore more" heading="Continue your Lagnaa...barefoot dining journey." level={2} id="barefoot-explore-heading" />
             <div className="barefoot-explore__grid">
               {content.exploreMore.map((item) => (
                 <a className="barefoot-explore__card" href={item.href} key={item.href}>

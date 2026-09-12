@@ -4,9 +4,9 @@ import barefootDining from '../../assets/lagnaa-showcase/lagnaa-barefoot-dining-
 import chilliLevelCustomisation from '../../assets/lagnaa-showcase/chilli-level-customisation.webp'
 
 const slides = [
-  { id: 'barefoot-dining', image: barefootDining, title: 'Barefoot Dining', description: 'A signature Lagnaa dining experience shaped by food, hospitality and an intimate atmosphere.', href: '/experiences/barefoot-dining', background: '#650000' },
+  { id: 'barefoot-dining', image: barefootDining, title: 'Barefoot Dining', description: 'A signature dining experience at Lagnaa...barefoot dining, shaped by food, hospitality and an intimate atmosphere.', href: '/experiences/barefoot-dining', background: '#650000' },
   { id: 'chilli-level-customisation', image: chilliLevelCustomisation, title: 'Customisation of Chilli Levels', description: 'Choose the heat that matches your palate, without compromising flavour.', href: '/experiences/chilli-challenge', background: '#7a0000' },
-  { id: 'arusuvai', image: arusuvai, title: 'Arusuvai', description: 'The harmony of six tastes, brought together in every Lagnaa meal.', href: '/menu', background: '#8b1515' },
+  { id: 'arusuvai', image: arusuvai, title: 'Arusuvai', description: 'The harmony of six tastes, brought together in every Lagnaa...barefoot dining meal.', href: '/menu', background: '#8b1515' },
 ] as const
 
 export function LagnaaShowcaseCarousel() {
@@ -45,14 +45,14 @@ export function LagnaaShowcaseCarousel() {
     <section
       className="lagnaa-showcase"
       aria-roledescription="carousel"
-      aria-label="Experience Lagnaa"
+      aria-label="Experience Lagnaa...barefoot dining"
       onKeyDown={handleKeyDown}
       tabIndex={0}
       style={{ '--showcase-background': activeSlide.background } as CSSProperties}
     >
       <p className="sr-only" aria-live="polite">Slide {activeIndex + 1} of {slides.length}: {activeSlide.title}</p>
       <div className="lagnaa-showcase__grain" aria-hidden="true" />
-      <p className="lagnaa-showcase__display" aria-hidden="true">Experience Lagnaa</p>
+      <p className="lagnaa-showcase__display" aria-hidden="true">Experience Lagnaa...barefoot dining</p>
       <div className="lagnaa-showcase__stage">
         {slides.map((slide, index) => {
           const role = index === activeIndex ? 'center' : index === (activeIndex + 2) % slides.length ? 'left' : 'right'
@@ -68,7 +68,7 @@ export function LagnaaShowcaseCarousel() {
           <h2>{activeSlide.title}</h2>
           <p>{activeSlide.description}</p>
         </div>
-        <div className="lagnaa-showcase__controls" aria-label="Experience Lagnaa controls">
+        <div className="lagnaa-showcase__controls" aria-label="Experience Lagnaa...barefoot dining controls">
           <button type="button" onClick={showPrevious} aria-label="Show previous experience">←</button>
           <div className="lagnaa-showcase__dots">{slides.map((slide, index) => <button key={slide.id} type="button" onClick={() => selectSlide(index)} aria-label={`Show ${slide.title}`} aria-current={index === activeIndex ? 'true' : undefined} />)}</div>
           <button type="button" onClick={showNext} aria-label="Show next experience">→</button>

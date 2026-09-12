@@ -41,15 +41,15 @@ export function HomePage() {
   return (
     <main id="main-content">
       <PageMetadata
-        title="Lagnaa Barefoot Dining | Indian Restaurant in Little India Singapore"
-        description="Visit Lagnaa Barefoot Dining, an Indian restaurant in Little India, Singapore, known for Indian flavours, Barefoot Dining and signature experiences."
+        title="Lagnaa...barefoot dining | Indian Restaurant in Little India Singapore"
+        description="Visit Lagnaa...barefoot dining, an Indian restaurant in Little India, Singapore, known for Indian flavours, Barefoot Dining and signature experiences."
         canonicalUrl={restaurantConfig.siteUrl ?? undefined}
       />
 
       <ScrollFrameHero
         eyebrow=""
-        heading="LAGNAA ...barefoot dining."
-        headingLineBreakAfter="LAGNAA"
+        heading="Lagnaa...barefoot dining"
+        headingLineBreakAfter="Lagnaa...barefoot dining"
         description="Where shoes wait politely at the steps and flavours dance on your palate."
         headingId="home-heading"
         frames={galleryHeroFrames}
@@ -65,13 +65,13 @@ export function HomePage() {
 
       <section className="home-michelin" aria-labelledby="michelin-heading">
         <Container className="home-michelin__grid">
-          <a className="home-michelin__badge" href="https://guide.michelin.com/sg/en/singapore-region/singapore/restaurant/lagnaa" target="_blank" rel="noopener noreferrer" aria-label="View Lagnaa's MICHELIN Guide listing">
+          <a className="home-michelin__badge" href="https://guide.michelin.com/sg/en/singapore-region/singapore/restaurant/lagnaa" target="_blank" rel="noopener noreferrer" aria-label="View Lagnaa...barefoot dining's MICHELIN Guide listing">
             <img src={michelinGuideBadge} alt="MICHELIN Guide multi-year recognition badge, 2016 to 2026" width="480" height="480" loading="lazy" decoding="async" />
           </a>
           <div>
             <p className="eyebrow">MICHELIN recognition</p>
             <h2 id="michelin-heading">Recognised by the MICHELIN Guide, year after year.</h2>
-            <p>From 2016 through 2026, Lagnaa ...barefoot dinning has earned MICHELIN Guide recognition across the years shown on this badge—a lasting acknowledgement of its food, hospitality and distinctive dining experience.</p>
+            <p>From 2016 through 2026, Lagnaa...barefoot dining has earned MICHELIN Guide recognition across the years shown on this badge—a lasting acknowledgement of its food, hospitality and distinctive dining experience.</p>
             <a className="text-link" href="https://guide.michelin.com/sg/en/singapore-region/singapore/restaurant/lagnaa" target="_blank" rel="noopener noreferrer">View the official MICHELIN listing <TextArrow /></a>
           </div>
         </Container>
@@ -96,7 +96,7 @@ export function HomePage() {
       <section className="home-signature" aria-labelledby="signature-heading">
         <Container>
           <div className="home-signature__heading">
-            <p className="eyebrow">Lagnaa’s signature experiences</p>
+            <p className="eyebrow">Lagnaa...barefoot dining’s signature experiences</p>
             <h2 id="signature-heading">A restaurant with its own way of doing things.</h2>
           </div>
 
@@ -108,20 +108,20 @@ export function HomePage() {
               <ul>
                 <li>Relaxed and comfortable for families, friends and celebrations.</li>
                 <li>Designed for sharing food, conversation and time together.</li>
-                <li>A distinctive dining memory, unique to Lagnaa.</li>
+                <li>A distinctive dining memory, unique to Lagnaa...barefoot dining.</li>
               </ul>
               <div className="home-experience__note"><strong>Casual Dining</strong> with normal tables and chairs is available on the first floor. <strong>Both floors offer the same menu with no price difference.</strong></div>
               <a className="text-link" href="/experiences/barefoot-dining">Discover Barefoot Dining <TextArrow /></a>
             </div>
-            <img src={barefootDiningImage} alt="Lagnaa's Barefoot Dining experience" width="1200" height="900" loading="lazy" decoding="async" />
+            <img src={barefootDiningImage} alt="Lagnaa...barefoot dining's Barefoot Dining experience" width="1200" height="900" loading="lazy" decoding="async" />
           </article>
 
           <article className="home-experience home-experience--chilli" data-home-scroll-scene>
-            <img src={chilliLadderImage} alt="Lagnaa Chilli Ladder showing personalised spice levels" width="1200" height="900" loading="lazy" decoding="async" />
+            <img src={chilliLadderImage} alt="Lagnaa...barefoot dining Chilli Ladder showing personalised spice levels" width="1200" height="900" loading="lazy" decoding="async" />
             <div className="home-experience__copy">
               <p className="eyebrow">02 · Customised Chilli Levels</p>
               <h3>Your heat. Your way.</h3>
-              <p>Choose the spice level that feels right for you, from 0 to 10. Whether you are easing in or ready to test your limits, Lagnaa helps you explore flavour without losing the balance of the dish.</p>
+              <p>Choose the spice level that feels right for you, from 0 to 10. Whether you are easing in or ready to test your limits, Lagnaa...barefoot dining helps you explore flavour without losing the balance of the dish.</p>
               <div className="home-chilli-scale" aria-label="Chilli levels zero to ten">{Array.from({ length: 11 }, (_, level) => <span key={level}>{level}</span>)}</div>
               <p>Start with Curry Shots to discover your comfort zone, or step into the Ultimate Chilli Challenge when you are ready to dare a little more.</p>
               <a className="text-link" href="/experiences/chilli-challenge">Explore the Chilli Challenge <TextArrow /></a>
@@ -132,18 +132,18 @@ export function HomePage() {
             <div className="home-experience__copy">
               <p className="eyebrow">03 · Arusuvai</p>
               <h3>Six flavours, one memorable meal.</h3>
-              <p>Arusuvai is the Indian understanding of six tastes in balance. At Lagnaa, it guides a meal of contrast, comfort and discovery—from familiar favourites to dishes that invite you to try something new.</p>
+              <p>Arusuvai is the Indian understanding of six tastes in balance. At Lagnaa...barefoot dining, it guides a meal of contrast, comfort and discovery—from familiar favourites to dishes that invite you to try something new.</p>
               <a className="text-link" href="/menu">Explore the menu <TextArrow /></a>
             </div>
-            <img src={arusuvaiImage} alt="A Lagnaa Arusuvai food platter" width="1600" height="1067" loading="lazy" decoding="async" />
+            <img src={arusuvaiImage} alt="A Lagnaa...barefoot dining Arusuvai food platter" width="1600" height="1067" loading="lazy" decoding="async" />
           </article>
         </Container>
       </section>
 
       <CtaSection
-        eyebrow="A table at Lagnaa"
-        heading="Ready to experience Lagnaa ...barefoot dinning?"
-        description="Reserve a table or contact Lagnaa to plan your visit."
+        eyebrow="A table at Lagnaa...barefoot dining"
+        heading="Ready to experience Lagnaa...barefoot dining?"
+        description="Reserve a table or contact Lagnaa...barefoot dining to plan your visit."
         primaryAction={{ label: 'Reserve a Table', href: restaurantConfig.links.reservation }}
         secondaryAction={{ label: 'Plan Your Visit', href: '/contact', variant: 'outline' }}
       />

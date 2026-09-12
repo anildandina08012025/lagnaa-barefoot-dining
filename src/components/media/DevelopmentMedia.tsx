@@ -10,7 +10,7 @@ type DevelopmentMediaProps = {
 
 /**
  * Development-only media direction block. Replace this with approved, optimized
- * Lagnaa photography or video before production.
+ * Lagnaa...barefoot dining photography or video before production.
  */
 export function DevelopmentMedia({ media, className = '', priority = false, image, imageAlt = '' }: DevelopmentMediaProps) {
   if (image) {

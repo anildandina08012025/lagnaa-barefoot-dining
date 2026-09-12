@@ -16,7 +16,7 @@ type GoogleReviewsSectionProps = {
 /**
  * Reserved for a future Google Places API integration.
  *
- * Keep disabled until Lagnaa approves showing Google reviews and a backend API
+ * Keep disabled until Lagnaa...barefoot dining approves showing Google reviews and a backend API
  * route is connected. Do not hard-code review text here for production.
  */
 export function GoogleReviewsSection({
@@ -37,7 +37,7 @@ export function GoogleReviewsSection({
             Rated {placeRating.toFixed(1)} on Google from {totalReviews.toLocaleString()} reviews.
           </p>
         ) : (
-          <p>Read recent guest feedback from Lagnaa’s Google Business Profile.</p>
+          <p>Read recent guest feedback from Lagnaa...barefoot dining’s Google Business Profile.</p>
         )}
       </div>
 

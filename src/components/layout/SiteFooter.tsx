@@ -21,7 +21,7 @@ export function SiteFooter() {
         <div className="site-footer__grid">
           <section className="site-footer__intro" aria-labelledby="footer-brand">
             <p className="eyebrow">Little India, Singapore</p>
-            <h2 className="heading heading--footer" id="footer-brand">Lagnaa ..barefoot dining</h2>
+            <h2 className="heading heading--footer" id="footer-brand">Lagnaa...barefoot dining</h2>
             <p>{restaurantConfig.shortDescription}</p>
             <div className="site-footer__actions">
               <Button href={restaurantConfig.links.reservation} disabled={!restaurantConfig.links.reservation} variant="light">
@@ -31,10 +31,10 @@ export function SiteFooter() {
             </div>
             {restaurantConfig.socialLinks.length > 0 ? (
               <section className="site-footer__social" aria-labelledby="footer-social-heading">
-                <h2 id="footer-social-heading">Follow Lagnaa ...barefoot dinning</h2>
+                <h2 id="footer-social-heading">Follow Lagnaa...barefoot dining</h2>
                 <div className="site-footer__social-links">
                   {restaurantConfig.socialLinks.map((social) => social.href ? (
-                    <a aria-label={`Follow Lagnaa on ${social.label}`} href={social.href} key={social.label} rel="noreferrer" target="_blank"><SocialLogo label={social.label} /></a>
+                    <a aria-label={`Follow Lagnaa...barefoot dining on ${social.label}`} href={social.href} key={social.label} rel="noreferrer" target="_blank"><SocialLogo label={social.label} /></a>
                   ) : (
                     <span aria-label={`${social.label} link coming soon`} key={social.label} role="img"><SocialLogo label={social.label} /></span>
                   ))}

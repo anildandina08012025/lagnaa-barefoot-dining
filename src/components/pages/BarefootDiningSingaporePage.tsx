@@ -11,8 +11,8 @@ function TextArrow() {
   return <span aria-hidden="true">↗</span>
 }
 
-const pageTitle = 'Barefoot Dining in Singapore | Lagnaa Barefoot Dining'
-const pageDescription = 'Discover Barefoot Dining at Lagnaa in Little India, Singapore, and explore the menu, experience details and reservation enquiry options.'
+const pageTitle = 'Barefoot Dining in Singapore | Lagnaa...barefoot dining'
+const pageDescription = 'Discover Barefoot Dining at Lagnaa...barefoot dining in Little India, Singapore, and explore the menu, experience details and reservation enquiry options.'
 
 export function BarefootDiningSingaporePage() {
   const canonicalUrl = restaurantConfig.siteUrl ? `${restaurantConfig.siteUrl.replace(/\/$/, '')}/barefoot-dining-singapore` : undefined
@@ -26,9 +26,9 @@ export function BarefootDiningSingaporePage() {
           <Container className="story-hero__grid">
             <div className="story-hero__content">
               <p className="eyebrow">Barefoot Dining Singapore</p>
-              <h1 className="story-hero__heading" id="barefoot-dining-singapore-heading">A signature Lagnaa dining experience.</h1>
+              <h1 className="story-hero__heading" id="barefoot-dining-singapore-heading">A signature dining experience at Lagnaa...barefoot dining.</h1>
               <p className="story-hero__description">
-                Barefoot Dining is part of the Lagnaa experience: Indian food, warm hospitality and an intimate atmosphere around the table in Little India, Singapore.
+                Barefoot Dining is part of the Lagnaa...barefoot dining experience: Indian food, warm hospitality and an intimate atmosphere around the table in Little India, Singapore.
               </p>
               <div className="story-barefoot__actions">
                 <Button href="/experiences/barefoot-dining" variant="primary">Discover Barefoot Dining</Button>
@@ -50,18 +50,18 @@ export function BarefootDiningSingaporePage() {
               <SectionHeading eyebrow="The experience" heading="Food, hospitality and time around the table." level={2} id="barefoot-dining-experience-heading" />
               <div className="editorial-copy">
                 <p>
-                  Lagnaa presents Barefoot Dining as a distinctive part of the restaurant’s identity, connecting Indian dining with a more intimate restaurant atmosphere.
+                  Lagnaa...barefoot dining presents Barefoot Dining as a distinctive part of the restaurant’s identity, connecting Indian dining with a more intimate restaurant atmosphere.
                 </p>
                 <p>
-                  For current Barefoot Dining details, visitors should contact Lagnaa directly or use the reservation enquiry journey.
+                  For current Barefoot Dining details, visitors should contact Lagnaa...barefoot dining directly or use the reservation enquiry journey.
                 </p>
               </div>
-              <a className="text-link" href="/contact">Contact Lagnaa <TextArrow /></a>
+              <a className="text-link" href="/contact">Contact Lagnaa...barefoot dining <TextArrow /></a>
             </div>
             <DevelopmentMedia
               image={entranceTeamImage}
-              imageAlt="Lagnaa restaurant entrance in Little India."
-              media={{ subject: 'Lagnaa visit', detail: 'Restaurant entrance photograph for visitors planning Barefoot Dining.', format: 'landscape', tone: 'saffron' }}
+              imageAlt="Lagnaa...barefoot dining restaurant entrance in Little India."
+              media={{ subject: 'Lagnaa...barefoot dining visit', detail: 'Restaurant entrance photograph for visitors planning Barefoot Dining.', format: 'landscape', tone: 'saffron' }}
               className="story-main__media"
             />
           </Container>
@@ -74,7 +74,7 @@ export function BarefootDiningSingaporePage() {
               <SectionHeading
                 eyebrow="Indian food"
                 heading="Explore the menu before your visit."
-                description="Barefoot Dining sits alongside Lagnaa’s Indian food offering. Browse the menu, then confirm current details directly with Lagnaa before visiting."
+                description="Barefoot Dining sits alongside Lagnaa...barefoot dining’s Indian food offering. Browse the menu, then confirm current details directly with Lagnaa...barefoot dining before visiting."
                 tone="dark"
                 level={2}
                 id="barefoot-dining-menu-heading"
@@ -87,9 +87,9 @@ export function BarefootDiningSingaporePage() {
         <section className="story-section story-little-india" aria-labelledby="barefoot-dining-location-heading">
           <Container className="story-little-india__grid">
             <SectionHeading
-              eyebrow="Visit Lagnaa"
+              eyebrow="Visit Lagnaa...barefoot dining"
               heading="Barefoot Dining in Little India."
-              description={`Lagnaa Barefoot Dining is located at ${restaurantConfig.address}. Use the Contact page for phone, email and reservation enquiry details.`}
+              description={`Lagnaa...barefoot dining is located at ${restaurantConfig.address}. Use the Contact page for phone, email and reservation enquiry details.`}
               level={2}
               id="barefoot-dining-location-heading"
             />
@@ -102,10 +102,10 @@ export function BarefootDiningSingaporePage() {
 
         <CtaSection
           eyebrow="Barefoot Dining Singapore"
-          heading="Plan your Lagnaa experience."
-          description="Discover Barefoot Dining or contact Lagnaa before your visit."
+          heading="Plan your Lagnaa...barefoot dining experience."
+          description="Discover Barefoot Dining or contact Lagnaa...barefoot dining before your visit."
           primaryAction={{ label: 'Discover Barefoot Dining', href: '/experiences/barefoot-dining' }}
-          secondaryAction={{ label: 'Contact Lagnaa', href: '/contact', variant: 'outline' }}
+          secondaryAction={{ label: 'Contact Lagnaa...barefoot dining', href: '/contact', variant: 'outline' }}
         />
       </article>
     </main>

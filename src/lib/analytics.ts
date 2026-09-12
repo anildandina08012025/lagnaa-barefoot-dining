@@ -1,6 +1,7 @@
 export type AnalyticsEventName =
   | 'reserve_click'
   | 'reservation_submit'
+  | 'cooking_class_request_submit'
   | 'menu_view'
   | 'barefoot_view'
   | 'chilli_challenge_view'

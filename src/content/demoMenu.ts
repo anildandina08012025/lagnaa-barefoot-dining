@@ -34,11 +34,11 @@ const setSource = 'https://www.lagnaa.com/menu-1'
 const chilliSource = 'https://www.lagnaa.com/menu-1?menu=chilli-challenge-solo'
 const fullMoonSource = 'https://www.lagnaa.com/online-ordering'
 const drinksSource = 'https://www.lagnaa.com/menu-1?menu=drinks-menu'
-const koliRiceAlt = 'Koli curry leaf with basmati rice served at Lagnaa.'
-const sharedPlatterAlt = 'A shared Lagnaa dining platter.'
+const koliRiceAlt = 'Koli curry leaf with basmati rice served at Lagnaa...barefoot dining.'
+const sharedPlatterAlt = 'A shared Indian platter at Lagnaa...barefoot dining.'
 
 export const demoMenuItems: readonly DemoMenuItem[] = [
-  { id: 'chicken-curry-leaf-rice', category: 'highlights', name: 'Chicken Curry Leaf with Basmati Rice', description: 'A Lagnaa single-meal selection served with fragrant basmati rice.', price: 'S$21', dietary: 'Non-vegetarian', imageSrc: elaiKoli, imageAlt: koliRiceAlt, sourceUrl: menuSource, demo: true, demoImage: false },
+  { id: 'chicken-curry-leaf-rice', category: 'highlights', name: 'Chicken Curry Leaf with Basmati Rice', description: 'A Lagnaa...barefoot dining single-meal selection served with fragrant basmati rice.', price: 'S$21', dietary: 'Non-vegetarian', imageSrc: elaiKoli, imageAlt: koliRiceAlt, sourceUrl: menuSource, demo: true, demoImage: false },
   { id: 'butter-chicken-methi-naan', category: 'highlights', name: 'Butter Chicken with Methi Naan', description: 'Butter chicken paired with aromatic methi naan.', price: 'S$28', dietary: 'Non-vegetarian', sourceUrl: menuSource, demo: true, demoImage: false },
   { id: 'mutton-varuval-yoghurt-rice', category: 'highlights', name: 'Mutton Varuval with Yoghurt Rice', description: 'Spiced mutton varuval paired with cooling yoghurt rice.', price: 'S$50', dietary: 'Non-vegetarian', sourceUrl: menuSource, demo: true, demoImage: false },
 

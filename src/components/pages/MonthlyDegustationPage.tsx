@@ -13,13 +13,13 @@ import { CtaSection } from '../ui/CtaSection'
 import { SectionHeading } from '../ui/SectionHeading'
 
 const pastTastings = [
-  { name: 'June Monthly Special I', image: juneMonthlySpecialOne, alt: 'June monthly special at Lagnaa.' },
-  { name: 'June Monthly Special II', image: juneMonthlySpecialTwo, alt: 'June monthly special at Lagnaa.' },
-  { name: 'June Monthly Special III', image: juneMonthlySpecialThree, alt: 'June monthly special at Lagnaa.' },
-  { name: 'June Monthly Special IV', image: juneMonthlySpecialFour, alt: 'June monthly special at Lagnaa.' },
-  { name: 'August Monthly Special', image: augustMonthlySpecial, alt: 'August monthly special at Lagnaa.' },
-  { name: 'October Monthly Special I', image: octoberSpecial, alt: 'October monthly special at Lagnaa.' },
-  { name: 'October Monthly Special II', image: octoberMonthlySpecialTwo, alt: 'October monthly special at Lagnaa.' },
+  { name: 'June Monthly Special I', image: juneMonthlySpecialOne, alt: 'June monthly special at Lagnaa...barefoot dining.' },
+  { name: 'June Monthly Special II', image: juneMonthlySpecialTwo, alt: 'June monthly special at Lagnaa...barefoot dining.' },
+  { name: 'June Monthly Special III', image: juneMonthlySpecialThree, alt: 'June monthly special at Lagnaa...barefoot dining.' },
+  { name: 'June Monthly Special IV', image: juneMonthlySpecialFour, alt: 'June monthly special at Lagnaa...barefoot dining.' },
+  { name: 'August Monthly Special', image: augustMonthlySpecial, alt: 'August monthly special at Lagnaa...barefoot dining.' },
+  { name: 'October Monthly Special I', image: octoberSpecial, alt: 'October monthly special at Lagnaa...barefoot dining.' },
+  { name: 'October Monthly Special II', image: octoberMonthlySpecialTwo, alt: 'October monthly special at Lagnaa...barefoot dining.' },
 ] as const
 
 const degustationSocialCards = [
@@ -27,28 +27,28 @@ const degustationSocialCards = [
     id: 'degustation-instagram-dwlqjptk',
     eyebrow: 'Instagram',
     title: 'Monthly Dégustation moment',
-    description: 'Watch this official Lagnaa Monthly Dégustation post on Instagram.',
+    description: 'Watch this official Lagnaa...barefoot dining Monthly Dégustation post on Instagram.',
     href: 'https://www.instagram.com/p/DWlQJpTk-P/',
     image: augustMonthlySpecial,
-    alt: 'August monthly special at Lagnaa.',
+    alt: 'August monthly special at Lagnaa...barefoot dining.',
   },
   {
     id: 'degustation-instagram-dhvb24vs9cv',
     eyebrow: 'Instagram',
     title: 'Monthly Dégustation video',
-    description: 'Watch this official Lagnaa Monthly Dégustation video on Instagram.',
+    description: 'Watch this official Lagnaa...barefoot dining Monthly Dégustation video on Instagram.',
     href: 'https://www.instagram.com/p/DHvb24vS9CV/',
     image: juneMonthlySpecialOne,
-    alt: 'June monthly special at Lagnaa.',
+    alt: 'June monthly special at Lagnaa...barefoot dining.',
   },
   {
     id: 'degustation-instagram-cwmwudjnr5',
     eyebrow: 'Instagram',
     title: 'Monthly Dégustation on Instagram',
-    description: 'Watch another official Lagnaa Monthly Dégustation post on Instagram.',
+    description: 'Watch another official Lagnaa...barefoot dining Monthly Dégustation post on Instagram.',
     href: 'https://www.instagram.com/p/CwMWuDJNr5-/',
     image: octoberSpecial,
-    alt: 'October monthly special at Lagnaa.',
+    alt: 'October monthly special at Lagnaa...barefoot dining.',
   },
 ] as const
 
@@ -64,17 +64,17 @@ export function MonthlyDegustationPage() {
   return (
     <main id="main-content">
       <PageMetadata
-        title="Monthly Dégustation Singapore | Lagnaa Food Tasting Experience"
-        description="Register interest in Lagnaa’s food-tasting experience in Singapore and learn how guests can share feedback toward future menu specials."
+        title="Monthly Dégustation Singapore | Lagnaa...barefoot dining Food Tasting Experience"
+        description="Register interest in Lagnaa...barefoot dining’s food-tasting experience in Singapore and learn how guests can share feedback toward future menu specials."
         canonicalUrl={canonicalUrl}
       />
       <article className="degustation-page">
         <section className="degustation-hero" aria-labelledby="degustation-heading">
           <Container className="degustation-hero__grid">
             <div className="degustation-hero__content">
-              <p className="eyebrow degustation-hero__eyebrow">Lagnaa Experiences</p>
+              <p className="eyebrow degustation-hero__eyebrow">Lagnaa...barefoot dining Experiences</p>
               <h1 className="degustation-hero__heading" id="degustation-heading">Monthly Dégustation</h1>
-              <p className="degustation-hero__description">Join Lagnaa’s food-tasting experience and help shape future menu specials. Guests are invited to explore a selection of dishes and share their feedback with the Lagnaa team.</p>
+              <p className="degustation-hero__description">Join Lagnaa...barefoot dining’s food-tasting experience and help shape future menu specials. Guests are invited to explore a selection of dishes and share their feedback with the Lagnaa...barefoot dining team.</p>
               <a className="text-link text-link--light" href="#degustation-archive">See past monthly specials <TextArrow /></a>
             </div>
             <figure className="degustation-hero__image">
@@ -87,7 +87,7 @@ export function MonthlyDegustationPage() {
           <Container>
             <div className="degustation-archive__heading">
               <SectionHeading eyebrow="Monthly specials" heading="A taste of past monthly specials." level={2} id="degustation-archive-heading" />
-              <p>Selected monthly specials from Lagnaa’s past dégustation offerings. This is an archive, not a current menu or event listing.</p>
+              <p>Selected monthly specials from Lagnaa...barefoot dining’s past dégustation offerings. This is an archive, not a current menu or event listing.</p>
             </div>
             <div className="degustation-archive__grid">
               {pastTastings.map((dish) => (
@@ -103,7 +103,7 @@ export function MonthlyDegustationPage() {
         <section className="degustation-section degustation-introduction" aria-labelledby="degustation-introduction-heading">
           <Container narrow>
             <SectionHeading eyebrow="Taste. Share. Shape the Menu." heading="An experience built around food and conversation." align="center" level={2} id="degustation-introduction-heading" />
-            <p className="degustation-introduction__copy">Lagnaa’s dégustation experience brings food lovers together to discover dishes, exchange impressions and contribute feedback toward future menu selections.</p>
+            <p className="degustation-introduction__copy">Lagnaa...barefoot dining’s dégustation experience brings food lovers together to discover dishes, exchange impressions and contribute feedback toward future menu selections.</p>
           </Container>
         </section>
 
@@ -117,13 +117,13 @@ export function MonthlyDegustationPage() {
                 id="degustation-social-heading"
               />
               <p>
-                Watch official Lagnaa posts and updates on Instagram. Videos open on social media, not inside this website.
+                Watch official Lagnaa...barefoot dining posts and updates on Instagram. Videos open on social media, not inside this website.
               </p>
             </div>
-            <div className="experience-social__scroller" aria-label="Official Instagram links for Lagnaa Monthly Dégustation moments">
+            <div className="experience-social__scroller" aria-label="Official Instagram links for Lagnaa...barefoot dining Monthly Dégustation moments">
               {degustationSocialCards.map((card) => (
                 <a
-                  aria-label={`${card.title}. Opens Lagnaa on Instagram in a new tab.`}
+                  aria-label={`${card.title}. Opens Lagnaa...barefoot dining on Instagram in a new tab.`}
                   className="experience-social-card"
                   href={card.href}
                   key={card.id}
@@ -147,9 +147,9 @@ export function MonthlyDegustationPage() {
         </section>
 
         <CtaSection
-          eyebrow="Explore Lagnaa"
+          eyebrow="Explore Lagnaa...barefoot dining"
           heading="Discover flavour at your own pace."
-          description="Explore the current menu or discover Lagnaa’s other experiences."
+          description="Explore the current menu or discover Lagnaa...barefoot dining’s other experiences."
           primaryAction={{ label: 'View Menu', href: '/menu' }}
           secondaryAction={{ label: 'Explore Experiences', href: '/experiences', variant: 'outline' }}
         />

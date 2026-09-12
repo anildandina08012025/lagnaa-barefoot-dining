@@ -9,7 +9,7 @@ type VerticalThumbnailGalleryProps = {
   ariaLabel?: string
 }
 
-export function VerticalThumbnailGallery({ images, groups = [], idPrefix = 'gallery', ariaLabel = 'Lagnaa photograph gallery' }: VerticalThumbnailGalleryProps) {
+export function VerticalThumbnailGallery({ images, groups = [], idPrefix = 'gallery', ariaLabel = 'Lagnaa...barefoot dining photograph gallery' }: VerticalThumbnailGalleryProps) {
   const [activeIndex, setActiveIndex] = useState(0)
   const [expandedIndex, setExpandedIndex] = useState<number | null>(null)
   const closeButtonRef = useRef<HTMLButtonElement>(null)

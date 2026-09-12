@@ -1091,7 +1091,7 @@ button:disabled { cursor: not-allowed; }
 .cooking-interest__introduction > p { margin: var(--space-xl) 0 0; color: var(--color-text-secondary); line-height: 1.65; }
 .cooking-form { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--space-lg); padding: clamp(1.25rem, 3vw, 2rem); border: 1px solid var(--color-border); background: var(--color-surface); box-shadow: 0 1.2rem 3rem rgb(52 31 27 / 8%); }
 .cooking-form__field { min-width: 0; }
-.cooking-form__field--wide, .cooking-form__actions, .cooking-form__prepared { grid-column: 1 / -1; }
+.cooking-form__field--wide, .cooking-form__actions, .cooking-form__prepared, .cooking-form__notice { grid-column: 1 / -1; }
 .cooking-form label { display: block; color: var(--color-text-primary); font-size: 0.72rem; font-weight: 800; letter-spacing: 0.09em; line-height: 1.35; text-transform: uppercase; }
 @media (min-width: 40rem) {
   .cooking-form__field:not(.cooking-form__field--wide) > label { display: flex; min-height: 2.7em; align-items: flex-end; }
@@ -1989,7 +1989,7 @@ button:disabled { cursor: not-allowed; }
   .cooking-hero__heading { font-size: clamp(3.3rem, 14vw, 5.25rem); }
   .cooking-hero__image { min-height: 19rem; }
   .cooking-form { grid-template-columns: 1fr; }
-  .cooking-form__field--wide, .cooking-form__actions, .cooking-form__prepared { grid-column: auto; }
+  .cooking-form__field--wide, .cooking-form__actions, .cooking-form__prepared, .cooking-form__notice { grid-column: auto; }
   .cooking-products__grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .degustation-section { padding-block: clamp(3.5rem, 13vw, 5.5rem); }.degustation-hero { padding-block: clamp(2.5rem, 10vw, 4.5rem); }.degustation-hero__heading { font-size: clamp(3.25rem, 14vw, 5.25rem); }.degustation-hero__image { width: min(100%, 23rem); justify-self: center; }.degustation-form { grid-template-columns: 1fr; }.degustation-form__field--wide, .degustation-form__actions, .degustation-form__prepared { grid-column: auto; }
   .experiences-hero__heading { font-size: clamp(3rem, 13vw, 4.75rem); }

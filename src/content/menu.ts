@@ -70,13 +70,13 @@ export const structuredMenu: StructuredMenu = {
 
 export const menuContent = {
   seo: {
-    title: 'Menu | Lagnaa Barefoot Dining Singapore',
-    description: 'Explore the menu at Lagnaa Barefoot Dining in Little India, Singapore.',
+    title: 'Menu | Lagnaa...barefoot dining Singapore',
+    description: 'Explore the menu at Lagnaa...barefoot dining in Little India, Singapore.',
   },
   hero: {
-    eyebrow: 'The Lagnaa Menu',
+    eyebrow: 'The Lagnaa...barefoot dining Menu',
     heading: 'Indian flavours, ready to explore.',
-    description: 'Browse Lagnaa’s published menu, then discover the food philosophy behind its approach to six flavours.',
+    description: 'Browse Lagnaa...barefoot dining’s published menu, then discover the food philosophy behind its approach to six flavours.',
     media: {
       subject: 'Menu hero food direction',
       detail: 'Editorial food composition or plated-dish photograph with no unverified dish identification.',
@@ -85,9 +85,9 @@ export const menuContent = {
     } satisfies MediaDirection,
   },
   introduction: {
-    eyebrow: 'Food at Lagnaa',
+    eyebrow: 'Food at Lagnaa...barefoot dining',
     heading: 'A menu shaped around Indian food and flavour.',
-    description: 'Lagnaa’s food offering is rooted in Indian cuisine and its Arusuvai philosophy of six flavours. Browse the published dishes and prices below; availability is subject to final confirmation by Lagnaa.',
+    description: 'Lagnaa...barefoot dining’s food offering is rooted in Indian cuisine and its Arusuvai philosophy of six flavours. Browse the published dishes and prices below; availability is subject to final confirmation by Lagnaa...barefoot dining.',
   },
   officialMenuViews: [
     {

@@ -29,7 +29,7 @@ export function ContactPage() {
               <p className="contact-hero__description">{content.hero.description}</p>
               <div className="contact-hero__actions">
                 {restaurantConfig.links.reservation ? <Button href={restaurantConfig.links.reservation} variant="light">Reserve a Table</Button> : null}
-                {phoneHref ? <Button href={phoneHref} variant="outline">Call Lagnaa</Button> : null}
+                {phoneHref ? <Button href={phoneHref} variant="outline">Call Lagnaa...barefoot dining</Button> : null}
               </div>
             </div>
             <div className="contact-hero__ornament" aria-hidden="true">
@@ -45,12 +45,12 @@ export function ContactPage() {
             <SectionHeading eyebrow={content.visit.eyebrow} heading={content.visit.heading} level={2} id="contact-visit-heading" />
             <div className="contact-visit__details">
               <address className="contact-visit__address">
-                <strong>Lagnaa ...Barefoot Dining</strong>
+                <strong>Lagnaa...barefoot dining ...Barefoot Dining</strong>
                 {restaurantConfig.address ? <span>{restaurantConfig.address}</span> : null}
               </address>
               {restaurantConfig.mapsUrl ? <a className="text-link" href={restaurantConfig.mapsUrl} target="_blank" rel="noopener noreferrer">Get Directions on Google Maps <TextArrow /></a> : null}
               <p className="contact-visit__seo-link">
-                Plan your visit to Lagnaa as an <a href="/indian-restaurant-singapore">Indian restaurant in Singapore</a>.
+                Plan your visit to Lagnaa...barefoot dining as an <a href="/indian-restaurant-singapore">Indian restaurant in Singapore</a>.
               </p>
               <dl className="contact-detail-list">
                 {restaurantConfig.phone ? (
@@ -69,7 +69,7 @@ export function ContactPage() {
               {restaurantConfig.mapsUrl ? (
                 <div className="contact-visit__map">
                   <iframe
-                    title="Map showing Lagnaa Barefoot Dining in Little India"
+                    title="Map showing Lagnaa...barefoot dining in Little India"
                     src="https://www.google.com/maps?q=6%20Upper%20Dickson%20Road%2C%20Singapore%20207466&output=embed"
                     loading="lazy"
                     referrerPolicy="no-referrer-when-downgrade"
@@ -87,7 +87,7 @@ export function ContactPage() {
               <SectionHeading eyebrow={content.reservations.eyebrow} heading={content.reservations.heading} description={content.reservations.description} tone="dark" level={2} id="contact-reservations-heading" />
               <div className="contact-reservations__actions">
                 {restaurantConfig.links.reservation ? <Button href={restaurantConfig.links.reservation} variant="light">Reserve a Table</Button> : null}
-                {phoneHref ? <a className="text-link text-link--light" href={phoneHref}>Call Lagnaa <TextArrow /></a> : null}
+                {phoneHref ? <a className="text-link text-link--light" href={phoneHref}>Call Lagnaa...barefoot dining <TextArrow /></a> : null}
               </div>
             </div>
           </Container>
@@ -99,7 +99,7 @@ export function ContactPage() {
               <SectionHeading eyebrow={content.barefootDining.eyebrow} heading={content.barefootDining.heading} description={content.barefootDining.description} level={2} id="contact-barefoot-heading" />
               <div className="contact-barefoot__actions">
                 <Button href="/experiences/barefoot-dining" variant="outline">Discover Barefoot Dining</Button>
-                {restaurantConfig.email ? <a className="text-link" href={`mailto:${restaurantConfig.email}`}>Email Lagnaa <TextArrow /></a> : null}
+                {restaurantConfig.email ? <a className="text-link" href={`mailto:${restaurantConfig.email}`}>Email Lagnaa...barefoot dining <TextArrow /></a> : null}
               </div>
             </div>
           </Container>
@@ -109,8 +109,8 @@ export function ContactPage() {
           <Container className="contact-requirements__grid">
             <SectionHeading eyebrow={content.individualRequirements.eyebrow} heading={content.individualRequirements.heading} description={content.individualRequirements.description} level={2} id="contact-requirements-heading" />
             <div className="contact-requirements__actions">
-              {phoneHref ? <Button href={phoneHref} variant="primary">Call Lagnaa</Button> : null}
-              {restaurantConfig.email ? <Button href={`mailto:${restaurantConfig.email}`} variant="outline">Email Lagnaa</Button> : null}
+              {phoneHref ? <Button href={phoneHref} variant="primary">Call Lagnaa...barefoot dining</Button> : null}
+              {restaurantConfig.email ? <Button href={`mailto:${restaurantConfig.email}`} variant="outline">Email Lagnaa...barefoot dining</Button> : null}
             </div>
           </Container>
         </section>
@@ -121,7 +121,7 @@ export function ContactPage() {
 
         <section className="contact-section contact-explore" data-site-scroll-scene aria-labelledby="contact-explore-heading">
           <Container>
-            <SectionHeading eyebrow="Explore Lagnaa" heading="Continue your Lagnaa journey." level={2} id="contact-explore-heading" />
+            <SectionHeading eyebrow="Explore Lagnaa...barefoot dining" heading="Continue your Lagnaa...barefoot dining journey." level={2} id="contact-explore-heading" />
             <div className="contact-explore__links">
               {content.explore.map((item) => (
                 <a href={item.href} key={item.href}>
@@ -138,7 +138,7 @@ export function ContactPage() {
           heading={content.cta.heading}
           description={content.cta.description}
           primaryAction={restaurantConfig.links.reservation ? { label: 'Reserve a Table', href: restaurantConfig.links.reservation } : undefined}
-          secondaryAction={phoneHref ? { label: 'Call Lagnaa', href: phoneHref, variant: 'outline' } : undefined}
+          secondaryAction={phoneHref ? { label: 'Call Lagnaa...barefoot dining', href: phoneHref, variant: 'outline' } : undefined}
         />
       </article>
     </main>

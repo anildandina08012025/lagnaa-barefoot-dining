@@ -31,7 +31,7 @@ export function OurStoryPage() {
               <p className="story-hero__description">{hero.description}</p>
               <a className="text-link" href="#lagnaa-story">Read the story <TextArrow /></a>
             </div>
-            <figure className="story-hero__media"><img className="page-content-image" src={entranceImage} alt="Entrance to Lagnaa Barefoot Dining in Little India." /></figure>
+            <figure className="story-hero__media"><img className="page-content-image" src={entranceImage} alt="Entrance to Lagnaa...barefoot dining in Little India." /></figure>
           </Container>
         </section>
 
@@ -44,13 +44,13 @@ export function OurStoryPage() {
                 {story.paragraphs.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}
               </div>
             </div>
-            <figure className="story-main__media"><img className="page-content-image" src={interiorImage} alt="Interior of Lagnaa Barefoot Dining." loading="lazy" /></figure>
+            <figure className="story-main__media"><img className="page-content-image" src={interiorImage} alt="Interior of Lagnaa...barefoot dining." loading="lazy" /></figure>
           </Container>
         </section>
 
         <section className="story-section story-food-philosophy" data-site-scroll-scene aria-labelledby="food-philosophy-heading">
           <Container className="story-food-philosophy__grid">
-            <figure className="story-food-philosophy__media"><img className="page-content-image" src={interiorDiningImage} alt="Dining interior at Lagnaa Barefoot Dining." loading="lazy" /></figure>
+            <figure className="story-food-philosophy__media"><img className="page-content-image" src={interiorDiningImage} alt="Dining interior at Lagnaa...barefoot dining." loading="lazy" /></figure>
             <div className="story-food-philosophy__copy">
               <SectionHeading eyebrow={foodPhilosophy.eyebrow} heading={foodPhilosophy.heading} level={2} id="food-philosophy-heading" />
               <div className="editorial-copy">
@@ -83,7 +83,7 @@ export function OurStoryPage() {
                 <Button href={restaurantConfig.links.reservation} disabled={!canReserve} variant="outline">Reserve a Table</Button>
               </div>
             </div>
-            <figure className="story-barefoot__media"><img className="page-content-image" src={barefootStoryImage} alt="Barefoot Dining experience at Lagnaa." loading="lazy" /></figure>
+            <figure className="story-barefoot__media"><img className="page-content-image" src={barefootStoryImage} alt="Barefoot Dining experience at Lagnaa...barefoot dining." loading="lazy" /></figure>
           </Container>
         </section>
 
@@ -92,7 +92,7 @@ export function OurStoryPage() {
             <SectionHeading eyebrow={littleIndia.eyebrow} heading={littleIndia.heading} description={littleIndia.description} level={2} id="little-india-heading" />
             <div className="story-little-india__action">
               {restaurantConfig.mapsUrl ? <Button href={restaurantConfig.mapsUrl} variant="outline">Get Directions</Button> : null}
-              <a className="text-link" href="/contact">Contact and visit Lagnaa <TextArrow /></a>
+              <a className="text-link" href="/contact">Contact and visit Lagnaa...barefoot dining <TextArrow /></a>
             </div>
           </Container>
         </section>
@@ -100,7 +100,7 @@ export function OurStoryPage() {
         <CtaSection
           eyebrow="Experience the story"
           heading="Come and experience the story for yourself."
-          description="Explore Lagnaa’s food and distinctive dining experience, then plan your visit."
+          description="Explore Lagnaa...barefoot dining’s food and distinctive dining experience, then plan your visit."
           primaryAction={{ label: 'Reserve a Table', href: restaurantConfig.links.reservation }}
           secondaryAction={{ label: 'View Menu', href: '/menu', variant: 'outline' }}
         />

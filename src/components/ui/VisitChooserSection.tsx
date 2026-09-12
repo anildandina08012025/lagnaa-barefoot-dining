@@ -24,28 +24,28 @@ const visitChoices: readonly VisitChoice[] = [
   {
     eyebrow: 'Table reservation',
     title: 'Reserve a Table',
-    description: 'Start a standard table reservation and let Lagnaa confirm the details directly.',
+    description: 'Start a standard table reservation and let Lagnaa...barefoot dining confirm the details directly.',
     href: restaurantConfig.links.reservation ?? '/reservations',
     actionLabel: 'Reserve a Table',
   },
   {
     eyebrow: 'Signature experience',
     title: 'Barefoot Dining',
-    description: 'Discover Lagnaa’s signature dining experience shaped by Indian food, hospitality and atmosphere.',
+    description: 'Discover Lagnaa...barefoot dining’s signature dining experience shaped by Indian food, hospitality and atmosphere.',
     href: '/experiences/barefoot-dining',
     actionLabel: 'Discover',
   },
   {
     eyebrow: 'Food challenge',
     title: 'Ultimate Chilli Challenge',
-    description: 'Explore Lagnaa’s signature food challenge for guests who enjoy discovering spice.',
+    description: 'Explore Lagnaa...barefoot dining’s signature food challenge for guests who enjoy discovering spice.',
     href: '/experiences/chilli-challenge',
     actionLabel: 'Explore',
   },
   {
     eyebrow: 'Food tasting',
     title: 'Monthly Dégustation',
-    description: 'Learn about Lagnaa’s food-tasting experience centred on discovering dishes and flavours together.',
+    description: 'Learn about Lagnaa...barefoot dining’s food-tasting experience centred on discovering dishes and flavours together.',
     href: '/events/monthly-degustation',
     actionLabel: 'Explore',
   },
@@ -66,9 +66,9 @@ export function VisitChooserSection({ id = 'choose-your-visit', tone = 'light', 
       <Container>
         <div className="visit-chooser__heading-row">
           <SectionHeading
-            eyebrow="Choose your Lagnaa ...barefoot dinning visit"
-            heading="Find the right way to experience Lagnaa."
-            description="Choose a table reservation, explore a signature experience, or contact Lagnaa if you need help deciding."
+            eyebrow="Choose your Lagnaa...barefoot dining visit"
+            heading="Find the right way to experience Lagnaa...barefoot dining."
+            description="Choose a table reservation, explore a signature experience, or contact Lagnaa...barefoot dining if you need help deciding."
             tone={tone === 'dark' ? 'dark' : 'light'}
             level={2}
             id={headingId}

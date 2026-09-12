@@ -88,7 +88,7 @@ export function SiteHeader() {
     <header className="site-header">
       <Container className="site-header__inner">
         <a className="wordmark" href="/" aria-label={`${restaurantConfig.name} home`}>
-          <img className="wordmark__logo" src={lagnaaLogoDark} alt="Lagnaa Barefoot Dining" />
+          <img className="wordmark__logo" src={lagnaaLogoDark} alt="Lagnaa...barefoot dining" />
         </a>
 
         <a
@@ -96,7 +96,7 @@ export function SiteHeader() {
           href="https://guide.michelin.com/sg/en/singapore-region/singapore/restaurant/lagnaa"
           target="_blank"
           rel="noopener noreferrer"
-          aria-label="View Lagnaa's MICHELIN Guide listing"
+          aria-label="View Lagnaa...barefoot dining's MICHELIN Guide listing"
         >
           <img src={michelinGuideHeaderLogo} alt="MICHELIN Guide recognition" width="72" height="72" />
           <span>MICHELIN<br />Recognised</span>

@@ -15,9 +15,9 @@ export function TestimonialRequestSection({ compact = false }: TestimonialReques
       <Container className="testimonial-request__grid">
         <div>
           <p className="eyebrow">Guest stories</p>
-          <h2 id="testimonial-request-heading">Share your Lagnaa experience.</h2>
+          <h2 id="testimonial-request-heading">Share your Lagnaa...barefoot dining experience.</h2>
           <p>
-            Lagnaa may invite guests to share feedback through a Google Form. Guests can choose whether their testimonial may be published publicly, and Lagnaa reviews submissions before anything appears on the website.
+            Lagnaa...barefoot dining may invite guests to share feedback through a Google Form. Guests can choose whether their testimonial may be published publicly, and Lagnaa...barefoot dining reviews submissions before anything appears on the website.
           </p>
         </div>
         <div className="testimonial-request__panel">
@@ -28,7 +28,7 @@ export function TestimonialRequestSection({ compact = false }: TestimonialReques
             <li>Only approved public testimonials should appear on the website.</li>
           </ul>
           {isEnabled ? (
-            <Button href={formUrl} variant="primary" ariaLabel="Open Lagnaa testimonial Google Form">Share Your Experience</Button>
+            <Button href={formUrl} variant="primary" ariaLabel="Open Lagnaa...barefoot dining testimonial Google Form">Share Your Experience</Button>
           ) : (
             <Button disabled variant="outline">Google Form Pending</Button>
           )}

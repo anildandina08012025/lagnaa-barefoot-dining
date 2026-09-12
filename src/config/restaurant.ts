@@ -50,10 +50,10 @@ export type RestaurantConfiguration = {
 /**
  * Single source of truth for repeatable restaurant information.
  * Official website-confirmed contact and booking values are centralised here.
- * Remaining unconfirmed details stay null until confirmed by Lagnaa.
+ * Remaining unconfirmed details stay null until confirmed by Lagnaa...barefoot dining.
  */
 export const restaurantConfig: RestaurantConfiguration = {
-  name: 'Lagnaa Barefoot Dining',
+  name: 'Lagnaa...barefoot dining',
   shortDescription: 'An Indian restaurant in Little India, Singapore.',
   location: 'Little India, Singapore',
   address: '6 Upper Dickson Road, Singapore 207466',

@@ -21,39 +21,39 @@ import { SectionHeading } from '../ui/SectionHeading'
 const menuSeoSections = [
   {
     title: 'Naan',
-    copy: <>Looking for naan in Singapore? Lagnaa’s <a href="/menu">Indian food menu</a> includes plain naan, butter naan, garlic naan, cheese naan, peshwari naan, methi naan and other Indian bread options that can be paired with curries or shared dishes.</>,
+    copy: <>Looking for naan in Singapore? Lagnaa...barefoot dining’s <a href="/menu">Indian food menu</a> includes plain naan, butter naan, garlic naan, cheese naan, peshwari naan, methi naan and other Indian bread options that can be paired with curries or shared dishes.</>,
   },
   {
     title: 'Biryani',
-    copy: <>Lagnaa’s biryani menu includes chicken biryani, mutton biryani, fish biryani and vegetarian biryani prepared with fragrant basmati rice. Menu details can be confirmed directly with Lagnaa before your visit.</>,
+    copy: <>Lagnaa...barefoot dining’s biryani menu includes chicken biryani, mutton biryani, fish biryani and vegetarian biryani prepared with fragrant basmati rice. Menu details can be confirmed directly with Lagnaa...barefoot dining before your visit.</>,
   },
   {
     title: 'Butter chicken',
-    copy: <>Butter chicken appears across Lagnaa’s menu as a curry option and in selected meal combinations, including pairings with naan. It is a useful starting point for guests looking for familiar North Indian flavours.</>,
+    copy: <>Butter chicken appears across Lagnaa...barefoot dining’s menu as a curry option and in selected meal combinations, including pairings with naan. It is a useful starting point for guests looking for familiar North Indian flavours.</>,
   },
   {
     title: 'Tandoori dishes',
-    copy: <>For tandoori food, Lagnaa’s menu includes tandoor samplers, paneer tikka, garlic fish tikka, chicken tikka and sheek kebab. These dishes support a shared-table style of dining.</>,
+    copy: <>For tandoori food, Lagnaa...barefoot dining’s menu includes tandoor samplers, paneer tikka, garlic fish tikka, chicken tikka and sheek kebab. These dishes support a shared-table style of dining.</>,
   },
   {
     title: 'Vegetarian Indian food',
-    copy: <>Looking for <a href="/best-indian-food-singapore">vegetarian Indian food in Singapore</a>? Lagnaa’s menu includes vegetable curries, paneer dishes, dhal, naan, rice-based options and vegetarian biryani. Current availability can be confirmed directly with Lagnaa.</>,
+    copy: <>Looking for <a href="/best-indian-food-singapore">vegetarian Indian food in Singapore</a>? Lagnaa...barefoot dining’s menu includes vegetable curries, paneer dishes, dhal, naan, rice-based options and vegetarian biryani. Current availability can be confirmed directly with Lagnaa...barefoot dining.</>,
   },
   {
     title: 'Curry',
-    copy: <>Lagnaa’s curry selections include chicken, seafood, mutton and vegetable options, with dishes such as butter chicken, chicken curry leaf, threadfin fish curry, vegetable koorma, dhal and channa masala.</>,
+    copy: <>Lagnaa...barefoot dining’s curry selections include chicken, seafood, mutton and vegetable options, with dishes such as butter chicken, chicken curry leaf, threadfin fish curry, vegetable koorma, dhal and channa masala.</>,
   },
   {
     title: 'Spicy Indian food',
-    copy: <>For spicy Indian food, Lagnaa is known for spice-led exploration through its <a href="/experiences/chilli-challenge">Ultimate Chilli Challenge</a> dishes and curry shots. Spice preferences should be discussed directly with Lagnaa before choosing a challenge level.</>,
+    copy: <>For spicy Indian food, Lagnaa...barefoot dining is known for spice-led exploration through its <a href="/experiences/chilli-challenge">Ultimate Chilli Challenge</a> dishes and curry shots. Spice preferences should be discussed directly with Lagnaa...barefoot dining before choosing a challenge level.</>,
   },
   {
     title: 'Lassi',
-    copy: <>Lagnaa’s drinks menu includes lassi options such as mint lassi, mango lassi, lime lassi and classic lassi, offering a cooling drink alongside Indian dishes.</>,
+    copy: <>Lagnaa...barefoot dining’s drinks menu includes lassi options such as mint lassi, mango lassi, lime lassi and classic lassi, offering a cooling drink alongside Indian dishes.</>,
   },
   {
     title: 'Chilli challenge dishes',
-    copy: <>The <a href="/chilli-challenge-singapore">chilli challenge menu</a> includes curry and masala options across chicken, mutton, seafood and vegetarian dishes. Challenge details can change, so guests should confirm current participation details directly with Lagnaa.</>,
+    copy: <>The <a href="/chilli-challenge-singapore">chilli challenge menu</a> includes curry and masala options across chicken, mutton, seafood and vegetarian dishes. Challenge details can change, so guests should confirm current participation details directly with Lagnaa...barefoot dining.</>,
   },
 ]
 
@@ -65,47 +65,47 @@ function getMenuPreviewImage(itemName: string) {
   const name = itemName.trim().toLowerCase()
 
   if (name.includes('butter chicken')) {
-    return { src: butterChickenMethiNaanImage, alt: 'Butter chicken with methi naan at Lagnaa.' }
+    return { src: butterChickenMethiNaanImage, alt: 'Butter chicken with methi naan at Lagnaa...barefoot dining.' }
   }
 
   if (name.includes('mutton varuval')) {
-    return { src: muttonVaruvalYoghurtRiceImage, alt: 'Mutton varuval with yoghurt rice at Lagnaa.' }
+    return { src: muttonVaruvalYoghurtRiceImage, alt: 'Mutton varuval with yoghurt rice at Lagnaa...barefoot dining.' }
   }
 
   if (name.includes('chicken biryani')) {
-    return { src: chickenBiryaniImage, alt: 'Chicken biryani served at Lagnaa.' }
+    return { src: chickenBiryaniImage, alt: 'Chicken biryani served at Lagnaa...barefoot dining.' }
   }
 
   if (name.includes('chicken tikka')) {
-    return { src: chickenTikkaImage, alt: 'Chicken tikka served at Lagnaa.' }
+    return { src: chickenTikkaImage, alt: 'Chicken tikka served at Lagnaa...barefoot dining.' }
   }
 
   if (name.includes('gobi 65')) {
-    return { src: gobi65Image, alt: 'Gobi 65 served at Lagnaa.' }
+    return { src: gobi65Image, alt: 'Gobi 65 served at Lagnaa...barefoot dining.' }
   }
 
   if (name.includes('kathri pachadi')) {
-    return { src: kathriPachadiImage, alt: 'Kathri pachadi with basmati rice at Lagnaa.' }
+    return { src: kathriPachadiImage, alt: 'Kathri pachadi with basmati rice at Lagnaa...barefoot dining.' }
   }
 
   if (name.includes('koli curry leaf') || name.includes('chicken curry leaf')) {
-    return { src: koliCurryLeafImage, alt: 'Koli curry leaf with basmati rice at Lagnaa.' }
+    return { src: koliCurryLeafImage, alt: 'Koli curry leaf with basmati rice at Lagnaa...barefoot dining.' }
   }
 
   if (name.includes('palak paneer')) {
-    return { src: palakPaneerGarlicNaanImage, alt: 'Palak paneer with garlic naan at Lagnaa.' }
+    return { src: palakPaneerGarlicNaanImage, alt: 'Palak paneer with garlic naan at Lagnaa...barefoot dining.' }
   }
 
   if (name.includes('mushroom masala')) {
-    return { src: mushroomMasalaMethiNaanImage, alt: 'Mushroom masala with methi naan at Lagnaa.' }
+    return { src: mushroomMasalaMethiNaanImage, alt: 'Mushroom masala with methi naan at Lagnaa...barefoot dining.' }
   }
 
   if (name.includes('brinjal curry')) {
-    return { src: brinjalCurryImage, alt: 'Brinjal curry served at Lagnaa.' }
+    return { src: brinjalCurryImage, alt: 'Brinjal curry served at Lagnaa...barefoot dining.' }
   }
 
   if (name.includes('fresh lemon mint cooler')) {
-    return { src: freshLemonMintCoolerImage, alt: 'Fresh lemon mint cooler at Lagnaa.' }
+    return { src: freshLemonMintCoolerImage, alt: 'Fresh lemon mint cooler at Lagnaa...barefoot dining.' }
   }
 
   return undefined
@@ -192,16 +192,16 @@ export function MenuPage() {
   return (
     <main id="main-content">
       <PageMetadata
-        title="Indian Food Menu | Lagnaa Barefoot Dining Singapore"
-        description="Explore Lagnaa’s Indian food menu in Singapore, including naan, biryani, curries, tandoori dishes, lassi and chilli challenge dishes."
+        title="Indian Food Menu | Lagnaa...barefoot dining Singapore"
+        description="Explore Lagnaa...barefoot dining’s Indian food menu in Singapore, including naan, biryani, curries, tandoori dishes, lassi and chilli challenge dishes."
         canonicalUrl={canonicalUrl}
       />
       <article>
         <section className="menu-demo-hero" aria-labelledby="menu-heading">
           <Container className="menu-demo-hero__content">
-            <p className="eyebrow">A Taste of Lagnaa ...barefoot dinning</p>
+            <p className="eyebrow">A Taste of Lagnaa...barefoot dining</p>
             <h1 className="menu-demo-hero__heading" id="menu-heading">Explore Our Menu</h1>
-            <p>Discover vibrant Indian flavours shaped by the six tastes of Arusuvai—from comforting classics to Lagnaa’s celebrated chilli challenge.</p>
+            <p>Discover vibrant Indian flavours shaped by the six tastes of Arusuvai—from comforting classics to Lagnaa...barefoot dining’s celebrated chilli challenge.</p>
           </Container>
         </section>
 
@@ -215,7 +215,7 @@ export function MenuPage() {
           <Container>
             <SectionHeading
               eyebrow="Menu discovery"
-              heading="Explore Indian favourites at Lagnaa."
+              heading="Explore Indian favourites at Lagnaa...barefoot dining."
               description="These short guides help visitors find common Indian food searches while keeping menu details clear and confirmable before a visit."
               id="menu-seo-heading"
             />
@@ -233,8 +233,8 @@ export function MenuPage() {
       </article>
       <CtaSection
         eyebrow="Continue your visit"
-        heading="Plan your table at Lagnaa ...barefoot dinning."
-        description="Explore the menu, then reserve a table or contact Lagnaa with questions before your visit."
+        heading="Plan your table at Lagnaa...barefoot dining."
+        description="Explore the menu, then reserve a table or contact Lagnaa...barefoot dining with questions before your visit."
         primaryAction={{ label: 'Reserve a Table', href: restaurantConfig.links.reservation }}
         secondaryAction={{ label: 'Plan Your Visit', href: '/contact', variant: 'outline' }}
       />
