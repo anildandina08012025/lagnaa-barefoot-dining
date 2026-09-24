@@ -1,6 +1,4 @@
 import { useEffect } from 'react'
-import { galleryHeroFrames } from '../../content/galleryHeroFrames'
-import { mobileHeroFrames } from '../../content/mobileHeroFrames'
 import { recognitionItems } from '../../content/recognition'
 import { restaurantConfig } from '../../config/restaurant'
 import arusuvaiImage from '../../assets/gallery/lagnaa-arusuvai-home.webp'
@@ -52,8 +50,10 @@ export function HomePage() {
         headingLineBreakAfter="Lagnaa...barefoot dining"
         description="Where shoes wait politely at the steps and flavours dance on your palate."
         headingId="home-heading"
-        frames={galleryHeroFrames}
-        mobileFrames={mobileHeroFrames}
+        staticDesktopImage="/lagnaa-hero-image.webp"
+        staticMobileImage="/lagnaa-hero-mobile.webp"
+        className="home-static-hero"
+        animateContent
         hideFooter
       >
         <div className="home-hero__actions" aria-label="Hero actions">
@@ -63,15 +63,15 @@ export function HomePage() {
         <p className="home-hero__location">{restaurantConfig.location}</p>
       </ScrollFrameHero>
 
-      <section className="home-michelin" aria-labelledby="michelin-heading">
+      <section className="home-michelin" data-home-scroll-scene aria-labelledby="michelin-heading">
         <Container className="home-michelin__grid">
           <a className="home-michelin__badge" href="https://guide.michelin.com/sg/en/singapore-region/singapore/restaurant/lagnaa" target="_blank" rel="noopener noreferrer" aria-label="View Lagnaa...barefoot dining's MICHELIN Guide listing">
-            <img src={michelinGuideBadge} alt="MICHELIN Guide multi-year recognition badge, 2016 to 2026" width="480" height="480" loading="lazy" decoding="async" />
+            <img src={michelinGuideBadge} alt="MICHELIN Awarded, 2016 to 2026" width="480" height="480" loading="lazy" decoding="async" />
           </a>
           <div>
-            <p className="eyebrow">MICHELIN recognition</p>
-            <h2 id="michelin-heading">Recognised by the MICHELIN Guide, year after year.</h2>
-            <p>From 2016 through 2026, Lagnaa...barefoot dining has earned MICHELIN Guide recognition across the years shown on this badge—a lasting acknowledgement of its food, hospitality and distinctive dining experience.</p>
+            <p className="eyebrow">MICHELIN Awarded</p>
+            <h2 id="michelin-heading">MICHELIN Awarded, year after year.</h2>
+            <p>From 2016 through 2026, Lagnaa...barefoot dining has been Michelin Awarded across the years shown on this badge—a lasting acknowledgement of its food, hospitality and distinctive dining experience.</p>
             <a className="text-link" href="https://guide.michelin.com/sg/en/singapore-region/singapore/restaurant/lagnaa" target="_blank" rel="noopener noreferrer">View the official MICHELIN listing <TextArrow /></a>
           </div>
         </Container>
@@ -102,7 +102,7 @@ export function HomePage() {
 
           <article className="home-experience home-experience--barefoot" data-home-scroll-scene>
             <div className="home-experience__copy">
-              <p className="eyebrow">01 · ..Barefoot Dining</p>
+              <p className="eyebrow">01 · Barefoot Dining</p>
               <h3>Take off your shoes. Settle in. Stay awhile.</h3>
               <p>On our air-conditioned second floor, guests settle comfortably on cushions around low tables. It is an unhurried way to share food, connect and experience Indian dining together.</p>
               <ul>

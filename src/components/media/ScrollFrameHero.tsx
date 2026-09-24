@@ -1,4 +1,5 @@
 import { type ReactNode, useEffect, useMemo, useRef, useState } from 'react'
+import { motion } from 'framer-motion'
 import { restaurantConfig } from '../../config/restaurant'
 
 type ScrollFrameHeroProps = {
@@ -7,8 +8,12 @@ type ScrollFrameHeroProps = {
   headingLineBreakAfter?: string
   description: string
   headingId: string
-  frames: readonly string[]
+  frames?: readonly string[]
   mobileFrames?: readonly string[]
+  staticDesktopImage?: string
+  staticMobileImage?: string
+  className?: string
+  animateContent?: boolean
   children?: ReactNode
   visualOnly?: boolean
   footerLocationOnly?: boolean
@@ -23,18 +28,21 @@ function usesMobileFrameSequence() {
   return typeof window !== 'undefined' && window.innerWidth <= 768
 }
 
-export function ScrollFrameHero({ eyebrow, heading, headingLineBreakAfter, description, headingId, frames, mobileFrames, children, visualOnly = false, footerLocationOnly = false, hideFooter = false }: ScrollFrameHeroProps) {
+export function ScrollFrameHero({ eyebrow, heading, headingLineBreakAfter, description, headingId, frames = [], mobileFrames, staticDesktopImage, staticMobileImage, className = '', animateContent = false, children, visualOnly = false, footerLocationOnly = false, hideFooter = false }: ScrollFrameHeroProps) {
   const sectionRef = useRef<HTMLElement>(null)
   const imageRef = useRef<HTMLImageElement>(null)
   const [usesCompactSequence, setUsesCompactSequence] = useState(usesMobileFrameSequence)
   const [frameIndex, setFrameIndex] = useState(0)
+  const staticImage = usesCompactSequence && staticMobileImage ? staticMobileImage : staticDesktopImage
   const animationFrames = useMemo(() => (
-    usesCompactSequence && mobileFrames && mobileFrames.length > 0
+    staticImage
+      ? [staticImage]
+      : usesCompactSequence && mobileFrames && mobileFrames.length > 0
       ? mobileFrames
       : usesCompactSequence
         ? frames.filter((_, index) => index % 2 === 0 || index === frames.length - 1)
         : frames
-  ), [frames, mobileFrames, usesCompactSequence])
+  ), [frames, mobileFrames, staticImage, usesCompactSequence])
   const totalFrames = animationFrames.length
   const initialFrame = animationFrames[0]
 
@@ -158,9 +166,17 @@ export function ScrollFrameHero({ eyebrow, heading, headingLineBreakAfter, descr
   const headingBreakIndex = headingLineBreakAfter && heading.startsWith(headingLineBreakAfter)
     ? headingLineBreakAfter.length
     : -1
+  const heroCopy = <>
+    {eyebrow ? <p className="eyebrow scroll-frame-hero__eyebrow">{eyebrow}</p> : null}
+    <h1 className="scroll-frame-hero__heading" id={headingId}>
+      {headingBreakIndex >= 0 ? <>{heading.slice(0, headingBreakIndex)}<br />{heading.slice(headingBreakIndex).trimStart()}</> : heading}
+    </h1>
+    {description ? <p className="scroll-frame-hero__description">{description}</p> : null}
+    {children}
+  </>
 
   return (
-    <section className={`scroll-frame-hero${visualOnly ? ' scroll-frame-hero--visual-only' : ''}`} ref={sectionRef} aria-label={visualOnly ? 'Lagnaa...barefoot dining food presentation' : undefined} aria-labelledby={visualOnly ? undefined : headingId} data-frame-sequence={usesCompactSequence ? 'mobile' : 'desktop'}>
+    <section className={`scroll-frame-hero${visualOnly ? ' scroll-frame-hero--visual-only' : ''}${staticImage ? ' scroll-frame-hero--static' : ''}${className ? ` ${className}` : ''}`} ref={sectionRef} aria-label={visualOnly ? 'Lagnaa...barefoot dining food presentation' : undefined} aria-labelledby={visualOnly ? undefined : headingId} data-frame-sequence={usesCompactSequence ? 'mobile' : 'desktop'}>
       <div className="scroll-frame-hero__stage">
         <img
           className="scroll-frame-hero__frame"
@@ -177,14 +193,18 @@ export function ScrollFrameHero({ eyebrow, heading, headingLineBreakAfter, descr
           <>
             <div className="scroll-frame-hero__overlay" aria-hidden="true" />
             <div className="scroll-frame-hero__content">
-              <div className="scroll-frame-hero__copy">
-                {eyebrow ? <p className="eyebrow scroll-frame-hero__eyebrow">{eyebrow}</p> : null}
-                <h1 className="scroll-frame-hero__heading" id={headingId}>
-                  {headingBreakIndex >= 0 ? <>{heading.slice(0, headingBreakIndex)}<br />{heading.slice(headingBreakIndex).trimStart()}</> : heading}
-                </h1>
-                {description ? <p className="scroll-frame-hero__description">{description}</p> : null}
-                {children}
-              </div>
+              {animateContent ? (
+                <motion.div
+                  animate={{ opacity: 1, y: 0 }}
+                  className="scroll-frame-hero__copy"
+                  initial={{ opacity: 0, y: 28 }}
+                  transition={{ delay: 0.18, duration: 0.7, ease: 'easeOut' }}
+                >
+                  {heroCopy}
+                </motion.div>
+              ) : (
+                <div className="scroll-frame-hero__copy">{heroCopy}</div>
+              )}
               {!hideFooter ? <div className={`scroll-frame-hero__footer${footerLocationOnly ? ' scroll-frame-hero__footer--location-only' : ''}`} aria-hidden="true">
                 <span className="scroll-frame-hero__location">{restaurantConfig.location}</span>
                 {!footerLocationOnly ? <>

@@ -1,4 +1,4 @@
-import type { PointerEvent, ReactNode } from 'react'
+import type { MouseEvent, PointerEvent, ReactNode } from 'react'
 
 export type ButtonVariant = 'primary' | 'secondary' | 'outline' | 'text' | 'light'
 
@@ -10,7 +10,7 @@ type ButtonProps = {
   disabled?: boolean
   leadingIcon?: ReactNode
   trailingIcon?: ReactNode
-  onClick?: () => void
+  onClick?: (event: MouseEvent<HTMLElement>) => void
   ariaLabel?: string
   type?: 'button' | 'submit' | 'reset'
 }
@@ -44,7 +44,7 @@ export function Button({
 
   if (href && !disabled) {
     return (
-      <a className={classes} href={href} aria-label={ariaLabel} onPointerDown={handlePointerDown}>
+      <a className={classes} href={href} aria-label={ariaLabel} onClick={onClick} onPointerDown={handlePointerDown}>
         {content}
       </a>
     )

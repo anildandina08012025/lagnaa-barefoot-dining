@@ -3,6 +3,7 @@ import chilliLevels from '../../assets/chilli/lagnaa-chilli-challenge-levels.png
 import goldenAdviceImage from '../../assets/chilli/lagnaa-chilli-golden-advice.png'
 import curryShotsImage from '../../assets/chilli/curry-shots.webp'
 import chilliJourneyImage from '../../assets/chilli/lagnaa-chilli-challenge-social.webp'
+import suppliedChilliChallengeImage from '../../assets/chilli/chilli-challenge.webp'
 import { Container } from '../layout/Container'
 import { PageMetadata } from '../seo/PageMetadata'
 import { Button } from '../ui/Button'
@@ -131,7 +132,7 @@ export function ChilliChallengePage() {
               </div>
             </div>
             <figure className="chilli-introduction__image">
-              <img src={chilliJourneyImage} alt="Lagnaa...barefoot dining Chilli Challenge experience." width="1600" height="1066" />
+              <img src={suppliedChilliChallengeImage} alt="Lagnaa Ultimate Chilli Challenge: Think you can handle the heat?" width="1128" height="1393" />
             </figure>
           </Container>
         </section>

@@ -13,7 +13,7 @@ function TextArrow() {
 }
 
 const pageTitle = 'MICHELIN Guide Indian Restaurant Singapore | Lagnaa...barefoot dining'
-const pageDescription = 'Explore Lagnaa...barefoot dining, an Indian restaurant in Singapore with Bib Gourmand recognition referenced through its official MICHELIN Guide listing.'
+const pageDescription = 'Explore Lagnaa...barefoot dining, a Michelin Awarded Indian restaurant in Singapore, referenced through its official MICHELIN Guide listing.'
 const michelinListingUrl = 'https://guide.michelin.com/sg/en/singapore-region/singapore/restaurant/lagnaa'
 
 export function MichelinIndianRestaurantSingaporePage() {
@@ -28,9 +28,9 @@ export function MichelinIndianRestaurantSingaporePage() {
           <Container className="story-hero__grid">
             <div className="story-hero__content">
               <p className="eyebrow">MICHELIN Guide Indian Restaurant Singapore</p>
-              <h1 className="story-hero__heading" id="michelin-indian-heading">MICHELIN Guide recognition and Indian dining at Lagnaa...barefoot dining.</h1>
+              <h1 className="story-hero__heading" id="michelin-indian-heading">Michelin Awarded Indian dining at Lagnaa...barefoot dining.</h1>
               <p className="story-hero__description">
-                Lagnaa...barefoot dining is an Indian restaurant in Singapore with Bib Gourmand recognition referenced through its official MICHELIN Guide listing.
+                Lagnaa...barefoot dining is a Michelin Awarded Indian restaurant in Singapore, referenced through its official MICHELIN Guide listing.
               </p>
               <div className="story-barefoot__actions">
                 <Button href="/awards-media" variant="primary">View Awards & Media</Button>
@@ -40,7 +40,7 @@ export function MichelinIndianRestaurantSingaporePage() {
             <DevelopmentMedia
               image={michelinDishImage}
               imageAlt="A selection of Indian dishes at Lagnaa...barefoot dining."
-              media={{ subject: 'Lagnaa...barefoot dining Indian dining', detail: 'Food photograph supporting the MICHELIN Guide recognition story.', format: 'portrait', tone: 'ember' }}
+              media={{ subject: 'Lagnaa...barefoot dining Indian dining', detail: 'Food photograph supporting the Michelin Awarded story.', format: 'portrait', tone: 'ember' }}
               className="story-hero__media"
               priority
             />
@@ -54,10 +54,10 @@ export function MichelinIndianRestaurantSingaporePage() {
               <SectionHeading eyebrow="Recognition" heading="Use the official MICHELIN Guide listing as the source." level={2} id="michelin-source-heading" />
               <div className="editorial-copy">
                 <p>
-                  The site treats Lagnaa...barefoot dining’s official MICHELIN Guide restaurant listing as the primary reference for Bib Gourmand recognition.
+                  The site treats Lagnaa...barefoot dining’s official MICHELIN Guide restaurant listing as the primary reference for its Michelin Awarded status.
                 </p>
                 <p>
-                  The wording is intentionally careful: Bib Gourmand is presented as a MICHELIN Guide distinction, without adding unsupported year-specific claims.
+                  The wording follows the restaurant’s approved language: Michelin Awarded, supported by the official MICHELIN Guide listing.
                 </p>
               </div>
               <a className="text-link" href={michelinListingUrl} target="_blank" rel="noopener noreferrer" aria-label="View Lagnaa...barefoot dining’s official MICHELIN Guide listing">

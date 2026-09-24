@@ -14,7 +14,7 @@ type TrustSignalsProps = {
 const trustSignals: readonly TrustSignal[] = [
   {
     label: 'MICHELIN Guide',
-    detail: 'Bib Gourmand recognition',
+    detail: 'Michelin Awarded',
     href: '/awards-media',
   },
   {

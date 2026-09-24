@@ -1,9 +1,12 @@
 import { useEffect, useRef, useState } from 'react'
+import { AnimatePresence, motion } from 'framer-motion'
+import { ChevronDown } from 'lucide-react'
 import { restaurantConfig } from '../../config/restaurant'
 import lagnaaLogoDark from '../../assets/brand/lagnaa-logo-dark.jpg'
-import michelinGuideHeaderLogo from '../../assets/recognition/michelin-guide-header.webp'
 import { Button, IconButton } from '../ui/Button'
 import { Container } from './Container'
+
+const michelinAwardYears = ['2026', '2025', '2024', '2023', '2022', '2021', '2019', '2018', '2017', '2016']
 
 function MenuGlyph({ open }: { open: boolean }) {
   return (
@@ -39,6 +42,7 @@ export function SiteHeader() {
   const [isEventsOpen, setIsEventsOpen] = useState(false)
   const [isMobileEventsOpen, setIsMobileEventsOpen] = useState(false)
   const eventsCloseTimer = useRef<number | undefined>(undefined)
+  const eventsItemRef = useRef<HTMLLIElement>(null)
 
   const openEvents = () => {
     if (eventsCloseTimer.current) window.clearTimeout(eventsCloseTimer.current)
@@ -79,6 +83,17 @@ export function SiteHeader() {
     if (eventsCloseTimer.current) window.clearTimeout(eventsCloseTimer.current)
   }, [])
 
+  useEffect(() => {
+    const closeEventsOnOutsidePress = (event: MouseEvent) => {
+      if (eventsItemRef.current && !eventsItemRef.current.contains(event.target as Node)) {
+        setIsEventsOpen(false)
+      }
+    }
+
+    document.addEventListener('mousedown', closeEventsOnOutsidePress)
+    return () => document.removeEventListener('mousedown', closeEventsOnOutsidePress)
+  }, [])
+
   const closeMenu = () => {
     setIsMenuOpen(false)
     setIsMobileEventsOpen(false)
@@ -96,10 +111,12 @@ export function SiteHeader() {
           href="https://guide.michelin.com/sg/en/singapore-region/singapore/restaurant/lagnaa"
           target="_blank"
           rel="noopener noreferrer"
-          aria-label="View Lagnaa...barefoot dining's MICHELIN Guide listing"
+          aria-label="Lagnaa...barefoot dining: Michelin Awarded from 2016 to 2026. View the official MICHELIN Guide listing."
         >
-          <img src={michelinGuideHeaderLogo} alt="MICHELIN Guide recognition" width="72" height="72" />
-          <span>MICHELIN<br />Recognised</span>
+          <img className="site-header__michelin-mark" src="/michelin-header-red.webp" alt="Michelin Awarded" width="360" height="193" />
+          <span className="site-header__michelin-years" aria-hidden="true">
+            {michelinAwardYears.map((year) => <span key={year}>{year}</span>)}
+          </span>
         </a>
 
         <nav className="desktop-navigation" aria-label="Primary navigation">
@@ -108,6 +125,7 @@ export function SiteHeader() {
               <li
                 className={item.children ? 'desktop-navigation__item--has-submenu' : undefined}
                 key={item.href}
+                ref={item.children ? eventsItemRef : undefined}
                 onBlur={item.children ? (event) => {
                   if (!event.currentTarget.contains(event.relatedTarget as Node | null)) closeEventsAfterPointerLeaves()
                 } : undefined}
@@ -121,22 +139,46 @@ export function SiteHeader() {
                     <button
                       className="desktop-navigation__submenu-toggle"
                       type="button"
-                      aria-label={`Show ${item.label} links`}
+                      aria-label={`${isEventsOpen ? 'Close' : 'Open'} ${item.label} menu`}
                       aria-expanded={isEventsOpen}
                       aria-controls="events-submenu"
                       onClick={() => setIsEventsOpen((open) => !open)}
                     >
-                      <span aria-hidden="true">⌄</span>
+                      <motion.span
+                        animate={{ rotate: isEventsOpen ? 180 : 0 }}
+                        transition={{ duration: 0.2, ease: 'easeInOut' }}
+                      >
+                        <ChevronDown aria-hidden="true" size={16} strokeWidth={2.4} />
+                      </motion.span>
                     </button>
                 ) : null}
                 </div>
                 {item.children ? (
                   <>
-                    {isEventsOpen ? (
-                      <ul className="desktop-navigation__submenu" id="events-submenu" aria-label="Events navigation">
-                        {item.children.map((child) => <li key={child.href}><a href={child.href}>{child.label}</a></li>)}
-                      </ul>
-                    ) : null}
+                    <AnimatePresence>
+                      {isEventsOpen ? (
+                        <motion.ul
+                          animate={{ opacity: 1, scale: 1, y: 0 }}
+                          className="desktop-navigation__submenu"
+                          exit={{ opacity: 0, scale: 0.96, y: -8 }}
+                          id="events-submenu"
+                          initial={{ opacity: 0, scale: 0.96, y: -8 }}
+                          aria-label="Events navigation"
+                          transition={{ duration: 0.18, ease: 'easeOut' }}
+                        >
+                          {item.children.map((child, index) => (
+                            <motion.li
+                              animate={{ opacity: 1, x: 0 }}
+                              initial={{ opacity: 0, x: -10 }}
+                              key={child.href}
+                              transition={{ delay: index * 0.035, duration: 0.16, ease: 'easeOut' }}
+                            >
+                              <a href={child.href}>{child.label}</a>
+                            </motion.li>
+                          ))}
+                        </motion.ul>
+                      ) : null}
+                    </AnimatePresence>
                   </>
                 ) : null}
               </li>

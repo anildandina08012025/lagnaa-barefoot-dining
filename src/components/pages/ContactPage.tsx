@@ -1,146 +1,92 @@
+import type { MouseEvent } from 'react'
 import { restaurantConfig } from '../../config/restaurant'
-import { contactPageContent } from '../../content/contact'
 import { Container } from '../layout/Container'
 import { PageMetadata } from '../seo/PageMetadata'
 import { Button } from '../ui/Button'
-import { CtaSection } from '../ui/CtaSection'
-import { SectionHeading } from '../ui/SectionHeading'
-import { TestimonialRequestSection } from '../ui/TestimonialRequestSection'
-import { TrustSignals } from '../ui/TrustSignals'
 
-function TextArrow() {
-  return <span aria-hidden="true">↗</span>
-}
+const openingHours = [
+  'Casual Dining · 11:30 AM–10:30 PM',
+  'Barefoot Dining · 11:30 AM–8:30 PM',
+  'Tuesday–Sunday · Closed every Monday',
+]
 
 export function ContactPage() {
-  const content = contactPageContent
   const phoneHref = restaurantConfig.phone ? `tel:${restaurantConfig.phone.replace(/\s/g, '')}` : null
   const canonicalUrl = restaurantConfig.siteUrl ? `${restaurantConfig.siteUrl.replace(/\/$/, '')}/contact` : undefined
+  const scrollToPhoneOnDesktop = (event: MouseEvent<HTMLElement>) => {
+    if (!window.matchMedia('(min-width: 48rem)').matches) return
+
+    event.preventDefault()
+    const phone = document.getElementById('contact-phone')
+    phone?.scrollIntoView({ behavior: 'smooth', block: 'center' })
+    phone instanceof HTMLAnchorElement && phone.focus({ preventScroll: true })
+  }
 
   return (
     <main id="main-content">
-      <PageMetadata title={content.seo.title} description={content.seo.description} canonicalUrl={canonicalUrl} />
-      <article>
-        <section className="contact-hero" aria-labelledby="contact-heading">
-          <Container className="contact-hero__grid">
-            <div className="contact-hero__content">
-              <p className="eyebrow contact-hero__eyebrow">{content.hero.eyebrow}</p>
-              <h1 className="contact-hero__heading" id="contact-heading">{content.hero.heading}</h1>
-              <p className="contact-hero__description">{content.hero.description}</p>
-              <div className="contact-hero__actions">
-                {restaurantConfig.links.reservation ? <Button href={restaurantConfig.links.reservation} variant="light">Reserve a Table</Button> : null}
-                {phoneHref ? <Button href={phoneHref} variant="outline">Call Lagnaa...barefoot dining</Button> : null}
-              </div>
-            </div>
-            <div className="contact-hero__ornament" aria-hidden="true">
-              <span>Visit</span>
-              <i />
-              <small>{restaurantConfig.location}</small>
-            </div>
-          </Container>
-        </section>
+      <PageMetadata
+        title="Contact & Hours | Lagnaa...barefoot dining Singapore"
+        description="Find Lagnaa...barefoot dining at 6 Upper Dickson Road in Little India, Singapore. View directions, contact details and opening hours."
+        canonicalUrl={canonicalUrl}
+      />
 
-        <section className="contact-section contact-visit" data-site-scroll-scene aria-labelledby="contact-visit-heading">
-          <Container className="contact-visit__grid">
-            <SectionHeading eyebrow={content.visit.eyebrow} heading={content.visit.heading} level={2} id="contact-visit-heading" />
-            <div className="contact-visit__details">
-              <address className="contact-visit__address">
-                <strong>Lagnaa...barefoot dining ...Barefoot Dining</strong>
-                {restaurantConfig.address ? <span>{restaurantConfig.address}</span> : null}
-              </address>
-              {restaurantConfig.mapsUrl ? <a className="text-link" href={restaurantConfig.mapsUrl} target="_blank" rel="noopener noreferrer">Get Directions on Google Maps <TextArrow /></a> : null}
-              <p className="contact-visit__seo-link">
-                Plan your visit to Lagnaa...barefoot dining as an <a href="/indian-restaurant-singapore">Indian restaurant in Singapore</a>.
-              </p>
-              <dl className="contact-detail-list">
-                {restaurantConfig.phone ? (
-                  <div>
-                    <dt>Telephone</dt>
-                    <dd><a href={phoneHref ?? undefined}>{restaurantConfig.phone}</a></dd>
-                  </div>
-                ) : null}
-                {restaurantConfig.email ? (
-                  <div>
-                    <dt>Email</dt>
-                    <dd><a href={`mailto:${restaurantConfig.email}`}>{restaurantConfig.email}</a></dd>
-                  </div>
-                ) : null}
+      <section className="contact-hero" aria-labelledby="contact-heading">
+        <Container className="contact-hero__grid">
+          <div className="contact-hero__content">
+            <p className="eyebrow contact-hero__eyebrow">Plan your visit</p>
+            <h1 className="contact-hero__heading" id="contact-heading">Contact &amp; Visit Lagnaa...barefoot dining</h1>
+            <p className="contact-hero__description">Reserve a table, find the restaurant or contact Lagnaa...barefoot dining before your visit.</p>
+            <div className="contact-hero__actions">
+              {restaurantConfig.links.reservation ? <Button href={restaurantConfig.links.reservation} variant="light">Reserve a Table</Button> : null}
+              {phoneHref ? <Button href={phoneHref} variant="outline" onClick={scrollToPhoneOnDesktop}>Call Lagnaa...barefoot dining</Button> : null}
+            </div>
+          </div>
+          <div className="contact-hero__ornament" aria-hidden="true">
+            <span>Visit</span>
+            <i />
+            <small>{restaurantConfig.location}</small>
+          </div>
+        </Container>
+      </section>
+
+      <section className="contact-essential" aria-label="Contact information">
+        <Container>
+          <div className="contact-essential__grid">
+            <article className="contact-essential__card">
+              <p className="eyebrow">Visit</p>
+              <h2>6 Upper Dickson Road</h2>
+              <p>Singapore 207466</p>
+              {restaurantConfig.mapsUrl ? <a className="text-link" href={restaurantConfig.mapsUrl} target="_blank" rel="noopener noreferrer">Get Directions on Google Maps <span aria-hidden="true">↗</span></a> : null}
+            </article>
+
+            <article className="contact-essential__card">
+              <p className="eyebrow">Contact</p>
+              <h2>Get in touch</h2>
+              <dl>
+                {restaurantConfig.phone ? <div><dt>Telephone</dt><dd><a href={phoneHref ?? undefined} id="contact-phone">{restaurantConfig.phone}</a></dd></div> : null}
+                {restaurantConfig.email ? <div><dt>Email</dt><dd><a href={`mailto:${restaurantConfig.email}`}>{restaurantConfig.email}</a></dd></div> : null}
               </dl>
-              {restaurantConfig.mapsUrl ? (
-                <div className="contact-visit__map">
-                  <iframe
-                    title="Map showing Lagnaa...barefoot dining in Little India"
-                    src="https://www.google.com/maps?q=6%20Upper%20Dickson%20Road%2C%20Singapore%20207466&output=embed"
-                    loading="lazy"
-                    referrerPolicy="no-referrer-when-downgrade"
-                  />
-                </div>
-              ) : null}
-            </div>
-          </Container>
-        </section>
+            </article>
 
-        <section className="contact-section contact-reservations" aria-labelledby="contact-reservations-heading">
-          <Container className="contact-reservations__grid">
-            <span className="contact-reservations__marker" aria-hidden="true">01</span>
-            <div className="contact-reservations__copy">
-              <SectionHeading eyebrow={content.reservations.eyebrow} heading={content.reservations.heading} description={content.reservations.description} tone="dark" level={2} id="contact-reservations-heading" />
-              <div className="contact-reservations__actions">
-                {restaurantConfig.links.reservation ? <Button href={restaurantConfig.links.reservation} variant="light">Reserve a Table</Button> : null}
-                {phoneHref ? <a className="text-link text-link--light" href={phoneHref}>Call Lagnaa...barefoot dining <TextArrow /></a> : null}
-              </div>
-            </div>
-          </Container>
-        </section>
+            <article className="contact-essential__card">
+              <p className="eyebrow">Opening Hours</p>
+              <h2>Tuesday–Sunday</h2>
+              <ul>
+                {openingHours.map((hours) => <li key={hours}>{hours}</li>)}
+              </ul>
+            </article>
 
-        <section className="contact-section contact-barefoot" data-site-scroll-scene aria-labelledby="contact-barefoot-heading">
-          <Container className="contact-barefoot__grid">
-            <div className="contact-barefoot__copy">
-              <SectionHeading eyebrow={content.barefootDining.eyebrow} heading={content.barefootDining.heading} description={content.barefootDining.description} level={2} id="contact-barefoot-heading" />
-              <div className="contact-barefoot__actions">
-                <Button href="/experiences/barefoot-dining" variant="outline">Discover Barefoot Dining</Button>
-                {restaurantConfig.email ? <a className="text-link" href={`mailto:${restaurantConfig.email}`}>Email Lagnaa...barefoot dining <TextArrow /></a> : null}
-              </div>
-            </div>
-          </Container>
-        </section>
-
-        <section className="contact-section contact-requirements" aria-labelledby="contact-requirements-heading">
-          <Container className="contact-requirements__grid">
-            <SectionHeading eyebrow={content.individualRequirements.eyebrow} heading={content.individualRequirements.heading} description={content.individualRequirements.description} level={2} id="contact-requirements-heading" />
-            <div className="contact-requirements__actions">
-              {phoneHref ? <Button href={phoneHref} variant="primary">Call Lagnaa...barefoot dining</Button> : null}
-              {restaurantConfig.email ? <Button href={`mailto:${restaurantConfig.email}`} variant="outline">Email Lagnaa...barefoot dining</Button> : null}
-            </div>
-          </Container>
-        </section>
-
-        <TrustSignals compact />
-
-        <TestimonialRequestSection compact />
-
-        <section className="contact-section contact-explore" data-site-scroll-scene aria-labelledby="contact-explore-heading">
-          <Container>
-            <SectionHeading eyebrow="Explore Lagnaa...barefoot dining" heading="Continue your Lagnaa...barefoot dining journey." level={2} id="contact-explore-heading" />
-            <div className="contact-explore__links">
-              {content.explore.map((item) => (
-                <a href={item.href} key={item.href}>
-                  <div><h3>{item.label}</h3><p>{item.description}</p></div>
-                  <span aria-hidden="true">↗</span>
-                </a>
-              ))}
-            </div>
-          </Container>
-        </section>
-
-        <CtaSection
-          eyebrow={content.cta.eyebrow}
-          heading={content.cta.heading}
-          description={content.cta.description}
-          primaryAction={restaurantConfig.links.reservation ? { label: 'Reserve a Table', href: restaurantConfig.links.reservation } : undefined}
-          secondaryAction={phoneHref ? { label: 'Call Lagnaa...barefoot dining', href: phoneHref, variant: 'outline' } : undefined}
-        />
-      </article>
+            <article className="contact-essential__map" aria-label="Map to Lagnaa...barefoot dining">
+              <iframe
+                title="Map showing Lagnaa...barefoot dining in Little India"
+                src="https://www.google.com/maps?q=6%20Upper%20Dickson%20Road%2C%20Singapore%20207466&output=embed"
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+              />
+            </article>
+          </div>
+        </Container>
+      </section>
     </main>
   )
 }

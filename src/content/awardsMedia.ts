@@ -1,4 +1,4 @@
-export type RecognitionStatus = 'bib-gourmand' | 'winner' | 'finalist' | 'nominee' | 'participant'
+export type RecognitionStatus = 'michelin-awarded' | 'winner' | 'finalist' | 'nominee' | 'participant'
 
 export type AwardRecord = {
   id: string
@@ -100,15 +100,15 @@ export const awardsMediaContent: AwardsMediaPageContent = {
     {
       id: 'michelin-guide-behind-the-bib-lagnaa',
       type: 'award',
-      title: 'Michelin Bib Gourmand',
+      title: 'Michelin Awarded',
       organisation: 'MICHELIN Guide',
       category: null,
-      recognitionStatus: 'bib-gourmand',
-      recognitionLabel: 'Bib Gourmand',
+      recognitionStatus: 'michelin-awarded',
+      recognitionLabel: 'Michelin Awarded',
       recipient: 'Lagnaa...barefoot dining',
       date: null,
       displayDate: '2016–2019 · 2021–2026',
-      summary: 'Lagnaa...barefoot dining has been recognised by the MICHELIN Guide with the Bib Gourmand distinction across the years shown.',
+      summary: 'Lagnaa...barefoot dining has been Michelin Awarded across the years shown.',
       sourceUrl: 'https://guide.michelin.com/sg/en/singapore-region/singapore/restaurant/lagnaa',
       sourceLabel: 'View the official MICHELIN Guide listing',
       editorialSourceUrl: 'https://guide.michelin.com/sg/en/article/features/behind-the-bib-lagnaa',
