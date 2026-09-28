@@ -1,5 +1,5 @@
 import { type ReactNode, useEffect, useMemo, useRef, useState } from 'react'
-import { motion } from 'framer-motion'
+import { motion, useReducedMotion } from 'framer-motion'
 import { restaurantConfig } from '../../config/restaurant'
 
 type ScrollFrameHeroProps = {
@@ -14,6 +14,7 @@ type ScrollFrameHeroProps = {
   staticMobileImage?: string
   className?: string
   animateContent?: boolean
+  animatedHeadingLines?: readonly string[]
   children?: ReactNode
   visualOnly?: boolean
   footerLocationOnly?: boolean
@@ -28,7 +29,43 @@ function usesMobileFrameSequence() {
   return typeof window !== 'undefined' && window.innerWidth <= 768
 }
 
-export function ScrollFrameHero({ eyebrow, heading, headingLineBreakAfter, description, headingId, frames = [], mobileFrames, staticDesktopImage, staticMobileImage, className = '', animateContent = false, children, visualOnly = false, footerLocationOnly = false, hideFooter = false }: ScrollFrameHeroProps) {
+function PathDrawHeading({ lines }: { lines: readonly string[] }) {
+  const reduceMotion = useReducedMotion()
+
+  return (
+    <svg className="hero-title-path" viewBox="0 0 1200 400" aria-hidden="true" focusable="false">
+      {lines.map((line, index) => (
+        <motion.text
+          animate={reduceMotion ? { fillOpacity: 1, strokeDashoffset: 0 } : { fillOpacity: 1, strokeDashoffset: 0 }}
+          fill="#fff3c2"
+          fillOpacity={reduceMotion ? 1 : 0}
+          fontFamily="Georgia, 'Times New Roman', serif"
+          fontSize={index === 0 ? 130 : 148}
+          fontWeight="400"
+          initial={reduceMotion ? false : { fillOpacity: 0, strokeDashoffset: 1800 }}
+          key={line}
+          letterSpacing="-0.055em"
+          stroke="#fff3c2"
+          strokeDasharray="1800"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          strokeWidth="1.8"
+          textAnchor="start"
+          transition={reduceMotion ? { duration: 0 } : {
+            fillOpacity: { delay: 1.45 + index * 0.3, duration: 0.45 },
+            strokeDashoffset: { delay: 0.18 + index * 0.32, duration: 1.9, ease: 'easeInOut' },
+          }}
+          x="8"
+          y={index === 0 ? 145 : 315}
+        >
+          {line}
+        </motion.text>
+      ))}
+    </svg>
+  )
+}
+
+export function ScrollFrameHero({ eyebrow, heading, headingLineBreakAfter, description, headingId, frames = [], mobileFrames, staticDesktopImage, staticMobileImage, className = '', animateContent = false, animatedHeadingLines, children, visualOnly = false, footerLocationOnly = false, hideFooter = false }: ScrollFrameHeroProps) {
   const sectionRef = useRef<HTMLElement>(null)
   const imageRef = useRef<HTMLImageElement>(null)
   const [usesCompactSequence, setUsesCompactSequence] = useState(usesMobileFrameSequence)
@@ -168,8 +205,8 @@ export function ScrollFrameHero({ eyebrow, heading, headingLineBreakAfter, descr
     : -1
   const heroCopy = <>
     {eyebrow ? <p className="eyebrow scroll-frame-hero__eyebrow">{eyebrow}</p> : null}
-    <h1 className="scroll-frame-hero__heading" id={headingId}>
-      {headingBreakIndex >= 0 ? <>{heading.slice(0, headingBreakIndex)}<br />{heading.slice(headingBreakIndex).trimStart()}</> : heading}
+    <h1 className={`scroll-frame-hero__heading${animatedHeadingLines?.length ? ' scroll-frame-hero__heading--path' : ''}`} id={headingId} aria-label={animatedHeadingLines?.length ? heading : undefined}>
+      {animatedHeadingLines?.length ? <PathDrawHeading lines={animatedHeadingLines} /> : headingBreakIndex >= 0 ? <>{heading.slice(0, headingBreakIndex)}<br />{heading.slice(headingBreakIndex).trimStart()}</> : heading}
     </h1>
     {description ? <p className="scroll-frame-hero__description">{description}</p> : null}
     {children}

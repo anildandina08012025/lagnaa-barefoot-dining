@@ -54,6 +54,7 @@ export function HomePage() {
         staticMobileImage="/lagnaa-hero-mobile.webp"
         className="home-static-hero"
         animateContent
+        animatedHeadingLines={['Lagnaa... barefoot', 'dining.']}
         hideFooter
       >
         <div className="home-hero__actions" aria-label="Hero actions">
